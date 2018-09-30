@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Test{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    {{ task.tester }}
+    {{ task.id }}
+    {{ task.mode }}
+    {{ task.branch }}
+{% endblock %}
