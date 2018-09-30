@@ -12,7 +12,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import djcelery
 
+djcelery.setup_loader()
+BROKER_URL = 'amqp://guest@localhost//'
+# CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
+CELERY_RESULT_BACKEND = 'django-db'
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -37,6 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'webserver',
     'task',
+    'djcelery',
+    'django_celery_results',
 )
 
 MIDDLEWARE_CLASSES = (

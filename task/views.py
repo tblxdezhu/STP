@@ -4,6 +4,7 @@ from django.template import Template, Context
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
+from task.tasks import print_task
 
 
 # Create your views here.
@@ -28,4 +29,5 @@ def submitted(request):
     branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
+    print_task.delay("xu")
     return render(request, 'submitted.html', {'task': task})
