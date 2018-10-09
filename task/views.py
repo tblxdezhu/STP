@@ -27,7 +27,8 @@ def test(request):
 
 @login_required
 def submitted(request):
-    branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common']}
+    branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common'], 'algo_vehicle_offlineslam': request.POST['algo_vehicle_offlineslam'],
+               'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
     result = print_task.delay("xu")
@@ -45,3 +46,9 @@ def submitted(request):
 def task_process(request, task_id):
     task = Task.objects.get(id=task_id)
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
+
+
+@login_required
+def dashboard(request):
+    print(request.user)
+    return render(request, 'dashboard.html')

@@ -8,7 +8,7 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="brand">
-            <a href="index.html"><img src="{% static 'assets/img/logo-dark.png' %}" alt="Ygomi Logo" class="img-responsive logo"></a>
+            <a href="index.html"><img src="{% static 'assets/img/ygomi_101x30.png' %}" alt="Ygomi Logo" class="img-responsive logo"></a>
         </div>
         <div class="container-fluid">
             <div class="navbar-btn">
@@ -68,7 +68,7 @@
         <div class="sidebar-scroll">
             <nav>
                 <ul class="nav">
-                    <li><a href="" class={{ if_index_active }}><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
+                    <li><a href="/dashboard" class={{ if_index_active }}><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
                     <li>
                         <a href="#subPages_data" data-toggle="collapse" class="collapsed"><i class="lnr lnr-film-play"></i><span> Data</span><i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="subPages_data" class="collapse ">
@@ -147,7 +147,7 @@
 <script type="text/javascript">
     $(function () {
         var data_algo_vehicle = ['feature/RDB-31401-MPG', 'feature/RDB-30913-offline-slam-developing-branch', 'feature/RDB-28414-internal-implementation-of-slam-snippets-merging-in-server', 'feature/RDB-29547-ssa-algorithm-performance-improve'];
-        $("#algo_vehicle").typeahead({source: data_algo_vehicle, minLength: 0});
+        $("#algo_vehicle_offlineslam").typeahead({source: data_algo_vehicle, minLength: 0});
         $("#algo_common").typeahead({source: data_algo_vehicle, minLength: 0});
         $("#algo_sam").typeahead({source: data_algo_vehicle, minLength: 0});
         $("#common").typeahead({source: data_algo_vehicle, minLength: 0});

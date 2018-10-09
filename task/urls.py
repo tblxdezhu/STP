@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^submitted$', views.submitted),
     url(r'^(?P<task_id>[0-9]{1,5})/$', views.task_process, name='task_id'),
 
+
 ]

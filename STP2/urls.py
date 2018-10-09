@@ -15,10 +15,11 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from webserver import views
-from task.views import submitted
+from task.views import dashboard
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.login),
+    url(r'^dashboard/', dashboard),
     url(r'^test/', include('task.urls')),
 ]
