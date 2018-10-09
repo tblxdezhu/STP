@@ -10,6 +10,6 @@ from task import views
 urlpatterns = [
     url(r'^$', views.test),
     url(r'^submitted$', views.submitted),
-    url(r'^(?P<id>\d+)/(?P<slug>[-\w]+)/$', views.submitted, name='task_detail'),
+    url(r'^(?P<task_id>[0-9]{1,5})/$', views.task_process, name='task_id'),
 
 ]

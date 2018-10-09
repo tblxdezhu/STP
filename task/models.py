@@ -18,3 +18,5 @@ class Task(models.Model):
     def __str__(self):
         return "{}_{}".format(self.created, self.tester)
 
+
+

@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Task
 from task.tasks import print_task
+from django.core.urlresolvers import reverse
 
 
 # Create your views here.
@@ -29,5 +30,18 @@ def submitted(request):
     branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
-    print_task.delay("xu")
-    return render(request, 'submitted.html', {'task': task})
+    result = print_task.delay("xu")
+    print(result.task_id)
+    # while True:
+    #     print(result.status)
+    #     if result.ready():
+    #         break
+    # print(result.status)
+    # return render(request, 'submitted.html', {'task': task})
+    return HttpResponseRedirect(reverse('task_id', kwargs={'task_id': task.id}))
+
+
+@login_required
+def task_process(request, task_id):
+    task = Task.objects.get(id=task_id)
+    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
