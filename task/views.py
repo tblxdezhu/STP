@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
@@ -7,23 +8,20 @@ from .models import Task
 from task.tasks import print_task
 from django.core.urlresolvers import reverse
 
+import math
+
+from django.http import HttpResponse
+from django.template import loader
+from pyecharts import Line3D
+
+REMOTE_HOST = "https://pyecharts.github.io/assets/js"
+
 
 # Create your views here.
 @login_required
 def test(request):
-    return render(request, 'run_slam_ssa_test.html', {'username': request.user.username, 'if_test_active': 'active'})
+    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
-
-# @login_required
-# def submitted(request):
-#     if 'select_mode' in request.POST:
-#         print(request.POST['select_mode'])
-#         print(request.POST.getlist('check_box_list'))
-#         print(request.POST['common'])
-#         print(request.POST['algo_common'])
-#         return render(request, 'run_slam_ssa_test.html',
-#                       {'username': request.user.username, 'if_test_active': 'active'})
-#
 
 @login_required
 def submitted(request):
@@ -50,16 +48,17 @@ def task_process(request, task_id):
 
 @login_required
 def dashboard(request):
-    print(request.user)
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks})
+    l3d = line3d()
+    myechart = l3d.render_embed()
+    script_list = l3d.get_js_dependencies()
+    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
 
 
 @login_required
 def all_tasks(request):
     tasks = Task.objects.all()
-    print(tasks)
     return render(request, 'all_tasks.html', {'tasks': tasks})
 
 
@@ -67,3 +66,21 @@ def all_tasks(request):
 def all_my_tasks(request):
     tasks = Task.objects.filter(tester=request.user)
     return render(request, 'all_my_tasks.html', {'tasks': tasks})
+
+
+def line3d():
+    _data = []
+    for t in range(0, 25000):
+        _t = t / 1000
+        x = (1 + 0.25 * math.cos(75 * _t)) * math.cos(_t)
+        y = (1 + 0.25 * math.cos(75 * _t)) * math.sin(_t)
+        z = _t + 2.0 * math.sin(75 * _t)
+        _data.append([x, y, z])
+    range_color = [
+        '#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf',
+        '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
+    line3d = Line3D("Demo", width=1200, height=600)
+    line3d.add("", _data, is_visualmap=True,
+               visual_range_color=range_color, visual_range=[0, 30],
+               is_grid3D_rotate=True, grid3D_rotate_speed=180)
+    return line3d
