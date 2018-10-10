@@ -13,10 +13,10 @@ class Task(models.Model):
     area = models.CharField(max_length=100)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
 
     def __str__(self):
-        return "{}_{}".format(self.created, self.tester)
+        return "{}:{}".format(self.id, self.tester)
 
 
 

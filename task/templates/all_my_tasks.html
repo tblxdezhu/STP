@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Test{% endblock %}
+{% block content %}
+    <div class="col-md-12">
+        <!-- RECENT PURCHASES -->
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">All Your Tasks</h3>
+                <div class="right">
+                    <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                    <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                </div>
+            </div>
+            <div class="panel-body no-padding">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Task ID.</th>
+                        <th>Name</th>
+                        <th>Mode</th>
+                        <th>Area</th>
+                        <th>Date &amp; Time</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td><a href="/test/{{ task.id }}">{{ task.id }}</a></td>
+                            <td>{{ task.tester }}</td>
+                            <td>{{ task.mode }}</td>
+                            <td>{{ task.area }}</td>
+                            <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
+                            <td></td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-6 text-right"><a href="/dashboard" class="btn btn-primary">Return</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

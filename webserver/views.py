@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib import auth
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
-
+from task.models import Task
 
 # Create your views here.
 
@@ -21,7 +21,7 @@ def login(request):
             if user is not None and user.is_active:
                 auth.login(request, user)
                 c = Context({'username': username, 'if_index_active': 'active'})
-                return render(request, 'index.html')
+                return HttpResponseRedirect("/dashboard")
             else:
                 return render(request, 'login.html', {'forms': uf, 'password_is_wrong': True})
         else:
@@ -30,7 +30,7 @@ def login(request):
 
 @login_required
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'dashboard.html')
 
 
 @login_required

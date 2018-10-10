@@ -51,4 +51,19 @@ def task_process(request, task_id):
 @login_required
 def dashboard(request):
     print(request.user)
-    return render(request, 'dashboard.html')
+    tasks = Task.objects.all()[0:5]
+    my_tasks = Task.objects.filter(tester=request.user)[0:5]
+    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks})
+
+
+@login_required
+def all_tasks(request):
+    tasks = Task.objects.all()
+    print(tasks)
+    return render(request, 'all_tasks.html', {'tasks': tasks})
+
+
+@login_required
+def all_my_tasks(request):
+    tasks = Task.objects.filter(tester=request.user)
+    return render(request, 'all_my_tasks.html', {'tasks': tasks})

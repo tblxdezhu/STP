@@ -2,79 +2,95 @@
 {% block title %}Test{% endblock %}
 {% block content %}
     <div class="row">
-    <div class="col-md-6">
-        <!-- RECENT PURCHASES -->
-        <div class="panel">
-            <div class="panel-heading">
-                <h3 class="panel-title">Recent Tasks</h3>
-                <div class="right">
-                    <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
-                    <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+        <div class="col-md-6">
+            <!-- RECENT PURCHASES -->
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Recent Tasks</h3>
+                    <div class="right">
+                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                </div>
+                <div class="panel-body no-padding">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Task ID.</th>
+                            <th>Name</th>
+                            <th>Mode</th>
+                            <th>Area</th>
+                            <th>Date &amp; Time</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for task in tasks %}
+                            <tr>
+                                <td><a href="/test/{{ task.id }}">{{ task.id }}</a></td>
+                                <td>{{ task.tester }}</td>
+                                <td>{{ task.mode }}</td>
+                                <td>{{ task.area }}</td>
+                                <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 5 tasks</span></div>
+                        <div class="col-md-6 text-right"><a href="/alltasks" class="btn btn-primary">View All Tasks</a></div>
+                    </div>
                 </div>
             </div>
-            <div class="panel-body no-padding">
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>Task ID.</th>
-                        <th>Name</th>
-                        <th>Mode</th>
-                        <th>Area</th>
-                        <th>Date &amp; Time</th>
-                        <th>Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td><a href="#">763648</a></td>
-                        <td>zhenxuan.xu</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="label label-success">COMPLETED</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">763649</a></td>
-                        <td>zhenxuan.xu</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="label label-warning">PENDING</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">763650</a></td>
-                        <td>Hone.He</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="label label-danger">FAILED</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">763651</a></td>
-                        <td>zhenxuan.xu</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="label label-success">SUCCESS</span></td>
-                    </tr>
-                    <tr>
-                        <td><a href="#">763652</a></td>
-                        <td>Hong.He</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td><span class="label label-success">SUCCESS</span></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="panel-footer">
-                <div class="row">
-                    <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 24 hours</span></div>
-                    <div class="col-md-6 text-right"><a href="#" class="btn btn-primary">View All Tasks</a></div>
+            <!-- END RECENT PURCHASES -->
+
+        </div>
+        <div class="col-md-6">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your Tasks</h3>
+                    <div class="right">
+                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                        <button type="button" class="btn-remove"><i class="lnr lnr-cross"></i></button>
+                    </div>
+                </div>
+                <div class="panel-body no-padding">
+                    <table class="table ">
+                        <thead>
+                        <tr>
+                            <th>Task ID.</th>
+                            <th>Mode</th>
+                            <th>Area</th>
+                            <th>Date &amp; Time</th>
+                            <th>Status</th>
+                            <th>Operation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for task in my_tasks %}
+                            <tr>
+                                <td><a href="/test/{{ task.id }}">{{ task.id }}</a></td>
+                                <td>{{ task.mode }}</td>
+                                <td>{{ task.area }}</td>
+                                <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-md-6"><span class="panel-note"><i class="fa fa-clock-o"></i> Last 5 tasks of yours</span></div>
+                        <div class="col-md-6 text-right"><a href="/allmytasks" class="btn btn-primary">View All Your Tasks</a></div>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- END RECENT PURCHASES -->
     </div>
+
 {% endblock %}
