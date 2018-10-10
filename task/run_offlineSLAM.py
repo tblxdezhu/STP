@@ -10,7 +10,7 @@ import os
 import sys
 import shutil
 import logging
-import commands
+import subprocess
 import datetime
 from functools import wraps
 from .common_interface import Interface_run
@@ -48,7 +48,7 @@ class Common(object):
     def find_file(input_path, file_type):
 
         find_cmd = "find " + input_path + " -name '" + file_type + "'"
-        status, files = commands.getstatusoutput(find_cmd)
+        status, files = subprocess.getstatusoutput(find_cmd)
         if not status == 0:
             raise MyException
         files = files.split("\n")
@@ -58,7 +58,7 @@ class Common(object):
     @logged()
     def execute_cmd(cmd, mode="OFF"):
         if mode == "OFF":
-            status, output = commands.getstatusoutput(cmd)
+            status, output = subprocess.getstatusoutput(cmd)
             if status == 0:
                 pass
             else:
