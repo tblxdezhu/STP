@@ -13,6 +13,7 @@ import math
 from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
+from celery.task.control import revoke
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -31,7 +32,8 @@ def submitted(request):
     task.save()
     # result = print_task.delay("xu")
     # print(result.task_id)
-    run.delay("memmingen", str(request.user))
+    celery_task = run.delay("memmingen", str(request.user))
+
     # while True:
     #     print(result.status)
     #     if result.ready():
@@ -44,6 +46,8 @@ def submitted(request):
 @login_required
 def task_process(request, task_id):
     task = Task.objects.get(id=task_id)
+    if request.POST.get('stoptask', None):
+        revoke(task.celery_id, terminate=True)
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
 
 

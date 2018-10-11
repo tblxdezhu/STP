@@ -34,7 +34,10 @@
                             <td>{{ task.area }}</td>
                             <td>
                                 <button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button>
-                                <button type="button" class="btn btn-danger">STOP</button>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger" name="stoptask">STOP</button>
+                                </form>
                             </td>
                         </tr>
                         </tbody>
@@ -51,8 +54,12 @@
                 </div>
                 <div class="panel-body ">
                     <div class="col-lg-3"><span class="label label-info animated flash slower infinite ">PROCESSING</span></div>
-                    <div class="col-lg-3"><div class="label label-success animated flash slower infinite ">DONE</div></div>
-                    <div class="col-lg-3"><div class="label label-danger animated flash slower infinite ">FAILED</div></div>
+                    <div class="col-lg-3">
+                        <div class="label label-success animated flash slower infinite ">DONE</div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="label label-danger animated flash slower infinite ">FAILED</div>
+                    </div>
                 </div>
             </div>
         </div>
