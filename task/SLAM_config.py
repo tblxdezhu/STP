@@ -8,4 +8,4 @@ cases_path = {
     'milford': '/media/psf/Untitled/SLAM_TEST/auto_test_large/large_milford/rtv',
 }
 
-vehicle_exec = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/dist/x64/bin/lsZSLAMExe"
+vehicle_exec = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe"
