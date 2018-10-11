@@ -29,8 +29,8 @@ def submitted(request):
                'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
-    result = print_task.delay("xu")
-    print(result.task_id)
+    # result = print_task.delay("xu")
+    # print(result.task_id)
     run.delay("memmingen", str(request.user))
     # while True:
     #     print(result.status)
