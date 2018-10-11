@@ -1,6 +1,6 @@
 process_num = 3
-slam_config = "slamConfig.yaml"
-camera_config = "camera65_big_lens.json"
+slam_config = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/config/slamConfig.yaml"
+camera_config = "/home/roaddb/source/core/vehicle/config/camera65_big_lens.json"
 output_path = "/media/psf/Untitled/Auto_test_SLAM/results"
 
 cases_path = {
