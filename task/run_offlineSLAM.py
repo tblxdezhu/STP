@@ -78,7 +78,7 @@ class Vehicle(Run):
 
     def vehicle_slam(self, mode='slam'):
         curr_proc = mp.current_process()
-        print("THIS CURR PROCESS ID >>>>>>>>>>>", curr_proc)
+        print("THIS CURR PROCESS ID >>>>>>>>>>>", os.getpid())
         curr_proc.daemon = False
         pool = mp.Pool(processes=process_num)
         curr_proc.daemon = True
