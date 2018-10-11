@@ -82,6 +82,7 @@ class Vehicle(Run):
         curr_proc.daemon = False
         pool = mp.Pool(processes=process_num)
         curr_proc.daemon = True
+        print("THIS CURR PROCESS ID >>>>>>>>>>>", os.getpid())
         for rtv in self.rtvs:
             imu = rtv.replace('.rtv', '.imu')
             case_output_path = os.path.join(self.output_path, mode, os.path.basename(rtv).strip('.rtv'))
