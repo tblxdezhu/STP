@@ -9,7 +9,7 @@ import datetime
 import subprocess
 import logging
 from .SLAM_config import *
-from multiprocessing import Pool
+import multiprocessing as mp
 
 
 def run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
@@ -77,7 +77,10 @@ class Vehicle(Run):
         super(Vehicle, self)._check_data()
 
     def vehicle_slam(self, mode='slam'):
-        pool = Pool(processes=process_num)
+        curr_proc = mp.current_process()
+        curr_proc.daemon = False
+        pool = mp.Pool(processes=process_num)
+        curr_proc.daemon = True
         for rtv in self.rtvs:
             imu = rtv.replace('.rtv', '.imu')
             case_output_path = os.path.join(self.output_path, mode, os.path.basename(rtv).strip('.rtv'))
