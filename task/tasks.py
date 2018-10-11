@@ -9,6 +9,7 @@ from celery import task
 import time
 from django_celery_results.models import TaskResult
 import os
+from .run_offlineSLAM import Vehicle
 
 
 @task
@@ -20,5 +21,6 @@ def print_task(name):
 
 
 @task
-def testtask2():
-    print("this is task2 ************")
+def run(area, tester, mode="SLAM"):
+    vehicle = Vehicle(area, mode, tester)
+    vehicle.vehicle_slam()

@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import print_task
+from task.tasks import print_task, run
 from django.core.urlresolvers import reverse
 
 import math
@@ -31,6 +31,7 @@ def submitted(request):
     task.save()
     result = print_task.delay("xu")
     print(result.task_id)
+    run.delay("fuji", request.user)
     # while True:
     #     print(result.status)
     #     if result.ready():
