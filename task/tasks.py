@@ -18,3 +18,7 @@ def print_task(name):
     os.system("touch ~/this_is_django_celery_test.txt")
     print("task over")
 
+
+@task
+def testtask2():
+    print("this is task2 ************")

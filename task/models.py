@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 
 # Create your models here.
+# TODO 增加task描述信息
 class Task(models.Model):
     tester = models.ForeignKey(User, related_name="tasks")
     created = models.DateTimeField(auto_now_add=True)
