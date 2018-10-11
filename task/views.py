@@ -31,7 +31,7 @@ def submitted(request):
     task.save()
     result = print_task.delay("xu")
     print(result.task_id)
-    run.delay("fuji", str(request.user))
+    run.delay("memmingen", str(request.user))
     # while True:
     #     print(result.status)
     #     if result.ready():
