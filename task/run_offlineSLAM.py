@@ -72,7 +72,7 @@ class Run(object):
 
 
 class Vehicle(Run):
-    def __init__(self, area, mode, tester):
+    def __init__(self, area, tester, mode="SLAM"):
         super(Vehicle, self).__init__(area, mode, tester)
         super(Vehicle, self)._check_data()
 

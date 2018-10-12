@@ -12,7 +12,7 @@ class Task(models.Model):
     mode = models.CharField(max_length=100)
     branch = models.CharField(max_length=100)
     area = models.CharField(max_length=100)
-    celery_id = models.CharField(max_length=100, null=True)
+    celery_id = models.CharField(max_length=1000, null=True)
 
     class Meta:
         ordering = ('-created',)

@@ -2,93 +2,93 @@
 {% block title %}Test{% endblock %}
 {% load staticfiles %}
 {% block content %}
-    <!--section class="wow pulse animated fa-circle" style="visibility: visible; animation-duration: 1500ms; animation-iteration-count: infinite; animation-name: pulse;"
-             data-wow-iteration="infinite" data-wow-duration="1500ms">
-    </section-->
-    <!--h1 class="lnr lnr-checkmark-circle animated flash slower infinite"></h1-->
+<!--section class="wow pulse animated fa-circle" style="visibility: visible; animation-duration: 1500ms; animation-iteration-count: infinite; animation-name: pulse;"
+         data-wow-iteration="infinite" data-wow-duration="1500ms">
+</section-->
+<!--h1 class="lnr lnr-checkmark-circle animated flash slower infinite"></h1-->
 
-    <!--div class="lnr lnr-checkmark-circle wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" data-wow-iteration="10"></div-->
-    {{ result.task_id }}
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Task info</h3>
+<!--div class="lnr lnr-checkmark-circle wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" data-wow-iteration="10"></div-->
+{{ result.task_id }}
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Task info</h3>
+            </div>
+            <div class="panel-body no-padding">
+                <table class="table ">
+                    <thead>
+                    <tr>
+                        <th>Task id</th>
+                        <th>Tester</th>
+                        <th>Mode</th>
+                        <th>Area</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>{{ task.id }}</td>
+                        <td>{{ task.tester }}</td>
+                        <td>{{ task.mode }}</td>
+                        <td>{{ task.area }}</td>
+                        <td>
+                            <button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button>
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger" name="stoptask" value="stop">STOP</button>
+                            </form>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Schedule</h3>
+            </div>
+            <div class="panel-body ">
+                <div class="col-lg-3"><span class="label label-info animated flash slower infinite ">PROCESSING</span></div>
+                <div class="col-lg-3">
+                    <div class="label label-success animated flash slower infinite ">DONE</div>
                 </div>
-                <div class="panel-body no-padding">
-                    <table class="table ">
-                        <thead>
-                        <tr>
-                            <th>Task id</th>
-                            <th>Tester</th>
-                            <th>Mode</th>
-                            <th>Area</th>
-                            <th>Status</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ task.id }}</td>
-                            <td>{{ task.tester }}</td>
-                            <td>{{ task.mode }}</td>
-                            <td>{{ task.area }}</td>
-                            <td>
-                                <button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button>
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger" name="stoptask">STOP</button>
-                                </form>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="col-lg-3">
+                    <div class="label label-danger animated flash slower infinite ">FAILED</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Schedule</h3>
-                </div>
-                <div class="panel-body ">
-                    <div class="col-lg-3"><span class="label label-info animated flash slower infinite ">PROCESSING</span></div>
-                    <div class="col-lg-3">
-                        <div class="label label-success animated flash slower infinite ">DONE</div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="label label-danger animated flash slower infinite ">FAILED</div>
-                    </div>
-                </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel">
+            <div class="panel-heading">
+                <h3 class="panel-title">Branch info</h3>
+            </div>
+            <div class="panel-body no-padding">
+                <table class="table ">
+                    <!--thead>
+                    <tr>
+                        <th>core/common</th>
+                        <th>core/algo_common</th>
+                    </tr>
+                    </thead-->
+                    <tbody>
+                    {% for key,value in branchs.items %}
+                    <tr>
+                        <td>{{ key }}</td>
+                        <td>{{ value }}</td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Branch info</h3>
-                </div>
-                <div class="panel-body no-padding">
-                    <table class="table ">
-                        <!--thead>
-                        <tr>
-                            <th>core/common</th>
-                            <th>core/algo_common</th>
-                        </tr>
-                        </thead-->
-                        <tbody>
-                        {% for key,value in branchs.items %}
-                            <tr>
-                                <td>{{ key }}</td>
-                                <td>{{ value }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
 {% endblock %}
