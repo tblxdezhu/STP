@@ -41,8 +41,9 @@ def single_run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
     status, output = subprocess.getstatusoutput(run_cmd)
 
 
-@task
-def test_celery(rtv):
+@task(bind=True)
+def test_celery(self, rtv):
     print("running SLAM {}".format(rtv))
     subprocess.call(['/Users/test1/PycharmProjects/github/STP/test.sh'], shell=True)
+    # self.update_state(state="PROGRESS")
     print("{} run over".format(rtv))

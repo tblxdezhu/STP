@@ -76,9 +76,18 @@ def task_process(request, task_id):
     if request.POST.get('stoptask') == "stop":
         print("stop the task")
         print(task.celery_id)
-        print(type(task.celery_id))
         revoke(eval(task.celery_id), terminate=True)
+    if request.POST.get('getstatus') == "getstatus":
+        print(type(task.celery_id))
+        print(eval(task.celery_id)[1])
+        for celery_id in eval(task.celery_id):
+            print(get_task_status(celery_id))
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
+
+
+def get_task_status(celery_id):
+    task = test_celery.AsyncResult(celery_id)
+    return task.state
 
 
 @login_required
