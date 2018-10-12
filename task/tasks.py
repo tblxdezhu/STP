@@ -14,6 +14,7 @@ import logging
 from .SLAM_config import vehicle_exec
 import subprocess
 
+
 @task
 def print_task(name):
     print("hello {}".format(name))
@@ -38,3 +39,10 @@ def single_run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
     logging.info(run_cmd)
     # Run.execute_cmd(run_cmd)
     status, output = subprocess.getstatusoutput(run_cmd)
+
+
+@task
+def test_celery(rtv):
+    print("running SLAM {}".format(rtv))
+    subprocess.call(['/Users/test1/PycharmProjects/github/STP/test.sh'], shell=True)
+    print("{} run over".format(rtv))

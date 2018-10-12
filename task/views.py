@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam
+from task.tasks import single_run_slam, test_celery
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -35,18 +35,29 @@ def submitted(request):
     task.save()
     # result = print_task.delay("xu")
     # print(result.task_id)
-    vehicle = Vehicle("memmingen", str(request.user))
+    # vehicle = Vehicle("memmingen", str(request.user))
+    # celery_id_list = []
+    #
+    # for rtv in vehicle.rtvs:
+    #     imu = rtv.replace('.rtv', '.imu')
+    #     case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
+    #     if imu in vehicle.imus:
+    #         single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
+    #         print(single_task.task_id)
+    #         celery_id_list.append(single_task.task_id)
+    # celery_task = Task.objects.get(id=task.id)
+    # celery_task.celery_id = celery_id_list
+    # celery_task.save()
+    test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
     celery_id_list = []
-    for rtv in vehicle.rtvs:
-        imu = rtv.replace('.rtv', '.imu')
-        case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
-        if imu in vehicle.imus:
-            single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
-            print(single_task.task_id)
-            celery_id_list.append(single_task.task_id)
+    for rtv in test_vehicle_rtvs:
+        single_task = test_celery.delay(rtv)
+        print(single_task.task_id)
+        celery_id_list.append(single_task.task_id)
     celery_task = Task.objects.get(id=task.id)
     celery_task.celery_id = celery_id_list
     celery_task.save()
+
     # celery_task = run.delay("memmingen", str(request.user))
     # task.celery_id = celery_task.task_id
     # task.save()
@@ -65,12 +76,8 @@ def task_process(request, task_id):
     if request.POST.get('stoptask') == "stop":
         print("stop the task")
         print(task.celery_id)
-        print(len(task.celery_id))
-        # revoke(task.celery_id, terminate=True, signal='SIGKILL')
         print(type(task.celery_id))
-        # for t in task.celery_id:
-        #     revoke(t, terminate=True)
-        revoke(eval(task.celery_id))
+        revoke(eval(task.celery_id), terminate=True)
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
 
 
