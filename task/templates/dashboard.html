@@ -83,7 +83,6 @@
                             <th>Area</th>
                             <th>Date &amp; Time</th>
                             <th>Status</th>
-                            <th>Operation</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -93,8 +92,11 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td></td>
-                                <td></td>
+                                {% ifequal task.status "STOP" %}
+                                    <td><span class="label label-danger">{{ task.status }}</span></td>
+                                {% else %}
+                                    <td><span class="label label-primary animated flash slower infinite">{{ task.status }}</span></td>
+                                {% endifequal %}
                             </tr>
                         {% endfor %}
                         </tbody>
