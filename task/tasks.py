@@ -62,7 +62,7 @@ def single_run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
     logging.info(run_cmd)
     # Run.execute_cmd(run_cmd)
     # status, output = subprocess.getstatusoutput(run_cmd)
-    subprocess.call([run_cmd], shell=True)
+    subprocess.getstatusoutput(run_cmd)
     # print("running SLAM {}".format(rtv))
     # subprocess.call(['/Users/test1/PycharmProjects/github/STP/test.sh {}'.format(rtv)], shell=True)
     # print("{} run over".format(rtv))
