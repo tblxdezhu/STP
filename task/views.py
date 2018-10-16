@@ -36,9 +36,7 @@ def submitted(request):
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
     run_slam.delay("milford", str(request.user), task.id)
-    task = Task.objects.get(id=task.id)
-    task.status = "SLAM"
-    task.save()
+
     # result = print_task.delay("xu")
     # print(result.task_id)
     # vehicle = Vehicle("test", str(request.user))

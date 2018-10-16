@@ -19,6 +19,9 @@ from .models import Task
 
 @task
 def run_slam(area, tester, task_id):
+    task = Task.objects.get(id=task_id)
+    task.status = "SLAM"
+    task.save()
     vehicle = Vehicle(area, tester)
     subtask_id_list = []
     for rtv in vehicle.rtvs:
