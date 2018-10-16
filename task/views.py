@@ -33,7 +33,7 @@ def test(request):
 def submitted(request):
     branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common'], 'algo_vehicle_offlineslam': request.POST['algo_vehicle_offlineslam'],
                'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
-    task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
+    task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     run_slam.delay("milford", str(request.user), task.id)
 

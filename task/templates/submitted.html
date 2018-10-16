@@ -65,7 +65,7 @@
                     <div class="row">
                         <div>
                             <div class="col-lg-2 col-lg-offset-1">
-                                <p id="task_status_slam" class="btn btn-default ">SLAM</p>
+                                <p id="task_status_slam" class="btn btn-default  ">SLAM</p>
                             </div>
                             <div class="col-lg-2 col-lg-offset-1">
                                 <p id="task_status_ssa" class="btn btn-default ">SSA </p>
@@ -134,9 +134,13 @@
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
                     }
-                    else {
+                    else if (ret.status == 'STOP') {
                         $('#task_status_slam').removeClass().addClass("btn btn-danger");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
+                    }
+                    else {
+                        $('#task_status_slam').removeClass().addClass("btn btn-warning");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-warning")
                     }
                 })
             }
