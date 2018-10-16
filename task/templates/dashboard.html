@@ -48,7 +48,7 @@
                                 {% ifequal task.status "STOP" %}
                                     <td><span class="label label-danger">{{ task.status }}</span></td>
                                 {% else %}
-                                    <td><span class="label label-danger animated flash slower infinite">{{ task.status }}</span></td>
+                                    <td><span class="label label-primary animated flash slower infinite">{{ task.status }}</span></td>
                                 {% endifequal %}
                             </tr>
                         {% endfor %}
