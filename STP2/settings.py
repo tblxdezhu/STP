@@ -16,7 +16,8 @@ import djcelery
 from kombu import Exchange, Queue
 
 djcelery.setup_loader()
-BROKER_URL = 'amqp://guest:guest@myhost:5672//'
+# BROKER_URL = 'amqp://guest:guest@myhost:5672//'
+BROKER_URL = 'amqp://guest@localhost//'
 # CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_QUEUES = (
