@@ -101,12 +101,8 @@ def task_process(request, task_id):
     if request.POST.get('stoptask') == "stop":
         print("stop the task:{}".format(task.celery_id))
         revoke(eval(task.celery_id), terminate=True)
-        # with open("test.pkl", 'rb') as f:
-        #     print("load pkl")
-        #     vechile = pickle.load(f)
-        #     vechile.vehicle_slam
-    # if request.POST.get('getstatus') == "getstatus":
-    #     status = _get_task_status(request, task_id=task_id)
+        task.status = "STOP"
+        task.save()
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
 
 
@@ -122,15 +118,10 @@ def _get_task_status(request, task_id):
     task = Task.objects.get(id=task_id)
     status = {}
     print("celery_id:", task.celery_id)
-    # status['SLAM'] = __get_celery_task_status(celery_task_id=task.celery_id[0])
-    # status['SSA'] = __get_celery_task_status(celery_task_id=task.celery_id[1])
-    status['SLAM'] = run.AsyncResult(eval(task.celery_id)[0]).state
-    status['SSA'] = test_ssa.AsyncResult(eval(task.celery_id)[1]).state
-
+    # status['SLAM'] = run_slam.AsyncResult(eval(task.celery_id)[0]).state
+    # status['SSA'] = run_slam.AsyncResult(eval(task.celery_id)[1]).state
+    status['status'] = task.status
     print(status)
-    # for task_id in eval(task.celery_id):
-    #     print(task_id, __get_celery_task_status(celery_task_id=task_id))
-    #     status[task_id] = __get_celery_task_status(celery_task_id=task_id)
     return JsonResponse(status)
 
 

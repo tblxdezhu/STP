@@ -126,31 +126,18 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                    if (ret.SLAM == 'PENDING') {
-                        $('#task_status_slam').html("SLAM");
-                        $('#task_status_ssa').html("SSA ");
+                    if (ret.status == 'SLAM') {
                         $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
                     }
-                    else if((ret.SLAM == 'REVOKED')) {
+                    else if (ret.status == 'SSA') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    }
+                    else {
                         $('#task_status_slam').removeClass().addClass("btn btn-danger");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
                     }
-                    else {
-                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
-                        $('#task_status_slam').removeClass().addClass("btn btn-success");
-                        if (ret.SSA == 'PENDING') {
-                            $('#task_status_ssa').html("SSA");
-                            $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
-                        }
-                        else if((ret.SSA == 'REVOKED')) {
-                            $('#task_status_ssa').removeClass().addClass("btn btn-danger");
-                        }
-                        else {
-                            $('#task_status_ssa').html("<i class=\"fa fa-check-circle\"></i>SSA");
-                            $('#task_status_ssa').removeClass().addClass("btn btn-success")
-                        }
-                    }
-
                 })
             }
 
