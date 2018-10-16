@@ -35,7 +35,10 @@ def submitted(request):
                'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
-    run_slam.delay("test", str(request.user), task.id)
+    run_slam.delay("milford", str(request.user), task.id)
+    task = Task.objects.get(id=task.id)
+    task.status = "SLAM"
+    task.save()
     # result = print_task.delay("xu")
     # print(result.task_id)
     # vehicle = Vehicle("test", str(request.user))
