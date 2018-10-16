@@ -1024,19 +1024,23 @@ model</ColNames>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="234" parent="27" name="task_task_2dbcba41">
+    <column id="234" parent="27" name="celery_id">
+      <Position>8</Position>
+      <DataType>varchar(100)|0s</DataType>
+    </column>
+    <index id="235" parent="27" name="task_task_2dbcba41">
       <ColNames>slug</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <index id="235" parent="27" name="task_task_d7ccc8e6">
+    <index id="236" parent="27" name="task_task_d7ccc8e6">
       <ColNames>tester_id</ColNames>
       <ColumnCollations></ColumnCollations>
     </index>
-    <key id="236" parent="27">
+    <key id="237" parent="27">
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="237" parent="27">
+    <foreign-key id="238" parent="27">
       <ColNames>tester_id</ColNames>
       <RefTableName>auth_user</RefTableName>
       <RefColNames>id</RefColNames>

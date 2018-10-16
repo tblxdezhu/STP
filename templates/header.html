@@ -21,10 +21,22 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{% static 'assets/img/apple-icon.png' %}">
     <link rel="icon" type="image/png" sizes="96x96" href="{% static 'assets/img/favicon.png' %}">
     <link rel="stylesheet" href="{% static 'resources/animate.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+
     <script src="{% static 'resources/wow.js' %}"></script>
     <script>
         new WOW().init();
     </script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <!--script>
+        $(document).ready(function () {
+            $("#stoptask").click(function () {
+                alert("Are you sure STOP this task ??");
+            });
+        });
+    </script-->
+
     {% for jsfile_name in script_list %}
         <script src="{% static 'assets/echarts/js' %}/{{ jsfile_name }}.js"></script>
     {% endfor %}

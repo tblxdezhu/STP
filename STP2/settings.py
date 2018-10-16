@@ -13,11 +13,21 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import djcelery
+from kombu import Exchange, Queue
 
 djcelery.setup_loader()
-BROKER_URL = 'amqp://guest@localhost//'
+BROKER_URL = 'amqp://guest:guest@myhost:5672//'
 # CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
 CELERY_RESULT_BACKEND = 'django-db'
+CELERY_QUEUES = (
+    Queue('queue_env1', exchange=Exchange('test_exchange', type='direct'), routing_key='key1'),
+    Queue('queue_env2', exchange=Exchange('test_exchange', type='direct'), routing_key='key2'),
+    Queue('celery', Exchange('celery'), routing_key='celery'),
+)
+CELERY_DEFAULT_QUEUE = 'celery'
+CELERY_DEFAULT_EXCHANGE_TYPE = 'direct'
+CELERY_DEFAULT_ROUTING_KEY = 'celery'
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production

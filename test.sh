@@ -1,4 +1,5 @@
-# /bin/bash
-echo "begin"
-sleep 15
-echo "end"
+#!/usr/bin/env bash
+echo "begin SLAM"
+echo $1
+sleep 20
+echo "SLAM end"

@@ -10,16 +10,23 @@ import subprocess
 import logging
 from .SLAM_config import *
 import multiprocessing as mp
+import time
+import pickle
 
 
-def run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
-    os.makedirs(case_output_path)
+def run_slam(rtv):
+    imu = rtv.replace('.rtv', '.imu')
+    case_output_path = os.path.join(output_path, "slam", os.path.basename(rtv).strip('.rtv'))
+    print(os.getpid())
+    mp.current_process().daemon = True
+    # os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config_file, '--ic', camera_file]
-    os.chdir(case_output_path)
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config]
+    # os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
-    Run.execute_cmd(run_cmd)
+    # Run.execute_cmd(run_cmd)
+    Run.execute_cmd('/Users/test1/PycharmProjects/github/STP/test.sh')
 
 
 class Run(object):
@@ -61,12 +68,7 @@ class Run(object):
     @staticmethod
     def execute_cmd(cmd, debug_mode="OFF"):
         if debug_mode == "OFF":
-            status, output = subprocess.getstatusoutput(cmd)
-            if status == 0:
-                pass
-            else:
-                logging.error(output)
-            return status, "run over {}".format(cmd)
+            subprocess.call(cmd, shell=True)
         else:
             logging.info(cmd)
 
@@ -77,16 +79,27 @@ class Vehicle(Run):
         super(Vehicle, self)._check_data()
 
     def vehicle_slam(self, mode='slam'):
-        curr_proc = mp.current_process()
-        print("THIS CURR PROCESS ID >>>>>>>>>>>", os.getpid())
-        curr_proc.daemon = False
+
+        mp.current_process().daemon = False
         pool = mp.Pool(processes=process_num)
-        curr_proc.daemon = True
-        print("THIS CURR PROCESS ID >>>>>>>>>>>", os.getpid())
+        print("PID >>>>>>>>>>>", os.getpid())
+        # curr_proc.daemon = False
+        mp.current_process().daemon = True
+        # curr_proc.daemon = True
+        print("PPID >>>>>>>>>>>", os.getppid())
+        sent_list = []
         for rtv in self.rtvs:
+
             imu = rtv.replace('.rtv', '.imu')
             case_output_path = os.path.join(self.output_path, mode, os.path.basename(rtv).strip('.rtv'))
             if imu in self.imus:
-                pool.apply_async(run_slam, (rtv, imu, slam_config, camera_config, case_output_path))
+                # pool.apply_async(run_slam, (rtv, imu, slam_config, camera_config, case_output_path))
+                sent_list.append(rtv)
+        print(sent_list)
+        pool.map(run_slam, sent_list)
+        # print("poor will be terminate soon")
+        # time.sleep(5)
+        # self.terminate_poor()
+
         pool.close()
         pool.join()

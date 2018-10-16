@@ -2,10 +2,10 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam, test_celery
+from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -15,8 +15,10 @@ from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Line3D
 from celery.task.control import revoke
+from celery import chain, signature
 from celery.app import control
 import datetime
+import pickle
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -33,11 +35,11 @@ def submitted(request):
                'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'))
     task.save()
+    run_slam.delay("test", str(request.user), task.id)
     # result = print_task.delay("xu")
     # print(result.task_id)
-    # vehicle = Vehicle("memmingen", str(request.user))
+    # vehicle = Vehicle("test", str(request.user))
     # celery_id_list = []
-    #
     # for rtv in vehicle.rtvs:
     #     imu = rtv.replace('.rtv', '.imu')
     #     case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
@@ -48,19 +50,41 @@ def submitted(request):
     # celery_task = Task.objects.get(id=task.id)
     # celery_task.celery_id = celery_id_list
     # celery_task.save()
-    test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
-    celery_id_list = []
-    for rtv in test_vehicle_rtvs:
-        single_task = test_celery.delay(rtv)
-        print(single_task.task_id)
-        celery_id_list.append(single_task.task_id)
-    celery_task = Task.objects.get(id=task.id)
-    celery_task.celery_id = celery_id_list
-    celery_task.save()
 
-    # celery_task = run.delay("memmingen", str(request.user))
-    # task.celery_id = celery_task.task_id
-    # task.save()
+    # *********************TEST SINGLE MODE OF SLAM*********************
+    # test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
+    # celery_id_list = []
+    # for rtv in test_vehicle_rtvs:
+    #     single_task = test_celery.delay(rtv)
+    #     print(single_task.task_id)
+    #     celery_id_list.append(single_task.task_id)
+    #
+    # ssa_task = test_ssa.delay()
+    # celery_id_list.append(ssa_task.task_id)
+    #
+    # celery_task = Task.objects.get(id=task.id)
+    # celery_task.celery_id = celery_id_list
+    # celery_task.save()
+    # ******************************OVER********************************
+
+    # celery_id_list = []
+
+    # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
+    # print_task.delay("this is test rabbitmq")
+    # print_task.delay("this is test2 rabbitmq")
+    # print("test", chain_result.parent.task_id)
+    # print("test2", chain_result.task_id)
+    # celery_id_list.append(chain_result.parent.task_id)
+    # celery_id_list.append(chain_result.parent.parent.task_id)
+    # celery_slam_task = run.apply_async(args=["test", str(request.user), "SLAM"])
+    # celery_id_list.append(celery_slam_task.task_id)
+    # celery_ssa_task = test_ssa.delay()
+    # celery_id_list.append(celery_ssa_task.task_id)
+    # celery_id_list.extend([chain_result.parent.task_id, chain_result.task_id])
+    # celery_task = Task.objects.get(id=task.id)
+    # celery_task.celery_id = celery_id_list
+    # celery_task.save()
+
     # while True:
     #     print(result.status)
     #     if result.ready():
@@ -74,20 +98,39 @@ def submitted(request):
 def task_process(request, task_id):
     task = Task.objects.get(id=task_id)
     if request.POST.get('stoptask') == "stop":
-        print("stop the task")
-        print(task.celery_id)
+        print("stop the task:{}".format(task.celery_id))
         revoke(eval(task.celery_id), terminate=True)
-    if request.POST.get('getstatus') == "getstatus":
-        print(type(task.celery_id))
-        print(eval(task.celery_id)[1])
-        for celery_id in eval(task.celery_id):
-            print(get_task_status(celery_id))
+        # with open("test.pkl", 'rb') as f:
+        #     print("load pkl")
+        #     vechile = pickle.load(f)
+        #     vechile.vehicle_slam
+    # if request.POST.get('getstatus') == "getstatus":
+    #     status = _get_task_status(request, task_id=task_id)
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
 
 
-def get_task_status(celery_id):
-    task = test_celery.AsyncResult(celery_id)
-    return task.state
+# def get_task_status(celery_id):
+#     task = test_celery.AsyncResult(celery_id)
+#     return task.state
+
+def _get_task_status(request, task_id):
+    def __get_celery_task_status(celery_task_id):
+        celery_task = run.AsyncResult(celery_task_id)
+        return celery_task.state
+
+    task = Task.objects.get(id=task_id)
+    status = {}
+    print("celery_id:", task.celery_id)
+    # status['SLAM'] = __get_celery_task_status(celery_task_id=task.celery_id[0])
+    # status['SSA'] = __get_celery_task_status(celery_task_id=task.celery_id[1])
+    status['SLAM'] = run.AsyncResult(eval(task.celery_id)[0]).state
+    status['SSA'] = test_ssa.AsyncResult(eval(task.celery_id)[1]).state
+
+    print(status)
+    # for task_id in eval(task.celery_id):
+    #     print(task_id, __get_celery_task_status(celery_task_id=task_id))
+    #     status[task_id] = __get_celery_task_status(celery_task_id=task_id)
+    return JsonResponse(status)
 
 
 @login_required
