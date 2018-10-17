@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="panel-body no-padding">
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Task ID.</th>
@@ -45,7 +45,7 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td id="{{ task.id }}_status" class="label label-default"></td>
+                                <td><span id="{{ task.id }}_status" class="label label-default"></span></td>
                                 <script>
                                     $(document).ready(function () {
                                         function get_status() {
