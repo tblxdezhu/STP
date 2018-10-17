@@ -110,22 +110,22 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td><span id="{{ task.id }}_status" class="label label-default"></span></td>
+                                <td><span id="{{ task.id }}_mystatus" class="label label-default"></span></td>
                                 <script>
                                     $(document).ready(function () {
                                         function get_status() {
                                             $.getJSON('/test/{{ task.id }}/status', function (ret) {
                                                 if (ret.status == 'SLAM') {
-                                                    $('#{{ task.id }}_status').html("SLAM");
-                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
+                                                    $('#{{ task.id }}_mystatus').html("SLAM");
+                                                    $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
                                                 else if (ret.status == 'SSA') {
-                                                    $('#{{ task.id }}_status').html("SSA");
-                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
+                                                    $('#{{ task.id }}_mystatus').html("SSA");
+                                                    $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
                                                 else {
-                                                    $('#{{ task.id }}_status').html("STOP");
-                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
+                                                    $('#{{ task.id }}_mystatus').html("STOP");
+                                                    $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
                                                 }
 
                                             })
