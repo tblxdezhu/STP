@@ -100,9 +100,9 @@ def task_process(request, task_id):
     task = Task.objects.get(id=task_id)
     if request.POST.get('stoptask') == "stop":
         print("stop the task:{}".format(task.celery_id))
-        revoke(eval(task.celery_id), terminate=True)
         task.status = "STOP"
         task.save()
+        revoke(eval(task.celery_id), terminate=True)
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
 
 
@@ -123,6 +123,17 @@ def _get_task_status(request, task_id):
     status['status'] = task.status
     print(status)
     return JsonResponse(status)
+
+
+def _get_dashboard_status(request):
+    tasks = Task.objects.all()[0:5]
+    my_tasks = Task.objects.filter(tester=request.user)[0:5]
+    dashboard_status = {"all": {}, "mytasks": {}}
+    for task in tasks:
+        dashboard_status["all"][task.id] = task.status
+    for my_task in my_tasks:
+        dashboard_status["mytasks"][my_task] = my_task.status
+    return JsonResponse(dashboard_status)
 
 
 @login_required
