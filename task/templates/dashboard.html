@@ -45,7 +45,7 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td><span id="{{ task.id }}_status" class="label label-default"></span></td>
+                                <td id="{{ task.id }}_status" class="label label-default"></td>
                                 <script>
                                     $(document).ready(function () {
                                         function get_status() {
