@@ -59,8 +59,8 @@
                                                     $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
                                                 else if (ret.status == 'Waiting') {
-                                                    $('#{{ task.id }}_mystatus').html("Waiting");
-                                                    $('#{{ task.id }}_mystatus').removeClass().addClass("label label-warning");
+                                                    $('#{{ task.id }}_status').html("Waiting");
+                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-warning");
                                                 }
                                                 else {
                                                     $('#{{ task.id }}_status').html("STOP");
