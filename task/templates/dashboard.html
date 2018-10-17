@@ -45,7 +45,7 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td><span id="{{ task.id }}_status" class="label label-default"></span></td>
+                                <td class="text-center"><span id="{{ task.id }}_status" class="label label-default"></span></td>
                                 <script>
                                     $(document).ready(function () {
                                         function get_status() {
@@ -65,7 +65,7 @@
 
                                             })
                                         }
-                                        setInterval(get_status, 2000)
+                                        setInterval(get_status, 3000)
                                     })
                                 </script>
                             </tr>
@@ -110,7 +110,7 @@
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                                <td><span id="{{ task.id }}_mystatus" class="label label-default"></span></td>
+                                <td class="text-center"><span id="{{ task.id }}_mystatus" class="label label-default"></span></td>
                                 <script>
                                     $(document).ready(function () {
                                         function get_status() {
@@ -130,7 +130,7 @@
 
                                             })
                                         }
-                                        setInterval(get_status, 2000)
+                                        setInterval(get_status, 3000)
                                     })
                                 </script>
                             </tr>
