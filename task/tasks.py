@@ -15,6 +15,7 @@ from .SLAM_config import *
 import subprocess
 import pickle
 from .models import Task
+import datetime
 
 
 @task
@@ -22,11 +23,12 @@ def run_slam(area, tester, task_id):
     task = Task.objects.get(id=task_id)
     task.status = "SLAM"
     task.save()
+    date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     vehicle = Vehicle(area, tester)
     subtask_id_list = []
     for rtv in vehicle.rtvs:
         imu = rtv.replace('.rtv', '.imu')
-        case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
+        case_output_path = os.path.join(output_path, tester, area, task_id, date, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
         if imu in vehicle.imus:
             single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
             print(single_task.task_id)
