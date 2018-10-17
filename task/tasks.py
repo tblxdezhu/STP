@@ -22,17 +22,20 @@ import datetime
 def run_slam(area, tester, task_id):
     task = Task.objects.get(id=task_id)
     task.status = "SLAM"
-    task.save()
     date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     vehicle = Vehicle(area, tester)
+    task.output_path = os.path.join(output_path, tester, area, str(task_id), date, vehicle.mode)
+    task.save()
+
     subtask_id_list = []
     for rtv in vehicle.rtvs:
         imu = rtv.replace('.rtv', '.imu')
-        case_output_path = os.path.join(output_path, tester, area, str(task_id), date, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
+        case_output_path = os.path.join(task.output_path, os.path.basename(rtv).strip('.rtv'))
         if imu in vehicle.imus:
             single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
             print(single_task.task_id)
             subtask_id_list.append(single_task.task_id)
+
     celery_task = Task.objects.get(id=task_id)
     celery_task.celery_id = subtask_id_list
     celery_task.save()

@@ -38,6 +38,10 @@
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-danger" name="stoptask" value="stop" id="stoptask">STOP</button>
                                 </form>
+                                <form action="" method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger" name="getkml" value="getkml" id="getkml">SHOW</button>
+                                </form>
                             </td>
                         </tr>
                         </tbody>
@@ -126,14 +130,10 @@
                 </div>
                 <div class="panel-body no-padding" id="map"></div>
                 <style>
-                    /* Always set the map height explicitly to define the size of the div
-                     * element that contains the map. */
                     #map {
                         height: 100%;
-
                     }
 
-                    /* Optional: Makes the sample page fill the window. */
                     html, body {
                         height: 100%;
                         margin: 0;
@@ -145,9 +145,13 @@
 
                     function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
-                            center: {lat: -34.397, lng: 150.644},
-                            zoom: 8
+                            center: {{ center_data|safe }},
+                            zoom: 12,
+                            mapTypeId: 'terrain'
                         });
+                        {% for kml in kmls_data %}
+                            {{ kml | safe}}
+                        {% endfor %}
                     }
                 </script>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap"></script>

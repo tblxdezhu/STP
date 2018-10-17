@@ -19,6 +19,7 @@ from celery import chain, signature
 from celery.app import control
 import datetime
 import pickle
+from .google_earth_related import data_process, get_all_kmls
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -104,7 +105,42 @@ def task_process(request, task_id):
         task.status = "STOP"
         task.save()
         revoke(eval(task.celery_id), terminate=True)
-    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch)})
+    if request.POST.get('getkml') == "getkml":
+        data, center_data = data_process(task.output_path)
+        print(list(center_data.keys()))
+        kmls_data = []
+        for k in get_all_kmls(task.output_path):
+            for key in sorted(data[k].keys()):
+                kmls_data.append(data[k][key])
+        return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
+    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", })
+
+
+def _get_task_kml(request, task_id):
+    task = Task.objects.get(id=task_id)
+    print(task.output_path)
+    data, center_data = data_process(task.output_path)
+    print(list(center_data.keys()))
+    kmls_data = []
+    for k in get_all_kmls(task.output_path):
+        for key in sorted(data[k].keys()):
+            kmls_data.append(data[k][key])
+    content = {
+        'task': task,
+        'branchs': eval(task.branch),
+        'center_data': center_data[list(center_data.keys())[0]],
+        'kmls_data': kmls_data
+    }
+    for kml_data in kmls_data:
+        print(kml_data)
+    print(center_data[list(center_data.keys())[0]])
+    lat = ""
+    lng = ""
+    # eval(center_data[list(center_data.keys())[0]])
+    return render(request, 'submitted.html', {'task': task,
+                                              'branchs': eval(task.branch),
+                                              'center_data': "hahahahah",
+                                              'kmls_data': kmls_data})
 
 
 # def get_task_status(celery_id):
