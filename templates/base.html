@@ -16,7 +16,7 @@
             </div>
             <form class="navbar-form navbar-right">
                 <div class="input-group ">
-                    <input type="text" value="" class="form-control" placeholder="Search dashboard...">
+                    <input type="text" value="" class="form-control" placeholder="Search task...">
                     <span class="input-group-btn"><button type="button" class="btn btn-primary">Go</button></span>
                 </div>
             </form>
@@ -73,8 +73,9 @@
                         <a href="#subPages_data" data-toggle="collapse" class="collapsed"><i class="lnr lnr-film-play"></i><span> Data</span><i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="subPages_data" class="collapse ">
                             <ul class="nav">
-                                <li><a href="{% static 'page-profile.html' %}" class="">大规模</a></li>
-                                <li><a href="{% static 'page-login.html' %}" class="">极简</a></li>
+                                <li><a href="/data/large" class={{ if_large_active }}>大规模</a></li>
+                                <li><a href="/data/mini" class={{ if_mini_active }}>极简</a></li>
+                                <li><a href="/data/error" class={{ if_error_active }}>异常</a></li>
                                 <li><a href="{% static 'page-lockscreen.html' %}" class="">...</a></li>
                             </ul>
                         </div>
@@ -104,7 +105,7 @@
                         <a href="#subPages_lab" data-toggle="collapse" class="collapsed"><i class="lnr lnr-magic-wand"></i><span> Lab</span><i class="icon-submenu lnr lnr-chevron-left"></i></a>
                         <div id="subPages_lab" class="collapse ">
                             <ul class="nav">
-                                <li><a href="{% static 'page-profile.html' %}" class="">Shop</a></li>
+                                <li><a href="{% static 'page-profile.html' %}" class="">...</a></li>
                                 <li><a href="{% static 'page-login.html' %}" class="">...</a></li>
                             </ul>
                         </div>

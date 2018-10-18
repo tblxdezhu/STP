@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="7dbdb492-4722-4eca-a130-62ccf835eb48" name="16" url="http://10.69.142.16">
-        <fileTransfer host="10.69.142.16" port="22" rootFolder="/media/psf/Untitled/Auto_test_SLAM/STP" accessType="SFTP">
+        <fileTransfer host="10.69.142.16" port="22" rootFolder="/media/psf/Untitled/SLAM_TEST/test_results/1015" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
           </advancedOptions>

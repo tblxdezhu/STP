@@ -10,7 +10,7 @@
     <!--div class="lnr lnr-checkmark-circle wow slideInLeft" data-wow-duration="2s" data-wow-delay="5s" data-wow-offset="10" data-wow-iteration="10"></div-->
     {{ result.task_id }}
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-4">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Task info</h3>
@@ -36,12 +36,13 @@
                                 <!--button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button-->
                                 <form action="" method="post">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger" name="stoptask" value="stop" id="stoptask">STOP</button>
+                                    <button type="submit" class="btn btn-danger" name="stoptask" value="stop" id="stoptask">Stop Task</button>
                                 </form>
                                 <form action="" method="post">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger" name="getkml" value="getkml" id="getkml">SHOW</button>
+                                    <button type="submit" class="btn btn-primary" name="getkml" value="getkml" id="getkml">Show Trajectory</button>
                                 </form>
+
                             </td>
                         </tr>
                         </tbody>
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Schedule</h3>
@@ -129,6 +130,8 @@
                     <h3 class="panel-title">Trajectory</h3>
                 </div>
                 <div class="panel-body no-padding" id="map"></div>
+
+
                 <style>
                     #map {
                         height: 100%;

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Test{% endblock %}
+{% load staticfiles %}
+{% block content %}
+    <div class="row">
+    <div class="col-sm-6 col-md-3">
+         <div class="thumbnail">
+            <img src="{% static 'data/fuji3.jpg'%}"
+             alt="通用的占位符缩略图">
+            <div class="caption">
+                <h3>fuji</h3>
+
+            </div>
+         </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="{% static 'data/mem.jpg' %}"
+            alt="通用的占位符缩略图">
+            <div class="caption">
+                <h3>memmingen</h3>
+                <!--p>一些示例文本。一些示例文本。</p-->
+                <!--p>
+                    <a href="#" class="btn btn-primary" role="button">
+                        按钮
+                    </a>
+                    <a href="#" class="btn btn-default" role="button">
+                        按钮
+                    </a>
+                </p-->
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="{% static 'data/milford.jpg' %}"
+            alt="">
+            <div class="caption">
+                <h3>milford</h3>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="{% static 'data/tokyo.jpg' %}"
+            alt=" img lost">
+            <div class="caption">
+                <h3>tokyo</h3>
+
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+    <div class="col-sm-6 col-md-3">
+         <div class="thumbnail">
+            <img src="{% static 'data/i696.jpg'%}"
+             alt="通用的占位符缩略图">
+            <div class="caption">
+                <h3>i696</h3>
+
+            </div>
+         </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+         <div class="thumbnail">
+            <img src="{% static 'data/munich.jpg'%}"
+             alt="通用的占位符缩略图">
+            <div class="caption">
+                <h3>munich</h3>
+
+            </div>
+         </div>
+    </div>
+    </div>
+{% endblock %}

@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^dashboard/', dashboard),
     url(r'^alltasks/', all_tasks),
     url(r'^allmytasks/', all_my_tasks),
+    url(r'^data/', include('data.urls')),
     url(r'^test/', include('task.urls')),
 ]
