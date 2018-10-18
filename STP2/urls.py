@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.login),
     url(r'^dashboard/', dashboard),
-    url(r'^dashboard/status/', _get_dashboard_status),
     url(r'^alltasks/', all_tasks),
     url(r'^allmytasks/', all_my_tasks),
     url(r'^test/', include('task.urls')),
