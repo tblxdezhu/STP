@@ -1,4 +1,3 @@
-
 # Create your views here.
 
 from django.shortcuts import render
@@ -18,3 +17,7 @@ def mini_data(request):
 @login_required
 def error_data(request):
     return render(request, "error.html", {'if_error_active': 'active'})
+
+
+def coming_soon(request):
+    return render(request, 'coming_soon/coming_soon.html')
