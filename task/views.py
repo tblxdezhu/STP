@@ -13,7 +13,7 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar
+from pyecharts import Bar, Line
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
@@ -177,13 +177,13 @@ def _get_dashboard_status(request):
 def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    # l3d = line3d()
     bar = bar_test()
-    # myechart = l3d.render_embed()
-    # script_list = l3d.get_js_dependencies()
+    line = line_test()
     myechart = bar.render_embed()
+    myechart1 = line.render_embed()
     script_list = bar.get_js_dependencies()
-    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
+    script_list.append(line.get_js_dependencies())
+    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'myechart1': myechart1, 'script_list': script_list})
 
 
 @login_required
@@ -198,29 +198,21 @@ def all_my_tasks(request):
     return render(request, 'all_my_tasks.html', {'tasks': tasks})
 
 
-def line3d():
-    _data = []
-    for t in range(0, 25000):
-        _t = t / 1000
-        x = (1 + 0.25 * math.cos(75 * _t)) * math.cos(_t)
-        y = (1 + 0.25 * math.cos(75 * _t)) * math.sin(_t)
-        z = _t + 2.0 * math.sin(75 * _t)
-        _data.append([x, y, z])
-    range_color = [
-        '#313695', '#4575b4', '#74add1', '#abd9e9', '#e0f3f8', '#ffffbf',
-        '#fee090', '#fdae61', '#f46d43', '#d73027', '#a50026']
-    line3d = Line3D("Demo", width=1200, height=600)
-    line3d.add("", _data, is_visualmap=True,
-               visual_range_color=range_color, visual_range=[0, 30],
-               is_grid3D_rotate=True, grid3D_rotate_speed=180)
-    return line3d
-
-
 def bar_test():
     attr = ["1", "2", "3", "4", "5", "6"]
     v1 = [5, 20, 36, 10, 75, 90]
     v2 = [10, 25, 8, 60, 20, 80]
     bar = Bar("test")
     bar.add("A", attr, v1, is_stack=True)
-    bar.add("B", attr, v2, is_stack=True)
+    bar.add("B", attr, v2, is_stack=True, is_toolbox_show=False)
     return bar
+
+
+def line_test():
+    attr = ["1", "2", "3", "4", "5", "6"]
+    v1 = [5, 20, 36, 10, 10, 100]
+    v2 = [55, 60, 16, 20, 15, 80]
+    line = Line("test")
+    line.add("A", attr, v1, mark_point=["average"])
+    line.add("B", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False)
+    return line
