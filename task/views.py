@@ -13,7 +13,7 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Line3D
+from pyecharts import Bar
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
@@ -177,9 +177,12 @@ def _get_dashboard_status(request):
 def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    l3d = line3d()
-    myechart = l3d.render_embed()
-    script_list = l3d.get_js_dependencies()
+    # l3d = line3d()
+    bar = bar_test()
+    # myechart = l3d.render_embed()
+    # script_list = l3d.get_js_dependencies()
+    myechart = bar.render_embed()
+    script_list = bar.get_js_dependencies()
     return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
 
 
@@ -211,3 +214,13 @@ def line3d():
                visual_range_color=range_color, visual_range=[0, 30],
                is_grid3D_rotate=True, grid3D_rotate_speed=180)
     return line3d
+
+
+def bar_test():
+    attr = ["1", "2", "3", "4", "5", "6"]
+    v1 = [5, 20, 36, 10, 75, 90]
+    v2 = [10, 25, 8, 60, 20, 80]
+    bar = Bar("test")
+    bar.add("A", attr, v1, is_stack=True)
+    bar.add("B", attr, v2, is_stack=True)
+    return bar
