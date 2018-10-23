@@ -20,6 +20,7 @@ from celery.app import control
 import datetime
 import pickle
 from .google_earth_related import data_process, get_all_kmls
+import subprocess
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -27,7 +28,7 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 # Create your views here.
 @login_required
 def test(request):
-    get_branch.delay()
+    get_branch()
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
 
@@ -224,3 +225,13 @@ def line_test():
     line.add("A", attr, v1, mark_point=["average"])
     line.add("B", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False)
     return line
+
+
+def get_branch():
+    repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
+    code_path = "/home/roaddb/source/core"
+    for repo in repo_list:
+        os.chdir(os.path.join(code_path, repo))
+        print(repo)
+        status, output = subprocess.getstatusoutput("git branch -a")
+        print(output)
