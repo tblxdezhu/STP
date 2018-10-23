@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %} Test {% endblock %}
+{% load staticfiles %}
 {% block content %}
     <form action="submitted" method="post">
         {% csrf_token %}
@@ -61,14 +62,15 @@
                         <tr>
                             <th class="col-md-2">algorithm_common</th>
                             <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algo_common" id="algo_common"
+                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"
                                        value="master">
                             </th>
                         </tr>
                         <tr>
                             <th class="col-md-2">algorithm_vehicle_offlineSLAM</th>
                             <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algo_vehicle_offlineslam" id="algo_vehicle_offlineslam">
+                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"
+                                       id="algorithm_vehicle_offlineslam">
                             </th>
                         </tr>
 
@@ -85,21 +87,21 @@
                         <tr>
                             <th class="col-md-3">core/common</th>
                             <th class="col-md-9">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common-sam" id="common-sam"
+                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common_sam" id="common_sam"
                                        value="master">
                             </th>
                         </tr>
                         <tr>
                             <th class="col-md-2">algorithm_common</th>
                             <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algo_common-sam" id="algo_common-sam"
+                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam" id="algorithm_common_sam"
                                        value="master">
                             </th>
                         </tr>
                         <tr>
                             <th class="col-md-2">algorithm_sam</th>
                             <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algo_sam-sam" id="algo_sam-sam">
+                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">
                             </th>
                         </tr>
                         </tbody>
@@ -128,5 +130,16 @@
             </div>
         </div>
     </form>
-
+    <script type="text/javascript">
+        $(function () {
+            $.getJSON("{% static 'jsons/test.json'%}", function (json_data) {
+                $("#algorithm_vehicle_offlineslam").typeahead({source: eval('[' + json_data.algorithm_vehicle_offlineslam + ']'), minLength: 0});
+                $("#algorithm_common").typeahead({source: eval('[' + json_data.algorithm_common + ']'), minLength: 0});
+                $("#algorithm_sam").typeahead({source: eval('[' + json_data.algorithm_sam + ']'), minLength: 0});
+                $("#common").typeahead({source: eval('[' + json_data.common + ']'), minLength: 0});
+                $("#algorithm_common_sam").typeahead({source: eval('[' + json_data.algorithm_common_sam + ']'), minLength: 0});
+                $("#common_sam").typeahead({source: eval('[' + json_data.common_sam + ']'), minLength: 0});
+            });
+        })
+    </script>
 {% endblock %}

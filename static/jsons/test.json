@@ -1,0 +1,9 @@
+{
+  "common": "'common_test','feature/RDB-31401-MPG', 'feature/RDB-30913-offline-slam-developing-branch', 'feature/RDB-28414-internal-implementation-of-slam-snippets-merging-in-server', 'feature/RDB-29547-ssa-algorithm-performance-improve'",
+  "algorithm_common": "'algo_common_test','feature/RDB-31401-MPG', 'feature/RDB-30913-offline-slam-developing-branch', 'feature/RDB-28414-internal-implementation-of-slam-snippets-merging-in-server', 'feature/RDB-29547-ssa-algorithm-performance-improve'",
+  "algorithm_vehicle_offlineslam": "'test','feature/RDB-31401-MPG', 'feature/RDB-30913-offline-slam-developing-branch', 'feature/RDB-28414-internal-implementation-of-slam-snippets-merging-in-server', 'feature/RDB-29547-ssa-algorithm-performance-improve'",
+  "common_sam": "'feature/RDB-31401-MPG'",
+  "algorithm_common_sam": "'feature/RDB-31401-MPG'",
+  "algorithm_sam": "'feature/RDB-31401-MPG'"
+}
+
