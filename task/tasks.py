@@ -16,6 +16,7 @@ import subprocess
 import pickle
 from .models import Task
 import datetime
+from .compile_code import Compile_code
 
 
 @task
@@ -32,7 +33,7 @@ def run_slam(area, tester, task_id):
         imu = rtv.replace('.rtv', '.imu')
         case_output_path = os.path.join(task.output_path, os.path.basename(rtv).strip('.rtv'))
         if imu in vehicle.imus:
-            single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
+            single_task = single_run_slam.apply_async(args=[rtv, imu, slam_config, camera_config, case_output_path], queue="queue_env1")
             print(single_task.task_id)
             subtask_id_list.append(single_task.task_id)
 
