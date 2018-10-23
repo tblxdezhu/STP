@@ -36,8 +36,12 @@ def submitted(request):
                'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
+    if task.id % 2 == 0:
+        queue = "env1"
+    else:
+        queue = "env2"
     for area in task.area:
-        run_slam.apply_async(args=[str(area), str(request.user), task.id], queue="queue_env1")
+        run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
 
     # result = print_task.delay("xu")
     # print(result.task_id)
