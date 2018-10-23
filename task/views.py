@@ -37,7 +37,7 @@ def submitted(request):
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     for area in task.area:
-        run_slam.apply_async(args=[str(area), str(request.user), task.id], queue="queue_env1", routing_key="key1")
+        run_slam.delay(args=[str(area), str(request.user), task.id], queue="queue_env1", routing_key="key1")
 
     # result = print_task.delay("xu")
     # print(result.task_id)
