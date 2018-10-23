@@ -37,7 +37,7 @@ def submitted(request):
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     for area in task.area:
-        run_slam.delay(str(area), str(request.user), task.id)
+        run_slam.apply_async(args=[str(area), str(request.user), task.id], queue="queue_env1", routing_key="key1")
 
     # result = print_task.delay("xu")
     # print(result.task_id)
@@ -137,10 +137,13 @@ def _get_task_kml(request, task_id):
     lat = ""
     lng = ""
     # eval(center_data[list(center_data.keys())[0]])
+    line = line_test()
+    myechart1 = line.render_embed()
+    script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task,
                                               'branchs': eval(task.branch),
                                               'center_data': "hahahahah",
-                                              'kmls_data': kmls_data})
+                                              'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
 
 
 # def get_task_status(celery_id):
