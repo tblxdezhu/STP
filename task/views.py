@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam
+from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -27,6 +27,7 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 # Create your views here.
 @login_required
 def test(request):
+    get_branch.delay()
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
 

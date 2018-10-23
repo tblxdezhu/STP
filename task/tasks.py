@@ -20,6 +20,17 @@ from .compile_code import Compile_code
 
 
 @task
+def get_branch():
+    repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
+    code_path = "/home/roaddb/source/core"
+    for repo in repo_list:
+        os.chdir(os.path.join(code_path, repo))
+        print(repo)
+        status, output = subprocess.getstatusoutput("git branch -a")
+        print(output)
+
+
+@task
 def run_slam(area, tester, task_id, queue):
     task = Task.objects.get(id=task_id)
     task.status = "SLAM"
