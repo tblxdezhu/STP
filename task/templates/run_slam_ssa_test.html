@@ -132,13 +132,13 @@
     </form>
     <script type="text/javascript">
         $(function () {
-            $.getJSON("{% static 'jsons/test.json'%}", function (json_data) {
-                $("#algorithm_vehicle_offlineslam").typeahead({source: eval('[' + json_data.algorithm_vehicle_offlineslam + ']'), minLength: 0});
-                $("#algorithm_common").typeahead({source: eval('[' + json_data.algorithm_common + ']'), minLength: 0});
-                $("#algorithm_sam").typeahead({source: eval('[' + json_data.algorithm_sam + ']'), minLength: 0});
-                $("#common").typeahead({source: eval('[' + json_data.common + ']'), minLength: 0});
-                $("#algorithm_common_sam").typeahead({source: eval('[' + json_data.algorithm_common_sam + ']'), minLength: 0});
-                $("#common_sam").typeahead({source: eval('[' + json_data.common_sam + ']'), minLength: 0});
+            $.getJSON("{% static 'jsons/branchs.json'%}", function (json_data) {
+                $("#algorithm_vehicle_offlineslam").typeahead({source: eval(json_data.algorithm_vehicle_offlineslam), minLength: 0});
+                $("#algorithm_common").typeahead({source: eval(json_data.algorithm_common), minLength: 0});
+                $("#algorithm_sam").typeahead({source: eval(json_data.algorithm_sam), minLength: 0});
+                $("#common").typeahead({source: eval(json_data.common), minLength: 0});
+                $("#algorithm_common_sam").typeahead({source: eval(json_data.algorithm_common_sam), minLength: 0});
+                $("#common_sam").typeahead({source: eval(json_data.common_sam ), minLength: 0});
             });
         })
     </script>

@@ -242,6 +242,6 @@ def get_branch():
         for branch in output.split("\n"):
             json_data[repo].append(branch.strip())
 
-    with open("{}/static/jsons/test.json".format(init_path), "w") as f:
+    with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
         json.dump(json_data, f)
     os.chdir(init_path)
