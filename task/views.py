@@ -240,8 +240,10 @@ def get_branch():
         print(output.split("\n"))
         json_data[repo] = []
         for branch in output.split("\n"):
-            json_data[repo].append(branch.strip())
-
+            if "remotes/core" in branch:
+                json_data[repo].append(branch.split("remotes/core/")[1].strip())
+            else:
+                json_data[repo].append(branch.strip())
     with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
         json.dump(json_data, f)
     os.chdir(init_path)
