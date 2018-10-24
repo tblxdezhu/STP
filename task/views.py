@@ -42,11 +42,11 @@ def submitted(request):
     if task.id % 2 == 0:
         queue = "env2"
     else:
-        queue = "env2"
+        queue = "env1"
     print("**********************", branchs)
-    build.apply_async(args=[branchs], queue="env1")
-    # for area in task.area:
-    #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
+    # build.apply_async(args=[branchs], queue="env1")
+    for area in task.area:
+        run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
 
     # result = print_task.delay("xu")
     # print(result.task_id)
@@ -202,8 +202,8 @@ def dashboard(request):
     script_list.append(line.get_js_dependencies())
     grid = Grid(width=1100)
 
-    grid.add(line, grid_right="55%",grid_left="5%")
-    grid.add(bar, grid_left="55%",grid_right="5%")
+    grid.add(line, grid_right="60%", grid_left="1%")
+    grid.add(bar, grid_left="52%", grid_right="5%")
     myechart = grid.render_embed()
     script_list.append(grid.get_js_dependencies())
     return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
