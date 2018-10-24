@@ -14,23 +14,23 @@ import paramiko
 class Compile_code(object):
     compile_info = {}
 
-    def __init__(self, *args, **kwarg):
+    def __init__(self, branchs):
 
-        if eval(kwarg["is_sam"]):
+        if branchs["is_sam"]:
             self.compile_info["is_sam"] = True
-            self.compile_info["algorithm_sam"] = kwarg["algorithm_sam"]
+            self.compile_info["algorithm_sam"] = branchs["algorithm_sam"]
         else:
             self.compile_info["is_sam"] = False
-            self.compile_info["algorithm_vehicle_offlineslam"] = kwarg["algorithm_vehicle_offlineslam"]
+            self.compile_info["algorithm_vehicle_offlineslam"] = branchs["algorithm_vehicle_offlineslam"]
 
-        if kwarg.__contains__("commit_point") and kwarg["commit_point"]:
-            self.compile_info["commit_point"] = kwarg["commit_point"]
+        if branchs.__contains__("commit_point") and branchs["commit_point"]:
+            self.compile_info["commit_point"] = branchs["commit_point"]
         else:
             self.compile_info["commit_point"] = ""
 
         self.compile_info["code_path"] = "/home/roaddb/source/core/"
-        self.compile_info["common"] = kwarg["common"]
-        self.compile_info["algorithm_common"] = kwarg["algorithm_common"]
+        self.compile_info["common"] = branchs["common"]
+        self.compile_info["algorithm_common"] = branchs["algorithm_common"]
 
         self.compile_info["stash_common"] = "ssh://git@stash.ygomi.com:7999/rc/common.git"
         self.compile_info["stash_algo_common"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common.git"
