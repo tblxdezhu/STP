@@ -16,7 +16,7 @@ class Compile_code(object):
 
     def __init__(self, *args, **kwarg):
 
-        if kwarg["is_sam"]:
+        if eval(kwarg["is_sam"]):
             self.compile_info["is_sam"] = True
             self.compile_info["algorithm_sam"] = kwarg["algorithm_sam"]
         else:
