@@ -47,7 +47,6 @@ def data_process(folder_path):
     data = {}
     center = {}
     for k, v in get_all_kmls(folder_path).items():
-        try:
             data[k] = {}
             for kml in v:
                 kml_type = 'slam'
@@ -60,9 +59,6 @@ def data_process(folder_path):
                 trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
                 data[k][trajectory.name] = trajectory.string_builder()
                 center[k] = trajectory.data_processed[0]
-        except Exception as e:
-            return -1, -1
-
     return data, center
 
 

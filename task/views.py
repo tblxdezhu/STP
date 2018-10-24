@@ -114,7 +114,7 @@ def task_process(request, task_id):
         revoke(eval(task.celery_id), terminate=True)
     if request.POST.get('getkml') == "getkml":
         data, center_data = data_process(task.output_path)
-        if data == -1:
+        if not data:
             return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", "nokmls": True})
         kmls_data = []
         for k in get_all_kmls(task.output_path):
