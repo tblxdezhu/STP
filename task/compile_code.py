@@ -14,7 +14,7 @@ import paramiko
 class Compile_code(object):
     compile_info = {"is_sam": False}
 
-    def __init__(self, **kwarg):
+    def __init__(self, *args, **kwarg):
 
         if kwarg["is_sam"]:
             self.compile_info["is_sam"] = True
