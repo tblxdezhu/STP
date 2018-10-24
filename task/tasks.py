@@ -104,5 +104,6 @@ def test_ssa(output_path):
 
 @task
 def build(branchs):
+    print(branchs)
     compile_code = Compile_code(branchs)
     compile_code.run_compile("10.69.141.15")
