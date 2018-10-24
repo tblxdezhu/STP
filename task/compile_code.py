@@ -12,7 +12,7 @@ import paramiko
 
 
 class Compile_code(object):
-    compile_info = {"is_sam": False}
+    compile_info = {}
 
     def __init__(self, *args, **kwarg):
 
