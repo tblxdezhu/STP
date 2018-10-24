@@ -100,3 +100,9 @@ def test_ssa(output_path):
     print("running SSA : path:{}".format(output_path))
     subprocess.call(['/Users/test1/PycharmProjects/github/STP/ssa.sh'], shell=True)
     print("SSA run over")
+
+
+@task
+def build(branchs):
+    build = Compile_code(branchs, is_sam=False)
+    build.run_compile("10.69.141.15")

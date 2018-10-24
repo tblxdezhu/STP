@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch
+from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -43,6 +43,7 @@ def submitted(request):
         queue = "env1"
     else:
         queue = "env2"
+    build.delay(branchs)
     for area in task.area:
         run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
 
@@ -124,7 +125,7 @@ def task_process(request, task_id):
     line = line_test()
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
-    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}",'myechart2': myechart1, 'script_list': script_list})
+    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
 
 
 def _get_task_kml(request, task_id):
