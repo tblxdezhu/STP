@@ -35,8 +35,8 @@ def test(request):
 
 @login_required
 def submitted(request):
-    branchs = {'common': request.POST['common'], 'algo_common': request.POST['algo_common'], 'algo_vehicle_offlineslam': request.POST['algo_vehicle_offlineslam'],
-               'common-sam': request.POST['common-sam'], 'algo_common-sam': request.POST['algo_common-sam']}
+    branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
+               'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'],'algorithm_sam':request.POST['algorithm_sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
