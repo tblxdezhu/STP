@@ -226,7 +226,7 @@ def line_test():
     attr = ["1", "2", "3", "4", "5", "6"]
     v1 = [5, 20, 36, 10, 10, 100]
     v2 = [55, 60, 16, 20, 15, 80]
-    line = Line("test")
+    line = Line("demo")
     line.add("A", attr, v1, mark_point=["average"])
     line.add("B", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False)
     return line
