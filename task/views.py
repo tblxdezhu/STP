@@ -36,7 +36,7 @@ def test(request):
 @login_required
 def submitted(request):
     branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
-               'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'],'algorithm_sam':request.POST['algorithm_sam']}
+               'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam']}
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
@@ -114,7 +114,8 @@ def task_process(request, task_id):
         revoke(eval(task.celery_id), terminate=True)
     if request.POST.get('getkml') == "getkml":
         data, center_data = data_process(task.output_path)
-        print(list(center_data.keys()))
+        if data == -1:
+            return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", "nokmls": True})
         kmls_data = []
         for k in get_all_kmls(task.output_path):
             for key in sorted(data[k].keys()):

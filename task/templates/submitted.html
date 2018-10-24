@@ -41,6 +41,13 @@
                                 <form action="" method="post">
                                     {% csrf_token %}
                                     <button type="submit" class="btn btn-primary" name="getkml" value="getkml" id="getkml">Show Trajectory</button>
+                                    {% if nokmls %}
+                                        <script>
+                                            $(document).ready(function () {
+                                                alert("No kml generate");
+                                            });
+                                        </script>
+                                    {% endif %}
                                 </form>
 
                             </td>
