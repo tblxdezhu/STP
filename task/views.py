@@ -40,10 +40,10 @@ def submitted(request):
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
-        queue = "env1"
+        queue = "env2"
     else:
         queue = "env2"
-    build.delay(branchs)
+    build.apply_async(args=[branchs], queue=queue)
     for area in task.area:
         run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
 
