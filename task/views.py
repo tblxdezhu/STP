@@ -21,6 +21,7 @@ import datetime
 import pickle
 from .google_earth_related import data_process, get_all_kmls
 import subprocess
+import json
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -238,4 +239,6 @@ def get_branch():
         status, output = subprocess.getstatusoutput("git branch -a")
         print(output.split("\n"))
         json_data[repo] = output.split("\n")
+    with open("{}/static/jsons/test.json".format(init_path), "w") as f:
+        json.dump(json_data, f)
     os.chdir(init_path)
