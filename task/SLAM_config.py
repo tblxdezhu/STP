@@ -9,6 +9,8 @@ cases_path = {
     'milford': '/media/psf/Untitled/SLAM_TEST/auto_test_large/large_milford/rtv',
     'memmingen': '/media/psf/Untitled/SLAM_TEST/auto_test_large/large_memingen/rtv',
     'localtest': '/Users/test1/PycharmProjects/github/STP/test/cases',
+    '16test': '/media/psf/Untitled/Auto_test_SLAM/data/16test',
+    '15test': '/home/roaddb/test_data',
 }
 
 vehicle_exec = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe"
