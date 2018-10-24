@@ -236,6 +236,6 @@ def get_branch():
         os.chdir(os.path.join(code_path, repo))
         print(repo)
         status, output = subprocess.getstatusoutput("git branch -a")
-        print(output.split("\n").strip())
+        print(output.split("\n"))
         json_data[repo] = output.split("\n")
     os.chdir(init_path)
