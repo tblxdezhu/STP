@@ -13,7 +13,7 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar, Line
+from pyecharts import Bar, Line, Grid
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
@@ -125,6 +125,7 @@ def task_process(request, task_id):
         return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
     line = line_test()
     myechart1 = line.render_embed()
+
     script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
 
@@ -195,11 +196,17 @@ def dashboard(request):
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
     bar = bar_test()
     line = line_test()
-    myechart = bar.render_embed()
-    myechart1 = line.render_embed()
+    # myechart = bar.render_embed()
+    # myechart1 = line.render_embed()
     script_list = bar.get_js_dependencies()
     script_list.append(line.get_js_dependencies())
-    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'myechart1': myechart1, 'script_list': script_list})
+    grid = Grid(width=1100)
+
+    grid.add(line, grid_right="55%",grid_left="5%")
+    grid.add(bar, grid_left="55%",grid_right="5%")
+    myechart = grid.render_embed()
+    script_list.append(grid.get_js_dependencies())
+    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
 
 
 @login_required
@@ -218,9 +225,9 @@ def bar_test():
     attr = ["1", "2", "3", "4", "5", "6"]
     v1 = [5, 20, 36, 10, 75, 90]
     v2 = [10, 25, 8, 60, 20, 80]
-    bar = Bar("test")
+    bar = Bar("demo", title_pos="50%")
     bar.add("A", attr, v1, is_stack=True)
-    bar.add("B", attr, v2, is_stack=True, is_toolbox_show=False)
+    bar.add("B", attr, v2, is_stack=True, is_toolbox_show=False, legend_pos="70%")
     return bar
 
 
@@ -229,8 +236,8 @@ def line_test():
     v1 = [5, 20, 36, 10, 10, 100]
     v2 = [55, 60, 16, 20, 15, 80]
     line = Line("demo")
-    line.add("A", attr, v1, mark_point=["average"])
-    line.add("B", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False)
+    line.add("A1", attr, v1, mark_point=["average"])
+    line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
 
