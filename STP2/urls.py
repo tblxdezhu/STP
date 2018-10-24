@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^allmytasks/', all_my_tasks),
     url(r'^data/', include('data.urls')),
     url(r'^test/', include('task.urls')),
+    url(r'^machine/', include('lab.urls')),
 ]

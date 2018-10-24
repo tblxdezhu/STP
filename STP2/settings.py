@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     'djcelery',
     'django_celery_results',
     'data',
+    'lab',
 )
 
 MIDDLEWARE_CLASSES = (
