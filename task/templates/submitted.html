@@ -75,7 +75,7 @@
                     <div class="row">
                         <div>
                             <div class="col-md-3">
-                                <p id="task_status_code" class="btn btn-default  ">Build</p>
+                                <p id="task_status_build" class="btn btn-default  ">Build</p>
                             </div>
 
                             <div class="col-md-3">
@@ -85,7 +85,7 @@
                                 <p id="task_status_ssa" class="btn btn-default ">SSA </p>
                             </div>
                             <div class="col-md-3">
-                                <p id="task_status_result" class="btn btn-default ">Backup</p>
+                                <p id="task_status_backup" class="btn btn-default ">Backup</p>
                             </div>
                         </div>
                     </div>
@@ -200,7 +200,12 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                    if (ret.status == 'SLAM') {
+                    if (ret.status == 'building') {
+                        $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
+                    }
+                    else if (ret.status == 'SLAM') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
                     }
                     else if (ret.status == 'SSA') {
