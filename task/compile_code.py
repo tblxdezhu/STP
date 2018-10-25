@@ -9,7 +9,7 @@
 define some common function
 '''
 import paramiko
-
+import os
 
 class Compile_code(object):
     compile_info = {}
@@ -91,6 +91,12 @@ class Compile_code(object):
     def __compile_algo_common(self, is_sam, evn_ip):
 
         cmds = None
+
+        try:
+            os.system("sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' CMakeLists.txt")
+        except IOError:
+            raise
+
         if not is_sam:
             cmds = self.__compile_cmds__(self.compile_info["code_path"],
                                          "algorithm_common",
