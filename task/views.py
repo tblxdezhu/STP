@@ -40,7 +40,7 @@ def submitted(request):
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
-        queue = "env2"
+        queue = "env1"
     else:
         queue = "env1"
     print("**********************", branchs)
