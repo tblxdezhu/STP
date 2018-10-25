@@ -11,6 +11,7 @@ define some common function
 import paramiko
 import os
 
+
 class Compile_code(object):
     compile_info = {}
 
@@ -93,9 +94,8 @@ class Compile_code(object):
         cmds = None
 
         try:
-            os.system(
-                "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' "
-                "{0}/CMakeLists.txt".format(self.compile_info["code_path"]+"algorithm_common"))
+            os.system("sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
+                os.path.join(self.compile_info["code_path", "algorithm_common", "CMakeLists.txt"])))
         except IOError:
             raise
 
@@ -104,7 +104,7 @@ class Compile_code(object):
                                          "algorithm_common",
                                          self.compile_info["stash_algo_common"],
                                          self.compile_info["algorithm_common"], "",
-                                         "-a")
+                                         "-g")
 
         else:
             cmds = self.__compile_cmds__(self.compile_info["code_path"],
