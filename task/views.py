@@ -43,7 +43,7 @@ def submitted(request):
     else:
         queue = "env1"
     print("**********************", branchs)
-    build.apply_async(args=[branchs], queue="env1")
+    build.apply_async(args=[branchs, task.id], queue="env1")
     for area in task.area:
         print(area)
         run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
