@@ -94,8 +94,10 @@ class Compile_code(object):
         cmds = None
 
         try:
-            os.system("sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
-                os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt")))
+            cmd_sed = "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
+                os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
+            print(cmd_sed)
+            os.system(cmd_sed)
         except IOError:
             raise
 
