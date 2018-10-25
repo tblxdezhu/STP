@@ -255,6 +255,8 @@ def get_branch():
         for branch in output.split("\n"):
             if "remotes/core" in branch:
                 json_data[repo].append(branch.split("remotes/core/")[1].strip())
+            elif "remotes/origin" in branch:
+                json_data[repo].append(branch.split("remotes/origin/")[1].strip())
             else:
                 json_data[repo].append(branch.strip())
     with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
