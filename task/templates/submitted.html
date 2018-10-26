@@ -72,6 +72,34 @@
                             <div class="label label-danger animated flash slower infinite ">FAILED</div>
                         </div>
                     </div-->
+                    <div id="ystep_test"></div>
+                    <script>
+                        $("#ysetp_test").loadStep({
+                            size: "small",
+                            color: 'blue',
+                            steps: [{
+                                title: 'Build',
+                                content: 'Git pull the code and build'
+                            }, {
+                                title: 'SLAM',
+                                content: 'Running SLAM'
+                            }, {
+                                title: 'SSA',
+                                content: 'Server process'
+                            }, {
+                                title: 'Backup',
+                                content: 'Backup the result and Statistical results'
+                            }]
+                        });
+                        //跳转到下一个步骤
+                        //$(".ystep1").nextStep();
+                        //跳转到上一个步骤
+                        //$(".ystep1").prevStep();
+                        //跳转到指定步骤
+                        //$(".ystep1").setStep(2);
+                        //获取当前在第几步
+                        //$(".ystep1").getStep();
+                    </script>
                     <div class="row">
                         <div>
                             <div class="col-md-3">
