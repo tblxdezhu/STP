@@ -47,7 +47,9 @@ def submitted(request):
     for area in task.area:
         print(area)
         run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
-    backup.apply_async(args=[task.id], queue=queue)
+        # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
+        chain_result = chain(run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue), backup.s(task.id).set(queue=queue))
+    # backup.apply_async(args=[task.id], queue=queue)
     # result = print_task.delay("xu")
     # print(result.task_id)
     # vehicle = Vehicle("test", str(request.user))
