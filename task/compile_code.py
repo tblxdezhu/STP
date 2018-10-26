@@ -10,6 +10,7 @@ define some common function
 '''
 import paramiko
 import os
+import subprocess
 
 
 class Compile_code(object):
@@ -45,6 +46,14 @@ class Compile_code(object):
         cmds_dict["git_clone"] = "cd {0} && git clone {1}".format(code_path, stash_addr)
         cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(code_path + repo_name, branch_name)
         cmds_dict["git_commit_point"] = " git reset --hard {0}".format(commit_point)
+
+        if repo_name=="algorithm_common":
+
+            cmds_dict["update_cmakelist"]="sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
+                    os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
+        else:
+            cmds_dict["update_cmakelist"]=""
+
         cmds_dict["compile_cmd"] = "./build.sh {0}".format(parameters)
         return cmds_dict
 
@@ -54,22 +63,32 @@ class Compile_code(object):
         results = dict()
         try:
             client = paramiko.SSHClient()
+            client.load_system_host_keys()
             client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            client.connect(sys_ip, 22, username=username, password=password, compress=True)
-            cmd = ""
+            client.connect(sys_ip, 22, username=username, password=password)
+            cmd = cmds["clear_repo_cmd"] + ";" + cmds["git_clone"] + ";" + cmds["git_checkout_cmd"]
 
             if cmds["git_commit_point"]:
-                cmd = cmds["clear_repo_cmd"] + ";" + cmds["git_clone"] + ";" + cmds["git_checkout_cmd"] + ";" + \
-                      cmds["git_commit_point"] + ";" + cmds["compile_cmd"]
+                cmd +=";"+cmds["git_commit_point"]
             else:
-                cmd = cmds["clear_repo_cmd"] + ";" + cmds["git_clone"] + ";" + cmds["git_checkout_cmd"] + ";" + \
-                      cmds["compile_cmd"]
-            print(cmd)
-            stdin_compile, stdout_compile, stderr_compile = client.exec_command(command=cmd)
-            results["compile_cmd"] = stdout_compile.channel.recv_exit_status()
-            results["compile_cmd_detail"] = stdout_compile.readlines()
-            print(results["compile_cmd_detail"])
+                pass
 
+            if cmds["update_cmakelist"]:
+                cmd += ";"+cmds["update_cmakelist"]
+            else:
+                pass
+
+            cmd +=";" + cmds["compile_cmd"]
+
+            print(cmd)
+            # stdin_compile, stdout_compile, stderr_compile = client.exec_command(command=cmd)
+            # results["compile_cmd"] = stdout_compile.channel.recv_exit_status()
+            # results["compile_cmd_detail"] = stdout_compile.readlines()
+            # print(results["compile_cmd"])
+            # print(results["compile_cmd_detail"])
+            cmd_result,cmd_output=subprocess.getstatusoutput(cmd)
+            results["compile_cmd"]=cmd_result
+            results["compile_cmd_detail"]=cmd_output
             return results
         except:
             print("Connect virtual machine failed!")
@@ -89,31 +108,14 @@ class Compile_code(object):
 
         return compile_result
 
-    def __compile_algo_common(self, is_sam, evn_ip):
+    def __compile_algo_common(self, evn_ip):
 
         cmds = None
-
-        try:
-            cmd_sed = "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
-                os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
-            print(cmd_sed)
-            os.system(cmd_sed)
-        except IOError:
-            raise
-
-        if not is_sam:
-            cmds = self.__compile_cmds__(self.compile_info["code_path"],
-                                         "algorithm_common",
-                                         self.compile_info["stash_algo_common"],
-                                         self.compile_info["algorithm_common"], "",
-                                         "-g")
-
-        else:
-            cmds = self.__compile_cmds__(self.compile_info["code_path"],
-                                         "algorithm_common",
-                                         self.compile_info["stash_algo_common"],
-                                         self.compile_info["algorithm_common"], "",
-                                         "-g")
+        cmds = self.__compile_cmds__(self.compile_info["code_path"],
+                                     "algorithm_common",
+                                     self.compile_info["stash_algo_common"],
+                                     self.compile_info["algorithm_common"], "",
+                                     "-g")
 
         compile_result = self.__ssh_run_cmd__(evn_ip, "roaddb", "test1234", cmds)
 
@@ -144,9 +146,9 @@ class Compile_code(object):
     def run_compile(self, env_ip):
 
         result_common = self.__compile_common(env_ip)
-        result_algo_common = self.__compile_algo_common(self.compile_info["is_sam"], env_ip)
+        result_algo_common = self.__compile_algo_common(env_ip)
         result_algo = ""
-        print(self.compile_info["is_sam"])
+        #print(self.compile_info["is_sam"])
         if not self.compile_info["is_sam"]:
             result_algo = self.__compile_algo_offlineslam(env_ip)
         else:
@@ -154,9 +156,9 @@ class Compile_code(object):
 
 
 if __name__ == "__main__":
-    obj_compile = Compile_code(common="feature/RDB-28325-offline-slam-developing",
-                               algorithm_common="feature/RDB-28325-offline-slam-developing",
-                               algorithm_vehicle_offlineslam="feature/RDB-32673-improve-kf-strategy",
-                               is_sam=False
-                               )
+    branchs={"common":"feature/RDB-33158-release-of-offline-slam",
+             "algorithm_common":"feature/RDB-33158-release-of-offline-slam",
+             "algorithm_vehicle_offlineslam":"feature/RDB-33158-release-of-offline-slam",
+             "is_sam":False}
+    obj_compile = Compile_code(branchs)
     obj_compile.run_compile("10.69.142.16")
