@@ -103,10 +103,11 @@ def test_ssa(output_path):
 
 
 @task
-def build(branchs, task_id):
+def build(branchs, task_id, build_sam=False):
     print(branchs)
     task = Task.objects.get(id=task_id)
     task.status = 'building'
     task.save()
+    branchs['is_sam'] = build_sam
     compile_code = Compile_code(branchs)
     compile_code.run_compile("10.69.142.16")
