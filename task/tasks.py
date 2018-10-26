@@ -111,3 +111,9 @@ def build(branchs, task_id, build_sam=False):
     branchs['is_sam'] = build_sam
     compile_code = Compile_code(branchs)
     compile_code.run_compile("10.69.142.16")
+
+@task
+def backup(task_id):
+    task = Task.objects.get(id=task_id)
+    task.status = 'backup'
+    task.save()

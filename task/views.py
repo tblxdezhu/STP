@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build
+from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -42,13 +42,12 @@ def submitted(request):
         queue = "env1"
     else:
         queue = "env1"
-    print("**********************", branchs)
     build_sam = False
-    build.apply_async(args=[branchs, task.id, build_sam], queue="env1")
+    build.apply_async(args=[branchs, task.id, build_sam], queue=queue)
     for area in task.area:
         print(area)
         run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
-
+    backup.apply_async(args=[task.id], queue=queue)
     # result = print_task.delay("xu")
     # print(result.task_id)
     # vehicle = Vehicle("test", str(request.user))

@@ -218,6 +218,11 @@
                         $('#task_status_slam').removeClass().addClass("btn btn-danger");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
                     }
+                    else if (ret.status == 'backup') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_backup').removeClass().addClass("btn btn-success")
+                    }
                     else {
                         $('#task_status_slam').removeClass().addClass("btn btn-warning");
                         $('#task_status_ssa').removeClass().addClass("btn btn-warning")
