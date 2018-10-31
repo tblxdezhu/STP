@@ -48,10 +48,11 @@ def submitted(request):
     #     print(area)
     #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
-
-    chain_result = chain(build.s(branchs, task.id, build_sam), run_slam.s(str(task.area), str(request.user), task.id, queue), backup.s(task.id))
-    chain_result()
-
+    try:
+        chain_result = chain(build.s(branchs, task.id, build_sam).set(queue=queue), run_slam.s(str(task.area), str(request.user), task.id, queue), backup.s(task.id))
+        chain_result()
+    except Exception as e:
+        print(e)
     # backup.apply_async(args=[task.id], queue=queue)
     # result = print_task.delay("xu")
     # print(result.task_id)

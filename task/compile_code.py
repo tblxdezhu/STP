@@ -43,9 +43,9 @@ class Compile_code(object):
     def __compile_cmds__(self, code_path, repo_name, stash_addr, branch_name, commit_point, parameters=""):
 
         cmds_dict = dict()
-        cmds_dict["clear_repo_cmd"] = "rm -rf {0}".format(code_path + repo_name)
+        cmds_dict["clear_repo_cmd"] = "rm -rf {0}".format(os.path.join(code_path, repo_name))
         cmds_dict["git_clone"] = "cd {0} && git clone {1}".format(code_path, stash_addr)
-        cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(code_path + repo_name, branch_name)
+        cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(os.path.join(code_path, repo_name), branch_name)
         cmds_dict["git_commit_point"] = " git reset --hard {0}".format(commit_point)
 
         if repo_name == "algorithm_common":
