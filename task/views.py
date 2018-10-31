@@ -253,7 +253,7 @@ def get_branch():
     json_data = {}
     for repo in repo_list:
         os.chdir(os.path.join(code_path, repo))
-        status, output = subprocess.getstatusoutput("git pull && git branch -a")
+        status, output = subprocess.getstatusoutput("git branch -a")
         json_data[repo] = []
         for branch in output.split("\n"):
             if "remotes/core" in branch:
