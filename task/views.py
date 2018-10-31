@@ -249,12 +249,12 @@ def line_test():
 
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
-    code_path = "/home/roaddb/source/core"
+    code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/stp_envs/core"
     init_path = os.getcwd()
     json_data = {}
     for repo in repo_list:
         os.chdir(os.path.join(code_path, repo))
-        status, output = subprocess.getstatusoutput("git branch -a")
+        status, output = subprocess.getstatusoutput("git pull && git branch -a")
         json_data[repo] = []
         for branch in output.split("\n"):
             if "remotes/core" in branch:
