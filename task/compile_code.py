@@ -11,7 +11,7 @@ define some common function
 import paramiko
 import os
 import subprocess
-from .build_config import *
+from .build_config import code_path
 
 
 class Compile_code(object):
@@ -31,7 +31,7 @@ class Compile_code(object):
         else:
             self.compile_info["commit_point"] = ""
 
-        self.compile_info["code_path"] = code_path
+        self.compile_info["code_path"] = os.path.join(code_path, 'core')
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
 
@@ -48,12 +48,12 @@ class Compile_code(object):
         cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(code_path + repo_name, branch_name)
         cmds_dict["git_commit_point"] = " git reset --hard {0}".format(commit_point)
 
-        if repo_name=="algorithm_common":
+        if repo_name == "algorithm_common":
 
-            cmds_dict["update_cmakelist"]="sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
-                    os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
+            cmds_dict["update_cmakelist"] = "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
+                os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
         else:
-            cmds_dict["update_cmakelist"]=""
+            cmds_dict["update_cmakelist"] = ""
 
         cmds_dict["compile_cmd"] = "./build.sh {0}".format(parameters)
         return cmds_dict
@@ -70,16 +70,16 @@ class Compile_code(object):
             cmd = cmds["clear_repo_cmd"] + ";" + cmds["git_clone"] + ";" + cmds["git_checkout_cmd"]
 
             if cmds["git_commit_point"]:
-                cmd +=";"+cmds["git_commit_point"]
+                cmd += ";" + cmds["git_commit_point"]
             else:
                 pass
 
             if cmds["update_cmakelist"]:
-                cmd += ";"+cmds["update_cmakelist"]
+                cmd += ";" + cmds["update_cmakelist"]
             else:
                 pass
 
-            cmd +=";" + cmds["compile_cmd"]
+            cmd += ";" + cmds["compile_cmd"]
 
             print(cmd)
             # stdin_compile, stdout_compile, stderr_compile = client.exec_command(command=cmd)
@@ -87,9 +87,9 @@ class Compile_code(object):
             # results["compile_cmd_detail"] = stdout_compile.readlines()
             # print(results["compile_cmd"])
             # print(results["compile_cmd_detail"])
-            cmd_result,cmd_output=subprocess.getstatusoutput(cmd)
-            results["compile_cmd"]=cmd_result
-            results["compile_cmd_detail"]=cmd_output
+            cmd_result, cmd_output = subprocess.getstatusoutput(cmd)
+            results["compile_cmd"] = cmd_result
+            results["compile_cmd_detail"] = cmd_output
             return results
         except:
             print("Connect virtual machine failed!")
@@ -149,7 +149,7 @@ class Compile_code(object):
         result_common = self.__compile_common(env_ip)
         result_algo_common = self.__compile_algo_common(env_ip)
         result_algo = ""
-        #print(self.compile_info["is_sam"])
+        # print(self.compile_info["is_sam"])
         if not self.compile_info["is_sam"]:
             result_algo = self.__compile_algo_offlineslam(env_ip)
         else:
@@ -157,9 +157,9 @@ class Compile_code(object):
 
 
 if __name__ == "__main__":
-    branchs={"common":"feature/RDB-33158-release-of-offline-slam",
-             "algorithm_common":"feature/RDB-33158-release-of-offline-slam",
-             "algorithm_vehicle_offlineslam":"feature/RDB-33158-release-of-offline-slam",
-             "is_sam":False}
+    branchs = {"common": "feature/RDB-33158-release-of-offline-slam",
+               "algorithm_common": "feature/RDB-33158-release-of-offline-slam",
+               "algorithm_vehicle_offlineslam": "feature/RDB-33158-release-of-offline-slam",
+               "is_sam": False}
     obj_compile = Compile_code(branchs)
     obj_compile.run_compile("10.69.142.16")
