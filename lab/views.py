@@ -57,7 +57,7 @@ def lab_used_memory(request):
             "snmpwalk -v 2c -c roaddb 10.69.142.16 .1.3.6.1.4.1.2021.4.11.0")
         use_percentage = round(
             (int(eval(free_memory_used.split(" ")[-2])) / int(eval(total_memory_used.split(" ")[-2]))) * 100, 2)
-    used_memo=str(round((int(eval(total_memory_used.split(" ")[-2]))-int(eval(free_memory_used.split(" ")[-1])))/1024,2))+"MB"
+    used_memo=str(round((int(eval(total_memory_used.split(" ")[-2]))-int(eval(free_memory_used.split(" ")[-2])))/1024,2))+"MB"
     print(used_memo)
     return JsonResponse({"usedMemoPercent": 100 - use_percentage,"sizeMemo":used_memo})
 
