@@ -3,6 +3,7 @@ slam_config = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/config/sla
 camera_config = "/home/roaddb/source/core/vehicle/config/camera65_big_lens.json"
 # output_path = "/Users/test1/PycharmProjects/github/STP/test/results"
 output_path = "/home/roaddb/stp_test_result"
+code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/env0"
 
 cases_path = {
     'fuji': '/media/psf/Untitled/SLAM_TEST/auto_test_large/large_fuji/rtv',
