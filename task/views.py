@@ -49,8 +49,9 @@ def submitted(request):
     #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
     try:
-        chain_result = chain(build.s(branchs, task.id, build_sam).set(queue=queue), run_slam.s(str(task.area), str(request.user), task.id, queue).set(queue=queue), backup.s(task.id))
-        chain_result()
+        for area in task.area:
+            chain_result = chain(build.s(branchs, task.id, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue), backup.s(task.id))
+            chain_result()
     except Exception as e:
         print(e)
     # backup.apply_async(args=[task.id], queue=queue)
