@@ -30,9 +30,9 @@ def get_branch():
 
 
 @task
-def run_slam(area, tester, task_id, queue):
-    # if build_status:
-    #     print("build ok")
+def run_slam(build_status, area, tester, task_id, queue):
+    if build_status == 0:
+        print("build ok")
     task = Task.objects.get(id=task_id)
     task.status = "SLAM"
     date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
@@ -112,12 +112,13 @@ def build(branchs, task_id, build_sam=False):
     branchs['is_sam'] = build_sam
     compile_code = Compile_code(branchs)
     compile_code.run_compile("10.69.142.16")
-
+    build_status = 0
+    return build_status
 
 
 @task
-def backup(task_id):
+def backup(output_path, task_id):
     task = Task.objects.get(id=task_id)
     task.status = 'backup'
-    print("I am backuping {}")
+    print("I am backuping {}".format(output_path))
     task.save()
