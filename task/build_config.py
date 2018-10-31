@@ -5,8 +5,8 @@
 # @File    : build_config.py
 # @Software: Pycharm professional
 
-# code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/env0"
-code_path = "/home/roaddb/source"
+code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/env0"
+# code_path = "/home/roaddb/source"
 stash_core_common = "ssh://git@stash.ygomi.com:7999/rc/common.git"
 stash_algo_common = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common.git"
 stash_algo_vehicle_offlineslam = "ssh://git@stash.ygomi.com:7999/rc/algorithm_vehicle_offlineslam.git"
