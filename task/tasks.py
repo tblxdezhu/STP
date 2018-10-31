@@ -112,8 +112,7 @@ def build(branchs, task_id, build_sam=False):
     branchs['is_sam'] = build_sam
     compile_code = Compile_code(branchs)
     compile_code.run_compile("10.69.142.16")
-    build_status = True
-    return build_status
+
 
 
 @task
