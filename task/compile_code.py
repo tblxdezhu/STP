@@ -11,6 +11,7 @@ define some common function
 import paramiko
 import os
 import subprocess
+from .build_config import *
 
 
 class Compile_code(object):
@@ -30,7 +31,7 @@ class Compile_code(object):
         else:
             self.compile_info["commit_point"] = ""
 
-        self.compile_info["code_path"] = "/home/roaddb/source/core/"
+        self.compile_info["code_path"] = code_path
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
 
