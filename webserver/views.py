@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib import auth
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
 from task.models import Task
+
 
 # Create your views here.
 
@@ -50,3 +51,8 @@ def test(request):
 
 def test_login(request):
     return render(request, 'login.html')
+
+
+@login_required
+def coming(request):
+    return render(request, 'coming_soon.html')
