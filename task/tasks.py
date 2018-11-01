@@ -104,7 +104,7 @@ def test_ssa(output_path):
 
 
 @task
-def build(branchs, task_id, if_build, build_sam=False, ):
+def build(branchs, task_id, if_build=True, build_sam=False):
     build_status = 0
     if if_build:
         print(branchs)
