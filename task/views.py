@@ -111,7 +111,7 @@ def submitted(request):
     #         break
     # print(result.status)
     # return render(request, 'submitted.html', {'task': task})
-    return HttpResponseRedirect(reverse('task_id', kwargs={'task_id': task.id}))
+    return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
 @login_required
