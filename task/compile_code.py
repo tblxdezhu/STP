@@ -99,8 +99,8 @@ class Compile_code(object):
             print("Connect virtual machine failed!")
             raise
 
-        finally:
-            client.close()
+        # finally:
+        #     client.close()
 
     def __compile_common(self, evn_ip):
 
