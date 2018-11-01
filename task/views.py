@@ -286,7 +286,7 @@ def download_file(request, task_id):
         except FileNotFoundError:
             print("file not found")
 
-    file = "/Users/test1/PycharmProjects/github/STP/static/data/alignmentkmls.zip"
+    file = "{}/static/data/alignmentkmls.zip".format(os.getcwd())
 
     response = StreamingHttpResponse(file_iterator(file_name=file))
 
