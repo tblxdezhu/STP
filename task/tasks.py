@@ -119,6 +119,6 @@ def build(branchs, task_id, build_sam=False):
 @task
 def backup(output_path, task_id):
     task = Task.objects.get(id=task_id)
-    task.status = 'backup'
     print("I am backuping {}".format(output_path))
+    task.status = 'done'
     task.save()

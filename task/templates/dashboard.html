@@ -70,8 +70,12 @@
                                                     $('#{{ task.id }}_status').html("building");
                                                     $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
+                                                else if (ret.status == 'done') {
+                                                    $('#{{ task.id }}_status').html("Done");
+                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-success");
+                                                }
                                                 else {
-                                                    $('#{{ task.id }}_status').html("STOP");
+                                                    $('#{{ task.id }}_status').html("failed");
                                                     $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
                                                 }
 
@@ -144,8 +148,12 @@
                                                     $('#{{ task.id }}_mystatus').html("building");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
+                                                else if (ret.status == 'done') {
+                                                    $('#{{ task.id }}_status').html("Done");
+                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-success");
+                                                }
                                                 else {
-                                                    $('#{{ task.id }}_mystatus').html("STOP");
+                                                    $('#{{ task.id }}_mystatus').html("failed");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
                                                 }
 
