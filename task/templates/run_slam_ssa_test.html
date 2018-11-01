@@ -35,10 +35,11 @@
                         <input type="checkbox" value="localtest" name="check_box_list"/>local test
                         <input type="checkbox" value="16test" name="check_box_list"/>16 test
                         <input type="checkbox" value="15test" name="check_box_list"/>15 test
+                        <div class="row col-lg-offset-10">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
+                        </div>
                     </div>
-                    <div class="row col-lg-offset-10">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -167,7 +168,7 @@
                 $("#algorithm_sam").typeahead({source: eval(json_data.algorithm_sam), minLength: 0});
                 $("#common").typeahead({source: eval(json_data.common), minLength: 0});
                 $("#algorithm_common_sam").typeahead({source: eval(json_data.algorithm_common_sam), minLength: 0});
-                $("#common_sam").typeahead({source: eval(json_data.common_sam ), minLength: 0});
+                $("#common_sam").typeahead({source: eval(json_data.common_sam), minLength: 0});
                 $("#vehicle").typeahead({source: eval(json_data.vehicle), minLength: 0});
             });
         })
