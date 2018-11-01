@@ -38,6 +38,7 @@ def submitted(request):
     branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
                'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
                'vehicle': request.POST['vehicle']}
+    print("branchs",branchs)
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
