@@ -20,7 +20,6 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <!-- RECENT PURCHASES -->
             <div class="panel">
                 <div class="panel-heading">
                     <h3 class="panel-title">Recent Tasks</h3>
@@ -30,16 +29,16 @@
                     </div>
                 </div>
                 <div class="panel-body no-padding">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>Task ID.</th>
-                            <th>Name</th>
-                            <th>Mode</th>
-                            <th>Area</th>
-                            <th>Date &amp; Time</th>
-                            <th>Status</th>
-                        </tr>
+                            <tr>
+                                <th>Task ID.</th>
+                                <th>Name</th>
+                                <th>Mode</th>
+                                <th>Area</th>
+                                <th>Date &amp; Time</th>
+                                <th>Status</th>
+                            </tr>
                         </thead>
                         <tbody>
                         {% for task in tasks %}
@@ -48,9 +47,11 @@
                                 <td>{{ task.tester }}</td>
                                 <td>{{ task.mode }}</td>
                                 <td>{{ task.area }}</td>
+                                <!-- H:i:s -->
                                 <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
                                 <td><span id="{{ task.id }}_status" class="label label-default">loading</span></td>
-                                <script>
+                            </tr>
+                            <script>
                                     $(document).ready(function () {
                                         function get_status() {
                                             $.getJSON('/test/{{ task.id }}/status', function (ret) {
@@ -85,7 +86,6 @@
                                         setInterval(get_status, 3000)
                                     })
                                 </script>
-                            </tr>
                         {% endfor %}
                         </tbody>
                     </table>
@@ -97,8 +97,6 @@
                     </div>
                 </div>
             </div>
-            <!-- END RECENT PURCHASES -->
-
         </div>
         <div class="col-md-6">
             <div class="panel">
@@ -112,13 +110,13 @@
                 <div class="panel-body no-padding">
                     <table class="table ">
                         <thead>
-                        <tr>
-                            <th>Task ID.</th>
-                            <th>Mode</th>
-                            <th>Area</th>
-                            <th>Date &amp; Time</th>
-                            <th>Status</th>
-                        </tr>
+                            <tr>
+                                <th>Task ID.</th>
+                                <th>Mode</th>
+                                <th>Area</th>
+                                <th>Date &amp; Time</th>
+                                <th>Status</th>
+                            </tr>
                         </thead>
                         <tbody>
                         {% for task in my_tasks %}
