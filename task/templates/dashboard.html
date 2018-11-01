@@ -66,6 +66,10 @@
                                                     $('#{{ task.id }}_status').html("Waiting");
                                                     $('#{{ task.id }}_status').removeClass().addClass("label label-warning");
                                                 }
+                                                else if (ret.status == 'building') {
+                                                    $('#{{ task.id }}_status').html("building");
+                                                    $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
+                                                }
                                                 else {
                                                     $('#{{ task.id }}_status').html("STOP");
                                                     $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
@@ -135,6 +139,10 @@
                                                 else if (ret.status == 'Waiting') {
                                                     $('#{{ task.id }}_mystatus').html("Waiting");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-warning");
+                                                }
+                                                else if (ret.status == 'building') {
+                                                    $('#{{ task.id }}_mystatus').html("building");
+                                                    $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
                                                 }
                                                 else {
                                                     $('#{{ task.id }}_mystatus').html("STOP");
