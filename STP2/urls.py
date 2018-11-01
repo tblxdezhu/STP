@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^alltasks/', all_tasks),
     url(r'^allmytasks/', all_my_tasks),
     url(r'^data/', include('data.urls')),
-    url(r'^test/', include('task.urls')),
+    url(r'^test/', include('task.urls', app_name='task', namespace='test')),
     url(r'^machine/', include('lab.urls')),
+    url(r'^coming/', views.coming),
 ]

@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
 from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup
@@ -22,6 +22,7 @@ import pickle
 from .google_earth_related import data_process, get_all_kmls
 import subprocess
 import json
+import csv
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -207,10 +208,10 @@ def dashboard(request):
     # myechart1 = line.render_embed()
     script_list = bar.get_js_dependencies()
     script_list.append(line.get_js_dependencies())
-    grid = Grid(width=1100)
+    grid = Grid(width="auto")
 
-    grid.add(line, grid_right="60%", grid_left="1%")
-    grid.add(bar, grid_left="52%", grid_right="5%")
+    grid.add(line, grid_right="60%", grid_left="5%")
+    grid.add(bar, grid_left="60%", grid_right="5%")
     myechart = grid.render_embed()
     script_list.append(grid.get_js_dependencies())
     return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
@@ -269,3 +270,27 @@ def get_branch():
     with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
         json.dump(json_data, f)
     os.chdir(init_path)
+
+
+@login_required
+def download_file(request, task_id):
+    def file_iterator(file_name):
+        try:
+            with open(file_name, 'rb') as f:
+                while True:
+                    c = f.read()
+                    if c:
+                        yield c
+                    else:
+                        break
+        except FileNotFoundError:
+            print("file not found")
+
+    file = "/Users/test1/PycharmProjects/github/STP/static/data/alignmentkmls.zip"
+
+    response = StreamingHttpResponse(file_iterator(file_name=file))
+
+    response['Content-Type'] = 'application/zip'
+    response['Content-Disposition'] = 'attachment; filename="{}.zip"'.format(task_id)
+
+    return response
