@@ -39,6 +39,7 @@ def submitted(request):
                'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
                'vehicle': request.POST['vehicle']}
     print("branchs",branchs)
+    print(request.POST.get('ifskipbuild'))
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
