@@ -38,6 +38,8 @@ def submitted(request):
     branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
                'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
                'vehicle': request.POST['vehicle']}
+    print("branchs", branchs)
+    print(request.POST.get('ifskipbuild'))
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
     if task.id % 2 == 0:
@@ -45,6 +47,7 @@ def submitted(request):
     else:
         queue = "env1"
     build_sam = False
+    if_build = True
     # build.apply_async(args=[branchs, task.id, build_sam], queue=queue)
     # for area in task.area:
     #     print(area)
@@ -52,7 +55,12 @@ def submitted(request):
     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
     try:
         for area in task.area:
-            chain_result = chain(build.s(branchs, task.id, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue), backup.s(task.id))
+            if request.POST.get('ifskipbuild') == 'skipbuild':
+                print("skipbuild****"*10)
+                if_build = False
+            print(if_build)
+            chain_result = chain(build.s(branchs, task.id, if_build, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue),
+                                 backup.s(task.id).set(queue=queue))
             chain_result()
     except Exception as e:
         print(e)

@@ -104,21 +104,24 @@ def test_ssa(output_path):
 
 
 @task
-def build(branchs, task_id, build_sam=False):
-    print(branchs)
-    task = Task.objects.get(id=task_id)
-    task.status = 'building'
-    task.save()
-    branchs['is_sam'] = build_sam
-    compile_code = Compile_code(branchs)
-    compile_code.run_compile("10.69.142.16")
+def build(branchs, task_id, if_build=True, build_sam=False):
     build_status = 0
-    return build_status
+    if if_build:
+        print(branchs)
+        task = Task.objects.get(id=task_id)
+        task.status = 'building'
+        task.save()
+        branchs['is_sam'] = build_sam
+        compile_code = Compile_code(branchs)
+        compile_code.run_compile("10.69.142.16")
+        return build_status
+    else:
+        return build_status
 
 
 @task
 def backup(output_path, task_id):
     task = Task.objects.get(id=task_id)
-    task.status = 'backup'
     print("I am backuping {}".format(output_path))
+    task.status = 'done'
     task.save()

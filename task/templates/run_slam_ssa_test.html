@@ -35,7 +35,11 @@
                         <input type="checkbox" value="localtest" name="check_box_list"/>local test
                         <input type="checkbox" value="16test" name="check_box_list"/>16 test
                         <input type="checkbox" value="15test" name="check_box_list"/>15 test
+                        <div class="row col-lg-offset-10">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -58,14 +62,14 @@
                             <th class="col-md-3">core/common</th>
                             <th class="col-md-9">
                                 <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"
-                                       value="master">
+                                >
                             </th>
                         </tr>
                         <tr>
                             <th class="col-md-2">algorithm_common</th>
                             <th class="col-md-10">
                                 <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"
-                                       value="master">
+                                >
                             </th>
                         </tr>
                         <tr>
@@ -97,14 +101,14 @@
                             <th class="col-md-3">core/common</th>
                             <th class="col-md-9">
                                 <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"
-                                       value="master">
+                                >
                             </th>
                         </tr>
                         <tr>
                             <th class="col-md-2">algorithm_common</th>
                             <th class="col-md-10">
                                 <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam" id="algorithm_common_sam"
-                                       value="master">
+                                >
                             </th>
                         </tr>
                         <tr>
@@ -115,8 +119,25 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="row col-lg-offset-10">
+                    <div class="row col-lg-offset-11">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Next Step</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="skipbuild" tabindex="-1" role="dialog" aria-labelledby="skipbuildLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="skipbuildLabel">Confirm Info</h4>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure to start the test <b>without build</b> ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" value="skipbuild" name="ifskipbuild">Confirm</button>
                     </div>
                 </div>
             </div>
@@ -147,7 +168,7 @@
                 $("#algorithm_sam").typeahead({source: eval(json_data.algorithm_sam), minLength: 0});
                 $("#common").typeahead({source: eval(json_data.common), minLength: 0});
                 $("#algorithm_common_sam").typeahead({source: eval(json_data.algorithm_common_sam), minLength: 0});
-                $("#common_sam").typeahead({source: eval(json_data.common_sam ), minLength: 0});
+                $("#common_sam").typeahead({source: eval(json_data.common_sam), minLength: 0});
                 $("#vehicle").typeahead({source: eval(json_data.vehicle), minLength: 0});
             });
         })
