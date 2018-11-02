@@ -54,6 +54,8 @@
                         </tr>
                         </tbody>
                     </table>
+
+
                 </div>
             </div>
         </div>
@@ -106,7 +108,9 @@
                         <h3 class="panel-title">Files Download</h3>
                     </div>
                     <div class="panel-body ">
-                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">Download Kmls</button>
+                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
+                            Download Kmls
+                        </button>
                     </div>
                 </div>
             </div>
@@ -137,7 +141,6 @@
                         {% endfor %}
                         </tbody>
                     </table>
-
                 </div>
 
             </div>
@@ -147,11 +150,11 @@
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Trajectory</h3>
+                    <div class="row">
+                        <div class="col-md-2"><h3 class="panel-title">Trajectory</h3></div>
+                    </div>
                 </div>
                 <div class="panel-body no-padding" id="map"></div>
-
-
                 <style>
                     #map {
                         height: 100%;
