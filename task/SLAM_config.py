@@ -1,6 +1,6 @@
 process_num = 2
 slam_config = "/home/roaddb/source/core/algorithm_vehicle_offlineslam/config/slamConfig.yaml"
-camera_config = "/home/roaddb/source/core/vehicle/config/camera65_big_lens.json"
+camera_config = "/home/roaddb/source/core/vehicle/config/camera_big_lens_undistort.json"
 # output_path = "/Users/test1/PycharmProjects/github/STP/test/results"
 output_path = "/home/roaddb/stp_test_result"
 code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/env0"
