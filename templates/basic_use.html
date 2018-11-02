@@ -1,5 +1,6 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}Test{% endblock %}
 {% block content %}
-    <p>It is a test page.</p>
+    <p><img src="{% static 'data/structure.jpg' %}" style="text-align: center"></p>
 {% endblock %}
