@@ -236,8 +236,10 @@
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
                     }
                     else if (ret.status == 'done') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Done");
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>Done");
                         $('#task_status_backup').html("<i class=\"fa fa-check-circle\"></i>Done");
-                        $('#task_status_build').removeClass().addClass("btn btn-success")
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
                     }
