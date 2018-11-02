@@ -56,3 +56,8 @@ def test_login(request):
 @login_required
 def coming(request):
     return render(request, 'coming_soon.html')
+
+
+@login_required
+def basic_use(request):
+    return render(request, 'basic_use.html')
