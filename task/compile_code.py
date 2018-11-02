@@ -50,14 +50,19 @@ class Compile_code(object):
         cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(os.path.join(code_path, repo_name), branch_name)
         cmds_dict["git_commit_point"] = " git reset --hard {0}".format(commit_point)
 
+        #if algo-common repo should close deep-learning.
         if repo_name == "algorithm_common":
 
             cmds_dict["update_cmakelist"] = "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
                 os.path.join(self.compile_info["code_path"], "algorithm_common", "CMakeLists.txt"))
         else:
             cmds_dict["update_cmakelist"] = ""
+
+        #Vehicle repo do not compile , delete files and clone code
         if "vehicle"==repo_name:
             cmds_dict["compile_cmd"]=""
+            cmds_dict["clear_repo_cmd"]=""
+            cmds_dict["git_clone"]=""
         else:
             cmds_dict["compile_cmd"] = "./build.sh {0}".format(parameters)
         return cmds_dict
