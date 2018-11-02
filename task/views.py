@@ -56,9 +56,7 @@ def submitted(request):
     try:
         for area in task.area:
             if request.POST.get('ifskipbuild') == 'skipbuild':
-                print("skipbuild****"*10)
                 if_build = False
-            print(if_build)
             chain_result = chain(build.s(branchs, task.id, if_build, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue),
                                  backup.s(task.id).set(queue=queue))
             chain_result()
@@ -130,7 +128,10 @@ def task_process(request, task_id):
         print("stop the task:{}".format(task.celery_id))
         task.status = "STOP"
         task.save()
-        revoke(eval(task.celery_id), terminate=True)
+        try:
+            revoke(eval(task.celery_id), terminate=True)
+        except TypeError:
+            print("stop the task")
     if request.POST.get('getkml') == "getkml":
         data, center_data = data_process(task.output_path)
         if not data:
