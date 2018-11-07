@@ -77,7 +77,7 @@ def run(area, tester, mode="SLAM"):
 def single_run_slam(rtv, imu, slam_config_file, camera_file, case_output_path):
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config_file, '--ic', camera_file]
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config_file, '--ic', camera_file, '--oqlt', case_output_path]
     os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
