@@ -37,7 +37,7 @@ def run_slam(build_status, area, tester, task_id, queue):
     task.status = "SLAM"
     date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
     vehicle = Vehicle(area, tester)
-    task.output_path = os.path.join(output_path, tester, area, str(task_id), date, vehicle.mode)
+    task.output_path = os.path.join(output_path, str(task_id), area, vehicle.mode)
     task.save()
 
     subtask_id_list = []

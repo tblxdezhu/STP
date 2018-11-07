@@ -8,27 +8,33 @@
 '''
 define some common function
 '''
-#from task import SLAM_config
+# from task import SLAM_config
 import os
 import linecache
 import re
+import subprocess
+from task.SLAM_config import *
 
 
 class SlamQuality(object):
-
-    static_list_key=["Type","RTV","SLAM_trajectory_length","GPS_trajectory_length","Total_number_of_KFs","Total_frames",
-                     "Total_number_of_MPs","Average_track_length_of_MP","Weak_convisibility_frame_rate","MP_per_KF,28.931463",
-                     "Time","Efficiency","Total_connections","Average_error","Max_error","Min_error","Total_count_error",
-                     "0~1_count","1~2_count","2~5_count","5~10_count",">10_count","<0_count","Average_offset","Max_offset",
-                     "Min_offset","Variance_offset","Total_count_offset","0~1m_count","1~2m_count","2~5m_count","5~10m_count",
-                     "10~20m_count",">20m_count","0~100m","100~300m","300~500m","500~1000m",">1000m"]
+    static_list_key = ["Type", "RTV", "SLAM_trajectory_length", "GPS_trajectory_length", "Total_number_of_KFs", "Total_frames",
+                       "Total_number_of_MPs", "Average_track_length_of_MP", "Weak_convisibility_frame_rate", "MP_per_KF,28.931463",
+                       "Time", "Efficiency", "Total_connections", "Average_error", "Max_error", "Min_error", "Total_count_error",
+                       "0~1_count", "1~2_count", "2~5_count", "5~10_count", ">10_count", "<0_count", "Average_offset", "Max_offset",
+                       "Min_offset", "Variance_offset", "Total_count_offset", "0~1m_count", "1~2m_count", "2~5m_count", "5~10m_count",
+                       "10~20m_count", ">20m_count", "0~100m", "100~300m", "300~500m", "500~1000m", ">1000m"]
 
     def __init__(self, task_info):
 
-        self.quality_path = os.path.join("/home/user/Documents/slam_django/quality", str(task_info["task_id"]))
+        self.quality_path = os.path.join(output_path, str(task_info["task_id"]))
         self.area_paths = task_info["areas"]
 
     def quality_to_dict(self):
+        def __find_file(input_path, file_type):
+            find_cmd = "find " + input_path + " -name '" + file_type + "'"
+            status, files = subprocess.getstatusoutput(find_cmd)
+            files = files.split("\n")
+            return files
 
         all_quality_list = list()
         if os.path.exists(self.quality_path):
@@ -37,14 +43,14 @@ class SlamQuality(object):
                 areas_quality = dict()
                 area_quality_info = list()
                 area_quality_path = os.path.join(self.quality_path, str(area))
-
-                quality_files = os.listdir(area_quality_path)
+                quality_files = __find_file(area_quality_path, "quality.txt")
+                # quality_files = os.listdir(area_quality_path)
                 for file_item in quality_files:
                     quality_dict = dict()
-                    quality_lines = linecache.getlines(os.path.join(area_quality_path, file_item))
+                    quality_lines = linecache.getlines(file_item)
 
                     for line in quality_lines:
-                        if line.split(",")[0]  in self.static_list_key:
+                        if line.split(",")[0] in self.static_list_key:
                             quality_dict[line.split(",")[0]] = line.split(",")[1]
 
                     area_quality_info.append(quality_dict)
@@ -58,6 +64,6 @@ class SlamQuality(object):
 
 
 if __name__ == "__main__":
-    task_info={"task_id":123,"areas":["fuji"]}
-    slam_obj =SlamQuality(task_info)
+    task_info = {"task_id": 123, "areas": ["fuji"]}
+    slam_obj = SlamQuality(task_info)
     print(slam_obj.quality_to_dict())
