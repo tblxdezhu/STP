@@ -107,7 +107,7 @@ class Compile_code(object):
         # finally:
         #     client.close()
 
-    def __compile_common(self, evn_ip):
+    def __compile_common(self):
 
         cmds = self.__compile_cmds__(self.compile_info["code_path"],
                                      "common",
@@ -163,9 +163,9 @@ class Compile_code(object):
         compile_result = self.__ssh_run_cmd__(cmds)
         return compile_result
 
-    def run_compile(self, env_ip):
+    def run_compile(self):
 
-        result_common = self.__compile_common(env_ip)
+        result_common = self.__compile_common()
         result_algo_common = self.__compile_algo_common()
         result_algo = ""
         # print(self.compile_info["is_sam"])
@@ -182,4 +182,4 @@ if __name__ == "__main__":
                "algorithm_vehicle_offlineslam": "feature/RDB-33158-release-of-offline-slam",
                "is_sam": False}
     obj_compile = Compile_code(branchs)
-    obj_compile.run_compile("10.69.142.16")
+    obj_compile.run_compile()

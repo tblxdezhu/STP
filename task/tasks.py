@@ -20,13 +20,24 @@ from .compile_code import Compile_code
 from results.models import Results
 
 
-@task
-def work_flow(if_build, mode, area, task_id):
-    print(if_build, mode, area, task_id)
+def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
+    if mode == "all":
+        build_sam = True
     if if_build:
-        print("building")
-    else:
-        print("skip build")
+        print(branchs)
+        task = Task.objects.get(id=task_id)
+        task.status = 'building'
+        task.save()
+        branchs['is_sam'] = build_sam
+        compile_code = Compile_code(branchs)
+        compile_code.run_compile()
+
+
+@task
+def work_flow(if_build, mode, area, task_id, branchs):
+    print(if_build, mode, area, task_id)
+    build(branchs, task_id, if_build, mode)
+
 
 
 @task
@@ -111,22 +122,6 @@ def test_ssa(output_path):
     print("running SSA : path:{}".format(output_path))
     subprocess.call(['/Users/test1/PycharmProjects/github/STP/ssa.sh'], shell=True)
     print("SSA run over")
-
-
-@task
-def build(branchs, task_id, if_build=True, build_sam=False):
-    build_status = 0
-    if if_build:
-        print(branchs)
-        task = Task.objects.get(id=task_id)
-        task.status = 'building'
-        task.save()
-        branchs['is_sam'] = build_sam
-        compile_code = Compile_code(branchs)
-        compile_code.run_compile("10.69.142.16")
-        return build_status
-    else:
-        return build_status
 
 
 @task

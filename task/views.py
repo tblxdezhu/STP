@@ -50,7 +50,7 @@ def submitted(request):
     if request.POST.get('ifskipbuild') == 'skipbuild':
         if_build = False
     for area in task.area:
-        work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id])
+        work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
