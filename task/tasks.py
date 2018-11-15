@@ -17,6 +17,7 @@ import pickle
 from .models import Task
 import datetime
 from .compile_code import Compile_code
+from results.models import Results
 
 
 @task
@@ -121,7 +122,8 @@ def build(branchs, task_id, if_build=True, build_sam=False):
 
 @task
 def backup(output_path, task_id):
-    task = Task.objects.get(id=task_id)
+    # task = Task.objects.get(id=task_id)
+    results = Results.objects.get(task_id=task_id)
     print("I am backuping {}".format(output_path))
     task.status = 'done'
     task.save()

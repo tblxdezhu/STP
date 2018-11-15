@@ -263,6 +263,8 @@ def line_test():
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
     code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/stp_envs/core"
+    if not os.path.exists(code_path):
+        code_path = "/data1/stp_resources/source/core"
     init_path = os.getcwd()
     json_data = {}
     for repo in repo_list:
