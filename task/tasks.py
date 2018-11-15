@@ -18,11 +18,12 @@ from .models import Task
 import datetime
 from .compile_code import Compile_code
 from results.models import Results
-
+import logging
 
 @task
 def work_flow(if_build, mode, area, task_id):
     print(if_build, mode, area, task_id)
+    logging.info(if_build, mode, area, task_id)
 
 
 @task
