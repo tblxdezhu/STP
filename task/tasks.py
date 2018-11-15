@@ -21,6 +21,11 @@ from results.models import Results
 
 
 @task
+def work_flow(if_build, mode, area, task_id):
+    print(if_build, mode, area, task_id)
+
+
+@task
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
     for repo in repo_list:
