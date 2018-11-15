@@ -1,11 +1,11 @@
 from django.db import models
-from task.models import Task
+# from task.models import Task
 
 
 # Create your models here.
 
 class Results(models.Model):
-    task_id = models.ForeignKey(Task, related_name="id")
+    task_id = models.CharField(max_length=30)
     area = models.CharField(max_length=30)
     mode = models.CharField(max_length=10)
     rtv_name = models.CharField(max_length=50)
