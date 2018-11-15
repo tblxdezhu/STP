@@ -36,7 +36,10 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
 @task
 def work_flow(if_build, mode, area, task_id, branchs):
     print(if_build, mode, area, task_id)
-    build(branchs, task_id, if_build, mode)
+    try:
+        build(branchs, task_id, if_build, mode)
+    except UnicodeDecodeError:
+        pass
 
 
 
