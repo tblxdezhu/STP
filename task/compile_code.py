@@ -97,9 +97,8 @@ class Compile_code(object):
             # results["compile_cmd_detail"] = stdout_compile.readlines()
             # print(results["compile_cmd"])
             # print(results["compile_cmd_detail"])
-            cmd_result, cmd_output = subprocess.getstatusoutput(cmd)
-            results["compile_cmd"] = cmd_result
-            results["compile_cmd_detail"] = cmd_output
+            subprocess.getstatusoutput(cmd)
+
             return results
         except:
             print("Connect virtual machine failed!")
