@@ -164,8 +164,10 @@ class Compile_code(object):
         return compile_result
 
     def run_compile(self):
-
-        result_common = self.__compile_common()
+        try:
+            result_common = self.__compile_common()
+        except UnicodeDecodeError:
+            pass
         result_algo_common = self.__compile_algo_common()
         result_algo = ""
         # print(self.compile_info["is_sam"])
