@@ -5,7 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
-from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup
+from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup, work_flow
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -35,90 +35,111 @@ def test(request):
 
 @login_required
 def submitted(request):
-    branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
-               'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
-               'vehicle': request.POST['vehicle']}
-    print("branchs", branchs)
-    print(request.POST.get('ifskipbuild'))
+    branchs = {
+        'common': request.POST['common'],
+        'algorithm_common': request.POST['algorithm_common'],
+        'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
+        'common_sam': request.POST['common_sam'],
+        'algorithm_common_sam': request.POST['algorithm_common_sam'],
+        'algorithm_sam': request.POST['algorithm_sam'],
+        'vehicle': request.POST['vehicle']
+    }
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
     task.save()
-    if task.id % 2 == 0:
-        queue = "env1"
-    else:
-        queue = "env1"
-    build_sam = False
     if_build = True
-    # build.apply_async(args=[branchs, task.id, build_sam], queue=queue)
-    # for area in task.area:
-    #     print(area)
-    #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
-    # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
-    try:
-        for area in task.area:
-            if request.POST.get('ifskipbuild') == 'skipbuild':
-                if_build = False
-            chain_result = chain(build.s(branchs, task.id, if_build, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue),
-                                 backup.s(task.id).set(queue=queue))
-            chain_result()
-    except Exception as e:
-        print(e)
-    # backup.apply_async(args=[task.id], queue=queue)
-    # result = print_task.delay("xu")
-    # print(result.task_id)
-    # vehicle = Vehicle("test", str(request.user))
-    # celery_id_list = []
-    # for rtv in vehicle.rtvs:
-    #     imu = rtv.replace('.rtv', '.imu')
-    #     case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
-    #     if imu in vehicle.imus:
-    #         single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
-    #         print(single_task.task_id)
-    #         celery_id_list.append(single_task.task_id)
-    # celery_task = Task.objects.get(id=task.id)
-    # celery_task.celery_id = celery_id_list
-    # celery_task.save()
-
-    # *********************TEST SINGLE MODE OF SLAM*********************
-    # test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
-    # celery_id_list = []
-    # for rtv in test_vehicle_rtvs:
-    #     single_task = test_celery.delay(rtv)
-    #     print(single_task.task_id)
-    #     celery_id_list.append(single_task.task_id)
-    #
-    # ssa_task = test_ssa.delay()
-    # celery_id_list.append(ssa_task.task_id)
-    #
-    # celery_task = Task.objects.get(id=task.id)
-    # celery_task.celery_id = celery_id_list
-    # celery_task.save()
-    # ******************************OVER********************************
-
-    # celery_id_list = []
-
-    # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
-    # print_task.delay("this is test rabbitmq")
-    # print_task.delay("this is test2 rabbitmq")
-    # print("test", chain_result.parent.task_id)
-    # print("test2", chain_result.task_id)
-    # celery_id_list.append(chain_result.parent.task_id)
-    # celery_id_list.append(chain_result.parent.parent.task_id)
-    # celery_slam_task = run.apply_async(args=["test", str(request.user), "SLAM"])
-    # celery_id_list.append(celery_slam_task.task_id)
-    # celery_ssa_task = test_ssa.delay()
-    # celery_id_list.append(celery_ssa_task.task_id)
-    # celery_id_list.extend([chain_result.parent.task_id, chain_result.task_id])
-    # celery_task = Task.objects.get(id=task.id)
-    # celery_task.celery_id = celery_id_list
-    # celery_task.save()
-
-    # while True:
-    #     print(result.status)
-    #     if result.ready():
-    #         break
-    # print(result.status)
-    # return render(request, 'submitted.html', {'task': task})
+    if request.POST.get('ifskipbuild') == 'skipbuild':
+        if_build = False
+    for area in task.area:
+        work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id])
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
+
+
+# @login_required
+# def submitted(request):
+#     branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
+#                'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
+#                'vehicle': request.POST['vehicle']}
+#     print("branchs", branchs)
+#     print(request.POST.get('ifskipbuild'))
+#     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
+#     task.save()
+#     if task.id % 2 == 0:
+#         queue = "env1"
+#     else:
+#         queue = "env1"
+#     build_sam = False
+#     if_build = True
+#     # build.apply_async(args=[branchs, task.id, build_sam], queue=queue)
+#     # for area in task.area:
+#     #     print(area)
+#     #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
+#     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
+#     try:
+#         for area in task.area:
+#             if request.POST.get('ifskipbuild') == 'skipbuild':
+#                 if_build = False
+#             chain_result = chain(build.s(branchs, task.id, if_build, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue),
+#                                  backup.s(task.id).set(queue=queue))
+#             chain_result()
+#     except Exception as e:
+#         print(e)
+#     # backup.apply_async(args=[task.id], queue=queue)
+#     # result = print_task.delay("xu")
+#     # print(result.task_id)
+#     # vehicle = Vehicle("test", str(request.user))
+#     # celery_id_list = []
+#     # for rtv in vehicle.rtvs:
+#     #     imu = rtv.replace('.rtv', '.imu')
+#     #     case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
+#     #     if imu in vehicle.imus:
+#     #         single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
+#     #         print(single_task.task_id)
+#     #         celery_id_list.append(single_task.task_id)
+#     # celery_task = Task.objects.get(id=task.id)
+#     # celery_task.celery_id = celery_id_list
+#     # celery_task.save()
+#
+#     # *********************TEST SINGLE MODE OF SLAM*********************
+#     # test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
+#     # celery_id_list = []
+#     # for rtv in test_vehicle_rtvs:
+#     #     single_task = test_celery.delay(rtv)
+#     #     print(single_task.task_id)
+#     #     celery_id_list.append(single_task.task_id)
+#     #
+#     # ssa_task = test_ssa.delay()
+#     # celery_id_list.append(ssa_task.task_id)
+#     #
+#     # celery_task = Task.objects.get(id=task.id)
+#     # celery_task.celery_id = celery_id_list
+#     # celery_task.save()
+#     # ******************************OVER********************************
+#
+#     # celery_id_list = []
+#
+#     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
+#     # print_task.delay("this is test rabbitmq")
+#     # print_task.delay("this is test2 rabbitmq")
+#     # print("test", chain_result.parent.task_id)
+#     # print("test2", chain_result.task_id)
+#     # celery_id_list.append(chain_result.parent.task_id)
+#     # celery_id_list.append(chain_result.parent.parent.task_id)
+#     # celery_slam_task = run.apply_async(args=["test", str(request.user), "SLAM"])
+#     # celery_id_list.append(celery_slam_task.task_id)
+#     # celery_ssa_task = test_ssa.delay()
+#     # celery_id_list.append(celery_ssa_task.task_id)
+#     # celery_id_list.extend([chain_result.parent.task_id, chain_result.task_id])
+#     # celery_task = Task.objects.get(id=task.id)
+#     # celery_task.celery_id = celery_id_list
+#     # celery_task.save()
+#
+#     # while True:
+#     #     print(result.status)
+#     #     if result.ready():
+#     #         break
+#     # print(result.status)
+#     # return render(request, 'submitted.html', {'task': task})
+#     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
 @login_required
