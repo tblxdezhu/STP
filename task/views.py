@@ -23,6 +23,20 @@ from .google_earth_related import data_process, get_all_kmls
 import subprocess
 import json
 import csv
+import time
+from apscheduler.schedulers.background import BackgroundScheduler
+from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+
+schduler = BackgroundScheduler()
+schduler.add_jobstore(DjangoJobStore, "default")
+
+
+@register_job(schduler, "interval", seconds=1)
+def test_job():
+    time.sleep(4)
+    print("i am a test job")
+
+
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -30,6 +44,11 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 @login_required
 def test(request):
     get_branch()
+
+    register_events(schduler)
+    schduler.start()
+    print("Scheduler started!")
+
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
 
