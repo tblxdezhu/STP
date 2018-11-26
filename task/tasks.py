@@ -40,7 +40,7 @@ def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
     print(if_build, task.mode, task.area, task_id)
     build(task.branch, task_id, if_build, task.mode)
-    for area in task.area:
+    for area in repr(task.area):
         vehicle = Vehicle(area, task.mode, task.tester)
         vehicle.vehicle_slam()
 
