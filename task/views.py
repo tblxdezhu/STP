@@ -31,10 +31,14 @@ schduler = BackgroundScheduler()
 schduler.add_jobstore(DjangoJobStore(), "default")
 
 
-@register_job(schduler, next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
-def test_job():
+def test_job(task_id):
     time.sleep(4)
-    print("i am a test job")
+    print("i am a test job {}".format(task_id))
+
+
+def test_1_job():
+    time.sleep(4)
+    print("i am a test 1st job")
 
 
 register_events(schduler)
@@ -45,7 +49,7 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 @login_required
 def test(request):
     get_branch()
-
+    schduler.add_job(func=test_1_job, next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
     schduler.start()
     print("Scheduler started!")
 
@@ -70,6 +74,7 @@ def submitted(request):
         if_build = False
     for area in task.area:
         work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
+    schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
