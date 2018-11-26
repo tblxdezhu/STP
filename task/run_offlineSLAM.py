@@ -25,8 +25,8 @@ def run_slam(rtv):
     # os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
-    # Run.execute_cmd(run_cmd)
-    Run.execute_cmd('/Users/test1/PycharmProjects/github/STP/test.sh')
+    Run.execute_cmd(run_cmd)
+    # Run.execute_cmd('/Users/test1/PycharmProjects/github/STP/test.sh')
 
 
 class Run(object):
