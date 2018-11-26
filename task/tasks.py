@@ -43,6 +43,8 @@ def work_flow(if_build, task_id):
     print(task.area)
     print(type(task.area))
     for area in repr(task.area):
+        print(repr(task.area))
+        print(area)
         vehicle = Vehicle(str(area), task.mode, task.tester)
         vehicle.vehicle_slam()
 
