@@ -24,24 +24,24 @@ import subprocess
 import json
 import csv
 import time
-from apscheduler.schedulers.background import BackgroundScheduler
-from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
 
-schduler = BackgroundScheduler()
-schduler.add_jobstore(DjangoJobStore(), "default")
+# from apscheduler.schedulers.background import BackgroundScheduler
+# from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
+#
+# schduler = BackgroundScheduler()
+# schduler.add_jobstore(DjangoJobStore(), "default")
 
-
-def test_job(task_id):
-    time.sleep(4)
-    print("i am a test job {}".format(task_id))
-
-
-def test_1_job():
-    time.sleep(4)
-    print("i am a test 1st job")
-
-
-register_events(schduler)
+# def test_job(task_id):
+#     time.sleep(4)
+#     print("i am a test job {}".format(task_id))
+#
+#
+# def test_1_job():
+#     time.sleep(4)
+#     print("i am a test 1st job")
+#
+#
+# register_events(schduler)
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -49,12 +49,13 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 @login_required
 def test(request):
     get_branch()
-    try:
-        schduler.add_job(func=test_1_job, next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
-        schduler.start()
-        print("Scheduler started!")
-    except Exception:
-        pass
+    # Test schduler
+    # try:
+    #     schduler.add_job(func=test_1_job, next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
+    #     schduler.start()
+    #     print("Scheduler started!")
+    # except Exception:
+    #     pass
 
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
@@ -77,7 +78,7 @@ def submitted(request):
         if_build = False
     for area in task.area:
         work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
-    schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3),replace_existing=True)
+    # schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3),replace_existing=True)
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 

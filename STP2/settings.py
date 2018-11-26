@@ -58,7 +58,6 @@ INSTALLED_APPS = (
     'data',
     'lab',
     'results',
-    'django_apscheduler',
 )
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
