@@ -50,8 +50,11 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 def test(request):
     get_branch()
     schduler.add_job(func=test_1_job, next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3))
-    schduler.start()
-    print("Scheduler started!")
+    try:
+        schduler.start()
+        print("Scheduler started!")
+    except SchedulerAlreadyRunningError:
+        pass
 
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
 
