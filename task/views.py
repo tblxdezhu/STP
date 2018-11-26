@@ -28,7 +28,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
 
 schduler = BackgroundScheduler()
-schduler.add_jobstore(DjangoJobStore, "default")
+schduler.add_jobstore(DjangoJobStore(), "default")
 
 
 @register_job(schduler, "interval", seconds=1)
