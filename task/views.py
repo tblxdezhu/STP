@@ -76,8 +76,9 @@ def submitted(request):
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
         if_build = False
-    for area in task.area:
-        work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
+    work_flow.apply_async(args=[if_build, task.id])
+    # for area in task.area:
+    #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
     # schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3),replace_existing=True)
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 

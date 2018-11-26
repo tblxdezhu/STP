@@ -31,16 +31,17 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
         branchs['is_sam'] = build_sam
         compile_code = Compile_code(branchs)
         compile_code.run_compile()
+        task.status = 'builddone'
+        task.save()
 
 
 @task
-def work_flow(if_build, mode, area, task_id, branchs):
-    print(if_build, mode, area, task_id)
-    try:
-        build(branchs, task_id, if_build, mode)
-    except UnicodeDecodeError:
-        pass
-
+def work_flow(if_build, task_id):
+    task = Task.objects.get(id=task_id)
+    print(if_build, task.mode, task.area, task_id)
+    build(task.branch, task_id, if_build, task.mode)
+    vehicle = Vehicle(task.area, task.mode, task.tester)
+    vehicle.vehicle_slam()
 
 
 @task
