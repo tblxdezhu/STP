@@ -31,7 +31,7 @@ schduler = BackgroundScheduler()
 schduler.add_jobstore(DjangoJobStore(), "default")
 
 
-@register_job(schduler, "interval", seconds=1)
+@register_job(schduler, "interval", seconds=5)
 def test_job():
     time.sleep(4)
     print("i am a test job")
