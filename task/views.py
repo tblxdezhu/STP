@@ -31,11 +31,12 @@ schduler = BackgroundScheduler()
 schduler.add_jobstore(DjangoJobStore(), "default")
 
 
-@register_job(schduler, "interval", seconds=5)
+@register_job(schduler, next_run_time=datetime.datetime.now())
 def test_job():
     time.sleep(4)
     print("i am a test job")
 
+register_events(schduler)
 
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
@@ -45,7 +46,7 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 def test(request):
     get_branch()
 
-    register_events(schduler)
+
     schduler.start()
     print("Scheduler started!")
 
