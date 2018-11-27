@@ -9,7 +9,7 @@ from celery import task
 import time
 from django_celery_results.models import TaskResult
 import os
-from .run_offlineSLAM import Vehicle, Run
+from .run_offlineSLAM import Vehicle, Run, Server
 import logging
 from .SLAM_config import *
 import subprocess
@@ -48,7 +48,7 @@ def work_flow(if_build, task_id):
     build(task.branch, task_id, if_build, task.mode)
 
     for area in eval(task.area):
-        vehicle = Vehicle(str(area), task.id, task.mode)
+        vehicle = Vehicle(str(area), task.id)
         task.status = 'SLAM'
         task.save()
         try:
@@ -59,7 +59,10 @@ def work_flow(if_build, task_id):
             print(e)
             task.status = 'SLAMfailed'
             task.save()
-
+        if not task.mode == 'SLAM':
+            server = Server(vehicle)
+            server.clean()
+            server.process()
 
 
 @task
