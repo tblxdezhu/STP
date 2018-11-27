@@ -32,7 +32,7 @@ def run_slam(rtv, task_id, mode):
 class Run(object):
     date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
-    def __init__(self, area, mode, task_id):
+    def __init__(self, area, task_id, mode):
         self.area = area
         self.mode = mode
         self.task_id = task_id
@@ -75,7 +75,7 @@ class Run(object):
 
 class Vehicle(Run):
     def __init__(self, area, task_id, mode="SLAM"):
-        super(Vehicle, self).__init__(area, mode, task_id)
+        super(Vehicle, self).__init__(area, task_id, mode)
         super(Vehicle, self)._check_data()
 
     def vehicle_slam(self, mode='slam'):

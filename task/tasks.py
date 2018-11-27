@@ -48,7 +48,7 @@ def work_flow(if_build, task_id):
     build(task.branch, task_id, if_build, task.mode)
 
     for area in eval(task.area):
-        vehicle = Vehicle(str(area), task.mode, task.tester)
+        vehicle = Vehicle(str(area), task.id, task.mode)
         task.status = 'SLAM'
         task.save()
         try:
