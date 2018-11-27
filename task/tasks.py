@@ -44,9 +44,8 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
     print(if_build, task.mode, task.area, task_id)
-    # COMPILE THE CODE
-    build(eval(task.branch), task_id, if_build, task.mode)
-
+    # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
+    build(eval(task.branch), task_id, if_build)
     for area in eval(task.area):
         vehicle = Vehicle(str(area), task.id)
         task.status = 'SLAM'
@@ -60,6 +59,7 @@ def work_flow(if_build, task_id):
             task.status = 'SLAMfailed'
             task.save()
         if not task.mode == 'SLAM':
+            build(eval(task.branch), task_id, if_build, task.mode)
             server = Server(vehicle)
             server.clean()
             server.process()
