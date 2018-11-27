@@ -27,7 +27,6 @@ def run_slam(rtv, task_id, mode):
 
 
 class Run(object):
-    date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
 
     def __init__(self, area, task_id, mode):
         self.area = area
@@ -65,7 +64,7 @@ class Run(object):
     @staticmethod
     def execute_cmd(cmd, debug_mode="OFF"):
         if debug_mode == "OFF":
-            subprocess.call(cmd, shell=True)
+            subprocess.getstatusoutput(cmd)
         else:
             logging.info(cmd)
 
