@@ -17,16 +17,13 @@ import pickle
 def run_slam(rtv, task_id, mode):
     imu = rtv.replace('.rtv', '.imu')
     case_output_path = os.path.join(output_path, str(task_id), mode, os.path.basename(rtv).strip('.rtv'))
-    # print(os.getpid())
-    # mp.current_process().daemon = True
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config]
-    os.chdir(case_output_path)
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config, '--out', case_output_path]
+    # os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
     Run.execute_cmd(run_cmd)
-    # Run.execute_cmd('/Users/test1/PycharmProjects/github/STP/test.sh')
 
 
 class Run(object):
@@ -82,24 +79,11 @@ class Vehicle(Run):
 
         mp.current_process().daemon = False
         pool = mp.Pool(processes=process_num)
-        print("PID >>>>>>>>>>>", os.getpid())
-        # curr_proc.daemon = False
         mp.current_process().daemon = True
-        # curr_proc.daemon = True
-        print("PPID >>>>>>>>>>>", os.getppid())
-        sent_list = []
         for rtv in self.rtvs:
-
             imu = rtv.replace('.rtv', '.imu')
-            # case_output_path = os.path.join(self.output_path, mode, os.path.basename(rtv).strip('.rtv'))
             if imu in self.imus:
                 pool.apply_async(run_slam, (rtv, self.task_id, mode))
-                # sent_list.append(rtv)
-        # print(sent_list)
-        # pool.map(run_slam, sent_list)
-        # print("poor will be terminate soon")
-        # time.sleep(5)
-        # self.terminate_poor()
 
         pool.close()
         pool.join()
