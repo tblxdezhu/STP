@@ -51,8 +51,8 @@ def work_flow(if_build, task_id):
             vehicle.vehicle_slam()
             task.status = 'SLAMdone'
             task.save()
-        except Exception:
-            print(Exception)
+        except Exception as e:
+            print(e)
             task.status = 'SLAMfailed'
             task.save()
 
