@@ -49,11 +49,12 @@ def work_flow(if_build, task_id):
         task.save()
         try:
             vehicle.vehicle_slam()
+            task.status = 'SLAMdone'
+            task.save()
         except Exception:
             task.status = 'SLAMfailed'
             task.save()
-        task.status = 'SLAMdone'
-        task.save()
+
 
 
 @task
