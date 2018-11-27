@@ -55,6 +55,7 @@ class Run(object):
     @staticmethod
     def find_file(input_path, file_type):
         find_cmd = "find " + input_path + " -name '" + file_type + "'"
+        print(find_cmd)
         status, files = subprocess.getstatusoutput(find_cmd)
         files = files.split("\n")
         return files, find_cmd
@@ -62,6 +63,7 @@ class Run(object):
     @staticmethod
     def execute_cmd(cmd, debug_mode="OFF"):
         if debug_mode == "OFF":
+            print(cmd)
             subprocess.getstatusoutput(cmd)
         else:
             logging.info(cmd)
@@ -178,7 +180,7 @@ class Server(object):
             os.mkdir(output_path)
             logging.info("mkdir {}".format(output_path))
             for snippet in Run.find_file(files_path, mode_snippet_type[mode])[0]:
-                create_path = os.path.join(output_path, snippet.split("/")[-3])
+                create_path = os.path.join(output_path, snippet.split("/")[-2])
                 if not os.path.exists(create_path):
                     os.mkdir(create_path)
                     print("mkdir {}".format(create_path))

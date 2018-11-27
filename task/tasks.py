@@ -69,7 +69,7 @@ def work_flow(if_build, task_id):
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
     for repo in repo_list:
-        os.chdir(os.path.join(code_path, repo))
+        os.chdir(os.path.join(get_branchs_code_path, repo))
         print(repo)
         status, output = subprocess.getstatusoutput("git branch -a")
         print(output)
