@@ -62,6 +62,7 @@ def work_flow(if_build, task_id):
             build(eval(task.branch), task_id, if_build, task.mode)
             server = Server(vehicle)
             server.clean()
+            server.rtv2gps()
             server.process()
 
 
