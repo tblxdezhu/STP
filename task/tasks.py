@@ -30,20 +30,24 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
         task.save()
         branchs['is_sam'] = build_sam
         compile_code = Compile_code(branchs)
-        compile_code.run_compile()
-        task.status = 'builddone'
-        task.save()
+        try:
+            compile_code.run_compile()
+            task.status = 'builddone'
+            task.save()
+        except Exception as e:
+            print(e)
+            task.status = 'buildfailed'
+            task.save()
 
 
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
     print(if_build, task.mode, task.area, task_id)
+    # COMPILE THE CODE
     build(task.branch, task_id, if_build, task.mode)
-    print(task.area)
-    print(type(task.area))
+
     for area in eval(task.area):
-        print(area)
         vehicle = Vehicle(str(area), task.mode, task.tester)
         task.status = 'SLAM'
         task.save()
