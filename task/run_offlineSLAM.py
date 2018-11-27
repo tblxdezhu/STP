@@ -64,7 +64,10 @@ class Run(object):
     def execute_cmd(cmd, debug_mode="OFF"):
         if debug_mode == "OFF":
             print(cmd)
-            subprocess.getstatusoutput(cmd)
+            try:
+                status, files = subprocess.getstatusoutput(cmd)
+            except UnicodeDecodeError:
+                pass
         else:
             logging.info(cmd)
 
