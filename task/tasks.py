@@ -47,7 +47,13 @@ def work_flow(if_build, task_id):
         vehicle = Vehicle(str(area), task.mode, task.tester)
         task.status = 'SLAM'
         task.save()
-        vehicle.vehicle_slam()
+        try:
+            vehicle.vehicle_slam()
+        except Exception:
+            task.status = 'SLAMfailed'
+            task.save()
+        task.status = 'SLAMdone'
+        task.save()
 
 
 @task
