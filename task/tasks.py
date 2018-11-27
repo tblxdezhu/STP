@@ -52,6 +52,7 @@ def work_flow(if_build, task_id):
             task.status = 'SLAMdone'
             task.save()
         except Exception:
+            print(Exception)
             task.status = 'SLAMfailed'
             task.save()
 
