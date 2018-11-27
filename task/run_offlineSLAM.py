@@ -19,10 +19,10 @@ def run_slam(rtv):
     case_output_path = os.path.join(output_path, "slam", os.path.basename(rtv).strip('.rtv'))
     print(os.getpid())
     mp.current_process().daemon = True
-    # os.makedirs(case_output_path)
+    os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
     run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config]
-    # os.chdir(case_output_path)
+    os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
     Run.execute_cmd(run_cmd)
