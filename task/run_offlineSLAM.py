@@ -16,7 +16,7 @@ import pickle
 
 def run_slam(rtv, task_id, mode):
     imu = rtv.replace('.rtv', '.imu')
-    case_output_path = os.path.join(output_path, task_id, mode, os.path.basename(rtv).strip('.rtv'))
+    case_output_path = os.path.join(output_path, str(task_id), mode, os.path.basename(rtv).strip('.rtv'))
     # print(os.getpid())
     # mp.current_process().daemon = True
     os.makedirs(case_output_path)
@@ -36,7 +36,7 @@ class Run(object):
         self.area = area
         self.mode = mode
         self.task_id = task_id
-        self.output_path = os.path.join(output_path, self.task_id)
+        self.output_path = os.path.join(output_path, str(self.task_id))
 
     def _check_data(self):
         self.__get_cases()
