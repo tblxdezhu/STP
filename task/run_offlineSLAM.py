@@ -131,6 +131,7 @@ class Server(object):
         __rm(self.section)
 
     def backup(self, target_path):
+        target_path = target_path + "/"
         logging.info("start backup server to {}".format(target_path))
         shutil.copytree(self.section_out, target_path)
         shutil.copytree(self.section_db, target_path)
