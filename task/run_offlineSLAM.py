@@ -129,16 +129,17 @@ class Server(object):
         __rm(self.section_db)
         __rm(self.slamout)
         __rm(self.section)
+        __rm(self.query_out)
         cmd = "rm -rf {}".format(self.debug_server_path)
         Run.execute_cmd(cmd)
 
     def backup(self, target_path):
         target_path = target_path + "/"
         logging.info("start backup server to {}".format(target_path))
-        print(self.section_out, target_path)
         shutil.move(self.section_out, target_path)
         shutil.move(self.section_db, target_path)
         shutil.move(self.section, target_path)
+        shutil.move(self.query_out, target_path)
         cmd = "mv {} {}".format(self.debug_server_path, target_path)
         Run.execute_cmd(cmd)
         # os.system("mv {} {}".format(self.debug_server_path, target_path))

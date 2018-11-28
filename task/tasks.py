@@ -43,45 +43,44 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
+
+    def __change_status(status):
+        task.status = status
+        task.save()
+        logging.info("status change to {}".format(status))
+
     print(if_build, task.mode, task.area, task_id)
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
     build(eval(task.branch), task_id, if_build)
+
     for area in eval(task.area):
         vehicle = Vehicle(str(area), task.id)
-        task.status = 'SLAM'
-        task.save()
+        __change_status('SLAM')
         try:
             vehicle.vehicle_slam()
-            task.status = 'SLAMdone'
-            task.save()
+            __change_status('SLAMdone')
         except Exception as e:
             print(e)
-            task.status = 'SLAMfailed'
-            task.save()
+            __change_status('SLAMfailed')
         if not task.mode == 'SLAM':
             build(eval(task.branch), task_id, if_build, task.mode)
             server = Server(vehicle)
-            task.status = 'SSA'
-            task.save()
+            __change_status('SSA')
             try:
                 server.clean()
                 server.rtv2gps()
                 server.process()
-                task.status = 'SSAdone'
-                task.save()
-                task.status = 'backup'
-                task.save()
+                __change_status('SSAdone')
+                __change_status('backup')
                 try:
                     server.backup(vehicle.output_path)
                 except Exception as e:
                     print(e)
-                    task.status = 'backupfailed'
-                    task.save()
+                    __change_status('backupfailed')
             except Exception as e:
                 print(e)
-                task.status = 'SSAfailed'
-                task.save()
-
+                __change_status('SSAfailed')
+    __change_status('done')
 
 
 @task
