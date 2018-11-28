@@ -26,7 +26,7 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
     if if_build:
         print(branchs)
         task = Task.objects.get(id=task_id)
-        task.status = 'building'
+        task.status = 'build'
         task.save()
         branchs['is_sam'] = build_sam
         compile_code = Compile_code(branchs)

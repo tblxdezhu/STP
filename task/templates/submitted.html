@@ -110,12 +110,25 @@
                         <h3 class="panel-title">Files Download</h3>
                     </div>
                     <div class="panel-body ">
-                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                            SLAM Kmls
-                        </button>
-                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                            SSA Kmls
-                        </button>
+                        <div class="row">
+                            <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
+                                SLAM Kmls
+                            </button>
+                            <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
+                                SSA Kmls
+                            </button>
+                        </div>
+                        <div class="row">
+                            <p>{{ task.output_path }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Panel Default</h3>
+                    </div>
+                    <div class="panel-body">
+                        <a href="{{ task.output_path }}">path</a>
                     </div>
                 </div>
             </div>
@@ -221,26 +234,53 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                    if (ret.status == 'building') {
+                    if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
+                    }
+                    else if (ret.status == 'buildfailed'){
+                        $('#task_status_build').removeClass().addClass("btn btn-danger");
                     }
                     else if (ret.status == 'SLAM') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
                     }
+                    else if (ret.status == 'SLAMdone') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success")
+                    }
+                    else if (ret.status == 'SLAMfailed') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
+                        $('#task_status_slam').removeClass().addClass("btn btn-danger")
+                    }
                     else if (ret.status == 'SSA') {
                         $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    }
+                    else if (ret.status == 'SSAdone') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-success")
+                    }
+                    else if (ret.status == 'SSAfailed') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-danger")
                     }
                     else if (ret.status == 'STOP') {
                         $('#task_status_slam').removeClass().addClass("btn btn-danger");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
                     }
                     else if (ret.status == 'backup') {
-                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
-                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_backup').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    }
+                    else if (ret.status == 'backupfailed') {
+                        $('#task_status_backup').removeClass().addClass("btn btn-danger")
+                    }
+                    else if (ret.status == 'backupdone') {
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
                     }
                     else if (ret.status == 'done') {
@@ -252,8 +292,10 @@
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
                     }
                     else {
+                        $('#task_status_build').removeClass().addClass("btn btn-warning");
                         $('#task_status_slam').removeClass().addClass("btn btn-warning");
-                        $('#task_status_ssa').removeClass().addClass("btn btn-warning")
+                        $('#task_status_ssa').removeClass().addClass("btn btn-warning");
+                        $('#task_status_backup').removeClass().addClass("btn btn-warning");
                     }
                 })
             }
