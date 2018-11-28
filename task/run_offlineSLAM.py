@@ -107,6 +107,7 @@ class Server(object):
         self.query_out = os.path.join(self.server_path, "query_out")
         self.query_path = os.path.join(code_path, "algorithm_tools/server/serverExampleQueryDivision/build/querySectionByGps")
         self.extractor = os.path.join(code_path, "../framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
+        self.debug_server_path = os.path.join(self.server_path, "server_*")
 
     @property
     def serverExampleSLAM_type(self):
@@ -122,12 +123,19 @@ class Server(object):
         def __rm(path):
             if os.path.exists(path):
                 shutil.rmtree(path)
-                logging.info("rm {}".format(path))
+                logging.info("del {}".format(path))
 
         __rm(self.section_out)
         __rm(self.section_db)
         __rm(self.slamout)
         __rm(self.section)
+
+    def backup(self, target_path):
+        logging.info("start backup server to {}".format(target_path))
+        shutil.copytree(self.section_out, target_path)
+        shutil.copytree(self.section_db, target_path)
+        shutil.copytree(self.section, target_path)
+        os.system("mv {} {}".format(self.debug_server_path, target_path))
 
     def process(self, mode='slam'):
         os.chdir(self.server_path)
@@ -135,7 +143,6 @@ class Server(object):
         if "alignment" in mode:
             self.serverExampleSLAM_type = '2'
         self.serverExampleSLAM(mode)
-
         os.system("./serverExampleSlam 2 . .")
         self.query()
 

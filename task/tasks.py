@@ -61,9 +61,27 @@ def work_flow(if_build, task_id):
         if not task.mode == 'SLAM':
             build(eval(task.branch), task_id, if_build, task.mode)
             server = Server(vehicle)
-            server.clean()
-            server.rtv2gps()
-            server.process()
+            task.status = 'SSA'
+            task.save()
+            try:
+                server.clean()
+                server.rtv2gps()
+                server.process()
+                task.status = 'SSAdone'
+                task.save()
+                task.status = 'backup'
+                task.save()
+                try:
+                    server.backup(vehicle.output_path)
+                except Exception as e:
+                    print(e)
+                    task.status = 'backupfailed'
+                    task.save()
+            except Exception as e:
+                print(e)
+                task.status = 'SSAfailed'
+                task.save()
+
 
 
 @task
