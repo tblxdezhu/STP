@@ -13,8 +13,10 @@ cases_path = {
     'localtest': '/Users/test1/PycharmProjects/github/STP/test/cases',
     '16test': '/media/psf/Untitled/Auto_test_SLAM/data/16test',
     '15test': '/home/roaddb/test_data',
+    '15test2': '/home/roaddb/test_data',
 }
 
 gps_skeleton_path = {
     '15test': '/home/roaddb/miniE2E_gps_skeleton',
+    '15test2': '/home/roaddb/miniE2E_gps_skeleton',
 }
