@@ -76,7 +76,7 @@ def work_flow(if_build, task_id):
                 __change_status('SSAdone')
                 __change_status('backup')
                 try:
-                    server.backup(vehicle.output_path)
+                    server.backup()
                 except Exception as e:
                     print(e)
                     __change_status('backupfailed')

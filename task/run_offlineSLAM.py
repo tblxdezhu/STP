@@ -134,14 +134,13 @@ class Server(object):
         cmd = "rm -rf {}".format(self.debug_server_path)
         Run.execute_cmd(cmd)
 
-    def backup(self, target_path):
-        target_path = target_path + "/"
-        logging.info("start backup server to {}".format(target_path))
-        shutil.move(self.section_out, target_path)
-        shutil.move(self.section_db, target_path)
-        shutil.move(self.section, target_path)
-        shutil.move(self.query_out, target_path)
-        cmd = "mv {} {}".format(self.debug_server_path, target_path)
+    def backup(self):
+        logging.info("start backup server to {}".format(self.vehicle_output_path))
+        shutil.move(self.section_out, self.vehicle_output_path)
+        shutil.move(self.section_db, self.vehicle_output_path)
+        shutil.move(self.section, self.vehicle_output_path)
+        shutil.move(self.query_out, self.vehicle_output_path)
+        cmd = "mv {} {}".format(self.debug_server_path, self.vehicle_output_path)
         Run.execute_cmd(cmd)
         # os.system("mv {} {}".format(self.debug_server_path, target_path))
 
