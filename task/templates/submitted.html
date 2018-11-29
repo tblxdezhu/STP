@@ -96,7 +96,9 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div></div>
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
+                            </div>
                         </div>
                         <!--div class="row col-lg-offset-9">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#">View More Detail Info</button>
@@ -237,7 +239,7 @@
                     if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
                     }
-                    else if (ret.status == 'buildfailed'){
+                    else if (ret.status == 'buildfailed') {
                         $('#task_status_build').removeClass().addClass("btn btn-danger");
                     }
                     else if (ret.status == 'SLAM') {
