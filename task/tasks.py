@@ -62,7 +62,7 @@ def work_flow(if_build, task_id):
         except Exception as e:
             print(e)
             __change_status('SLAMfailed')
-        if not task.mode == 'SLAM':
+        if task.mode == 'SSA':
             build(eval(task.branch), task_id, if_build, task.mode)
             server = Server(vehicle)
             __change_status('SSA')
