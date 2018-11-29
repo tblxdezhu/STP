@@ -91,10 +91,11 @@ class Vehicle(Run):
 
 
 class Server(object):
-    def __init__(self, vehicle):
+    def __init__(self, area, task_id):
         self.server_path = os.path.join(code_path, "algorithm_sam/build/example")
         self._get_server_path()
-        self.vehicle = vehicle
+        self.area = area
+        self.vehicle_output_path = os.path.join(output_path, str(task_id), self.area)
         self._serverExampleSLAM_type = '1'
 
     def _get_server_path(self):
@@ -155,10 +156,10 @@ class Server(object):
 
     def serverExampleSLAM(self, mode):
         logging.info("server running {}".format(mode))
-        self._copy_snippets(os.path.join(self.vehicle.output_path, mode), self.server_path, mode)
+        self._copy_snippets(os.path.join(self.vehicle_output_path, mode), self.server_path, mode)
         cmd_list = [self.serverExampleSLAM_path, self.serverExampleSLAM_type, self.server_path, self.server_path]
         if mode == "slam":
-            cmd_list.append(gps_skeleton_path[self.vehicle.area])
+            cmd_list.append(gps_skeleton_path[self.area])
         cmd = ' '.join(cmd_list)
         Run.execute_cmd(cmd)
 
@@ -211,7 +212,7 @@ class Server(object):
             print("{} don't have snippets".format(files_path))
 
     def rtv2gps(self):
-        rtv2gpgga_gps_cmd_list = ["find", cases_path[self.vehicle.area], "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path, "-g \\;"]
+        rtv2gpgga_gps_cmd_list = ["find", cases_path[self.area], "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path, "-g \\;"]
         if not os.path.exists(self.gpgga_gps_path):
             logging.info("mkdir {}".format(self.gpgga_gps_path))
             os.mkdir(self.gpgga_gps_path)

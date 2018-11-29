@@ -21,7 +21,7 @@ from results.models import Results
 
 
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
-    if mode == "ALL":
+    if not mode == "slam":
         build_sam = True
     if if_build:
         print(branchs)
@@ -62,25 +62,28 @@ def work_flow(if_build, task_id):
         except Exception as e:
             print(e)
             __change_status('SLAMfailed')
-        if task.mode == 'SSA':
-            build(eval(task.branch), task_id, if_build, task.mode)
-            server = Server(vehicle)
-            __change_status('SSA')
+
+    if task.mode == 'SSA':
+        build(eval(task.branch), task_id, if_build, task.mode)
+
+    for area in eval(task.area):
+        server = Server(str(area), task.id)
+        __change_status('SSA')
+        try:
+            server.clean()
+            server.rtv2gps()
+            server.process()
+            __change_status('SSAdone')
+            __change_status('backup')
             try:
-                server.clean()
-                server.rtv2gps()
-                server.process()
-                __change_status('SSAdone')
-                __change_status('backup')
-                try:
-                    server.backup(vehicle.output_path)
-                except Exception as e:
-                    print(e)
-                    __change_status('backupfailed')
+                server.backup(vehicle.output_path)
             except Exception as e:
                 print(e)
-                __change_status('SSAfailed')
-            __change_status('done')
+                __change_status('backupfailed')
+        except Exception as e:
+            print(e)
+            __change_status('SSAfailed')
+    __change_status('done')
 
 
 @task
