@@ -12,9 +12,9 @@ import multiprocessing as mp
 import shutil
 
 
-def run_slam(rtv, task_id, mode):
+def run_slam(rtv, task_id, area, mode):
     imu = rtv.replace('.rtv', '.imu')
-    case_output_path = os.path.join(output_path, str(task_id), mode, os.path.basename(rtv).strip('.rtv'))
+    case_output_path = os.path.join(output_path, str(task_id), area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
     vehicle_exec = os.path.join(code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
@@ -84,7 +84,7 @@ class Vehicle(Run):
         for rtv in self.rtvs:
             imu = rtv.replace('.rtv', '.imu')
             if imu in self.imus:
-                pool.apply_async(run_slam, (rtv, self.task_id, mode))
+                pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode))
 
         pool.close()
         pool.join()
