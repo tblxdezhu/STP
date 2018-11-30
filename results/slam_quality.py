@@ -18,7 +18,7 @@ from task.SLAM_config import *
 
 class SlamQuality(object):
     static_list_key = ["Type", "RTV", "SLAM_trajectory_length", "GPS_trajectory_length", "Total_number_of_KFs", "Total_frames",
-                       "Total_number_of_MPs", "Average_track_length_of_MP", "Weak_convisibility_frame_rate", "MP_per_KF,28.931463",
+                       "Total_number_of_MPs", "Average_track_length_of_MP", "Weak_convisibility_frame_rate", "MP_per_KF",
                        "Time", "Efficiency", "Total_connections", "Average_error", "Max_error", "Min_error", "Total_count_error",
                        "0~1_count", "1~2_count", "2~5_count", "5~10_count", ">10_count", "<0_count", "Average_offset", "Max_offset",
                        "Min_offset", "Variance_offset", "Total_count_offset", "0~1m_count", "1~2m_count", "2~5m_count", "5~10m_count",
