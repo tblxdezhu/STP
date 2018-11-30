@@ -47,6 +47,9 @@ def work_flow(if_build, task_id):
 
     def __change_status(status):
         task.status = status
+        # save() 方法会设定所有列的 值，而不是只设定 name 列的值。
+        # 如果你所处的环境可能同时由其他操作修改其他列，最好只更新需要修改的值。
+        # 为此，使用 QuerySet 对象的 update() 方法
         task.save()
         logging.info("status change to {}".format(status))
 
@@ -62,7 +65,13 @@ def work_flow(if_build, task_id):
             __change_status('SLAMdone')
             task_result = SlamQuality(task_id, area).quality_to_dict()
             logging.info(task_result)
-            # result = Results()
+            for case_result in task_result[0][area]:
+                result = Results.objects.create(
+                    task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
+                    kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
+                    avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
+                    mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
+                )
         except Exception as e:
             print(e)
             __change_status('SLAMfailed')

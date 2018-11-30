@@ -1,4 +1,6 @@
 from django.db import models
+
+
 # from task.models import Task
 
 
@@ -19,6 +21,8 @@ class Results(models.Model):
     mp_kf = models.CharField(max_length=10)
     time = models.CharField(max_length=10)
     efficiency = models.CharField(max_length=10)
+
+    rmse = models.CharField(max_length=10, null=True)
 
     class Meta:
         ordering = ('-task_id',)
