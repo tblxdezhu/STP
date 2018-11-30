@@ -141,13 +141,15 @@
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
-                    <div class="row col-md-2">
+                    <div class="row">
                         <!--div class="col-md-2"><h3 class="panel-title">Trajectory</h3></div-->
-                        <select class="form-control" name="select_mode">
-                            <option value="SLAM">SLAM</option>
-                            <option value="SSA">SLAM-SSA</option>
-                            <option value="ALL">SLAM-SSA-ALIGNMENT</option>
-                        </select>
+                        <div class="col-md-2">
+                            <select class="form-control" name="select_mode">
+                                <option value="SLAM">SLAM</option>
+                                <option value="SSA">SLAM-SSA</option>
+                                <option value="ALL">SLAM-SSA-ALIGNMENT</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="panel-body no-padding" id="map"></div>
