@@ -13,7 +13,7 @@ import os
 import linecache
 import re
 import subprocess
-# from task.SLAM_config import *
+from task.SLAM_config import *
 
 
 class SlamQuality(object):
@@ -26,7 +26,7 @@ class SlamQuality(object):
 
     def __init__(self, task_info):
 
-        self.quality_path = os.path.join("/home/roaddb/stp_test_result", str(task_info["task_id"]))
+        self.quality_path = os.path.join(output_path, str(task_info["task_id"]))
         self.area_paths = task_info["areas"]
 
     def quality_to_dict(self):
