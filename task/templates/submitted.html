@@ -303,7 +303,17 @@
                 })
             }
 
-            setInterval(get_status, 1000)
+            function stop() {
+                $.getJSON('/test/{{ task.id }}/status', function (ret) {
+                    if (ret.status == 'done') {
+                        clearInterval(timer)
+                    }
+                })
+            }
+
+            var timer = setInterval(get_status, 1000);
+            setInterval(stop, 5000)
+
         })
     </script>
 
