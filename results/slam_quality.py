@@ -24,10 +24,10 @@ class SlamQuality(object):
                        "Min_offset", "Variance_offset", "Total_count_offset", "0~1m_count", "1~2m_count", "2~5m_count", "5~10m_count",
                        "10~20m_count", ">20m_count", "0~100m", "100~300m", "300~500m", "500~1000m", ">1000m"]
 
-    def __init__(self, task_info):
+    def __init__(self, task_id, area):
 
-        self.quality_path = os.path.join(output_path, str(task_info["task_id"]))
-        self.area = task_info["areas"]
+        self.quality_path = os.path.join(output_path, str(task_id))
+        self.area = str(area)
 
     def quality_to_dict(self):
         def __find_file(input_path, file_type):

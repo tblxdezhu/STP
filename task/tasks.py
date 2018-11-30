@@ -20,6 +20,7 @@ from .compile_code import Compile_code
 from results.models import Results
 from results.slam_quality import SlamQuality
 
+
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
     if not mode == "slam":
         build_sam = True
@@ -59,9 +60,9 @@ def work_flow(if_build, task_id):
         try:
             vehicle.vehicle_slam()
             __change_status('SLAMdone')
-            task_info = {"task_id": task_id, "areas": area}
-            result = SlamQuality(task_info)
-            print(result.quality_to_dict())
+            task_result = SlamQuality(task_id, area).quality_to_dict()
+            logging.info(task_result)
+            # result = Results()
         except Exception as e:
             print(e)
             __change_status('SLAMfailed')
