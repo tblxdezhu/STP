@@ -19,7 +19,7 @@ from task.views import dashboard, all_tasks, all_my_tasks, _get_dashboard_status
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.login, name="login"),
+    url(r'^$', views.login),
     url(r'^logout/$', views.logout),
     url(r'^dashboard/', dashboard),
     url(r'^alltasks/', all_tasks),

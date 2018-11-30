@@ -32,7 +32,7 @@ def login(request):
 @login_required
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect(reversed("login"))
+    return HttpResponseRedirect("/login")
 
 
 @login_required
