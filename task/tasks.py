@@ -63,15 +63,18 @@ def work_flow(if_build, task_id):
         try:
             vehicle.vehicle_slam()
             __change_status('SLAMdone')
-            task_result = SlamQuality(task_id, area).quality_to_dict()
-            logging.info(task_result)
-            for case_result in task_result[0][area]:
-                result = Results.objects.create(
-                    task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
-                    kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
-                    avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
-                    mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
-                )
+            try:
+                task_result = SlamQuality(task_id, area).quality_to_dict()
+                logging.info(task_result)
+                for case_result in task_result[0][area]:
+                    result = Results.objects.create(
+                        task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
+                        kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
+                        avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
+                        mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
+                    )
+            except Exception as e:
+                logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:
             print(e)
             __change_status('SLAMfailed')
