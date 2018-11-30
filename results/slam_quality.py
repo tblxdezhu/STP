@@ -27,7 +27,7 @@ class SlamQuality(object):
     def __init__(self, task_info):
 
         self.quality_path = os.path.join(output_path, str(task_info["task_id"]))
-        self.area_paths = task_info["areas"]
+        self.area = task_info["areas"]
 
     def quality_to_dict(self):
         def __find_file(input_path, file_type):
@@ -38,25 +38,24 @@ class SlamQuality(object):
 
         all_quality_list = list()
         if os.path.exists(self.quality_path):
-            for area in self.area_paths:
 
-                areas_quality = dict()
-                area_quality_info = list()
-                area_quality_path = os.path.join(self.quality_path, str(area))
-                quality_files = __find_file(area_quality_path, "quality.txt")
-                # quality_files = os.listdir(area_quality_path)
-                for file_item in quality_files:
-                    quality_dict = dict()
-                    quality_lines = linecache.getlines(file_item)
+            areas_quality = dict()
+            area_quality_info = list()
+            area_quality_path = os.path.join(self.quality_path, str(self.area))
+            quality_files = __find_file(area_quality_path, "quality.txt")
+            # quality_files = os.listdir(area_quality_path)
+            for file_item in quality_files:
+                quality_dict = dict()
+                quality_lines = linecache.getlines(file_item)
 
-                    for line in quality_lines:
-                        if line.split(",")[0] in self.static_list_key:
-                            quality_dict[line.split(",")[0]] = line.split(",")[1]
+                for line in quality_lines:
+                    if line.split(",")[0] in self.static_list_key:
+                        quality_dict[line.split(",")[0]] = line.split(",")[1]
 
-                    area_quality_info.append(quality_dict)
+                area_quality_info.append(quality_dict)
 
-                areas_quality[str(area)] = area_quality_info
-                all_quality_list.append(areas_quality)
+            areas_quality[str(self.area)] = area_quality_info
+            all_quality_list.append(areas_quality)
         else:
             print("Quality path not exist!")
 
@@ -64,6 +63,6 @@ class SlamQuality(object):
 
 
 if __name__ == "__main__":
-    task_info = {"task_id": 123, "areas": ["fuji"]}
+    task_info = {"task_id": 123, "areas": "fuji"}
     slam_obj = SlamQuality(task_info)
     print(slam_obj.quality_to_dict())
