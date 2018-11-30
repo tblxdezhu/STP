@@ -19,7 +19,8 @@ from task.views import dashboard, all_tasks, all_my_tasks, _get_dashboard_status
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', views.login),
+    url(r'^$', views.login, name="login"),
+    url(r'^logout/$', views.logout),
     url(r'^dashboard/', dashboard),
     url(r'^alltasks/', all_tasks),
     url(r'^allmytasks/', all_my_tasks),
@@ -27,5 +28,5 @@ urlpatterns = [
     url(r'^test/', include('task.urls', app_name='task', namespace='test')),
     url(r'^machine/', include('lab.urls')),
     url(r'^coming/', views.coming),
-    url(r'^basic_use',views.basic_use)
+    url(r'^basic_use', views.basic_use)
 ]

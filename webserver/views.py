@@ -30,6 +30,12 @@ def login(request):
 
 
 @login_required
+def logout(request):
+    auth.logout(request)
+    return HttpResponseRedirect(reversed("login"))
+
+
+@login_required
 def index(request):
     return render(request, 'dashboard.html')
 
