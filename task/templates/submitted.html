@@ -109,28 +109,9 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Files Download</h3>
                     </div>
-                    <div class="panel-body ">
-                        <div class="row">
-                            <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                                SLAM Kmls
-                            </button>
-                            <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                                SSA Kmls
-                            </button>
-                        </div>
-                        <div class="row">
-                            <p>{{ task.output_path }}</p>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Panel Default</h3>
-                    </div>
-                    <div class="panel-body">
-                        <a href="{{ task.output_path }}">path</a>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -213,6 +194,21 @@
                 </div>
 
 
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-body ">
+            <div class="row">
+                <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
+                    SLAM Kmls
+                </button>
+                <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
+                    SSA Kmls
+                </button>
+            </div>
+            <div class="row">
+                <p>{{ task.output_path }}</p>
             </div>
         </div>
     </div>
