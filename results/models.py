@@ -8,14 +8,14 @@ from django.db import models
 
 class ResultsManager(models.Manager):
     def show_task_id(self):
-        return [int(i[0]) for i in self.order_by('task_id').values_list('task_id').distinct()]
+        return [i[0] for i in self.order_by('task_id').values_list('task_id').distinct()]
 
     def total(self, task_id, keyword):
         return sum([float(i[0]) for i in self.filter(task_id=task_id).values_list(keyword)])
 
 
 class Results(models.Model):
-    task_id = models.CharField(max_length=30)
+    task_id = models.IntegerField(max_length=30)
     area = models.CharField(max_length=30)
     mode = models.CharField(max_length=10)
     rtv_name = models.CharField(max_length=50)
