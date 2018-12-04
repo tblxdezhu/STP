@@ -310,7 +310,7 @@ def line_test():
     print(v1)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time")
-    line.add("A1", attr, v1, is_datazoom_show=True)
+    line.add("A1", attr, v1, is_datazoom_show=True, mark_line=['average'])
     # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
