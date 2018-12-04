@@ -311,8 +311,7 @@ def line_test():
     # value = [t / kf for kf in total_kf for t in total_time]
     value = []
     for t in total_time:
-        for kf in total_kf:
-            value.append(t / kf)
+        value.append(t / total_kf[total_time.index(t)])
     print(value)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time/KF")
