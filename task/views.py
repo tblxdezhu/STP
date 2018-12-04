@@ -302,9 +302,11 @@ def bar_test():
 
 def line_test():
     attr = Results.objects.show_task_id()
+    print(attr)
     # attr = ["1", "2", "3", "4", "5", "6"]
     # v1 = [5, 20, 36, 10, 10, 100]
     v1 = [Results.objects.total(task_id=t, keyword='time') for t in attr]
+    print(v1)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time")
     line.add("Time", attr, v1, mark_point=["average"])
