@@ -8,7 +8,7 @@ from django.db import models
 
 class ResultsManager(models.Manager):
     def show_task_id(self):
-        return [i[0] for i in self.order_by('task_id').values_list('task_id').distinct()]
+        return [int(i[0]) for i in self.order_by('task_id').values_list('task_id').distinct()]
 
     def total(self, task_id, keyword):
         return sum([float(i[0]) for i in self.filter(task_id=task_id).values_list(keyword)])
