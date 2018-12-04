@@ -29,6 +29,8 @@ class Results(models.Model):
 
     rmse = models.CharField(max_length=10, null=True)
 
+    objects = ResultsManager()
+
     class Meta:
         ordering = ('-task_id',)
 
