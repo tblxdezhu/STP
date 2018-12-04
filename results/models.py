@@ -8,6 +8,8 @@ from django.db import models
 
 class ResultsManager(models.Manager):
     def total(self, keyword):
+        print(self.filter(keyword))
+        print(type(self.filter(keyword)))
         return sum(self.filter(keyword))
 
 
