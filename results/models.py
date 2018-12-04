@@ -7,9 +7,8 @@ from django.db import models
 # Create your models here.
 
 class ResultsManager(models.Manager):
-    def total(self, keyword):
-        print(type(self.values(keyword)))
-        return sum([int(i[0]) for i in self.values_list(keyword)])
+    def total(self, task_id, keyword):
+        return sum([float(i[0]) for i in self.filter(task_id=task_id).values_list(keyword)])
 
 
 class Results(models.Model):
