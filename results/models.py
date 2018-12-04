@@ -8,9 +8,9 @@ from django.db import models
 
 class ResultsManager(models.Manager):
     def total(self, keyword):
-        print(self.filter(keyword))
-        print(type(self.filter(keyword)))
-        return sum(self.filter(keyword))
+        print(self.values(keyword))
+        print(type(self.values(keyword)))
+        return self.values(keyword)
 
 
 class Results(models.Model):
