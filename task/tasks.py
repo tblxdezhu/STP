@@ -75,7 +75,7 @@ def work_flow(if_build, task_id):
                     )
                 total_sum = Results.objects.total(task_id=task_id, keyword='time')
                 print(total_sum)
-                print(Results.objects.show_task_id())
+                print(Results.objects.order_by('task_id').show_task_id())
             except Exception as e:
                 logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:
