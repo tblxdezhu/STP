@@ -6,6 +6,11 @@ from django.db import models
 
 # Create your models here.
 
+class ResultsManager(models.Manager):
+    def total(self, keyword):
+        return sum(self.filter(keyword))
+
+
 class Results(models.Model):
     task_id = models.CharField(max_length=30)
     area = models.CharField(max_length=30)
@@ -29,3 +34,17 @@ class Results(models.Model):
 
     def __str__(self):
         return "{}_{}_{}".format(self.task_id, self.mode, self.rtv_name)
+
+
+class Overview(models.Model):
+    task_id = models.CharField(max_length=30)
+    area = models.CharField(max_length=30)
+    rmse = models.CharField(max_length=10, null=True)
+    time = models.CharField(max_length=10)
+    coverage = models.CharField(max_length=10)
+
+    class Meta:
+        ordering = ('-task_id',)
+
+    def __str__(self):
+        return "{}".format(self.task_id)

@@ -17,7 +17,7 @@ import pickle
 from .models import Task
 import datetime
 from .compile_code import Compile_code
-from results.models import Results
+from results.models import Results, Overview
 from results.slam_quality import SlamQuality
 
 
@@ -73,6 +73,8 @@ def work_flow(if_build, task_id):
                         avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
                         mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
                     )
+                total_sum = Results.objects.total('Time')
+                print(total_sum)
             except Exception as e:
                 logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:
