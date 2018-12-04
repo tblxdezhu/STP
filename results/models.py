@@ -8,9 +8,8 @@ from django.db import models
 
 class ResultsManager(models.Manager):
     def total(self, keyword):
-        print(self.values(keyword))
         print(type(self.values(keyword)))
-        return self.values(keyword)
+        return self.values_list(keyword)
 
 
 class Results(models.Model):
