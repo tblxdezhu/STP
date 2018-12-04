@@ -263,19 +263,19 @@ def _get_dashboard_status(request):
 def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    # bar = bar_test()
+    bar = bar_test()
     line = line_test()
     # myechart = bar.render_embed()
-    myechart = line.render_embed()
-    script_list = line.get_js_dependencies()
-    # script_list = bar.get_js_dependencies()
-    # script_list.append(line.get_js_dependencies())
-    # grid = Grid(width="auto")
+    # myechart = line.render_embed()
+    # script_list = line.get_js_dependencies()
+    script_list = bar.get_js_dependencies()
+    script_list.append(line.get_js_dependencies())
+    grid = Grid(width="auto")
     #
-    # grid.add(line, grid_right="60%", grid_left="5%")
-    # grid.add(bar, grid_left="60%", grid_right="5%")
-    # myechart = grid.render_embed()
-    # script_list.append(grid.get_js_dependencies())
+    grid.add(line, grid_right="60%", grid_left="5%")
+    grid.add(bar, grid_left="60%", grid_right="5%")
+    myechart = grid.render_embed()
+    script_list.append(grid.get_js_dependencies())
     return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
 
 
