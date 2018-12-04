@@ -5,6 +5,7 @@ from django.template import Template, Context
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, StreamingHttpResponse
 from django.shortcuts import render, get_object_or_404
 from .models import Task
+from results.models import Results
 from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup, work_flow
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
@@ -194,7 +195,6 @@ def task_process(request, task_id):
         return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
     line = line_test()
     myechart1 = line.render_embed()
-
     script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
 
@@ -301,12 +301,14 @@ def bar_test():
 
 
 def line_test():
-    attr = ["1", "2", "3", "4", "5", "6"]
-    v1 = [5, 20, 36, 10, 10, 100]
-    v2 = [55, 60, 16, 20, 15, 80]
-    line = Line("demo")
-    line.add("A1", attr, v1, mark_point=["average"])
-    line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
+    attr = Results.objects.show_task_id()
+    # attr = ["1", "2", "3", "4", "5", "6"]
+    # v1 = [5, 20, 36, 10, 10, 100]
+    v1 = [Results.objects.total(task_id=t, keyword='time') for t in attr]
+    # v2 = [55, 60, 16, 20, 15, 80]
+    line = Line("Time")
+    line.add("Time", attr, v1, mark_point=["average"])
+    # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
 
