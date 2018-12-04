@@ -267,6 +267,7 @@ def dashboard(request):
     line = line_test()
     # myechart = bar.render_embed()
     myechart = line.render_embed()
+    script_list = line.get_js_dependencies()
     # script_list = bar.get_js_dependencies()
     # script_list.append(line.get_js_dependencies())
     # grid = Grid(width="auto")
