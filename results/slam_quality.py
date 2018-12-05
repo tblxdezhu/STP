@@ -19,10 +19,10 @@ from task.SLAM_config import *
 class SlamQuality(object):
     static_list_key = ["Type", "RTV", "SLAM_trajectory_length", "GPS_trajectory_length", "Total_number_of_KFs", "Total_frames",
                        "Total_number_of_MPs", "Average_track_length_of_MP", "Weak_convisibility_frame_rate", "MP_per_KF",
-                       "Time", "Efficiency", "Total_connections", "Average_error", "Max_error", "Min_error", "Total_count_error",
-                       "0~1_count", "1~2_count", "2~5_count", "5~10_count", ">10_count", "<0_count", "Offset_average", "Offset_max",
+                       "Time", "Efficiency", "Total_connections", "Projection_error_average", "Projection_error_max", "Projection_error_min", "Projection_error_total_count",
+                       "Projection_0~1_count", "Projection_1~2_count", "Projection_2~5_count", "Projection_5~10_count", "Projection_>10_count", "Projection_<0_count", "Offset_average", "Offset_max",
                        "Offset_min", "Offset_variance", "Offset_total_count", "Offset_0~1m_count", "Offset_1~2m_count", "Offset_2~5m_count", "Offset_5~10m_count",
-                       "Offset_10~20m_count", "Offset_>20m_count", "0~100m", "100~300m", "300~500m", "500~1000m", ">1000m"]
+                       "Offset_10~20m_count", "Offset_>20m_count", "MP_distance_0~100m", "MP_distance_100~300m", "MP_distance_300~500m", "MP_distance_500~1000m", "MP_distance_>1000m"]
 
     def __init__(self, task_id, area):
 
