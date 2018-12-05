@@ -298,7 +298,7 @@ def bar_mp_kf():
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
     print(value)
     bar = Bar("MP/KF", title_pos="50%")
-    bar.add("", attr, value, is_datazoom_show=True, datazoom_type="inside",is_toolbox_show=False, legend_pos="70%")
+    bar.add("", attr, value, is_datazoom_show=True, datazoom_type="inside", is_toolbox_show=False)
     return bar
 
 
