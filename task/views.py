@@ -308,15 +308,11 @@ def line_test():
     # v1 = [5, 20, 36, 10, 10, 100]
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
-    # value = [t / kf for kf in total_kf for t in total_time]
-    # value = []
-    # for t in total_time:
-    #     value.append(t / total_kf[total_time.index(t)])
     value = [t / total_kf[total_time.index(t)] for t in total_time]
     print(value)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time/KF")
-    line.add("test", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
+    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
     # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
