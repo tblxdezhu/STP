@@ -313,7 +313,7 @@ def line_time_kf():
     print(value)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time/KF")
-    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False,is_label_show=True)
+    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
     # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
