@@ -299,7 +299,7 @@ def bar_test():
     print(value)
     bar = Bar("MP/KF", title_pos="50%")
     # bar.add("A", attr, v1, is_stack=True)
-    bar.add("", attr, value, is_toolbox_show=False, legend_pos="70%")
+    bar.add("", attr, value, is_toolbox_show=False, legend_pos="70%",is_datazoom_show=True)
     return bar
 
 
