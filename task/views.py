@@ -264,7 +264,7 @@ def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
     bar = bar_test()
-    line = line_test()
+    line = line_time_kf()
     # myechart = bar.render_embed()
     # myechart = line.render_embed()
     # script_list = line.get_js_dependencies()
@@ -292,16 +292,18 @@ def all_my_tasks(request):
 
 
 def bar_test():
-    attr = ["1", "2", "3", "4", "5", "6"]
-    v1 = [5, 20, 36, 10, 75, 90]
-    v2 = [10, 25, 8, 60, 20, 80]
-    bar = Bar("demo", title_pos="50%")
-    bar.add("A", attr, v1, is_stack=True)
-    bar.add("B", attr, v2, is_stack=True, is_toolbox_show=False, legend_pos="70%")
+    attr = Results.objects.show_task_id()
+    total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
+    total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
+    value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
+    print(value)
+    bar = Bar("MP/KF", title_pos="50%")
+    # bar.add("A", attr, v1, is_stack=True)
+    bar.add("", attr, value, is_toolbox_show=False, legend_pos="70%")
     return bar
 
 
-def line_test():
+def line_time_kf():
     attr = Results.objects.show_task_id()
     print(attr)
     # attr = ["1", "2", "3", "4", "5", "6"]
