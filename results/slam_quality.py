@@ -64,5 +64,5 @@ class SlamQuality(object):
 
 if __name__ == "__main__":
     task_info = {"task_id": 123, "areas": "fuji"}
-    slam_obj = SlamQuality(task_info)
+    slam_obj = SlamQuality(task_id='35', area='15test')
     print(slam_obj.quality_to_dict())
