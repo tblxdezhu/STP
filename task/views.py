@@ -298,7 +298,7 @@ def bar_mp_kf():
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
     print(value)
     bar = Bar("MP/KF", title_pos="50%")
-    bar.add("", attr, value, is_datazoom_show=False, is_toolbox_show=False, legend_pos="70%")
+    bar.add("", attr, value, is_datazoom_show=True, is_toolbox_show=False, legend_pos="70%")
     return bar
 
 
@@ -313,7 +313,7 @@ def line_time_kf():
     print(value)
     # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time/KF")
-    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
+    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False,is_label_show=True)
     # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
