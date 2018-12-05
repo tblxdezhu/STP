@@ -220,7 +220,7 @@ def _get_task_kml(request, task_id):
     lat = ""
     lng = ""
     # eval(center_data[list(center_data.keys())[0]])
-    line = line_test()
+    line = line_time_kf()
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task,
@@ -277,8 +277,13 @@ def dashboard(request):
     myechart = grid.render_embed()
     script_list.append(grid.get_js_dependencies())
     run_rtv_numbers = Results.objects.order_by('-id').values_list('id').first()[0]
+    seconds = sum([int(i[0]) for i in Results.objects.values_list('time')])
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    time_cost = "%02d:%02d:%02d" % (h, m, s)
     return render(request, 'dashboard.html', {
         'run_rtv_numbers': run_rtv_numbers,
+        'time_cost': time_cost,
         'tasks': tasks,
         'my_tasks': my_tasks,
         'if_dashboard_active': 'active',
