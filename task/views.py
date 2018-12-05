@@ -293,6 +293,7 @@ def all_my_tasks(request):
 
 def bar_test():
     attr = Results.objects.show_task_id()
+    print(attr)
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
     total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
