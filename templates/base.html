@@ -17,11 +17,13 @@
             <form class="navbar-form navbar-right">
                 <div class="input-group ">
                     <input type="text" id="search_task_id" class="form-control" placeholder="Search task...">
-                    <span class="input-group-btn"><button id="search_btn" type="submit" class="btn btn-primary">Go</button></span>
+                    <span class="input-group-btn"><button id="search_btn" href="#" type="submit" class="btn btn-primary">Go</button></span>
                     <script type="text/javascript">
                         $("#search_btn").click(function () {
                             var taskId = $("#search_task_id").val();
-                            $("#search_btn").html("/test")
+                            document.getElementById("search_btn").href = taskId;
+
+                            alert("task id = " + taskId)
                         })
                     </script>
                 </div>
