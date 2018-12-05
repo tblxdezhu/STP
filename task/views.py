@@ -276,7 +276,15 @@ def dashboard(request):
     grid.add(bar, grid_left="60%", grid_right="5%")
     myechart = grid.render_embed()
     script_list.append(grid.get_js_dependencies())
-    return render(request, 'dashboard.html', {'tasks': tasks, 'my_tasks': my_tasks, 'if_dashboard_active': 'active', 'myechart': myechart, 'script_list': script_list})
+    run_rtv_numbers = Results.objects.order_by('-id').values_list('id').first()[0]
+    return render(request, 'dashboard.html', {
+        'run_rtv_numbers': run_rtv_numbers,
+        'tasks': tasks,
+        'my_tasks': my_tasks,
+        'if_dashboard_active': 'active',
+        'myechart': myechart,
+        'script_list': script_list
+    })
 
 
 @login_required
