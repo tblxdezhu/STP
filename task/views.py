@@ -263,7 +263,7 @@ def _get_dashboard_status(request):
 def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    bar = bar_test()
+    bar = bar_mp_kf()
     line = line_time_kf()
     # myechart = bar.render_embed()
     # myechart = line.render_embed()
@@ -291,7 +291,7 @@ def all_my_tasks(request):
     return render(request, 'all_my_tasks.html', {'tasks': tasks})
 
 
-def bar_test():
+def bar_mp_kf():
     attr = Results.objects.show_task_id()
     print(attr)
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
@@ -300,7 +300,7 @@ def bar_test():
     print(value)
     bar = Bar("MP/KF", title_pos="50%")
     # bar.add("A", attr, v1, is_stack=True)
-    bar.add("", attr, value, is_toolbox_show=False, legend_pos="70%",is_datazoom_show=True)
+    bar.add("", attr, value, is_datazoom_show=True, is_toolbox_show=False, legend_pos="70%")
     return bar
 
 
