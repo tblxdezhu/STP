@@ -49,6 +49,8 @@ class SlamQuality(object):
                 quality_lines = linecache.getlines(file_item)
 
                 for line in quality_lines:
+                    print(line)
+                    print(line.split(",")[0])
                     if line.split(",")[0] in self.static_list_key:
                         quality_dict[line.split(",")[0]] = line.split(",")[1]
 
