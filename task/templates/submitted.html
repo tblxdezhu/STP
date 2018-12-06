@@ -57,8 +57,9 @@
                     </table>
                 </div>
                 <div class="panel-footer">
-                    <h5>Task description:</h5>
-                    <span>{{ task.description }}</span>
+                    <div class="col-md-4"><h5>Task description:</h5></div>
+                    <div class="col-md-8"><span>{{ task.description }}</span></div>
+
                 </div>
             </div>
         </div>
@@ -149,7 +150,7 @@
                         </div>
                         <div class="col-md-2">
                             <select class="form-control" name="select_mode" id="select_area">
-                                <option selected="selected" disabled="disabled"  style='display: none' value=''></option>
+                                <option selected="selected" disabled="disabled" style='display: none' value=''></option>
                                 <option value="milford">milford</option>
                                 <option value="tokyo">tokyo</option>
                                 <option value="fuji">fuji</option>
