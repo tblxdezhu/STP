@@ -281,7 +281,7 @@ def dashboard(request):
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
-    time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
+    time_cost = "%02d:%02d:%02d:%02d" % (d, h, m, s)
     return render(request, 'dashboard.html', {
         'run_rtv_numbers': run_rtv_numbers,
         'time_cost': time_cost,
