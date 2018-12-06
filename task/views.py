@@ -272,7 +272,7 @@ def dashboard(request):
     script_list.append(bar.get_js_dependencies())
     grid = Grid(width="auto")
     grid.add(line, grid_right="60%", grid_left="5%")
-    grid.add(line, grid_left="60%", grid_right="5%")
+    grid.add(bar, grid_left="60%", grid_right="5%")
     myechart = grid.render_embed()
     script_list.append(grid.get_js_dependencies())
 
