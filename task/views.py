@@ -311,7 +311,7 @@ def all_my_tasks(request):
 def bar_mp_kf(attr):
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
     total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
-    value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
+    value = [round(mps / total_kfs[total_mps.index(mps)], 4) for mps in total_mps]
     bar = Bar("MP/KF", title_top="50%")
     bar.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_toolbox_show=False, )
     return bar
@@ -320,7 +320,7 @@ def bar_mp_kf(attr):
 def line_time_kf(attr):
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
-    value = [t / total_kf[total_time.index(t)] for t in total_time]
+    value = [round(t / total_kf[total_time.index(t)], 4) for t in total_time]
     line = Line("Time/KF")
     line.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_smooth=True, is_toolbox_show=False)
     return line
