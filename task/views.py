@@ -311,7 +311,7 @@ def bar_mp_kf():
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
     total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
-    bar = Bar("MP/KF", title_pos="50%")
+    bar = Bar("MP/KF")
     bar.add("", attr, value, is_datazoom_show=True, is_toolbox_show=False, )
     return bar
 
