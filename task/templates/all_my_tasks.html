@@ -20,7 +20,7 @@
                         <th>Mode</th>
                         <th>Area</th>
                         <th>Date &amp; Time</th>
-                        <th>Status</th>
+                        <th>Description</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -31,7 +31,7 @@
                             <td>{{ task.mode }}</td>
                             <td>{{ task.area }}</td>
                             <td>{{ task.created|date:"Y-m-d H:i:s" }}</td>
-                            <td></td>
+                            <td>{{ task.description }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
