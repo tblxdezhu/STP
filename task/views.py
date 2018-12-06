@@ -271,7 +271,6 @@ def dashboard(request):
     script_list = bar.get_js_dependencies()
     script_list.append(line.get_js_dependencies())
     grid = Grid(width="auto")
-    #
     grid.add(line, grid_right="60%", grid_left="5%")
     grid.add(bar, grid_left="60%", grid_right="5%")
     myechart = grid.render_embed()
@@ -310,25 +309,18 @@ def bar_mp_kf():
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
     total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
-    print(value)
     bar = Bar("MP/KF", title_pos="50%")
-    bar.add("", attr, value, is_datazoom_show=True)
+    bar.add("", attr, value, is_datazoom_show=True,)
     return bar
 
 
 def line_time_kf():
     attr = Results.objects.show_task_id()
-    print(attr)
-    # attr = ["1", "2", "3", "4", "5", "6"]
-    # v1 = [5, 20, 36, 10, 10, 100]
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [t / total_kf[total_time.index(t)] for t in total_time]
-    print(value)
-    # v2 = [55, 60, 16, 20, 15, 80]
     line = Line("Time/KF")
     line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
-    # line.add("B1", attr, v2, is_smooth=True, mark_line=["max", "average"], is_toolbox_show=False, legend_pos="20%")
     return line
 
 
