@@ -67,3 +67,8 @@ def coming(request):
 @login_required
 def basic_use(request):
     return render(request, 'basic_use.html')
+
+
+@login_required
+def about(request):
+    return render(request, 'coming_soon.html')

@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^test/', include('task.urls', app_name='task', namespace='test')),
     url(r'^machine/', include('lab.urls')),
     url(r'^coming/', views.coming),
-    url(r'^basic_use', views.basic_use)
+    url(r'^basic_use', views.basic_use),
+    url(r'^about/', views.about)
 ]
