@@ -263,18 +263,20 @@ def _get_dashboard_status(request):
 def dashboard(request):
     tasks = Task.objects.all()[0:5]
     my_tasks = Task.objects.filter(tester=request.user)[0:5]
-    bar = bar_mp_kf()
-    line = line_time_kf()
+    attr = Results.objects.show_task_id()
+    script_list = []
+    line = line_time_kf(attr)
+    bar = bar_mp_kf(attr)
     # myechart = bar.render_embed()
     # myechart = line.render_embed()
-    script_list = line.get_js_dependencies()
+    script_list.extend(line.get_js_dependencies())
     # script_list = bar.get_js_dependencies()
-    script_list.append(bar.get_js_dependencies())
+    script_list.extend(bar.get_js_dependencies())
     grid = Grid(width="auto")
-    grid.add(line, grid_right="60%")
-    grid.add(bar, grid_left="60%")
+    grid.add(line, grid_bottom="60%")
+    grid.add(bar, grid_top="60%")
     myechart = grid.render_embed()
-    script_list.append(grid.get_js_dependencies())
+    script_list.extend(grid.get_js_dependencies())
 
     run_rtv_numbers = Results.objects.order_by('-id').values_list('id').first()[0]
     seconds = sum([int(i[0]) for i in Results.objects.values_list('time')])
@@ -306,23 +308,21 @@ def all_my_tasks(request):
     return render(request, 'all_my_tasks.html', {'tasks': tasks})
 
 
-def bar_mp_kf():
-    attr = Results.objects.show_task_id()
+def bar_mp_kf(attr):
     total_mps = [Results.objects.total(task_id=t, keyword='mps') for t in attr]
     total_kfs = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [mps / total_kfs[total_mps.index(mps)] for mps in total_mps]
-    line = Line("MP/KF", title_pos="60%")
-    line.add("", attr, value, is_datazoom_show=True, is_toolbox_show=False, )
-    return line
+    bar = Bar("MP/KF", title_top="50%")
+    bar.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_toolbox_show=False, )
+    return bar
 
 
-def line_time_kf():
-    attr = Results.objects.show_task_id()
+def line_time_kf(attr):
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [t / total_kf[total_time.index(t)] for t in total_time]
     line = Line("Time/KF")
-    line.add("", attr, value, is_datazoom_show=True, is_smooth=True, is_toolbox_show=False)
+    line.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_smooth=True, is_toolbox_show=False)
     return line
 
 
