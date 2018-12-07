@@ -28,7 +28,7 @@
                         </div>
                         <script type="text/javascript">
                             $("#step1next").click(function () {
-                                $("#step1").addClass("animated bounceOutLeft").css('display', 'none');
+                                $("#step1").removeAllClasses().addClass("animated bounceOutLeft").css('display', 'none');
                                 $("#step2").css('display', '').addClass("animated bounceInRight");
                             })
                         </script>
