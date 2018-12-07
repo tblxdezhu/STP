@@ -7,31 +7,33 @@
         <h3 class="page-title">Process</h3>
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-headline animated " id="step1">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Step 1</h3>
-                        <p class="panel-subtitle">Which mode and data do you want to run?</p>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Select - Mode</label>
-                            <div class="col-sm-3">
-                                <select class="form-control" name="select_mode">
-                                    <option value="SLAM">SLAM</option>
-                                    <option value="SSA">SLAM-SSA</option>
-                                    <option value="ALL">SLAM-SSA-ALIGNMENT</option>
-                                </select>
+                <div class=" animated " id="step1">
+                    <div class="panel panel-headline">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Step 1</h3>
+                            <p class="panel-subtitle">Which mode and data do you want to run?</p>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Select - Mode</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" name="select_mode">
+                                        <option value="SLAM">SLAM</option>
+                                        <option value="SSA">SLAM-SSA</option>
+                                        <option value="ALL">SLAM-SSA-ALIGNMENT</option>
+                                    </select>
+                                </div>
                             </div>
+                            <div class="row col-lg-offset-10">
+                                <button type="button" class="btn btn-primary" id="step1next">Next</button>
+                            </div>
+                            <script type="text/javascript">
+                                $("#step1next").click(function () {
+                                    $("#step1").removeClass().addClass("bounceOutLeft").css('display', 'none');
+                                    $("#step2").css('display', '').removeClass().addClass("bounceInRight");
+                                })
+                            </script>
                         </div>
-                        <div class="row col-lg-offset-10">
-                            <button type="button" class="btn btn-primary" id="step1next">Next</button>
-                        </div>
-                        <script type="text/javascript">
-                            $("#step1next").click(function () {
-                                $("#step1").removeClass().addClass("bounceOutLeft").css('display', 'none');
-                                $("#step2").css('display', '').removeClass().addClass("bounceInRight");
-                            })
-                        </script>
                     </div>
                 </div>
             </div>
