@@ -7,7 +7,7 @@
         <h3 class="page-title">Process</h3>
         <div class="row">
             <div class="col-md-3">
-                <div class="panel panel-headline">
+                <div class="panel panel-headline" id="step1">
                     <div class="panel-heading">
                         <h3 class="panel-title">Step 1</h3>
                         <p class="panel-subtitle">Which mode do you want to run?</p>
@@ -24,6 +24,7 @@
                         <script type="text/javascript">
                             $("#step1next").click(function () {
                                 {#alert("点击了");#}
+                                $("#step1").addClass("animated bounceOutLeft");
                                 $("#step2").addClass("animated bounceOutLeft")
                             })
                         </script>
