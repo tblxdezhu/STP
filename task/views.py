@@ -14,7 +14,8 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar, Line, Grid
+from pyecharts import Bar, Line, Grid, configure
+configure(global_theme='walden')
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
