@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^machine/', include('lab.urls')),
     url(r'^coming/', views.coming),
     url(r'^basic_use', views.basic_use),
-    url(r'^about/', views.about)
+    url(r'^about/', views.about),
+    url(r'^forgot/', views.forgot)
 ]
