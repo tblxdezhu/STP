@@ -63,8 +63,8 @@
                                 $("#step1").css('display', '').removeClass().addClass("panel panel-headline animated bounceInLeft");
                             });
                             $("#step2next").click(function () {
-                                $("#step2").addClass("bounceOutLeft").css('display', 'none');
-                                $("#step3").css('display', '').addClass("bounceInRight");
+                                $("#step2").removeClass().addClass("panel panel-headline animated bounceOutLeft").css('display', 'none');
+                                $("#step3").css('display', '').removeClass().addClass("panel panel-headline animated bounceInRight");
                             })
                         </script>
                     </div>
@@ -159,12 +159,12 @@
                         </div>
                         <script type="text/javascript">
                             $("#step3back").click(function () {
-                                $("#step3").removeClass().addClass("bounceOutRight").css('display', 'none');
-                                $("#step2").css('display', '').removeClass().addClass("bounceInLeft");
+                                $("#step3").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
+                                $("#step2").css('display', '').removeClass().addClass("panel panel-headline animated bounceInLeft");
                             });
                             $("#step3next").click(function () {
-                                $("#step3").addClass("animated bounceOutLeft").css('display', 'none');
-                                $("#step4").css('display', '').addClass("animated bounceInRight");
+                                $("#step3").removeClass().addClass("panel panel-headline animated bounceOutLeft").css('display', 'none');
+                                $("#step4").css('display', '').removeClass().addClass("panel panel-headline animated bounceInRight");
                             })
                         </script>
                     </div>
