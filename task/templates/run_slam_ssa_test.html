@@ -13,49 +13,33 @@
                         <p class="panel-subtitle">Which mode and data do you want to run?</p>
                     </div>
                     <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="control-group">
-
-                                    <!-- Select Basic -->
-                                    <label class="control-label">Select - Basic</label>
-                                    <div class="controls">
-                                        <select class="input-xlarge">
-                                            <option>Enter</option>
-                                            <option>Your</option>
-                                            <option>Options</option>
-                                            <option>Here!</option>
-                                        </select>
-                                    </div>
-
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Select - Mode</label>
+                                <div class="col-sm-6">
+                                    <select class="form-control" name="select_mode">
+                                        <option value="SLAM">SLAM</option>
+                                        <option value="SSA">SLAM-SSA</option>
+                                        <option value="ALL">SLAM-SSA-ALIGNMENT</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <select class="form-control" name="select_mode">
-                                    <option value="SLAM">SLAM</option>
-                                    <option value="SSA">SLAM-SSA</option>
-                                    <option value="ALL">SLAM-SSA-ALIGNMENT</option>
-                                </select>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Select - Area</label>
+                                <div class="col-sm-6">
+                                    <input type="checkbox" value="milford" name="check_box_list"/>milford
+                                    <input type="checkbox" value="fuji" name="check_box_list"/>fuji
+                                    <input type="checkbox" value="tokyo" name="check_box_list"/>tokyo
+                                    <input type="checkbox" value="vw" name="check_box_list"/>vw
+                                    <input type="checkbox" value="localtest" name="check_box_list"/>local test
+                                    <input type="checkbox" value="16test" name="check_box_list"/>16 test
+                                    <input type="checkbox" value="15test" name="check_box_list"/>15 test
+                                    <input type="checkbox" value="15test2" name="check_box_list"/>15 test2
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <p>Select Mode</p>
-                            <select class="form-control" name="select_mode">
-                                <option value="SLAM">SLAM</option>
-                                <option value="SSA">SLAM-SSA</option>
-                                <option value="ALL">SLAM-SSA-ALIGNMENT</option>
-                            </select>
-                        </div>
-                        <div>
-                            <input type="checkbox" value="milford" name="check_box_list"/>milford
-                            <input type="checkbox" value="fuji" name="check_box_list"/>fuji
-                            <input type="checkbox" value="tokyo" name="check_box_list"/>tokyo
-                            <input type="checkbox" value="vw" name="check_box_list"/>vw
-                            <input type="checkbox" value="localtest" name="check_box_list"/>local test
-                            <input type="checkbox" value="16test" name="check_box_list"/>16 test
-                            <input type="checkbox" value="15test" name="check_box_list"/>15 test
-                            <input type="checkbox" value="15test2" name="check_box_list"/>15 test2
-                        </div>
+                        </form>
+
+
                         <div class="row col-lg-offset-10">
                             <button type="button" class="btn btn-primary" id="step1next">Next</button>
                         </div>
