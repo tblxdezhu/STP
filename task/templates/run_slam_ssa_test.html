@@ -68,93 +68,96 @@
             </div>
         </div>
         <div class="row">
-            <div class="panel panel-headline" style="display: none" id="step3">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Step3</h3>
-                    <p class="panel-subtitle">Please choose your branch</p>
-                </div>
-                <div class="panel-body">
-                    <table class="table table-hover" id="slam">
-                        <thead>
-                        <tr>
-                            <th>SLAM repo</th>
-                            <th>branch</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th class="col-md-3">core/common</th>
-                            <th class="col-md-9">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"
-                                >
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="col-md-2">algorithm_common</th>
-                            <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"
-                                >
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="col-md-2">algorithm_vehicle_offlineSLAM</th>
-                            <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"
-                                       id="algorithm_vehicle_offlineslam">
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="col-md-2">vehicle</th>
-                            <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"
-                                       id="vehicle">
-                            </th>
-                        </tr>
-
-                        </tbody>
-                    </table>
-                    <table class="table table-hover" id="ssa">
-                        <thead>
-                        <tr>
-                            <th>SSA repo</th>
-                            <th>branch</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <th class="col-md-3">core/common</th>
-                            <th class="col-md-9">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"
-                                >
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="col-md-2">algorithm_common</th>
-                            <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam" id="algorithm_common_sam"
-                                >
-                            </th>
-                        </tr>
-                        <tr>
-                            <th class="col-md-2">algorithm_sam</th>
-                            <th class="col-md-10">
-                                <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">
-                            </th>
-                        </tr>
-                        </tbody>
-                    </table>
-                    <!--div class="row col-lg-offset-11">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Next Step</button>
-                    </div-->
-                    <div class="row col-lg-offset-10">
-                        <button type="button" class="btn btn-primary" id="step3next">Next</button>
+            <div class="col-md-12">
+                <div class="panel panel-headline" style="display: none" id="step3">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Step3</h3>
+                        <p class="panel-subtitle">Please choose your branch</p>
                     </div>
-                    <script type="text/javascript">
-                        $("#step3next").click(function () {
-                            $("#step3").addClass("animated bounceOutLeft").css('display', 'none');
-                            $("#step4").css('display', '').addClass("animated bounceInRight");
-                        })
-                    </script>
+                    <div class="panel-body">
+                        <table class="table table-hover" id="slam">
+                            <thead>
+                            <tr>
+                                <th>SLAM repo</th>
+                                <th>branch</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th class="col-md-3">core/common</th>
+                                <th class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"
+                                    >
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">algorithm_common</th>
+                                <th class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"
+                                    >
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">algorithm_vehicle_offlineSLAM</th>
+                                <th class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"
+                                           id="algorithm_vehicle_offlineslam">
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">vehicle</th>
+                                <th class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"
+                                           id="vehicle">
+                                </th>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        <table class="table table-hover" id="ssa">
+                            <thead>
+                            <tr>
+                                <th>SSA repo</th>
+                                <th>branch</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th class="col-md-3">core/common</th>
+                                <th class="col-md-9">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"
+                                    >
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">algorithm_common</th>
+                                <th class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam"
+                                           id="algorithm_common_sam"
+                                    >
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">algorithm_sam</th>
+                                <th class="col-md-10">
+                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--div class="row col-lg-offset-11">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Next Step</button>
+                        </div-->
+                        <div class="row col-lg-offset-10">
+                            <button type="button" class="btn btn-primary" id="step3next">Next</button>
+                        </div>
+                        <script type="text/javascript">
+                            $("#step3next").click(function () {
+                                $("#step3").addClass("animated bounceOutLeft").css('display', 'none');
+                                $("#step4").css('display', '').addClass("animated bounceInRight");
+                            })
+                        </script>
+                    </div>
                 </div>
             </div>
         </div>
