@@ -8,8 +8,13 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="brand">
-            <a href="index.html"><img src="{% static 'assets/img/ygomi_101x30.png' %}" alt="Ygomi Logo" class="img-responsive logo"></a>
+            <a href="index.html"><img src="{% static 'assets/img/ygomi_101x30.png' %}" alt="Ygomi Logo" class="img-responsive logo" id="logo_pic"></a>
         </div>
+        <script type="text/javascript">
+            $("#logo_pic").click(function () {
+                $("#logo_pic").addClass("animated hinge")
+            });
+        </script>
         <div class="container-fluid">
             <div class="navbar-btn">
                 <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
