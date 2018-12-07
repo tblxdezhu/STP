@@ -19,13 +19,18 @@
                             <option value="ALL">SLAM-SSA-ALIGNMENT</option>
                         </select>
                         <div class="row col-lg-offset-10">
-                            <a type="button" class="btn btn-primary" href="#step2">Next</a>
+                            <a type="button" class="btn btn-primary" href="#step2" id="step1next">Next</a>
                         </div>
+                        <script type="text/javascript">
+                            $("#step1next").click(function () {
+                                $("#step2").style = "display:"
+                            })
+                        </script>
                     </div>
                 </div>
             </div>
-            <div class="col-md-8" style="display: none;">
-                <div class="panel panel-headline" id="step2">
+            <div class="col-md-8" style="display: none;" id="step2">
+                <div class="panel panel-headline" >
                     <div class="panel-heading">
                         <h3 class="panel-title">Step2</h3>
                         <p class="panel-subtitle">Which data do you want to run?</p>
