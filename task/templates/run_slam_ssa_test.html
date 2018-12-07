@@ -180,10 +180,16 @@
                 <div class="panel-body">
                     <textarea class="form-control" placeholder="" rows="4" name="description"></textarea>
                     <br>
-                    <div class="row col-lg-offset-11">
+                    <div class="row col-lg-offset-10">
+                        <button type="button" class="btn btn-primary" id="step4back">Back</button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Start test</button>
                     </div>
-
+                    <script type="text/javascript">
+                        $("#step4back").click(function () {
+                            $("#step4").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
+                            $("#step3").css('display', '').removeClass().addClass("panel panel-headline animated bounceInLeft");
+                        });
+                    </script>
                 </div>
             </div>
         </div>
