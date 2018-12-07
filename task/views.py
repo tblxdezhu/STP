@@ -15,6 +15,7 @@ import os
 from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Bar, Line, Grid, configure
+
 configure(global_theme='walden')
 from celery.task.control import revoke
 from celery import chain, signature
@@ -194,7 +195,9 @@ def task_process(request, task_id):
             for key in sorted(data[k].keys()):
                 kmls_data.append(data[k][key])
         return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
-    line = line_time_kf()
+    attr = Results.objects.show_task_id()
+
+    line = line_time_kf(attr)
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
@@ -284,7 +287,7 @@ def dashboard(request):
     m, s = divmod(seconds, 60)
     h, m = divmod(m, 60)
     d, h = divmod(h, 24)
-    time_cost = "%02d:%02d:%02d:%02d" % (d, h, m, s)
+    time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
 
     return render(request, 'dashboard.html', {
         'run_rtv_numbers': run_rtv_numbers,
