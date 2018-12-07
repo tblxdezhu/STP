@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="panel panel-headline" style="display: none" id="step2">
                     <div class="panel-heading">
                         <h3 class="panel-title">Step2</h3>
@@ -54,9 +54,18 @@
                         <input type="checkbox" value="16test" name="check_box_list"/>16 test
                         <input type="checkbox" value="15test" name="check_box_list"/>15 test
                         <input type="checkbox" value="15test2" name="check_box_list"/>15 test2
-                        <div class="row col-lg-offset-10">
+                        <div class="row col-lg-offset-8">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
                         </div>
+                        <div class="row col-lg-offset-10">
+                            <button type="button" class="btn btn-primary" id="step2next">Next</button>
+                        </div>
+                        <script type="text/javascript">
+                            $("#step2next").click(function () {
+                                $("#step2").addClass("animated bounceOutLeft").css('display', 'none');
+                                $("#step3").css('display', '').addClass("animated bounceInRight");
+                            })
+                        </script>
                     </div>
 
                 </div>
