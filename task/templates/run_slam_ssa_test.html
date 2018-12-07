@@ -54,7 +54,7 @@
                         <input type="checkbox" value="16test" name="check_box_list"/>16 test
                         <input type="checkbox" value="15test" name="check_box_list"/>15 test
                         <input type="checkbox" value="15test2" name="check_box_list"/>15 test2
-                        <div class="row col-lg-offset-8">
+                        <div class="row col-lg-offset-6">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
                         </div>
                         <div class="row col-lg-offset-10">
@@ -150,6 +150,15 @@
                     <!--div class="row col-lg-offset-11">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Next Step</button>
                     </div-->
+                    <div class="row col-lg-offset-10">
+                        <button type="button" class="btn btn-primary" id="step3next">Next</button>
+                    </div>
+                    <script type="text/javascript">
+                        $("#step3next").click(function () {
+                            $("#step3").addClass("animated bounceOutLeft").css('display', 'none');
+                            $("#step4").css('display', '').addClass("animated bounceInRight");
+                        })
+                    </script>
                 </div>
             </div>
         </div>
@@ -165,6 +174,7 @@
                     <div class="row col-lg-offset-11">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Start test</button>
                     </div>
+
                 </div>
             </div>
         </div>
