@@ -200,7 +200,8 @@ def task_process(request, task_id):
     line = line_time_kf(attr)
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
-    return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
+    return render(request, 'submitted.html',
+                  {'task': task, 'areas': task.area, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
 
 
 def _get_task_kml(request, task_id):
