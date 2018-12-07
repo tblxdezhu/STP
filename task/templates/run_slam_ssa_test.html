@@ -154,9 +154,14 @@
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Next Step</button>
                         </div-->
                         <div class="row col-lg-offset-10">
+                            <button type="button" class="btn btn-primary" id="step3back">Back</button>
                             <button type="button" class="btn btn-primary" id="step3next">Next</button>
                         </div>
                         <script type="text/javascript">
+                            $("#step3back").click(function () {
+                                $("#step3").removeClass('bounceInRight').addClass("bounceOutRight").css('display', 'none');
+                                $("#step2").css('display', '').removeClass('bounceOutLeft').addClass("bounceInLeft");
+                            });
                             $("#step3next").click(function () {
                                 $("#step3").addClass("animated bounceOutLeft").css('display', 'none');
                                 $("#step4").css('display', '').addClass("animated bounceInRight");
