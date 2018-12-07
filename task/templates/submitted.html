@@ -153,9 +153,9 @@
                             <h3 class="panel-title dropdown-toggle" data-toggle="dropdown">Trajectory<span class="caret"></span></h3>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 {% for area in areas %}
-                                <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="#">{{ area }}</a>
-                                </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="{{ area }}">{{ area }}</a>
+                                    </li>
                                 {% endfor %}
                             </ul>
                         </div>

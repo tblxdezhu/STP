@@ -332,6 +332,12 @@ def line_time_kf(attr):
     return line
 
 
+@login_required
+def get_area_kml(request, task_id, area):
+    print(task_id, area)
+    return HttpResponse("{} {}".format(task_id, area))
+
+
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
     code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/stp_envs/core"
