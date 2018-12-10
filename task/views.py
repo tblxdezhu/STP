@@ -219,7 +219,7 @@ def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
     data, center_data = data_process(os.path.join(task.output_path, area))
     print("center_data", center_data)
-    # return JsonResponse({'task_id': task_id, 'area': area, 'center_data': center_data[list(center_data.keys())[0]]},'kmls_data': kmls_data)
+    # return JsonResponse({'task_id': task_id, 'area': area, 'center_data': center_data[list(center_data.keys())[0]]})
 
     print(list(center_data.keys()))
     kmls_data = []
@@ -230,7 +230,7 @@ def _get_task_kml(request, task_id, area):
         'area': area,
         'task': task,
         'branchs': eval(task.branch),
-        'center_data': center_data[list(center_data.keys())[0]],
+        'center_data': str(center_data[list(center_data.keys())[0]]),
         'kmls_data': kmls_data
     }
     # for kml_data in kmls_data:
@@ -251,8 +251,7 @@ def _get_task_kml(request, task_id, area):
     # print("content", content)
     return JsonResponse({
         'area': area,
-        'center_data': center_data[list(center_data.keys())[0]],
-        'kmls_data': kmls_data
+
     })
 
 
