@@ -227,7 +227,7 @@ def _get_task_kml(request, task_id, area):
         for key in sorted(data[k].keys()):
             kmls_data.append(data[k][key])
     content = {
-        'area':area,
+        'area': area,
         'task': task,
         'branchs': eval(task.branch),
         'center_data': center_data[list(center_data.keys())[0]],
