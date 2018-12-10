@@ -221,9 +221,9 @@
                     }
 
 
-                    function initMap(v) {
+                    function initMap() {
                         var center_data = getQueryString("center_data");
-                        alert(center_data)
+                        alert(center_data);
                         map = new google.maps.Map(document.getElementById('map'), {
                             center: {{ center_data|safe }},
                             zoom: 13,
@@ -236,7 +236,7 @@
                     }
                 </script>
                 <script async defer
-                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap?center_data={lat:41.876,lng:-87.624}&language=en-us"></script>
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap?center_data=test&language=en-us"></script>
             </div>
         </div>
     </div>
