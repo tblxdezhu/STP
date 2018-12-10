@@ -194,22 +194,23 @@
                 <script>
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
-                            {#alert(ret.center_data + " " + ret.area);#}
-                            var map;
-
-                            function initMap() {
-                                map = new google.maps.Map(document.getElementById('map'), {
-                                    center: ret.center_data,
-                                    zoom: 13,
-                                    mapTypeId: 'terrain'
-                                });
-                                {% for kml in kmls_data %}
-                                    {{ kml | safe}}
-                                {% endfor %}
-                            }
+                            alert(ret.center_data + " " + ret.area);
+                            initMap(ret)
                         })
                     }
 
+                    var map;
+
+                    function initMap(ret) {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: ret.center_data,
+                            zoom: 13,
+                            mapTypeId: 'terrain'
+                        });
+                        {% for kml in kmls_data %}
+                            {{ kml | safe}}
+                        {% endfor %}
+                    }
                 </script>
                 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us"></script>
             </div>
