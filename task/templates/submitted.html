@@ -197,7 +197,7 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            $("#map").load(location.href + " #map");
+                            map.setCenter({lat: 48.4821112955, lng: -88.0859354972})
                         })
                     }
 
