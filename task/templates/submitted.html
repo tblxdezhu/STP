@@ -180,7 +180,7 @@
                 </script-->
 
                 <div class="panel-body no-padding" id="map">
-                    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us"></script>
+{#                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us"></script>#}
                 </div>
                 <style>
                     #map {
@@ -193,11 +193,11 @@
                         padding: 0;
                     }
                 </style>
-                <script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us">
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            $("#map").load(location.href + " #test");
+                            $("#map").load(location.href + " #map");
                         })
                     }
 
