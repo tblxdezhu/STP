@@ -47,40 +47,44 @@ def data_process(folder_path):
     data = {}
     center = {}
     for k, v in get_all_kmls(folder_path).items():
-            data[k] = {}
-            for kml in v:
-                kml_type = 'slam'
-                is_show = True
-                kml_name = os.path.basename(kml)
-                coordinate = kml2coordinates(kml)
-                if 'gps' in kml_name:
-                    kml_type = 'gps'
-                    is_show = False
-                trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
-                data[k][trajectory.name] = trajectory.string_builder()
-                center[k] = trajectory.data_processed[0]
+        data[k] = {}
+        for kml in v:
+            kml_type = 'slam'
+            is_show = True
+            kml_name = os.path.basename(kml)
+            coordinate = kml2coordinates(kml)
+            if 'gps' in kml_name:
+                kml_type = 'gps'
+                is_show = False
+            trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
+            data[k][trajectory.name] = trajectory.string_builder()
+            center[k] = trajectory.data_processed[0]
     return data, center
 
 
 def get_all_kmls(path):
     data_set = {}
     tmp = ''
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
-                # if os.path.basename(root) == "segment":
-                # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
-                print("***")
-                print("root", root)
-                print("dirs", dirs)
-                print("file", file)
-                print("***")
-                case_name = root.split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
-                if not case_name == tmp:
-                    data_set[case_name] = []
-                data_set[case_name].append(os.path.join(root, file))
-                tmp = case_name
-    print(data_set)
+    try:
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
+                    # if os.path.basename(root) == "segment":
+                    # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
+                    print("***")
+                    print("root", root)
+                    print("dirs", dirs)
+                    print("file", file)
+                    print("***")
+                    case_name = root.split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
+                    if not case_name == tmp:
+                        data_set[case_name] = []
+                    data_set[case_name].append(os.path.join(root, file))
+                    tmp = case_name
+    except Exception as e:
+        print(e)
+
+    print("data_set", data_set)
     return data_set
 
 

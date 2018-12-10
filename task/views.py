@@ -209,13 +209,18 @@ def task_process(request, task_id):
 @login_required
 def get_area_kml(request, task_id, area):
     print(task_id, area)
-    return HttpResponse("{} {}".format(task_id, area))
+    task = Task.objects.get(id=task_id)
+    data, center_data = data_process(task.output_path)
+    return JsonResponse({'task_id': task_id, 'area': area})
+    # return HttpResponse("{} {}".format(task_id, area))
 
 
 def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
-    print(task.output_path)
     data, center_data = data_process(os.path.join(task.output_path, area))
+    print(center_data)
+    # return JsonResponse({'task_id': task_id, 'area': area, 'center_data': center_data[list(center_data.keys())[0]]},'kmls_data': kmls_data)
+
     print(list(center_data.keys()))
     kmls_data = []
     for k in get_all_kmls(os.path.join(task.output_path, area)):
@@ -227,21 +232,22 @@ def _get_task_kml(request, task_id, area):
         'center_data': center_data[list(center_data.keys())[0]],
         'kmls_data': kmls_data
     }
-    for kml_data in kmls_data:
-        print(kml_data)
-    print(center_data[list(center_data.keys())[0]])
+    # for kml_data in kmls_data:
+    #     print(kml_data)
+    # print(center_data[list(center_data.keys())[0]])
     lat = ""
     lng = ""
     # eval(center_data[list(center_data.keys())[0]])
-    attr = Results.objects.show_task_id()
-
-    line = line_time_kf(attr)
-    myechart1 = line.render_embed()
-    script_list = line.get_js_dependencies()
-    return render(request, 'submitted.html', {'task': task,
-                                              'branchs': eval(task.branch),
-                                              'center_data': "hahahahah",
-                                              'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
+    # attr = Results.objects.show_task_id()
+    #
+    # line = line_time_kf(attr)
+    # myechart1 = line.render_embed()
+    # script_list = line.get_js_dependencies()
+    # return render(request, 'submitted.html', {'task': task,
+    #                                           'branchs': eval(task.branch),
+    #                                           'center_data': "hahahahah",
+    #                                           'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
+    return JsonResponse(content)
 
 
 # def get_task_status(celery_id):
