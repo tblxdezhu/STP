@@ -230,7 +230,7 @@ def _get_task_kml(request, task_id, area):
         'area': area,
         'task': task,
         'branchs': eval(task.branch),
-        'center_data': str(center_data[list(center_data.keys())[0]]),
+        'center_data': center_data[list(center_data.keys())[0]],
         'kmls_data': kmls_data
     }
     # for kml_data in kmls_data:
