@@ -212,13 +212,13 @@ def get_area_kml(request, task_id, area):
     return HttpResponse("{} {}".format(task_id, area))
 
 
-def _get_task_kml(request, task_id):
+def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
     print(task.output_path)
-    data, center_data = data_process(task.output_path)
+    data, center_data = data_process(os.path.join(task.output_path, area))
     print(list(center_data.keys()))
     kmls_data = []
-    for k in get_all_kmls(task.output_path):
+    for k in get_all_kmls(os.path.join(task.output_path, area)):
         for key in sorted(data[k].keys()):
             kmls_data.append(data[k][key])
     content = {
