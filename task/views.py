@@ -249,7 +249,7 @@ def _get_task_kml(request, task_id, area):
     #                                           'center_data': "hahahahah",
     #                                           'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
     # print("content", content)
-    return JsonResponse(content)
+    return JsonResponse(dict(content))
 
 
 # def get_task_status(celery_id):
