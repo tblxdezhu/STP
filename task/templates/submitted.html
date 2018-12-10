@@ -195,14 +195,16 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            newMap(ret)
+                            newMap(ret);
+                            document.write("<script async defer src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=newMap?ret="+ret+"&language=en-us'><" + "/script>");
+
                         })
                     }
 
-                    var new_map;
+                    var map;
 
                     function newMap(ret) {
-                        new_map = new google.maps.Map(document.getElementById('map'), {
+                        map = new google.maps.Map(document.getElementById('map'), {
                             center: ret.center_data,
                             zoom: 13,
                             mapTypeId: 'terrain'
@@ -211,8 +213,6 @@
                             {{ kml | safe}}
                         {% endfor %}
                     }
-
-                    var map;
 
                     function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
