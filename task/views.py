@@ -250,9 +250,12 @@ def _get_task_kml(request, task_id, area):
     #                                           'center_data': "hahahahah",
     #                                           'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
     # print("content", content)
+    center_data_dic = eval(center_data[list(center_data.keys())[0]])
+    for key, value in center_data_dic.items():
+        center_data_dic[key] = float(value)
     return JsonResponse({
         'area': area,
-        'center_data': center_data[list(center_data.keys())[0]]
+        'center_data': center_data_dic
     })
 
 
