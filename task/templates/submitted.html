@@ -195,15 +195,28 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            initMap(ret)
+                            newMap(ret)
                         })
+                    }
+
+                    var new_map;
+
+                    function newMap(ret) {
+                        new_map = new google.maps.Map(document.getElementById('map'), {
+                            center: ret.center_data,
+                            zoom: 13,
+                            mapTypeId: 'terrain'
+                        });
+                        {% for kml in kmls_data %}
+                            {{ kml | safe}}
+                        {% endfor %}
                     }
 
                     var map;
 
-                    function initMap(ret) {
+                    function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
-                            center: ret.center_data,
+                            center: {{ center_data|safe }},
                             zoom: 13,
                             mapTypeId: 'terrain'
                         });
