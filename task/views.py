@@ -252,7 +252,7 @@ def _get_task_kml(request, task_id, area):
     # print("content", content)
     return JsonResponse({
         'area': area,
-
+        'center_data': center_data[list(center_data.keys())[0]]
     })
 
 
