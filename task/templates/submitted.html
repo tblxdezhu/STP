@@ -24,7 +24,7 @@
                             <th>Tester</th>
                             <th>Mode</th>
                             <th>Area</th>
-                            <th>Operation</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -33,25 +33,26 @@
                             <td>{{ task.tester }}</td>
                             <td>{{ task.mode }}</td>
                             <td>{{ task.area }}</td>
-                            <td>
-                                <!--button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button-->
-                                <!--form action="" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-danger" name="stoptask" value="stop" id="stoptask">Stop Task</button>
-                                </form-->
-                                <form action="" method="post">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary" name="getkml" value="getkml" id="getkml">Show Trajectory</button>
-                                    {% if nokmls %}
-                                        <script>
-                                            $(document).ready(function () {
-                                                alert("No kml generate");
-                                            });
-                                        </script>
-                                    {% endif %}
-                                </form>
-
-                            </td>
+                            <td>{{ task.description }}</td>
+{#                            <td>#}
+{#                                <!--button type="button" class="btn btn-primary" disabled="disabled"><i class="fa fa-spinner fa-spin"></i> Processing</button-->#}
+{#                                <!--form action="" method="post">#}
+{#                                    {% csrf_token %}#}
+{#                                    <button type="submit" class="btn btn-danger" name="stoptask" value="stop" id="stoptask">Stop Task</button>#}
+{#                                </form-->#}
+{#                                <form action="" method="post">#}
+{#                                    {% csrf_token %}#}
+{#                                    <button type="submit" class="btn btn-primary" name="getkml" value="getkml" id="getkml">Show Trajectory</button>#}
+{#                                    {% if nokmls %}#}
+{#                                        <script>#}
+{#                                            $(document).ready(function () {#}
+{#                                                alert("No kml generate");#}
+{#                                            });#}
+{#                                        </script>#}
+{#                                    {% endif %}#}
+{#                                </form>#}
+{##}
+{#                            </td>#}
                         </tr>
                         </tbody>
                     </table>
@@ -101,16 +102,16 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Task description</h3>
-                    </div>
-                    <div class="panel-body ">
-                        <p>{{ task.description }}</p>
-                    </div>
-                </div>
-            </div>
+{#            <div class="row">#}
+{#                <div class="panel">#}
+{#                    <div class="panel-heading">#}
+{#                        <h3 class="panel-title">Task description</h3>#}
+{#                    </div>#}
+{#                    <div class="panel-body ">#}
+{#                        <p>{{ task.description }}</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
 
         </div>
     </div>
@@ -120,6 +121,9 @@
         <div class="col-md-12">
             <div class="panel">
                 <div class="panel-heading">
+                    <div class="right">
+                        <button type="button" class="btn-toggle-collapse"><i class="lnr lnr-chevron-up"></i></button>
+                    </div>
                     <h3 class="panel-title">Branch info</h3>
                 </div>
                 <div class="panel-body ">
