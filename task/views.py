@@ -75,6 +75,7 @@ def submitted(request):
         'vehicle': request.POST['vehicle']
     }
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting", description=request.POST['description'])
+    task.save()
     task.output_path = os.path.join(output_path, str(task.id))
     task.save()
     if_build = True
