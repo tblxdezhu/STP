@@ -75,6 +75,7 @@ def submitted(request):
         'vehicle': request.POST['vehicle']
     }
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting", description=request.POST['description'])
+    task.output_path = os.path.join(output_path, str(task.id))
     task.save()
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
@@ -204,6 +205,12 @@ def task_process(request, task_id):
                   {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
 
 
+@login_required
+def get_area_kml(request, task_id, area):
+    print(task_id, area)
+    return HttpResponse("{} {}".format(task_id, area))
+
+
 def _get_task_kml(request, task_id):
     task = Task.objects.get(id=task_id)
     print(task.output_path)
@@ -330,12 +337,6 @@ def line_time_kf(attr):
     line.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_smooth=True, is_toolbox_show=False, xaxis_name="task id", yaxis_name="seconds", yaxis_name_gap="40",
              xaxis_name_pos="end")
     return line
-
-
-@login_required
-def get_area_kml(request, task_id, area):
-    print(task_id, area)
-    return HttpResponse("{} {}".format(task_id, area))
 
 
 def get_branch():
