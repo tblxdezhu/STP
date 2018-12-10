@@ -248,9 +248,17 @@ def _get_task_kml(request, task_id, area):
     #                                           'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
     # print("content", content)
     print(center_data[list(center_data.keys())[0]])
+
+    def __str2dic(str_):
+        output_dic = {}
+        str_ = str_.split(",")
+        output_dic[str_[0].split(":")[0].lstrip("{")] = float(str_[0].split(":")[1])
+        output_dic[str_[1].split(":")[0]] = float(str_[1].split(":")[1].rstrip("}"))
+        return output_dic
+
     return JsonResponse({
         'area': area,
-        'center_data': eval(center_data[list(center_data.keys())[0]])
+        'center_data': __str2dic(center_data[list(center_data.keys())[0]])
     })
 
 
