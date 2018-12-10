@@ -203,26 +203,6 @@
 
                     var map;
 
-                    function newMap(ret) {
-                        map = new google.maps.Map(document.getElementById('map'), {
-                            center: ret.center_data,
-                            zoom: 13,
-                            mapTypeId: 'terrain'
-                        });
-                        {% for kml in kmls_data %}
-                            {{ kml | safe}}
-                        {% endfor %}
-                    }
-
-                    function getQueryString(name) {
-                        var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i"));
-                        if (result == null || result.length < 1) {
-                            return "";
-                        }
-                        return result[1];
-                    }
-
-
                     function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
                             center: {lat: 42.4821112955, lng: -83.0859354972},
