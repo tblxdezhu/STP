@@ -233,7 +233,9 @@ def _get_task_kml(request, task_id, area):
     lat = ""
     lng = ""
     # eval(center_data[list(center_data.keys())[0]])
-    line = line_time_kf()
+    attr = Results.objects.show_task_id()
+
+    line = line_time_kf(attr)
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
     return render(request, 'submitted.html', {'task': task,
