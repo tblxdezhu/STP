@@ -71,11 +71,11 @@ def get_all_kmls(path):
                 if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
                     # if os.path.basename(root) == "segment":
                     # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
-                    print("***")
-                    print("root", root)
-                    print("dirs", dirs)
-                    print("file", file)
-                    print("***")
+                    # print("***")
+                    # print("root", root)
+                    # print("dirs", dirs)
+                    # print("file", file)
+                    # print("***")
                     case_name = root.split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
                     if not case_name == tmp:
                         data_set[case_name] = []
@@ -84,7 +84,7 @@ def get_all_kmls(path):
     except Exception as e:
         print(e)
 
-    print("data_set", data_set)
+    # print("data_set", data_set)
     return data_set
 
 
