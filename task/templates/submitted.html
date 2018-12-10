@@ -193,7 +193,7 @@
                         padding: 0;
                     }
                 </style>
-                <script>
+                <script >
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
