@@ -197,7 +197,7 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            $("#map").load(initMap);
+                            $("#test").load(initMap);
                         })
                     }
 
