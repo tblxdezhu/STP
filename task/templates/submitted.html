@@ -197,7 +197,7 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
-                            $("#map").load(location.href + " #map");
+                            $("#map").load(location.href + " #test");
                         })
                     }
 
@@ -224,7 +224,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Performance</h3>
                 </div>
-                <div class="panel-body no-padding">
+                <div class="panel-body no-padding" id="test">
                     <div class="col-md-6">{{ myechart2|safe }}</div>
                 </div>
 
