@@ -253,7 +253,7 @@ def _get_task_kml(request, task_id, area):
         output_dic = {}
         str_ = str_.split(",")
         output_dic[str_[0].split(":")[0].lstrip("{")] = float(str_[0].split(":")[1])
-        output_dic[str_[1].split(":")[0]] = float(str_[1].split(":")[1].rstrip("}"))
+        output_dic[str_[1].split(":")[0]] = float(str_[1].split(":")[1].lstrip().rstrip("}"))
         print(output_dic)
         return output_dic
 
