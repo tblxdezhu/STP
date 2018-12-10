@@ -198,10 +198,10 @@
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             alert(ret.center_data + " " + ret.area);
                             var temp = {lat: ret.center_data['lat'], lng: ret.center_data['lng']};
-                            var tmp = {lat: 42.4821112955, lng: -83.0859354972};
+                            var tmp = {lat: 42.4821112955, lng: -83.0859354972 };
                             alert(typeof tmp);
                             alert(typeof temp);
-                            map.setCenter(temp)
+                            map.setCenter(tmp)
                         })
                     }
 
