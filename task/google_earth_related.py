@@ -32,7 +32,7 @@ class Trajectory:
 
     def string_builder(self):
         for point in self.data:
-            list_str = ['{lat:', str(point[1]), ',', 'lng:', str(point[0]), '},']
+            list_str = ['{lat:', float(point[1]), ',', 'lng:', float(point[0]), '},']
             self.data_processed.append(' '.join(list_str))
         if self.data_type == 'gps':
             self.string = self.string.replace("'#FF0000'", "'#00FF00'")
