@@ -348,7 +348,7 @@
                 $.getJSON('/test/{{ task.id }}/status', function (ret){
                     if (ret.status == 'SLAMdone') {
                         clearInterval(interval);
-                        window.location.reload();
+                        {#window.location.reload();#}
                     }
                 });
                 get_status()
