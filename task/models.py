@@ -4,7 +4,6 @@ from django.core.urlresolvers import reverse
 
 
 # Create your models here.
-# TODO 增加task描述信息
 class Task(models.Model):
     tester = models.ForeignKey(User, related_name="tasks")
     created = models.DateTimeField(auto_now_add=True)
@@ -16,6 +15,7 @@ class Task(models.Model):
     status = models.CharField(max_length=30, null=True)
     output_path = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=100, null=True)
+    machine_id = models.CharField(max_length=50)
 
     class Meta:
         ordering = ('-created',)

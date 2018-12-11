@@ -50,6 +50,7 @@ def work_flow(if_build, task_id):
         # save() 方法会设定所有列的 值，而不是只设定 name 列的值。
         # 如果你所处的环境可能同时由其他操作修改其他列，最好只更新需要修改的值。
         # 为此，使用 QuerySet 对象的 update() 方法
+        # TODO 需要将不必要的save替换为update
         task.save()
         logging.info("status change to {}".format(status))
 
