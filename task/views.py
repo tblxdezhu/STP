@@ -197,13 +197,22 @@ def task_process(request, task_id):
             for key in sorted(data[k].keys()):
                 kmls_data.append(data[k][key])
         return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
+
+    data, _ = data_process(task.output_path)
+    kmls_data = []
+    for k in get_all_kmls(task.output_path):
+        for key in sorted(data[k].keys()):
+            kmls_data.append(data[k][key])
+
     attr = Results.objects.show_task_id()
 
     line = line_time_kf(attr)
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
+
     return render(request, 'submitted.html',
-                  {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list})
+                  {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list,
+                   'kmls_data': kmls_data})
 
 
 @login_required
@@ -258,8 +267,7 @@ def _get_task_kml(request, task_id, area):
 
     return JsonResponse({
         'area': area,
-        'center_data': __str2dic(center_data[list(center_data.keys())[0]]),
-        'kmls_data': kmls_data
+        'center_data': __str2dic(center_data[list(center_data.keys())[0]])
     })
 
 
