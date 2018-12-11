@@ -129,44 +129,34 @@
                                             if (ret.status == 'SLAM') {
                                                 $('#{{ task.id }}_status').html("SLAM");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
-                                            }
-                                            else if (ret.status == 'SSA') {
+                                            } else if (ret.status == 'SSA') {
                                                 $('#{{ task.id }}_status').html("SSA");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
-                                            }
-                                            else if (ret.status == 'backup') {
+                                            } else if (ret.status == 'backup') {
                                                 $('#{{ task.id }}_status').html("Backup");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
-                                            }
-                                            else if (ret.status == 'Waiting') {
+                                            } else if (ret.status == 'Waiting') {
                                                 $('#{{ task.id }}_status').html("Waiting");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-warning");
-                                            }
-                                            else if (ret.status == 'build') {
+                                            } else if (ret.status == 'build') {
                                                 $('#{{ task.id }}_status').html("building");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-primary animated flash slower infinite");
-                                            }
-                                            else if (ret.status == 'SLAMdone') {
+                                            } else if (ret.status == 'SLAMdone') {
                                                 $('#{{ task.id }}_status').html("Done");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-success");
-                                            }
-                                            else if (ret.status == 'done') {
+                                            } else if (ret.status == 'done') {
                                                 $('#{{ task.id }}_status').html("Done");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-success");
-                                            }
-                                            else if (ret.status == 'buildfailed') {
+                                            } else if (ret.status == 'buildfailed') {
                                                 $('#{{ task.id }}_status').html("Failed");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
-                                            }
-                                            else if (ret.status == 'SLAMfailed') {
+                                            } else if (ret.status == 'SLAMfailed') {
                                                 $('#{{ task.id }}_status').html("Failed");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
-                                            }
-                                            else if (ret.status == 'SSAfailed') {
+                                            } else if (ret.status == 'SSAfailed') {
                                                 $('#{{ task.id }}_status').html("Failed");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
-                                            }
-                                            else {
+                                            } else {
                                                 $('#{{ task.id }}_status').html("error");
                                                 $('#{{ task.id }}_status').removeClass().addClass("label label-danger");
                                             }
@@ -174,7 +164,15 @@
                                         })
                                     }
 
-                                    setInterval(get_status, 1000)
+                                    {#setInterval(get_status, 1000);#}
+                                    var interval = setInterval(function () {
+                                        $.getJSON('/test/{{ task.id }}/status', function (ret) {
+                                            if (ret.status == 'SLAMdone') {
+                                                clearInterval(interval);
+                                            }
+                                        });
+                                        get_status()
+                                    }, 1000)
                                 })
                             </script>
                         {% endfor %}
@@ -224,44 +222,34 @@
                                                 if (ret.status == 'SLAM') {
                                                     $('#{{ task.id }}_mystatus').html("SLAM");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
-                                                }
-                                                else if (ret.status == 'SSA') {
+                                                } else if (ret.status == 'SSA') {
                                                     $('#{{ task.id }}_mystatus').html("SSA");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
-                                                }
-                                                else if (ret.status == 'backup') {
+                                                } else if (ret.status == 'backup') {
                                                     $('#{{ task.id }}_mystatus').html("Backup");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
-                                                }
-                                                else if (ret.status == 'Waiting') {
+                                                } else if (ret.status == 'Waiting') {
                                                     $('#{{ task.id }}_mystatus').html("Waiting");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-warning");
-                                                }
-                                                else if (ret.status == 'build') {
+                                                } else if (ret.status == 'build') {
                                                     $('#{{ task.id }}_mystatus').html("building");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-primary animated flash slower infinite");
-                                                }
-                                                else if (ret.status == 'SLAMdone') {
+                                                } else if (ret.status == 'SLAMdone') {
                                                     $('#{{ task.id }}_mystatus').html("Done");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-success");
-                                                }
-                                                else if (ret.status == 'done') {
+                                                } else if (ret.status == 'done') {
                                                     $('#{{ task.id }}_mystatus').html("Done");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-success");
-                                                }
-                                                else if (ret.status == 'buildfailed') {
+                                                } else if (ret.status == 'buildfailed') {
                                                     $('#{{ task.id }}_mystatus').html("Failed");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
-                                                }
-                                                else if (ret.status == 'SLAMfailed') {
+                                                } else if (ret.status == 'SLAMfailed') {
                                                     $('#{{ task.id }}_mystatus').html("Failed");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
-                                                }
-                                                else if (ret.status == 'SSAfailed') {
+                                                } else if (ret.status == 'SSAfailed') {
                                                     $('#{{ task.id }}_mystatus').html("Failed");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
-                                                }
-                                                else {
+                                                } else {
                                                     $('#{{ task.id }}_mystatus').html("error");
                                                     $('#{{ task.id }}_mystatus').removeClass().addClass("label label-danger");
                                                 }
