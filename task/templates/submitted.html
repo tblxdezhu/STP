@@ -291,7 +291,7 @@
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
-                        window.location.reload()
+
                     }
                     else if (ret.status == 'SLAMfailed') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
@@ -349,7 +349,8 @@
             var interval = setInterval(function () {
                 $.getJSON('/test/{{ task.id }}/status', function (ret){
                     if (ret.status == 'SLAMdone') {
-                        clearInterval(interval)
+                        clearInterval(interval);
+                        window.location.reload()
                     }
                 });
                 get_status()
