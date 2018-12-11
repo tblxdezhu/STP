@@ -347,6 +347,11 @@
 
             {#setInterval(get_status, 1000);#}
             var interval = setInterval(function () {
+                $.getJSON('/test/{{ task.id }}/status', function (ret){
+                    if (ret.status == 'SLAMdone') {
+                        clearInterval(interval)
+                    }
+                });
                 get_status()
              },1000)
         })
