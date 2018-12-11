@@ -9,7 +9,7 @@ class Machine(models.Model):
     process_num = models.CharField(max_length=10)
     code_path = models.CharField(max_length=100)
     output_path = models.CharField(max_length=100)
-    data_path = models.CharField(max_length=100)
+    data_path = models.CharField(max_length=100, default="/media/psf/Untitled/SLAM_TEST/auto_test_large")
 
     def __str__(self):
         return self.ip
