@@ -15,7 +15,7 @@ class Task(models.Model):
     status = models.CharField(max_length=30, null=True)
     output_path = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=100, null=True)
-    machine_id = models.CharField(max_length=50)
+    machine_id = models.CharField(max_length=50, null=True)
 
     class Meta:
         ordering = ('-created',)
