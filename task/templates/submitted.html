@@ -287,11 +287,9 @@
                         $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
                     }
                     else if (ret.status == 'SLAMdone') {
-                        window.clearInterval(interval);
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
-
                     }
                     else if (ret.status == 'SLAMfailed') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
@@ -350,7 +348,7 @@
                 $.getJSON('/test/{{ task.id }}/status', function (ret){
                     if (ret.status == 'SLAMdone') {
                         clearInterval(interval);
-                        window.location.reload()
+                        window.location.reload();
                     }
                 });
                 get_status()
