@@ -196,7 +196,7 @@
                 <script>
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
-                            center_data = {lat: parseFloat(ret.center_data['lat']), lng: parseFloat(ret.center_data['lng'])};
+                            center_data = {lat:parseFloat(ret.center_data['lat']), lng:parseFloat(ret.center_data['lng'])};
                             map.setCenter(center_data);
                             $("#map").html(ret.kmls_data)
                         })
@@ -277,43 +277,56 @@
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
                     if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
-                    } else if (ret.status == 'buildfailed') {
+                    }
+                    else if (ret.status == 'buildfailed') {
                         $('#task_status_build').removeClass().addClass("btn btn-danger");
-                    } else if (ret.status == 'SLAM') {
+                    }
+                    else if (ret.status == 'SLAM') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
-                    } else if (ret.status == 'SLAMdone') {
+                    }
+                    else if (ret.status == 'SLAMdone') {
+                        clearInterval(interval);
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         window.location.reload()
-                    } else if (ret.status == 'SLAMfailed') {
+                    }
+                    else if (ret.status == 'SLAMfailed') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
                         $('#task_status_slam').removeClass().addClass("btn btn-danger")
-                    } else if (ret.status == 'SSA') {
+                    }
+                    else if (ret.status == 'SSA') {
                         $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
-                    } else if (ret.status == 'SSAdone') {
+                    }
+                    else if (ret.status == 'SSAdone') {
                         $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-success")
-                    } else if (ret.status == 'SSAfailed') {
+                    }
+                    else if (ret.status == 'SSAfailed') {
                         $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
-                    } else if (ret.status == 'STOP') {
+                    }
+                    else if (ret.status == 'STOP') {
                         $('#task_status_slam').removeClass().addClass("btn btn-danger");
                         $('#task_status_ssa').removeClass().addClass("btn btn-danger")
-                    } else if (ret.status == 'backup') {
+                    }
+                    else if (ret.status == 'backup') {
                         $('#task_status_backup').removeClass().addClass("btn btn-primary animated flash slower infinite")
-                    } else if (ret.status == 'backupfailed') {
+                    }
+                    else if (ret.status == 'backupfailed') {
                         $('#task_status_backup').removeClass().addClass("btn btn-danger")
-                    } else if (ret.status == 'backupdone') {
+                    }
+                    else if (ret.status == 'backupdone') {
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
-                    } else if (ret.status == 'done') {
+                    }
+                    else if (ret.status == 'done') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
                         $('#task_status_ssa').html("<i class=\"fa fa-check-circle\"></i>SSA");
@@ -322,7 +335,8 @@
                         $('#task_status_slam').removeClass().addClass("btn btn-success");
                         $('#task_status_ssa').removeClass().addClass("btn btn-success");
                         $('#task_status_backup').removeClass().addClass("btn btn-success");
-                    } else {
+                    }
+                    else {
                         $('#task_status_build').removeClass().addClass("btn btn-warning");
                         $('#task_status_slam').removeClass().addClass("btn btn-warning");
                         $('#task_status_ssa').removeClass().addClass("btn btn-warning");
@@ -333,16 +347,8 @@
 
             {#setInterval(get_status, 1000);#}
             var interval = setInterval(function () {
-                if ($.getJSON('/test/{{ task.id }}/status').status == 'SLAMdone') {
-                    clearInterval(interval);
-                    $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
-                    $('#task_status_build').removeClass().addClass("btn btn-success");
-                    $('#task_status_slam').removeClass().addClass("btn btn-success");
-                    window.location.reload();
-                    return;
-                }
                 get_status()
-            }, 1000)
+             },1000)
         })
     </script>
 
