@@ -335,6 +335,7 @@
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
                     if (ret.status == 'SLAMdone' && ret.mode == 'SLAM') {
                         clearInterval(interval);
+                        window.location.reload();
                     }
                     if (ret.status == 'done' && ret.mode == 'SSA') {
                         clearInterval(interval);
