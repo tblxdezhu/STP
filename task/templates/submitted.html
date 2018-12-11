@@ -197,7 +197,8 @@
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             center_data = {lat:parseFloat(ret.center_data['lat']), lng:parseFloat(ret.center_data['lng'])};
-                            map.setCenter(center_data)
+                            map.setCenter(center_data);
+                            $("#map").html(ret.kmls_data)
                         })
                     }
 
