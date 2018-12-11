@@ -5,7 +5,7 @@ from django.db import models
 
 class Machine(models.Model):
     machine_id = models.CharField(max_length=50)
-    process_num = models.IntegerField()
+    process_num = models.CharField(max_length=10)
     code_path = models.CharField(max_length=100)
     output_path = models.CharField(max_length=100)
 
