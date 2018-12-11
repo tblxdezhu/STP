@@ -187,16 +187,6 @@ def task_process(request, task_id):
             revoke(eval(task.celery_id), terminate=True)
         except TypeError:
             print("stop the task")
-    if request.POST.get('getkml') == "getkml":
-        try:
-            data, center_data = data_process(task.output_path)
-        except TypeError:
-            return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", "nokmls": True})
-        kmls_data = []
-        for k in get_all_kmls(task.output_path):
-            for key in sorted(data[k].keys()):
-                kmls_data.append(data[k][key])
-        return render(request, 'submitted.html', {'task': task, 'branchs': eval(task.branch), 'center_data': str(center_data[list(center_data.keys())[0]]).rstrip(","), 'kmls_data': kmls_data})
 
     data, _ = data_process(task.output_path)
     kmls_data = []
@@ -205,7 +195,6 @@ def task_process(request, task_id):
             kmls_data.append(data[k][key])
 
     attr = Results.objects.show_task_id()
-
     line = line_time_kf(attr)
     myechart1 = line.render_embed()
     script_list = line.get_js_dependencies()
