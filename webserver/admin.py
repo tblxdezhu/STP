@@ -5,3 +5,8 @@ from .models import Machine, Data
 
 admin.site.register(Machine)
 admin.site.register(Data)
+
+
+class MachineAdmin(admin.ModelAdmin):
+    list_display = {'ip', 'process_num', 'output_path'}
+    search_fields = {'ip'}

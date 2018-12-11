@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 
 class Machine(models.Model):
-    ip = models.CharField(max_length=20,default="127.0.0.1")
+    ip = models.CharField(max_length=20, default="127.0.0.1")
     machine_id = models.CharField(max_length=50, blank=True)
     process_num = models.CharField(max_length=10)
     code_path = models.CharField(max_length=100)
