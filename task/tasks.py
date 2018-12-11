@@ -73,9 +73,6 @@ def work_flow(if_build, task_id):
                         avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
                         mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
                     )
-                total_sum = Results.objects.total(task_id=task_id, keyword='time')
-                print(total_sum)
-                print(Results.objects.show_task_id())
             except Exception as e:
                 logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:

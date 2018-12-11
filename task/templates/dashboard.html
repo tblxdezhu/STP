@@ -167,7 +167,10 @@
                                     {#setInterval(get_status, 1000);#}
                                     var interval = setInterval(function () {
                                         $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                                            if (ret.status == 'SLAMdone') {
+                                            if (ret.status == 'SLAMdone' && ret.mode == 'SLAM' ) {
+                                                clearInterval(interval);
+                                            }
+                                            if (ret.status == 'done' && ret.mode == 'SSA' ) {
                                                 clearInterval(interval);
                                             }
                                         });
@@ -259,7 +262,10 @@
                                         {#setInterval(get_status, 1000);#}
                                         var interval = setInterval(function () {
                                         $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                                            if (ret.status == 'SLAMdone') {
+                                            if (ret.status == 'SLAMdone' && ret.mode == 'SLAM' ) {
+                                                clearInterval(interval);
+                                            }
+                                            if (ret.status == 'done' && ret.mode == 'SSA' ) {
                                                 clearInterval(interval);
                                             }
                                         });

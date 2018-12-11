@@ -271,10 +271,11 @@ def _get_task_status(request, task_id):
 
     task = Task.objects.get(id=task_id)
     status = {}
-    print("celery_id:", task.celery_id)
+    # print("celery_id:", task.celery_id)
     # status['SLAM'] = run_slam.AsyncResult(eval(task.celery_id)[0]).state
     # status['SSA'] = run_slam.AsyncResult(eval(task.celery_id)[1]).state
     status['status'] = task.status
+    status['mode'] = task.mode
     print(status)
     return JsonResponse(status)
 
