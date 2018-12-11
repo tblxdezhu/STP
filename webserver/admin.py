@@ -11,7 +11,7 @@ class MachineAdmin(admin.ModelAdmin):
 
 
 class DataAdmin(admin.ModelAdmin):
-    list_display = ('area', 'camera')
+    list_display = ('area', 'camera', 'data_path',)
 
 
 admin.site.register(Machine, MachineAdmin)
