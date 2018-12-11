@@ -44,6 +44,9 @@
                         <p class="panel-subtitle">Which data do you want to run?</p>
                     </div>
                     <div class="panel-body">
+                        {% for area in areas %}
+                            <input type="checkbox" value="{{ area }}" name="check_box_list"/>{{ area }}
+                        {% endfor %}
                         <input type="checkbox" value="milford" name="check_box_list"/>milford
                         <input type="checkbox" value="fuji" name="check_box_list"/>fuji
                         <input type="checkbox" value="tokyo" name="check_box_list"/>tokyo

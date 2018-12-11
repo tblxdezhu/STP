@@ -27,6 +27,7 @@ import subprocess
 import json
 import csv
 import time
+from webserver.models import Data
 
 # from apscheduler.schedulers.background import BackgroundScheduler
 # from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
@@ -59,8 +60,9 @@ def test(request):
     #     print("Scheduler started!")
     # except Exception:
     #     pass
-
-    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active'})
+    areas = Data.objects.all_areas()
+    print("areas", areas)
+    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas})
 
 
 @login_required
