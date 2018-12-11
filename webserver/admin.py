@@ -10,5 +10,9 @@ class MachineAdmin(admin.ModelAdmin):
     search_fields = ('ip',)
 
 
+class DataAdmin(admin.ModelAdmin):
+    list_display = ('area', 'camera')
+
+
 admin.site.register(Machine, MachineAdmin)
-admin.site.register(Data)
+admin.site.register(Data, DataAdmin)
