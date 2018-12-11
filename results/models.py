@@ -15,7 +15,7 @@ class ResultsManager(models.Manager):
 
 
 class Results(models.Model):
-    task_id = models.IntegerField(max_length=30)
+    task_id = models.IntegerField()
     area = models.CharField(max_length=30)
     mode = models.CharField(max_length=10)
     rtv_name = models.CharField(max_length=50)
