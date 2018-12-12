@@ -110,6 +110,7 @@ def work_flow(if_build, task_id):
                 __change_status('backup')
                 try:
                     server.backup()
+                    __change_status('backupdone')
                 except Exception as e:
                     print(e)
                     __change_status('backupfailed')
