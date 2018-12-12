@@ -52,6 +52,7 @@ def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
+    task.machine_id = machine.machine_id
     task.output_path = os.path.join(machine.output_path, str(task.id))
     task.save()
     print("machine_id:", get_machine_id())
