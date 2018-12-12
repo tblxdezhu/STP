@@ -61,7 +61,6 @@ def test(request):
     # except Exception:
     #     pass
     areas = Data.objects.all_areas()
-    print("areas", areas)
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas})
 
 
@@ -78,8 +77,7 @@ def submitted(request):
     }
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting", description=request.POST['description'])
     task.save()
-    task.output_path = os.path.join(output_path, str(task.id))
-    task.save()
+
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
         if_build = False

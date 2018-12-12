@@ -41,9 +41,17 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
             task.save()
 
 
+def get_machine_id():
+    _, files = subprocess.getstatusoutput("cat /var/lib/dbus/machine-id")
+    return files
+
+
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
+    task.output_path = os.path.join(output_path, str(task.id))
+    task.save()
+    print("machine_id:", get_machine_id())
 
     def __change_status(status):
         task.status = status
