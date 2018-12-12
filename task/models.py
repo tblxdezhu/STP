@@ -13,6 +13,7 @@ class Task(models.Model):
     area = models.CharField(max_length=100)
     celery_id = models.CharField(max_length=1000, null=True)
     status = models.CharField(max_length=30, null=True)
+    code_path = models.CharField(max_length=100, null=True)
     output_path = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=100, null=True)
     machine_id = models.CharField(max_length=50, null=True)
