@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Stream
 from django.shortcuts import render, get_object_or_404
 from .models import Task
 from results.models import Results
-from task.tasks import single_run_slam, test_celery, test_ssa, run, print_task, run_slam, get_branch, build, backup, work_flow
+from task.tasks import get_branch, build, work_flow
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
