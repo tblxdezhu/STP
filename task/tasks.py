@@ -19,6 +19,7 @@ import datetime
 from .compile_code import Compile_code
 from results.models import Results, Overview
 from results.slam_quality import SlamQuality
+from webserver.models import Machine
 
 
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
@@ -49,10 +50,12 @@ def get_machine_id():
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
-    task.output_path = os.path.join(output_path, str(task.id))
+    machine = Machine.objects.get(machine_id=get_machine_id())
+    task.output_path = os.path.join(machine.output_path, str(task.id))
     task.save()
     print("machine_id:", get_machine_id())
     print("type:", type(get_machine_id()))
+    print("output path:", task.output_path)
 
     def __change_status(status):
         task.status = status
