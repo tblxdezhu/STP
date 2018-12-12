@@ -114,7 +114,7 @@ def work_flow(if_build, task_id):
             except Exception as e:
                 print(e)
                 __change_status('SSAfailed')
-        __change_status('done')
+        # __change_status('done')
 
 
 @task
