@@ -7,7 +7,6 @@
 import os
 import subprocess
 import logging
-from .SLAM_config import *
 import multiprocessing as mp
 import shutil
 from task.models import Task
@@ -98,10 +97,11 @@ class Vehicle(Run):
 
 class Server(object):
     def __init__(self, area, task_id):
-        self.server_path = os.path.join(code_path, "algorithm_sam/build/example")
+        self.machine = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id)
+        self.server_path = os.path.join(self.machine.code_path, "algorithm_sam/build/example")
         self._get_server_path()
         self.area = area
-        self.vehicle_output_path = os.path.join(output_path, str(task_id), self.area)
+        self.vehicle_output_path = os.path.join(Task.objects.get(id=task_id).output_path, self.area)
         self._serverExampleSLAM_type = '1'
 
     def _get_server_path(self):
@@ -112,8 +112,8 @@ class Server(object):
         self.slamout = os.path.join(self.server_path, "slamout")
         self.gpgga_gps_path = os.path.join(self.server_path, "gpgga_gps")
         self.query_out = os.path.join(self.server_path, "query_out")
-        self.query_path = os.path.join(code_path, "algorithm_tools/server/serverExampleQueryDivision/build/querySectionByGps")
-        self.extractor = os.path.join(code_path, "../framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
+        self.query_path = os.path.join(self.machine.code_path, "algorithm_tools/server/serverExampleQueryDivision/build/querySectionByGps")
+        self.extractor = os.path.join(self.machine.code_path, "../framework/device/rdb-tools-debug-tools/dist/x64/bin/rtv-extractor")
         self.debug_server_path = os.path.join(self.server_path, "server_*")
 
     @property
@@ -164,7 +164,8 @@ class Server(object):
         self._copy_snippets(os.path.join(self.vehicle_output_path, mode), self.server_path, mode)
         cmd_list = [self.serverExampleSLAM_path, self.serverExampleSLAM_type, self.server_path, self.server_path]
         if mode == "slam":
-            cmd_list.append(gps_skeleton_path[self.area])
+            # cmd_list.append(gps_skeleton_path[self.area])
+            cmd_list.append(os.path.join(self.machine.data_path, Data.objects.get(area=self.area).gps_skeleton_path))
         cmd = ' '.join(cmd_list)
         Run.execute_cmd(cmd)
 
@@ -217,7 +218,7 @@ class Server(object):
             print("{} don't have snippets".format(files_path))
 
     def rtv2gps(self):
-        rtv2gpgga_gps_cmd_list = ["find", cases_path[self.area], "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path, "-g \\;"]
+        rtv2gpgga_gps_cmd_list = ["find", os.path.join(self.machine.data_path, Data.objects.get(area=self.area).data_path), "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path, "-g \\;"]
         if not os.path.exists(self.gpgga_gps_path):
             logging.info("mkdir {}".format(self.gpgga_gps_path))
             os.mkdir(self.gpgga_gps_path)

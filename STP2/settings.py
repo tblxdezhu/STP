@@ -136,3 +136,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
     os.path.join(BASE_DIR, 'test/'),
 )
+
+get_branchs_code_path = "/data1/stp_resources/env/source/core"
