@@ -20,6 +20,7 @@ from results.models import Results, Overview
 from results.slam_quality import SlamQuality
 from webserver.models import Machine
 from STP2.settings import get_branchs_code_path
+import traceback
 
 
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
@@ -92,6 +93,7 @@ def work_flow(if_build, task_id):
                 logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:
             print(e)
+            print(traceback.print_exc())
             __change_status('SLAMfailed')
 
     if task.mode == 'SSA':
@@ -125,7 +127,6 @@ def get_branch():
         print(repo)
         status, output = subprocess.getstatusoutput("git branch -a")
         print(output)
-
 
 # @task
 # def run_slam(build_status, area, tester, task_id, queue):
