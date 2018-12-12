@@ -10,14 +10,17 @@ import logging
 from .SLAM_config import *
 import multiprocessing as mp
 import shutil
+from task.models import Task
+from webserver.models import Data, Machine
 
 
 def run_slam(rtv, task_id, area, mode):
+    task = Task.objects.get(id=task_id)
     imu = rtv.replace('.rtv', '.imu')
-    case_output_path = os.path.join(output_path, str(task_id), area, mode, os.path.basename(rtv).strip('.rtv'))
+    case_output_path = os.path.join(task.output_path, str(task_id), area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
-    vehicle_exec = os.path.join(code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
+    vehicle_exec = os.path.join(task.code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
     quality_file = os.path.join(case_output_path, 'quality.txt')
     run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config, '--out', case_output_path, '--oqlt', quality_file]
     os.chdir(case_output_path)
@@ -31,7 +34,7 @@ class Run(object):
     def __init__(self, area, task_id):
         self.area = area
         self.task_id = task_id
-        self.output_path = os.path.join(output_path, str(self.task_id))
+        # self.output_path = os.path.join(output_path, str(self.task_id))
 
     def _check_data(self):
         self.__get_cases()
@@ -45,10 +48,13 @@ class Run(object):
             logging.error("rtvs and imus are not match {}".format(diff_list))
 
     def __get_cases(self):
-        self.rtvs, self.imus = self.__get_data(cases_path[self.area])
+        data = Data.objects.get(area=self.area)
+        machine = Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id)
+        self.rtvs, self.imus = self.__get_data(os.path.join(machine.data_path, data.data_path))
 
     @staticmethod
     def __get_data(data_path):
+        logging.info("data path:", data_path)
         rtvs_list = Run.find_file(data_path, "*.rtv")
         imus_list = Run.find_file(data_path, "*.imu")
         return rtvs_list[0], imus_list[0]
