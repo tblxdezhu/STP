@@ -44,17 +44,19 @@
                         <p class="panel-subtitle">Which data do you want to run?</p>
                     </div>
                     <div class="panel-body">
-                        {% for area in areas %}
-                            <input type="checkbox" value="{{ area }}" name="check_box_list"/>{{ area }}
-                        {% endfor %}
-                        <i class="fas fa-plus-circle"></i>
+                        <div class="row">
+                            {% for area in areas %}
+                                <input type="checkbox" value="{{ area }}" name="check_box_list"/>{{ area }}
+                            {% endfor %}
+                        </div>
+
                         <div class="row col-lg-offset-8">
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#skipbuild">Skip build</button>
                             <button type="button" class="btn btn-primary" id="step2back">Back</button>
                             <button type="button" class="btn btn-primary" id="step2next">Next</button>
                         </div>
                         <div class="row right">
-                            <i class="fas fa-plus-circle"></i>
+                            <button type="button" class="btn-toggle-collapse"><i class="fas fa-plus-circle"></i></button>
                         </div>
                         <script type="text/javascript">
                             $("#step2back").click(function () {
