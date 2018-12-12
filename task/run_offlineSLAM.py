@@ -21,8 +21,9 @@ def run_slam(rtv, task_id, area, mode):
     logging.info("mkdir {}".format(case_output_path))
     vehicle_exec = os.path.join(task.code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
     quality_file = os.path.join(case_output_path, 'quality.txt')
+    camera_config_path = os.path.join(task.code_path, 'vehicle/config', Data.objects.get(area=area).camera)
     run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', os.path.join(task.code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
-                    Data.objects.get(area=area).camera, '--out', case_output_path, '--oqlt', quality_file]
+                    camera_config_path, '--out', case_output_path, '--oqlt', quality_file]
     os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
