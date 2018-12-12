@@ -13,7 +13,8 @@ import os
 import linecache
 import re
 import subprocess
-from task.SLAM_config import *
+# from task.SLAM_config import *
+from task.models import Task
 
 
 class SlamQuality(object):
@@ -22,11 +23,12 @@ class SlamQuality(object):
                        "Time", "Efficiency", "Total_connections", "Projection_error_average", "Projection_error_max", "Projection_error_min", "Projection_error_total_count",
                        "Projection_0~1_count", "Projection_1~2_count", "Projection_2~5_count", "Projection_5~10_count", "Projection_>10_count", "Projection_<0_count", "Offset_average", "Offset_max",
                        "Offset_min", "Offset_variance", "Offset_total_count", "Offset_0~1m_count", "Offset_1~2m_count", "Offset_2~5m_count", "Offset_5~10m_count",
-                       "Offset_10~20m_count", "Offset_>20m_count", "MP_distance_0~100m", "MP_distance_100~300m", "MP_distance_300~500m", "MP_distance_500~1000m", "MP_distance_>1000m"]
+                       "Offset_10~20m_count", "Offset_>20m_count", "MP_distance_0~100m", "MP_distance_100~300m", "MP_distance_300~500m", "MP_distance_500~1000m", "MP_distance_>1000m",
+                       "Average_keyframe_number_each_mappoint_see", "Average_mappoint_number_each_keyframe_see", "Average_2D_point_each_keyframe_see", ]
 
     def __init__(self, task_id, area):
 
-        self.quality_path = os.path.join(output_path, str(task_id))
+        self.quality_path = Task.objects.get(id=task_id).output_path
         self.area = str(area)
 
     def quality_to_dict(self):
