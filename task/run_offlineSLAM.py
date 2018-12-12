@@ -17,7 +17,7 @@ from webserver.models import Data, Machine
 def run_slam(rtv, task_id, area, mode):
     task = Task.objects.get(id=task_id)
     imu = rtv.replace('.rtv', '.imu')
-    case_output_path = os.path.join(task.output_path, str(task_id), area, mode, os.path.basename(rtv).strip('.rtv'))
+    case_output_path = os.path.join(task.output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
     vehicle_exec = os.path.join(task.code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
@@ -54,7 +54,6 @@ class Run(object):
 
     @staticmethod
     def __get_data(data_path):
-        logging.info("data path:", data_path)
         rtvs_list = Run.find_file(data_path, "*.rtv")
         imus_list = Run.find_file(data_path, "*.imu")
         return rtvs_list[0], imus_list[0]
