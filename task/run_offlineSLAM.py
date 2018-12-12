@@ -85,7 +85,7 @@ class Vehicle(Run):
 
     def vehicle_slam(self, mode='slam'):
         mp.current_process().daemon = False
-        pool = mp.Pool(processes=process_num)
+        pool = mp.Pool(processes=Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id).process_num)
         mp.current_process().daemon = True
         for rtv in self.rtvs:
             imu = rtv.replace('.rtv', '.imu')
