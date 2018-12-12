@@ -21,7 +21,8 @@ def run_slam(rtv, task_id, area, mode):
     logging.info("mkdir {}".format(case_output_path))
     vehicle_exec = os.path.join(task.code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
     quality_file = os.path.join(case_output_path, 'quality.txt')
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', slam_config, '--ic', camera_config, '--out', case_output_path, '--oqlt', quality_file]
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', os.path.join(task.code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
+                    Data.objects.get(area=area).camera, '--out', case_output_path, '--oqlt', quality_file]
     os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
@@ -218,7 +219,8 @@ class Server(object):
             print("{} don't have snippets".format(files_path))
 
     def rtv2gps(self):
-        rtv2gpgga_gps_cmd_list = ["find", os.path.join(self.machine.data_path, Data.objects.get(area=self.area).data_path), "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path, "-g \\;"]
+        rtv2gpgga_gps_cmd_list = ["find", os.path.join(self.machine.data_path, Data.objects.get(area=self.area).data_path), "-name *.rtv -exec", self.extractor, "-f {} -d", self.gpgga_gps_path,
+                                  "-g \\;"]
         if not os.path.exists(self.gpgga_gps_path):
             logging.info("mkdir {}".format(self.gpgga_gps_path))
             os.mkdir(self.gpgga_gps_path)
