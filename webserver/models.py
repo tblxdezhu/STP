@@ -10,7 +10,7 @@ class DataManager(models.Manager):
 class Machine(models.Model):
     ip = models.CharField(max_length=20, default="127.0.0.1")
     machine_id = models.CharField(max_length=50, blank=True)
-    process_num = models.CharField(max_length=10)
+    process_num = models.IntegerField()
     code_path = models.CharField(max_length=100)
     output_path = models.CharField(max_length=100)
     data_path = models.CharField(max_length=100, default="/media/psf/Untitled/SLAM_TEST/auto_test_large")
