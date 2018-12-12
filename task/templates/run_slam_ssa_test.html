@@ -52,6 +52,9 @@
                             <button type="button" class="btn btn-primary" id="step2back">Back</button>
                             <button type="button" class="btn btn-primary" id="step2next">Next</button>
                         </div>
+                        <div class="right">
+                            <i class="fas fa-plus-circle"></i>
+                        </div>
                         <script type="text/javascript">
                             $("#step2back").click(function () {
                                 $("#step2").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
@@ -249,21 +252,18 @@
                     tag = target.tagName;
                     if (tag == "TEXTAREA") {
                         return true;
-                    }
-                    else {
+                    } else {
                         return false;
                     }
                 }
-            }
-            else {
+            } else {
                 target = event.target; //针对遵循w3c标准的浏览器，如Firefox
                 code = event.keyCode;
                 if (code == 13) {
                     tag = target.tagName;
                     if (tag == "INPUT") {
                         return false;
-                    }
-                    else {
+                    } else {
                         return true;
                     }
                 }
