@@ -180,7 +180,6 @@
                 </script-->
 
                 <div class="panel-body no-padding" id="map">
-                    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us"></script>
                 </div>
                 <style>
                     #map {
@@ -216,6 +215,8 @@
                         {% endfor %}
                     }
                 </script>
+                <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCrCqQQu48EaqNTTQQPNhzqJG4engiExkw&callback=initMap&language=en-us"></script>
+
             </div>
         </div>
     </div>
@@ -317,8 +318,7 @@
                         $('#task_status_ssa').removeClass().addClass("btn btn-success");
                         $('#task_status_backup').html("<i class=\"fa fa-check-circle\"></i>Backup");
                         $('#task_status_backup').removeClass().addClass("btn btn-success")
-                    }
-                    else {
+                    } else {
                         $('#task_status_build').removeClass().addClass("btn btn-warning");
                         $('#task_status_slam').removeClass().addClass("btn btn-warning");
                         $('#task_status_ssa').removeClass().addClass("btn btn-warning");
