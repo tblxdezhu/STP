@@ -46,6 +46,7 @@ class Trajectory:
 def data_process(folder_path):
     data = {}
     center = {}
+    print("folder_path", folder_path)
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
