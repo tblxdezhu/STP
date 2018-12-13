@@ -27,7 +27,7 @@ import subprocess
 import json
 import csv
 import time
-from webserver.models import Data
+from webserver.models import Data, Machine
 
 # from apscheduler.schedulers.background import BackgroundScheduler
 # from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
@@ -217,7 +217,7 @@ def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
     data, center_data = data_process(os.path.join(task.output_path, area))
     # return JsonResponse({'task_id': task_id, 'area': area, 'center_data': center_data[list(center_data.keys())[0]]})
-
+    print(Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path)
     kmls_data = []
     for k in get_all_kmls(os.path.join(task.output_path, area)):
         for key in sorted(data[k].keys()):
