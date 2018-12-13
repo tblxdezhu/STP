@@ -13,17 +13,18 @@ from task.models import Task
 from webserver.models import Data, Machine
 
 
-def run_slam(rtv, task_id, area, mode):
-    task = Task.objects.get(id=task_id)
+def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera_config):
     imu = rtv.replace('.rtv', '.imu')
-    case_output_path = os.path.join(task.output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
+    case_output_path = os.path.join(output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
-    vehicle_exec = os.path.join(task.code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
+    vehicle_exec = os.path.join(code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
     quality_file = os.path.join(case_output_path, 'quality.txt')
-    camera_config_path = os.path.join(task.code_path, 'vehicle/config', Data.objects.get(area=area).camera)
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', os.path.join(task.code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
-                    os.path.join(Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path, "camera_configs", Data.objects.get(area=area).camera), '--out', case_output_path,
+    # camera_config_path = os.path.join(code_path, 'vehicle/config', Data.objects.get(area=area).camera)
+    # _data_path = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path
+    # _camera_config = Data.objects.get(area=area).camera
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', os.path.join(code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
+                    os.path.join(data_path, "camera_configs", camera_config), '--out', case_output_path,
                     '--oqlt',
                     quality_file]
     os.chdir(case_output_path)
@@ -37,6 +38,11 @@ class Run(object):
     def __init__(self, area, task_id):
         self.area = area
         self.task_id = task_id
+        self.output_path = Task.objects.get(id=task_id).output_path
+        self.code_path = Task.objects.get(id=task_id).code_path
+        self.machine_data_path = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path
+        self.data_path = Data.objects.get(area=area).data_path
+        self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
 
     def _check_data(self):
@@ -51,9 +57,7 @@ class Run(object):
             logging.error("rtvs and imus are not match {}".format(diff_list))
 
     def __get_cases(self):
-        data = Data.objects.get(area=self.area)
-        machine = Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id)
-        self.rtvs, self.imus = self.__get_data(os.path.join(machine.data_path, data.data_path))
+        self.rtvs, self.imus = self.__get_data(os.path.join(self.machine_data_path, self.data_path))
 
     @staticmethod
     def __get_data(data_path):
@@ -93,7 +97,7 @@ class Vehicle(Run):
         for rtv in self.rtvs:
             imu = rtv.replace('.rtv', '.imu')
             if imu in self.imus:
-                pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode))
+                pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode, self.output_path, self.code_path, self.machine_data_path, self.camera_config))
 
         pool.close()
         pool.join()
