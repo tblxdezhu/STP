@@ -86,7 +86,7 @@ def get_all_kmls(path):
     except Exception as e:
         print(e)
 
-    # print("data_set", data_set)
+    print("data_set", data_set)
     return data_set
 
 
