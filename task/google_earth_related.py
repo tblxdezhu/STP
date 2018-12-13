@@ -76,7 +76,7 @@ def get_all_kmls(path):
                     print("dirs", dirs)
                     print("file", file)
                     print("***")
-                    case_name = root.split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
+                    case_name = root.split('/')[-2] + "_" + os.path.basename(os.path.dirname(root))
                     print("case_name", case_name)
                     if not case_name == tmp:
                         data_set[case_name] = []
