@@ -265,9 +265,9 @@ def _get_task_kml(request, task_id, area):
 #     return task.state
 
 def _get_task_status(request, task_id):
-    def __get_celery_task_status(celery_task_id):
-        celery_task = run.AsyncResult(celery_task_id)
-        return celery_task.state
+    # def __get_celery_task_status(celery_task_id):
+    #     celery_task = run.AsyncResult(celery_task_id)
+    #     return celery_task.state
 
     task = Task.objects.get(id=task_id)
     status = {}
