@@ -20,14 +20,16 @@ djcelery.setup_loader()
 BROKER_URL = 'amqp://guest@localhost//'
 # CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
 CELERY_RESULT_BACKEND = 'django-db'
+CELERYD_PREFETCH_MULTIPLIER = 1
+CELERY_ACKS_LATE = True
 # CELERY_QUEUES = (
-#     Queue('queue_env1', exchange=Exchange('test_exchange', type='direct'), routing_key='key1'),
-#     Queue('queue_env2', exchange=Exchange('test_exchange', type='direct'), routing_key='key2'),
+#     # Queue('queue_env1', exchange=Exchange('test_exchange', type='direct'), routing_key='key1'),
+#     # Queue('queue_env2', exchange=Exchange('test_exchange', type='direct'), routing_key='key2'),
 #     Queue('celery', Exchange('celery'), routing_key='celery'),
 # )
-CELERY_DEFAULT_QUEUE = 'celery'
-CELERY_DEFAULT_EXCHANGE_TYPE = 'direct'
-CELERY_DEFAULT_ROUTING_KEY = 'celery'
+# CELERY_DEFAULT_QUEUE = 'celery'
+# CELERY_DEFAULT_EXCHANGE_TYPE = 'direct'
+# CELERY_DEFAULT_ROUTING_KEY = 'celery'
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
