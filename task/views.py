@@ -218,17 +218,17 @@ def _get_task_kml(request, task_id, area):
     data, center_data = data_process(os.path.join(task.output_path, area))
     # return JsonResponse({'task_id': task_id, 'area': area, 'center_data': center_data[list(center_data.keys())[0]]})
     print("data_path", Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path)
-    kmls_data = []
-    for k in get_all_kmls(os.path.join(task.output_path, area)):
-        for key in sorted(data[k].keys()):
-            kmls_data.append(data[k][key])
-    content = {
-        'area': area,
-        'task': task,
-        'branchs': eval(task.branch),
-        'center_data': center_data[list(center_data.keys())[0]],
-        'kmls_data': kmls_data
-    }
+    # kmls_data = []
+    # for k in get_all_kmls(os.path.join(task.output_path, area)):
+    #     for key in sorted(data[k].keys()):
+    #         kmls_data.append(data[k][key])
+    # content = {
+    #     'area': area,
+    #     'task': task,
+    #     'branchs': eval(task.branch),
+    #     'center_data': center_data[list(center_data.keys())[0]],
+    #     'kmls_data': kmls_data
+    # }
     # for kml_data in kmls_data:
     #     print(kml_data)
     # print(center_data[list(center_data.keys())[0]])
