@@ -16,6 +16,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from webserver import views
 from task.views import dashboard, all_tasks, all_my_tasks, _get_dashboard_status
+from results import views as results_views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -30,5 +31,6 @@ urlpatterns = [
     url(r'^coming/', views.coming),
     url(r'^basic_use', views.basic_use),
     url(r'^about/', views.about),
-    url(r'^forgot/', views.forgot)
+    url(r'^forgot/', views.forgot),
+    url(r'^analyse/', results_views.analyse_data)
 ]
