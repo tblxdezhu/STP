@@ -13,6 +13,12 @@ class ResultsManager(models.Manager):
     def total(self, task_id, keyword):
         return sum([float(i[0]) for i in self.filter(task_id=task_id).values_list(keyword)])
 
+    def area_total(self, task_id, keyword, area):
+        return sum([float(i[0]) for i in self.filter(task_id=task_id).filter(area=area).values_list(keyword)])
+
+    def show_data_of_area(self, task_id, keyword, area):
+        return [str(i[0]) for i in self.filter(task_id=task_id).filter(area=area).order_by('id').values_list(keyword)]
+
 
 class Results(models.Model):
     task_id = models.IntegerField()

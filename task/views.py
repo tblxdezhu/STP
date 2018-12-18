@@ -14,9 +14,9 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar, Line, Grid, configure
+from pyecharts import Bar, Line, Grid, configure, Page
+# configure(global_theme='walden')
 
-configure(global_theme='walden')
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
@@ -194,14 +194,30 @@ def task_process(request, task_id):
         for key in sorted(data[k].keys()):
             kmls_data.append(data[k][key])
 
-    attr = Results.objects.show_task_id()
-    line = line_time_kf(attr)
-    myechart1 = line.render_embed()
-    script_list = line.get_js_dependencies()
+    page = Page()
+    line = draw_line("slam_len", task_id, keyword="slam_len")
+    page.add(line)
+    line = draw_line("kf num", task_id, keyword="kfs")
+    page.add(line)
+    myechart = page.render_embed()
+    script_list = page.get_js_dependencies()
 
     return render(request, 'submitted.html',
-                  {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart2': myechart1, 'script_list': script_list,
+                  {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart': myechart, 'script_list': script_list,
                    'kmls_data': kmls_data})
+
+
+def draw_line(name, task_id, keyword):
+    task = Task.objects.get(id=task_id)
+    print(task.area)
+    line = Line(name)
+    line.width = 'auto'
+    for area in eval(task.area):
+        print(area)
+        attr = Results.objects.show_data_of_area(task_id=task_id, keyword="id", area=str(area))
+        value = Results.objects.show_data_of_area(task_id=task_id, keyword=keyword, area=area)
+        line.add(str(area), attr, value, is_smooth=True, is_label_show=True, is_datazoom_show=True)
+    return line
 
 
 @login_required
@@ -347,6 +363,7 @@ def bar_mp_kf(attr):
 
 
 def line_time_kf(attr):
+    print(attr)
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [round(t / total_kf[total_time.index(t)], 4) for t in total_time]
