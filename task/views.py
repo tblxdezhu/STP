@@ -214,7 +214,7 @@ def draw_line(task_id):
         attr = Results.objects.show_data_of_area(task_id=task_id, keyword="id", area=str(area))
         for data in data_to_show:
             value = Results.objects.show_data_of_area(task_id=task_id, keyword=data, area=area)
-            line.add(str(data), attr, value, is_smooth=True, is_datazoom_show=True, is_datazoom_extra_show=True, datazoom_range=[20, 100],datazoom_extra_range=[0,100])
+            line.add(str(data), attr, value, is_smooth=True, is_datazoom_show=True, datazoom_range=[20, 100], is_more_utils=True)
         page.add(line)
     return page
 
