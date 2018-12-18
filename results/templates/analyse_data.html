@@ -9,60 +9,35 @@
                     <h3 class="panel-title">Analyse</h3>
                 </div>
                 <div class="panel-body">
-                    <select id="example-getting-started" multiple="multiple">
-                        <option value="cheese">Cheese</option>
-                        <option value="tomatoes">Tomatoes</option>
-                        <option value="mozarella">Mozzarella</option>
-                        <option value="mushrooms">Mushrooms</option>
-                        <option value="pepperoni">Pepperoni</option>
-                        <option value="onions">Onions</option>
-                    </select>
+                    <div id="element_id">
+                        <select id="test1" class="province">
+                            <option value="浙江省" selected>浙江省</option>
+                        </select>
+                        <select id="test2" class="city"></select>
+                        <select id="test3" class="area"></select>
+
+                    </div>
                     <script type="text/javascript">
                         $(document).ready(function () {
-                            $('#example-getting-started').multiselect();
+
+                            $("#element_id").cxSelect({
+                                url: '/analyse/get_json_data',
+                                selects: ['province', 'city', 'area'],
+                                emptyStyle: 'none'
+                            });
+
+                            {#$('#test1').attr("multiple", "multiple");#}
+                            {#$('#test1').multiselect();#}
+                            {#$('#test2').attr("multiple", "multiple");#}
+                            {#$('#test2').multiselect();#}
+                            {#$('#test3').attr("multiple", "multiple");#}
+                            {#$('#test3').multiselect();#}
                         });
+
                     </script>
                 </div>
-                {#                    <div class="form-group">#}
-                {#                        <select class="selectpicker" multiple>#}
-                {#                            <option value="">Mustard</option>#}
-                {#                            <option value="">Ketchup</option>#}
-                {#                            <option value="">Relish</option>#}
-                {#                        </select>#}
-                {#                    </div>#}
-
-
-                {#                    <select id="selID" onchange="selcity()">#}
-                {#                        <option>--选择省市--</option>#}
-                {#                        <option>北京</option>#}
-                {#                        <option>山东</option>#}
-                {#                        <option>湖南</option>#}
-                {#                        <option>广东</option>#}
-                {#                    </select>#}
-                {##}
-                {#                    <select id="subID">#}
-                {#                        <option>--选择城市--</option>#}
-                {#                    </select>#}
-
             </div>
-
-            {#            <script type="text/javascript">#}
-            {#                function selcity() {#}
-            {#                    var arr = [["--选择城市--"], ["海定区", "东城区", "西城区", "朝阳区"], ["济南", "青岛", "日照", "威海"],#}
-            {#                        ["长沙", "郴州", "岳阳", "株洲"], ["广州", "深圳", "惠州", "东莞"]];#}
-            {#                    var index = document.getElementById("selID").selectedIndex;#}
-            {#                    var subNode = document.getElementById("subID");#}
-            {#                    var citys = arr[index];#}
-            {##}
-            {#                    subNode.options.length = 0;   //清空之前选项#}
-            {#                    for (var x = 0; x < citys.length; x++) {#}
-            {#                        var optNode = document.createElement("option");#}
-            {#                        optNode.innerText = citys[x];#}
-            {#                        subNode.appendChild(optNode);  //选择添加到子选项中#}
-            {#                    }#}
-            {#                }#}
-            {#            </script>#}
         </div>
     </div>
-    </div>
+
 {% endblock %}

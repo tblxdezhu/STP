@@ -150,7 +150,14 @@
 <script src="{% static 'resources/completer.js' %}"></script>
 <script src="{% static 'resources/bootstrap3-typeahead.js' %}"></script>
 {#<script src="{% static 'assets/vendor/bootstrap-select/js/bootstrap-select.min.js' %}"></script>#}
-<script src="{% static 'assets/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js'%}"></script>
+<script src="{% static 'assets/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js' %}"></script>
+<script src="{% static 'assets/scripts/cxSelect/jquery.cxselect.js' %}"></script>
+<script>
+    $(function () {
+        $.cxSelect.defaults.url = 'cityData.min.json';
+        $.cxSelect.defaults.emptyStyle = 'none';
+    })
+</script>
 {#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>#}
 
 {#<script src="{% static 'assets/vendor/bootstrap-select/js/i18n/defaults-*.js' %}"></script>#}
