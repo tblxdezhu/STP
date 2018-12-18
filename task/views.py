@@ -194,11 +194,8 @@ def task_process(request, task_id):
         for key in sorted(data[k].keys()):
             kmls_data.append(data[k][key])
 
-    page = Page()
-    line = draw_line("slam_len", task_id, keyword="slam_len")
-    page.add(line)
-    line = draw_line("kf num", task_id, keyword="kfs")
-    page.add(line)
+    page = draw_line(task_id)
+
     myechart = page.render_embed()
     script_list = page.get_js_dependencies()
 
@@ -207,17 +204,19 @@ def task_process(request, task_id):
                    'kmls_data': kmls_data})
 
 
-def draw_line(name, task_id, keyword):
+def draw_line(task_id):
+    page = Page()
     task = Task.objects.get(id=task_id)
-    print(task.area)
-    line = Line(name)
-    line.width = 'auto'
+    data_to_show = ['mp_kf', 'time', 'weak_rate', 'kfs', 'mps', 'slam_len']
     for area in eval(task.area):
-        print(area)
+        line = Line(area)
+        line.width = 'auto'
         attr = Results.objects.show_data_of_area(task_id=task_id, keyword="id", area=str(area))
-        value = Results.objects.show_data_of_area(task_id=task_id, keyword=keyword, area=area)
-        line.add(str(area), attr, value, is_smooth=True, is_label_show=True, is_datazoom_show=True)
-    return line
+        for data in data_to_show:
+            value = Results.objects.show_data_of_area(task_id=task_id, keyword=data, area=area)
+            line.add(str(data), attr, value, is_smooth=True, is_datazoom_show=True, is_datazoom_extra_show=True, datazoom_range=[20, 100],datazoom_extra_range=[0,100])
+        page.add(line)
+    return page
 
 
 @login_required
