@@ -198,10 +198,11 @@ def task_process(request, task_id):
 
     myechart = page.render_embed()
     script_list = page.get_js_dependencies()
+    task_ip = Machine.objects.get(machine_id=task.machine_id).ip
 
     return render(request, 'submitted.html',
                   {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart': myechart, 'script_list': script_list,
-                   'kmls_data': kmls_data})
+                   'kmls_data': kmls_data, 'task_ip': task_ip})
 
 
 def draw_line(task_id):

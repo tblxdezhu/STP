@@ -249,9 +249,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row"></div>
                     <div class="row">
                         <div class="col-md-12">
-{#                            <p>{{ task.output_path }}</p>#}
+                            {#                            <p>{{ task.output_path }}</p>#}
+                            <div class="col-md-12">
+                                <br>
+                                <p>You can find all results of your task in this address: <code>sftp://roaddb@{{ task_ip }}{{ task.output_path }}</code></p>
+                            </div>
                         </div>
                     </div>
                 </div>
