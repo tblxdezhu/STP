@@ -240,15 +240,19 @@
                 </div>
                 <div class="panel-body ">
                     <div class="row">
-                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                            SLAM Kmls
-                        </button>
-                        <button class="btn btn-default btn-toastr-callback" id="btn_download" data-message="No data generate" onclick="window.location.href='{% url 'test:download' task.id %}'">
-                            SSA Kmls
-                        </button>
+                        <div class="col-md-12">
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SLAM Kmls</button>
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-primary" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SSA Kmls</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <p>{{ task.output_path }}</p>
+                        <div class="col-md-12">
+{#                            <p>{{ task.output_path }}</p>#}
+                        </div>
                     </div>
                 </div>
             </div>
