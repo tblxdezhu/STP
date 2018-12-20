@@ -49,7 +49,7 @@
                         <p class="panel-subtitle">Which data do you want to run?</p>
                     </div>
                     <div class="panel-body">
-                        <select id="select_area_id" multiple="multiple">
+                        <select id="select_area_id" multiple="multiple" name="select_list">
                             {% for area in areas %}
                                 <option value="{{ area }}">{{ area }}</option>
                             {% endfor %}
