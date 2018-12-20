@@ -25,7 +25,7 @@ class Data(models.Model):
     camera = models.CharField(max_length=100)
     gps_skeleton_path = models.CharField(max_length=100, blank=True)
     road_skeleton_path = models.CharField(max_length=100, blank=True)
-    tag = models.CharField(max_length=20)
+    tag = models.CharField(max_length=20, default="tmp")
     objects = DataManager()
 
     def __str__(self):
