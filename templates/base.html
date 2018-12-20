@@ -184,18 +184,18 @@
                         }
                     }
                 </style>
-                <script type="text/javascript">
-                    var _LoadingHtml = '<div class="spinner" id="loader"></div>';
-                    document.write(_LoadingHtml);
-                    document.onreadystatechange = completeLoading;
-
-                    function completeLoading() {
-                        if (document.readyState == "complete") {
-                            var loadingMask = document.getElementById('loader');
-                            loadingMask.parentNode.removeChild(loadingMask);
-                        }
-                    }
-                </script>
+{#                <script type="text/javascript">#}
+{#                    var _LoadingHtml = '<div class="spinner" id="loader"></div>';#}
+{#                    document.write(_LoadingHtml);#}
+{#                    document.onreadystatechange = completeLoading;#}
+{##}
+{#                    function completeLoading() {#}
+{#                        if (document.readyState == "complete") {#}
+{#                            var loadingMask = document.getElementById('loader');#}
+{#                            loadingMask.parentNode.removeChild(loadingMask);#}
+{#                        }#}
+{#                    }#}
+{#                </script>#}
                 {% block content %}{% endblock %}
             </div>
         </div>
