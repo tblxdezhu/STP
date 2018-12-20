@@ -60,7 +60,8 @@ def test(request):
     #     print("Scheduler started!")
     # except Exception:
     #     pass
-    areas = Data.objects.all_areas()
+    # areas = Data.objects.all_areas()
+    areas = Data.objects.all()
     return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas})
 
 
