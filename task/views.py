@@ -75,7 +75,7 @@ def submitted(request):
         'algorithm_sam': request.POST['algorithm_sam'],
         'vehicle': request.POST['vehicle']
     }
-    task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting", description=request.POST['description'])
+    task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
     task.save()
 
     if_build = True
