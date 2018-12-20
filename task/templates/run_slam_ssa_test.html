@@ -65,9 +65,6 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-                        <script type="text/javascript">
-                            $('#example-multiple-optgroups').multiselect();
-                        </script>
                         <select id="example-multiple-optgroups">
                             <optgroup label="Group 1">
                                 <option value="1-1">Option 1.1</option>
@@ -83,6 +80,8 @@
                         <script type="text/javascript">
                             $(document).ready(function () {
                                 $('#select_area_id').multiselect();
+                                $('#example-multiple-optgroups').multiselect();
+
                             });
                         </script>
                         {#                        {% for area in areas %}#}
