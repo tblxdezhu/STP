@@ -50,9 +50,21 @@
                     </div>
                     <div class="panel-body">
                         <select id="select_area_id" multiple="multiple" name="select_list">
-                            {% for area in areas %}
-                                <option value="{{ area }}">{{ area }}</option>
-                            {% endfor %}
+                            <optgroup label="largescale" class="group-1">
+                                {% for area in areas %}
+                                    {% ifequal area.tag 'largescale' %}
+                                        <option value="{{ area }}">{{ area }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </optgroup>
+                            <optgroup label="test" class="group-1">
+                                {% for area in areas %}
+                                    {% ifequal area.tag 'test' %}
+                                        <option value="{{ area }}">{{ area }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </optgroup>
+
                         </select>
                         <script type="text/javascript">
                             $(document).ready(function () {
