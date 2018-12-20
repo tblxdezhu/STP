@@ -16,7 +16,7 @@ from django.http import HttpResponse
 from django.template import loader
 from pyecharts import Bar, Line, Grid, configure, Page
 # configure(global_theme='walden')
-
+from django.shortcuts import render_to_response
 from celery.task.control import revoke
 from celery import chain, signature
 from celery.app import control
@@ -60,6 +60,8 @@ def test(request):
 
 @login_required
 def submitted(request):
+    if request.user == 'guest':
+        return render_to_response("404.html")
     branchs = {
         'common': request.POST['common'],
         'algorithm_common': request.POST['algorithm_common'],
