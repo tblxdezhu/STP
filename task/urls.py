@@ -9,6 +9,8 @@ from task import views
 
 app_name = "task"
 
+handler404 = views.page_not_found
+
 urlpatterns = [
     url(r'^$', views.test),
     url(r'^submitted$', views.submitted),
