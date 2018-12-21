@@ -32,5 +32,6 @@ urlpatterns = [
     url(r'^basic_use', views.basic_use),
     url(r'^about/', views.about),
     url(r'^forgot/', views.forgot),
-    url(r'^analyse/', results_views.analyse_data)
+    url(r'^analyse/', include('results.urls')),
+
 ]

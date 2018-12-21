@@ -50,6 +50,10 @@ from webserver.models import Data, Machine
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
 
+def page_not_found(request):
+    return render(request, '404.html')
+
+
 @login_required
 def test(request):
     get_branch()
