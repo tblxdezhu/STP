@@ -39,51 +39,7 @@
 
             </div>
             <div class="row">
-                <div class="col-md-9">
-                    <div id="headline-chart" class="ct-chart"></div>
-                </div>
-                <div class="col-md-3">
-                    <div class="weekly-summary text-right">
-                        <span class="number">000</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 12%</span>
-                        <span class="info-label">XXXX</span>
-                    </div>
-                    <div class="weekly-summary text-right">
-                        <span class="number">000</span> <span class="percentage"><i class="fa fa-caret-up text-success"></i> 23%</span>
-                        <span class="info-label">XXXX</span>
-                    </div>
-                    <div class="weekly-summary text-right">
-                        <span class="number">0000</span> <span class="percentage"><i class="fa fa-caret-down text-danger"></i> 8%</span>
-                        <span class="info-label">XXXX</span>
-                    </div>
-                </div>
-                <script>
-                    $(function () {
-                        var data, options;
-
-                        // headline charts
-                        data = {
-                            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                            series: [
-                                [23, 29, 24, 40, 25, 24, 35],
-                                [14, 25, 18, 34, 29, 38, 44],
-                            ]
-                        };
-
-                        options = {
-                            height: 300,
-                            showArea: true,
-                            showLine: false,
-                            showPoint: false,
-                            fullWidth: true,
-                            axisX: {
-                                showGrid: false
-                            },
-                            lineSmooth: false,
-                        };
-
-                        new Chartist.Line('#headline-chart', data, options);
-                    });
-                </script>
+                <div class="col-md-9">{{ charts }}</div>
             </div>
         </div>
     </div>

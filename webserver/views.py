@@ -5,6 +5,8 @@ from .forms import UserForm
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
 from task.models import Task
+from pyecharts import Bar, Line, Timeline, Overlap, Pie
+from random import randint
 
 
 # Create your views here.
@@ -37,6 +39,7 @@ def logout(request):
 
 @login_required
 def index(request):
+
     return render(request, 'dashboard.html')
 
 
@@ -48,6 +51,7 @@ def elements(request):
 def forgot(request):
     if request.method == 'GET':
         uf = UserForm()
+        return HttpResponseRedirect('/login')
         return render(request, 'login.html', {'forms': uf, 'forgot_passwd': True})
 
 
