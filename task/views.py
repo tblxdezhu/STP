@@ -60,8 +60,9 @@ def test(request):
 
 @login_required
 def submitted(request):
+    print(request.user)
     if request.user == 'guest':
-        return render_to_response("404.html")
+        return render(request, "404.html")
     branchs = {
         'common': request.POST['common'],
         'algorithm_common': request.POST['algorithm_common'],
