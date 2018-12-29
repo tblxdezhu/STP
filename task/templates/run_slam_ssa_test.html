@@ -28,7 +28,9 @@
                                 </script>
                                 <input id="input_config" type="file" class="file" data-preview-file-type="text">
                                 <script>
-                                    $("#input_config").fileinput();
+                                    $(document).ready(function () {
+                                        $("#input_config").fileinput();
+                                    });
                                 </script>
                                 {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
                                 {#                                    <input type="file" name="fafafa">#}
