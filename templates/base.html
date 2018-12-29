@@ -184,18 +184,18 @@
                         }
                     }
                 </style>
-{#                <script type="text/javascript">#}
-{#                    var _LoadingHtml = '<div class="spinner" id="loader"></div>';#}
-{#                    document.write(_LoadingHtml);#}
-{#                    document.onreadystatechange = completeLoading;#}
-{##}
-{#                    function completeLoading() {#}
-{#                        if (document.readyState == "complete") {#}
-{#                            var loadingMask = document.getElementById('loader');#}
-{#                            loadingMask.parentNode.removeChild(loadingMask);#}
-{#                        }#}
-{#                    }#}
-{#                </script>#}
+                {#                <script type="text/javascript">#}
+                {#                    var _LoadingHtml = '<div class="spinner" id="loader"></div>';#}
+                {#                    document.write(_LoadingHtml);#}
+                {#                    document.onreadystatechange = completeLoading;#}
+                {##}
+                {#                    function completeLoading() {#}
+                {#                        if (document.readyState == "complete") {#}
+                {#                            var loadingMask = document.getElementById('loader');#}
+                {#                            loadingMask.parentNode.removeChild(loadingMask);#}
+                {#                        }#}
+                {#                    }#}
+                {#                </script>#}
                 {% block content %}{% endblock %}
             </div>
         </div>
@@ -219,14 +219,10 @@
 <script src="{% static 'assets/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js' %}"></script>
 <script src="{% static 'assets/scripts/cxSelect/jquery.cxselect.js' %}"></script>
 <script src="{% static 'assets/vendor/fakeLoader/fakeLoader.js' %}"></script>
-<script src="{% static 'assets/vendor/fileinput/js/purify.js' %}"></script>
-<script src="{% static 'assets/vendor/fileinput/js/piexif.js' %}"></script>
-<script src="{% static 'assets/vendor/fileinput/js/sortable.js' %}"></script>
-<script src="{% static 'assets/vendor/fileinput/js/purify.js' %}"></script>
+
 
 <script src="{% static 'assets/vendor/fileinput/js/fileinput.js' %}"></script>
-<script src="{% static 'assets/vendor/fileinput/js/theme.js' %}"></script>
-
+<script src="{% static 'assets/vendor/fileinput/js/locales/zh.js' %}"></script>
 
 
 <script>
