@@ -28,12 +28,21 @@
                                 </script>
                                 <form enctype="multipart/form-data">
                                     <label for="file-0b">Test invalid input type</label>
-                                    <div class="file-loading">
-                                        <input id="file-0b" name="file-0b" class="file" type="text" multiple data-min-file-count="1" data-theme="fas">
-                                    </div>
+                                    <form enctype="multipart/form-data">
+                                        <div class="file-loading">
+                                            <input id="kv-explorer" type="file" multiple>
+                                        </div>
+                                        <br>
+                                        <div class="file-loading">
+                                            <input id="file-0a" class="file" type="file" multiple data-min-file-count="1" data-theme="fas">
+                                        </div>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                    </form>
                                     <script>
                                         $(document).on('ready', function () {
-                                            $("#file-0b").fileinput();
+                                            $("#file-0a").fileinput();
                                         });
                                     </script>
                                 </form>
