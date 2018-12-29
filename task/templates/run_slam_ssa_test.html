@@ -26,12 +26,18 @@
                                         $('#select_mode_id').multiselect();
                                     });
                                 </script>
-                                <input id="input_config" type="file" class="file-actions" data-preview-file-type="text">
-                                <script>
-                                    $(document).ready(function () {
-                                        $("#input_config").fileinput({'showUpload':false, 'previewFileType':'any'});
-                                    });
-                                </script>
+                                <form enctype="multipart/form-data">
+                                    <label for="file-0b">Test invalid input type</label>
+                                    <div class="file-loading">
+                                        <input id="file-0b" name="file-0b" class="file" type="text" multiple data-min-file-count="1" data-theme="fas">
+                                    </div>
+                                    <script>
+                                        $(document).on('ready', function () {
+                                            $("#file-0b").fileinput();
+                                        });
+                                    </script>
+                                </form>
+
                                 {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
                                 {#                                    <input type="file" name="fafafa">#}
                                 {#                                    <input type="submit">#}
