@@ -29,7 +29,7 @@
                                 <input id="input_config" type="file" class="file" data-preview-file-type="text">
                                 <script>
                                     $(document).ready(function () {
-                                        $("#input_config").fileinput();
+                                        $("#input_config").fileinput({'showUpload':false, 'previewFileType':'any'});
                                     });
                                 </script>
                                 {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
