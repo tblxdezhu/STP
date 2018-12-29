@@ -26,10 +26,14 @@
                                         $('#select_mode_id').multiselect();
                                     });
                                 </script>
-                                <form action="/upload/" method="post" enctype="multipart/form-data">
-                                    <input type="file" name="fafafa">
-                                    <input type="submit">
-                                </form>
+                                <input id="input_config" type="file" class="file" data-preview-file-type="text">
+                                <script>
+                                    $("#input-id").fileinput();
+                                </script>
+                                {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
+                                {#                                    <input type="file" name="fafafa">#}
+                                {#                                    <input type="submit">#}
+                                {#                                </form>#}
                             </div>
                         </div>
                         <div class="row col-lg-offset-10">
