@@ -7,7 +7,6 @@
 
 from celery import task
 import time
-from django_celery_results.models import TaskResult
 import os
 from .run_offlineSLAM import Vehicle, Run, Server
 import logging
