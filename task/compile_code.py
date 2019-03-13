@@ -35,10 +35,12 @@ class Compile_code(object):
         self.compile_info["code_path"] = os.path.join(code_path, 'core')
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
+        self.compile_info["algorithm_common_slam"] = branchs["algorithm_common_slam"]
         self.compile_info["vehicle"]=branchs["vehicle"]
 
         self.compile_info["stash_common"] = "ssh://git@stash.ygomi.com:7999/rc/common.git"
         self.compile_info["stash_algo_common"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common.git"
+        self.compile_info["stash_algo_common_slam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common_slam.git"
         self.compile_info["stash_algo_vehicle_offlineslam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_vehicle_offlineslam.git"
         self.compile_info["stash_algo_sam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_sam.git"
         self.compile_info["stash_vehicle"]="ssh://git@stash.ygomi.com:7999/rc/vehicle.git"
@@ -70,13 +72,8 @@ class Compile_code(object):
 
     def __ssh_run_cmd__(self, cmds):
 
-        client = None
         results = dict()
         try:
-            # client = paramiko.SSHClient()
-            # client.load_system_host_keys()
-            # client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            # client.connect(sys_ip, 22, username=username, password=password)
             cmd = cmds["clear_repo_cmd"] + ";" + cmds["git_clone"] + ";" + cmds["git_checkout_cmd"]
 
             if cmds["git_commit_point"]:
@@ -92,11 +89,6 @@ class Compile_code(object):
             cmd += ";" + cmds["compile_cmd"]
 
             print(cmd)
-            # stdin_compile, stdout_compile, stderr_compile = client.exec_command(command=cmd)
-            # results["compile_cmd"] = stdout_compile.channel.recv_exit_status()
-            # results["compile_cmd_detail"] = stdout_compile.readlines()
-            # print(results["compile_cmd"])
-            # print(results["compile_cmd_detail"])
             subprocess.getstatusoutput(cmd)
 
             return results
@@ -104,8 +96,6 @@ class Compile_code(object):
             print("Connect virtual machine failed!")
             raise
 
-        # finally:
-        #     client.close()
 
     def __compile_common(self):
 
@@ -120,12 +110,22 @@ class Compile_code(object):
 
     def __compile_algo_common(self):
 
-        cmds = None
         cmds = self.__compile_cmds__(self.compile_info["code_path"],
                                      "algorithm_common",
                                      self.compile_info["stash_algo_common"],
                                      self.compile_info["algorithm_common"], "",
                                      "-g")
+
+        compile_result = self.__ssh_run_cmd__(cmds)
+
+        return compile_result
+
+    def __compile_algo_common_slam(self):
+
+        cmds = self.__compile_cmds__(self.compile_info["code_path"],
+                                     "algorithm_common_slam",
+                                     self.compile_info["stash_algo_common_slam"],
+                                     self.compile_info["algorithm_common_slam"], "")
 
         compile_result = self.__ssh_run_cmd__(cmds)
 
@@ -168,7 +168,10 @@ class Compile_code(object):
             result_common = self.__compile_common()
         except UnicodeDecodeError:
             pass
+
         result_algo_common = self.__compile_algo_common()
+        result_algo_common_slam=self.__compile_algo_common_slam()
+
         result_algo = ""
         # print(self.compile_info["is_sam"])
         if not self.compile_info["is_sam"]:
