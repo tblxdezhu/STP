@@ -10,6 +10,14 @@
           <option name="port" value="22" />
         </fileTransfer>
       </webServer>
+      <webServer id="2df16227-16fa-4fb6-ac96-adf65107411e" name="10.69.143.17" url="http://10.69.143.17">
+        <fileTransfer host="10.69.143.17" port="22" rootFolder="/home/roaddb" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

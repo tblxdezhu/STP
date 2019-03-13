@@ -3,6 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/STP.iml" filepath="$PROJECT_DIR$/.idea/STP.iml" />
+      <module fileurl="file://$USER_HOME$/Google Drive/SourceCode2read/ansible/.idea/ansible.iml" filepath="$USER_HOME$/Google Drive/SourceCode2read/ansible/.idea/ansible.iml" />
+      <module fileurl="file://$USER_HOME$/Google Drive/SourceCode2read/python-patterns/.idea/python-patterns.iml" filepath="$USER_HOME$/Google Drive/SourceCode2read/python-patterns/.idea/python-patterns.iml" />
+      <module fileurl="file://$USER_HOME$/rdb_test_integration_script/.idea/rdb_test_integration_script.iml" filepath="$USER_HOME$/rdb_test_integration_script/.idea/rdb_test_integration_script.iml" />
     </modules>
   </component>
 </project>

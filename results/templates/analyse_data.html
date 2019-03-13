@@ -8,36 +8,80 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">Analyse</h3>
                 </div>
-                <div class="panel-body">
-                    <div id="element_id">
-                        <select id="test1" class="province">
-                            <option value="浙江省" selected>浙江省</option>
-                        </select>
-                        <select id="test2" class="city"></select>
-                        <select id="test3" class="area"></select>
+                <form action="analyse_data" method="post" id="chooose">
+                    {% csrf_token %}
+                    <div class="panel-body">
+                        <div>
+                            <select class="selectpicker" multiple data-max-options="2" data-live-search="true" title="Select tester" id="choosetester">
+                                <option>Zhenxuan.xu</option>
+                                <option>Hong.he</option>
+                            </select>
+                            <select class="selectpicker" data-live-search="true" title="Select area" id="choosearea">
+                                <option>Milford</option>
+                                <option>Fuji</option>
+                                <option>GM</option>
+                            </select>
 
+                            <select class="selectpicker" multiple title="Select task id" data-selected-text-format="count > 3" data-actions-box="true" data-size="8" id="choosetaskid">
+                                <optgroup label="Condiments">
+                                    {% for task in tasks %}
+                                        <option value="{{ task.id }}" data-subtext="{{ task.description }}">{{ task.id }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            </select>
+                            <div class="row col-lg-offset-10">
+                                <button type="button" class="btn btn-primary" id="showcharts" onclick="get_results_form_db($('#choosetester').val(),$('#choosearea').val(),$('#choosetaskid').val())">submit
+                                </button>
+                            </div>
+                            <div class="panel-body no-padding" id="chartsofresults">
+                            </div>
+                            <script>
+                                function get_results_form_db(tester,area,task_ids) {
+                                    $.getJSON('/analyse/'+tester+'_'+area+'_'+task_ids,function (ret) {
+                                        $("#chartsofresults").html(ret.charts)
+                                    })
+                                }
+                            </script>
+                        </div>
                     </div>
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-
-                            $("#element_id").cxSelect({
-                                url: '/analyse/get_json_data',
-                                selects: ['province', 'city', 'area'],
-                                emptyStyle: 'none'
-                            });
-
-                            {#$('#test1').attr("multiple", "multiple");#}
-                            {#$('#test1').multiselect();#}
-                            {#$('#test2').attr("multiple", "multiple");#}
-                            {#$('#test2').multiselect();#}
-                            {#$('#test3').attr("multiple", "multiple");#}
-                            {#$('#test3').multiselect();#}
-                        });
-
-                    </script>
-                </div>
+                </form>
             </div>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    $('.selectpicker').selectpicker();
+                })
+            </script>
         </div>
+        {#                <div class="panel-body">#}
+        {#                    <div id="element_id">#}
+        {#                        <select id="test1" class="province">#}
+        {#                            <option value="浙江省" selected>浙江省</option>#}
+        {#                        </select>#}
+        {#                        <select id="test2" class="city"></select>#}
+        {#                        <select id="test3" class="area"></select>#}
+        {##}
+        {#                    </div>#}
+        {#                    <script type="text/javascript">#}
+        {#                        $(document).ready(function () {#}
+        {##}
+        {#                            $("#element_id").cxSelect({#}
+        {#                                url: '/analyse/get_json_data',#}
+        {#                                selects: ['province', 'city', 'area'],#}
+        {#                                emptyStyle: 'none'#}
+        {#                            });#}
+        {##}
+        {#$('#test1').attr("multiple", "multiple");#}
+        {#$('#test1').multiselect();#}
+        {#$('#test2').attr("multiple", "multiple");#}
+        {#$('#test2').multiselect();#}
+        {#$('#test3').attr("multiple", "multiple");#}
+        {#$('#test3').multiselect();#}
+        {#                        });#}
+        {##}
+        {#                    </script>#}
+        {#                </div>#}
+    </div>
+    </div>
     </div>
 
 {% endblock %}

@@ -2,25 +2,170 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a12e752-6cc2-46da-a135-0cfe88686d96" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lab/templates/lab.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lab/views.py" afterDir="false" />
+      <change afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/rtv_extractor_imu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/STP.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/STP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b7852db1-d25a-4e65-b177-f2489cd5c214/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STP2/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/STP2/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/STP2/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/STP2/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/jsons/test.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/jsons/test.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/build.py" beforeDir="false" afterPath="$PROJECT_DIR$/task/build.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/build_config.py" beforeDir="false" afterPath="$PROJECT_DIR$/task/build_config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/task/templates/submitted.html" beforeDir="false" afterPath="$PROJECT_DIR$/task/templates/submitted.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/gps2.kml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/performance.py" beforeDir="false" afterPath="$PROJECT_DIR$/results/performance.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/slam2.kml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/templates/analyse_data.html" beforeDir="false" afterPath="$PROJECT_DIR$/results/templates/analyse_data.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/results/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/results/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/scripts/cityData.min.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/assets/scripts/cityData.min.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/bootstrap-multiselect/less/bootstrap-multiselect.less" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/css/fileinput-rtl.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/css/fileinput-rtl.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/css/fileinput.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/css/fileinput.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/examples/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/img/loading-sm.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/img/loading.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/fileinput.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/fileinput.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/LANG.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ar.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/az.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/bg.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ca.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/cr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/cs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/da.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/de.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/el.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/es.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/et.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/fi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/fr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/gl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/he.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/hu.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/id.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/it.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ja.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ka.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/kr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/kz.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/lt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/nl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/no.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/pl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/pt-BR.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/pt.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ro.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/ru.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/sk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/sl.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/sv.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/th.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/tr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/uk.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/uz.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/vi.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/zh-TW.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/locales/zh.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/piexif.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/piexif.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/purify.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/purify.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/sortable.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/js/plugins/sortable.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/nuget/Package.nuspec" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/nuget/build.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/scss/fileinput-rtl.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/scss/fileinput.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/scss/themes/explorer-fa/theme.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/scss/themes/explorer-fas/theme.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/scss/themes/explorer/theme.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fa/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fa/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fa/theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fa/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fas/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fas/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fas/theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer-fas/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer/theme.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/explorer/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/fa/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/fa/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/fas/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/fas/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/gly/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/fileinput/themes/gly/theme.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/fonts/Linearicons-Free.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/fonts/Linearicons-Free.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/fonts/Linearicons-Free.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/fonts/Linearicons-Free.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/fonts/Linearicons-Free.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/linearicons/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/page/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/page/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/toastr/toastr.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/toastr/toastr.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/toastr/toastr.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/assets/vendor/toastr/toastr.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/coming_soon/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/data/29113410_4ot3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/quality.txt" beforeDir="false" afterPath="$PROJECT_DIR$/task/quality.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/task/tasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/task/templates/step2.html" beforeDir="false" afterPath="$PROJECT_DIR$/task/templates/step2.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_airflow.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_airflow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/text.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test/text.txt" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/.idea/dataSources.xml" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/.idea/misc.xml" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/auto_test/test_sample.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/auto_test/test_sample.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/measure/cal_rmse.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/measure/cal_rmse.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/run_offlineSLAM.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/run_offlineSLAM.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/lazyproperty.py" beforeDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_init.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_init.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mixin.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mixin.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mro.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mro.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/2018-12-14_12-24-33.033_new_alignment_merge_memmingen-2018.1214.2239.kml" beforeDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/RF_lib.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/RF_lib.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/analysisSensorDataV2.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/analysisSensorDataV2.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/cal_time.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/cal_time.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/compair_height.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/compair_height.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp.txt" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp.txt" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_charts_new.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_charts_new.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_echarts.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_echarts.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/get_data_tmp.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/get_data_tmp.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/readQuality2csv.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/readQuality2csv.py" afterDir="false" />
+      <change beforePath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/test_vehicleSLAM.py" beforeDir="false" afterPath="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/test_vehicleSLAM.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/STP$get_data_tmp.coverage" NAME="get_data_tmp Coverage Results" MODIFIED="1545789552285" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$test_mixin.coverage" NAME="test_mixin Coverage Results" MODIFIED="1548742150774" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+    <SUITE FILE_PATH="coverage/STP$draw_echarts.coverage" NAME="draw_echarts Coverage Results" MODIFIED="1545789606082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$readQuality2csv.coverage" NAME="readQuality2csv Coverage Results" MODIFIED="1545793911771" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$pcd2pgl_point.coverage" NAME="pcd2pgl_point Coverage Results" MODIFIED="1545290285013" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$draw_charts_new.coverage" NAME="draw_charts_new Coverage Results" MODIFIED="1545369909088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$Effective_Python.coverage" NAME="Effective_Python Coverage Results" MODIFIED="1545991774445" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$test_mro.coverage" NAME="test_mro Coverage Results" MODIFIED="1548830463798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+    <SUITE FILE_PATH="coverage/STP$Cookbook.coverage" NAME="Cookbook Coverage Results" MODIFIED="1548225601384" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+    <SUITE FILE_PATH="coverage/STP$select_query.coverage" NAME="select_query Coverage Results" MODIFIED="1544758446144" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -36,152 +181,107 @@
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="stp@10.69.142.12" type="feb32156:DbDataSourceImpl" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="stp@10.69.142.12" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="db" type="feb32156:DbDataSourceImpl" />
+        <item name="stp@10.69.142.12" type="feb32156:DbDataSourceImpl" />
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="main: schema" type="90513b60:SqliteImplModel$Schema" />
+        <item name="stp: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="stp@10.69.142.12" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="stp: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="task_task: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="stp@10.69.142.12" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="stp: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="webserver_data: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="tysql@localhost" type="feb32156:DbDataSourceImpl" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="tysql@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="tysql@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="tysql: schema" type="76f4a085:MysqlImplModel$Schema" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="tysql@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="tysql: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-1798451193">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.open.time.0" value="1" />
-          <entry key="project.opened" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="css" value="1" />
-          <entry key="django_celery_results_taskresult" value="2" />
-          <entry key="html" value="77" />
-          <entry key="jpg" value="4" />
-          <entry key="json" value="9" />
-          <entry key="py" value="97" />
-          <entry key="sh" value="4" />
-          <entry key="task_task" value="9" />
-          <entry key="txt" value="1" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="Bash" value="4" />
-          <entry key="CSS" value="1" />
-          <entry key="Database Element" value="11" />
-          <entry key="HTML" value="77" />
-          <entry key="Image" value="4" />
-          <entry key="JSON" value="9" />
-          <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Python" value="97" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="Django Console" value="157" />
-          <entry key="css" value="3" />
-          <entry key="html" value="5338" />
-          <entry key="json" value="91" />
-          <entry key="py" value="7529" />
-          <entry key="sh" value="32" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="Bash" value="32" />
-          <entry key="CSS" value="3" />
-          <entry key="HTML" value="5338" />
-          <entry key="JSON" value="91" />
-          <entry key="Python" value="7686" />
-        </counts>
-      </usages-collector>
-    </session>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/STP2/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="65" column="62" lean-forward="true" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
-              <folding>
-                <element signature="e#378#387#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lab/templates/lab.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9180">
-              <caret line="394" column="23" selection-start-line="394" selection-start-column="23" selection-end-line="394" selection-end-column="23" />
-            </state>
-          </provider>
+        <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_charts_new.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/STP2/urls.py">
+        <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/compair_height.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_echarts.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/readQuality2csv.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="568">
-              <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+            <state relative-caret-position="383">
+              <caret line="116" column="31" lean-forward="true" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
               <folding>
-                <element signature="e#557#598#0" expanded="true" />
+                <element signature="e#167#176#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/urls.py">
+        <entry file="file://$PROJECT_DIR$/results/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
+            <state relative-caret-position="658">
+              <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
               <folding>
-                <element signature="e#159#200#0" expanded="true" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab/urls.py">
+        <entry file="file://$PROJECT_DIR$/results/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-              <folding>
-                <element signature="e#159#200#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lab/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1475">
-              <caret line="63" column="74" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="74" />
-              <folding>
-                <element signature="e#24#72#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/task/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+            <state relative-caret-position="324">
+              <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
               <folding>
                 <element signature="e#157#198#0" expanded="true" />
               </folding>
@@ -189,29 +289,37 @@
           </provider>
         </entry>
       </file>
-      <file pinned="true" current-in-tab="false">
-        <entry file="remoteDeploymentFS://&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/task/templates/dashboard.html">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/task/templates/step2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-415">
-              <caret line="41" column="32" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+            <state relative-caret-position="-5425" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/task/tasks.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2193">
+              <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
+              <folding>
+                <element signature="e#159#182#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/task/compile_code.py">
+        <entry file="file://$PROJECT_DIR$/results/performance.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="573">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
-            </state>
+            <state relative-caret-position="-1631" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/base.html">
+        <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/run_offlineSLAM.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="419">
-              <caret line="107" column="111" selection-start-line="107" selection-start-column="111" selection-end-line="107" selection-end-column="111" />
+            <state relative-caret-position="8343">
+              <caret line="323" column="61" selection-start-line="323" selection-start-column="61" selection-end-line="323" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -228,87 +336,115 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>if_test_active</find>
       <find>TIME</find>
       <find>username</find>
       <find>lnr</find>
       <find>wait</find>
       <find>sea</find>
       <find>if_te</find>
-      <find>script_list</find>
       <find>kwarg</find>
       <find>memorySize-16</find>
+      <find>self.output_path</find>
+      <find>.output_path</find>
+      <find>Quality path not exist</find>
+      <find>query section</find>
+      <find>filter</find>
+      <find>script_list</find>
+      <find>pop</find>
+      <find>googl</find>
+      <find>rtv</find>
+      <find>2018</find>
+      <find>gps</find>
+      <find>isDriverlog</find>
+      <find>print</find>
+      <find>get_task_kml</find>
+      <find>task_sta</find>
+      <find>submitted</find>
+      <find>data_set</find>
+      <find>folder_path</find>
+      <find>Parsing quality error as following</find>
+      <find>django-ce</find>
+      <find>os.walk</find>
+      <find>commands</find>
     </findStrings>
     <replaceStrings>
       <replace>branchs</replace>
+      <replace>rtv&quot;</replace>
+      <replace>,&quot;2018</replace>
+      <replace>obj</replace>
     </replaceStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/static/resources/animate.css" />
-        <option value="$PROJECT_DIR$/webserver/views.py" />
-        <option value="$PROJECT_DIR$/task/templates/all_tasks.html" />
-        <option value="$PROJECT_DIR$/task/templates/all_my_tasks.html" />
-        <option value="$PROJECT_DIR$/configs/test.txt" />
-        <option value="$PROJECT_DIR$/configs/branch.json" />
-        <option value="$PROJECT_DIR$/task/urls.py" />
-        <option value="$PROJECT_DIR$/ssa.sh" />
-        <option value="$PROJECT_DIR$/task/run_offlineSLAM.py" />
-        <option value="$PROJECT_DIR$/test.sh" />
-        <option value="$PROJECT_DIR$/test.py" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/test.py" />
-        <option value="$PROJECT_DIR$/templates/footer.html" />
-        <option value="$PROJECT_DIR$/task/models.py" />
-        <option value="$PROJECT_DIR$/task/SLAM_config.py" />
-        <option value="$PROJECT_DIR$/data/templates/mini.html" />
-        <option value="$PROJECT_DIR$/data/templates/error.html" />
-        <option value="$PROJECT_DIR$/data/urls.py" />
-        <option value="$PROJECT_DIR$/templates/header.html" />
-        <option value="$PROJECT_DIR$/templates/coming_soon/coming_soon.html" />
-        <option value="$PROJECT_DIR$/data/views.py" />
-        <option value="$PROJECT_DIR$/data/templates/coming_soon/coming_soon.html" />
-        <option value="$PROJECT_DIR$/data/templates/large.html" />
-        <option value="$PROJECT_DIR$/task/build_config.py" />
-        <option value="$PROJECT_DIR$/task/build.py" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/static/jsons/test.json" />
-        <option value="$PROJECT_DIR$/static/jsons/test.json" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/task/views.py" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/task/templates/run_slam_ssa_test.html" />
-        <option value="$PROJECT_DIR$/task/templates/run_slam_ssa_test.html" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/static/jsons/branchs.json" />
+        <option value="$PROJECT_DIR$/results/models.py" />
+        <option value="$USER_HOME$/anaconda2/envs/STP/lib/python3.6/site-packages/pyecharts/chart.py" />
+        <option value="$PROJECT_DIR$/static/assets/vendor/pageloader/index.html" />
+        <option value="$PROJECT_DIR$/static/assets/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/static/assets/vendor/fakeLoader/fakeLoader.js" />
+        <option value="$PROJECT_DIR$/static/assets/vendor/bootstrap/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/task/google_earth_related.py" />
-        <option value="$PROJECT_DIR$/task/templates/dashboard.html" />
-        <option value="&lt;7dbdb492-4722-4eca-a130-62ccf835eb48&gt;/task/templates/dashboard.html" />
-        <option value="$PROJECT_DIR$/task/tasks.py" />
-        <option value="$PROJECT_DIR$/task/templates/submitted.html" />
-        <option value="$PROJECT_DIR$/task/compile_code.py" />
-        <option value="$PROJECT_DIR$/task/views.py" />
-        <option value="$PROJECT_DIR$/STP2/settings.py" />
+        <option value="$PROJECT_DIR$/webserver/models.py" />
+        <option value="$PROJECT_DIR$/webserver/admin.py" />
+        <option value="$PROJECT_DIR$/task/urls.py" />
         <option value="$PROJECT_DIR$/STP2/urls.py" />
-        <option value="$PROJECT_DIR$/lab/urls.py" />
+        <option value="$PROJECT_DIR$/templates/404.html" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_charts_new.py" />
+        <option value="$PROJECT_DIR$/task/templates/dashboard.html" />
+        <option value="$PROJECT_DIR$/webserver/views.py" />
+        <option value="$PROJECT_DIR$/task/views.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/get_data_tmp.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/compair_height.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/data_tmp.txt" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_echarts.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/readQuality2csv.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/pcd2pgl_point.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/Effective_python_classmethod.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/Effective_Python.py" />
+        <option value="$PROJECT_DIR$/task/templates/run_slam_ssa_test.html" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/RF_lib.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/auto_test/test.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/auto_test/test_sample.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/Cookbook.py" />
+        <option value="$USER_HOME$/Downloads/tools/analysisSensorDataV1_2.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/lazyproperty.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_lazyproperty.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_init.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/analysisSensorDataV2.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mixin.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mro.py" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/bamboo_var_master.ini" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/replaceIP2ini.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/5b96aeef-ab57-4ad2-9095-5a77ec79072e/console.sql" />
+        <option value="$PROJECT_DIR$/task/templates/submitted.html" />
+        <option value="$PROJECT_DIR$/templates/header.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/lab/templates/lab.html" />
-        <option value="$PROJECT_DIR$/lab/views.py" />
+        <option value="$PROJECT_DIR$/static/assets/vendor/bootstrap-select/css/bootstrap-select.css" />
+        <option value="$PROJECT_DIR$/results/urls.py" />
+        <option value="$PROJECT_DIR$/results/templates/analyse_data.html" />
+        <option value="$PROJECT_DIR$/results/views.py" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/rtv_extractor_imu.py" />
+        <option value="&lt;2df16227-16fa-4fb6-ac96-adf65107411e&gt;/tmp.py" />
+        <option value="$PROJECT_DIR$/task/tasks.py" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
-  </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1440" />
-    <option name="y" value="-369" />
+    <option name="x" value="-1920" />
+    <option name="y" value="-259" />
     <option name="width" value="1920" />
     <option name="height" value="1080" />
   </component>
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectView">
@@ -316,7 +452,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -332,13 +467,7 @@
             <path>
               <item name="STP" type="b2602c69:ProjectViewProjectNode" />
               <item name="STP" type="462c0819:PsiDirectoryNode" />
-              <item name="lab" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="STP" type="b2602c69:ProjectViewProjectNode" />
-              <item name="STP" type="462c0819:PsiDirectoryNode" />
-              <item name="lab" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="results" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="STP" type="b2602c69:ProjectViewProjectNode" />
@@ -353,15 +482,38 @@
             <path>
               <item name="STP" type="b2602c69:ProjectViewProjectNode" />
               <item name="STP" type="462c0819:PsiDirectoryNode" />
+              <item name="task" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="STP" type="462c0819:PsiDirectoryNode" />
+              <item name="webserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rdb_test_integration_script" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rdb_test_integration_script" type="462c0819:PsiDirectoryNode" />
+              <item name="offlineSLAM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="STP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rdb_test_integration_script" type="462c0819:PsiDirectoryNode" />
+              <item name="offlineSLAM" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
@@ -375,14 +527,15 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/results/templates" />
       <recent name="$PROJECT_DIR$/templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lab" />
-      <recent name="$PROJECT_DIR$/lab/templates" />
-      <recent name="$PROJECT_DIR$/task" />
-      <recent name="$PROJECT_DIR$/templates" />
-      <recent name="$PROJECT_DIR$/static" />
+      <recent name="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test" />
+      <recent name="$PROJECT_DIR$/static/assets/vendor/fileinput" />
+      <recent name="$PROJECT_DIR$/static/assets/vendor/fileinput/js" />
+      <recent name="$PROJECT_DIR$/static/assets/vendor/fileinput/css" />
+      <recent name="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -397,7 +550,139 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.replaceIP2ini">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="python-patterns" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="replaceIP2ini" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rdb_test_integration_script" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/replaceIP2ini.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_init" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rdb_test_integration_script" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_init.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_lazyproperty" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rdb_test_integration_script" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_lazyproperty.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_mixin" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rdb_test_integration_script" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mixin.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test_mro" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="rdb_test_integration_script" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_mro.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="STP" type="Python.DjangoServer" factoryName="Django server">
       <module name="STP" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -421,6 +706,19 @@
       <option name="customRunCommand" value="" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.replaceIP2ini" />
+        <item itemvalue="Python.test_mro" />
+        <item itemvalue="Python.test_mixin" />
+        <item itemvalue="Python.test_init" />
+        <item itemvalue="Python.test_lazyproperty" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -432,410 +730,392 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538750804879</updated>
+      <workItem from="1544494975060" duration="261000" />
+      <workItem from="1544495257439" duration="423000" />
+      <workItem from="1544495716644" duration="1116000" />
+      <workItem from="1544498255889" duration="119081000" />
+      <workItem from="1545508880927" duration="30807000" />
+      <workItem from="1545882311539" duration="5244000" />
+      <workItem from="1545902332252" duration="288000" />
+      <workItem from="1545902632844" duration="25599000" />
+      <workItem from="1547109584807" duration="51256000" />
+      <workItem from="1548150247249" duration="12067000" />
+      <workItem from="1548818776317" duration="11480000" />
+      <workItem from="1548915514120" duration="15793000" />
+      <workItem from="1549100102530" duration="54000" />
+      <workItem from="1550470358086" duration="25892000" />
+      <workItem from="1550729470516" duration="11364000" />
+      <workItem from="1551347665117" duration="9079000" />
+      <workItem from="1551862196492" duration="15486000" />
+      <workItem from="1552459631364" duration="585000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="335875000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-369" width="1920" height="1080" extended-state="0" />
+    <frame x="-1920" y="-259" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.11767838" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6525199" visible="true" weight="0.14962727" />
+      <window_info id="Structure" order="1" sideWeight="0.34748012" side_tool="true" weight="0.18423855" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" weight="0.32988626" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17580144" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29886246" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Console" order="7" weight="0.32988626" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32988626" />
+      <window_info anchor="bottom" id="Database Console" order="7" sideWeight="0.49893504" weight="0.30713546" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.2057911" />
-      <window_info anchor="bottom" id="Python Console" order="12" weight="0.32885212" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" weight="0.32909784" />
-      <window_info anchor="right" id="Remote Host" visible="true" weight="0.13365282" />
+      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4978701" weight="0.21509825" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.21820062" />
+      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.5021299" side_tool="true" weight="0.18097208" />
+      <window_info anchor="bottom" id="File Transfer" order="14" weight="0.32988626" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" weight="0.14270501" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.32960597" />
+      <window_info anchor="right" id="Database" order="4" weight="0.15974441" />
+      <window_info anchor="right" id="Remote Host" order="5" visible="true" weight="0.07933972" />
+      <window_info anchor="right" id="Coverage" order="6" side_tool="true" />
+      <window_info anchor="right" x="0" y="0" width="430" height="880" id="Documentation" order="7" side_tool="true" weight="0.14217253" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webserver/models.py">
+    <entry file="file://$USER_HOME$/Google Drive/SourceCode2read/ansible/lib/ansible/cli/arguments/optparse_helpers.py">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/Google Drive/SourceCode2read/ansible/bin/ansible">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="108" column="29" selection-start-line="108" selection-start-column="29" selection-end-line="108" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/test/python_cookbook/test_property.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="25" column="13" lean-forward="true" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/query12.9.log.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/ServerExampleQuery_2018-12-14_12-48.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/query.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/select_query.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+          <folding>
+            <element signature="e#165#198#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/bamboo_var_master.inibak" />
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/logfile_install_release_all.log">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="973">
+          <caret line="8249" column="73" lean-forward="true" selection-start-line="8249" selection-start-column="67" selection-end-line="8249" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/hosts.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="8" column="1" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/bamboo_var_master.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/webserver/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-37">
-          <caret line="31" column="19" lean-forward="true" selection-start-line="31" selection-start-column="19" selection-end-line="31" selection-end-column="19" />
+        <state relative-caret-position="-524">
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="das://b7852db1-d25a-4e65-b177-f2489cd5c214/schema/main/table/django_celery_results_taskresult">
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/replaceIP2ini.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-432">
+          <caret line="22" column="26" lean-forward="true" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="e#332#348#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/assets/vendor/bootstrap-select/js/bootstrap-select.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#69#76#1" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/assets/vendor/bootstrap-select/css/bootstrap-select.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="21" lean-forward="true" selection-start-line="18" selection-start-column="21" selection-end-line="18" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/views.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/footer.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/5b96aeef-ab57-4ad2-9095-5a77ec79072e/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="196" column="26" selection-start-line="196" selection-start-column="26" selection-end-line="196" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webserver/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="5940">
+          <caret line="220" column="81" selection-start-line="220" selection-start-column="81" selection-end-line="220" selection-end-column="81" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/templates/analyse_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="945">
+          <caret line="35" column="79" selection-start-line="35" selection-start-column="79" selection-end-line="35" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/templates/dashboard.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://a5141e80-e0a8-4ac8-9458-54e6d9c8d58d/schema/stp/table/webserver_data">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/task/templates/all_my_tasks.html">
+    <entry file="file://$PROJECT_DIR$/webserver/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
+        <state relative-caret-position="543">
+          <caret line="26" column="58" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/task/templates/all_tasks.html">
+    <entry file="file://$PROJECT_DIR$/webserver/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="35" column="32" lean-forward="true" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/test.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/configs/branch.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/STP/lib/python3.6/multiprocessing/pool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1183">
-          <caret line="152" column="8" selection-start-line="152" selection-start-column="8" selection-end-line="152" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda2/envs/STP/lib/python3.6/site-packages/celery/canvas.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="729" column="5" lean-forward="true" selection-start-line="729" selection-start-column="5" selection-end-line="729" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="8" lean-forward="true" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssa.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webserver/urls.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state>
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#32#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/templates/submitted.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4833">
+          <caret line="179" column="20" selection-start-line="179" selection-start-column="16" selection-end-line="180" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/templates/run_slam_ssa_test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="4" column="22" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/google_earth_related.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="88" column="11" selection-start-line="88" selection-start-column="11" selection-end-line="88" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/admin.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/models.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://a5141e80-e0a8-4ac8-9458-54e6d9c8d58d/schema/stp/table/task_task">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/task/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="16" column="75" lean-forward="true" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://a5141e80-e0a8-4ac8-9458-54e6d9c8d58d/schema/stp/table/results_results">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/STP2/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="627">
+          <caret line="58" column="21" selection-start-line="58" selection-end-line="59" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/task/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="19" column="32" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="486">
+          <caret line="18" column="59" lean-forward="true" selection-start-line="18" selection-start-column="59" selection-end-line="18" selection-end-column="59" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/data/fuji.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/templates/mini.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/data/fuji2.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/data/mem.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/data/fuji3.jpg">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/coming_soon/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1432">
-          <caret line="35" lean-forward="true" selection-start-line="20" selection-end-line="38" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="22" column="58" selection-start-line="22" selection-start-column="58" selection-end-line="22" selection-end-column="58" />
-          <folding>
-            <element signature="e#28#63#0" expanded="true" />
-            <marker date="1539855316229" expanded="true" signature="163:168" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/templates/coming_soon/coming_soon.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/templates/error.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/templates/large.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://b7852db1-d25a-4e65-b177-f2489cd5c214/schema/main/table/task_task">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/SLAM_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/build_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/run_offlineSLAM.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1846">
-          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-          <folding>
-            <element signature="e#169#178#0" expanded="true" />
-            <marker date="1539664544612" expanded="true" signature="524:529" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/footer.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/coming_soon.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/jsons/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="1" column="22" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/header.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="25" column="38" selection-start-line="25" selection-start-column="38" selection-end-line="25" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/templates/run_slam_ssa_test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1064">
-          <caret line="103" column="185" selection-start-line="103" selection-start-column="172" selection-end-line="103" selection-end-column="185" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/templates/dashboard.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
-          <caret line="93" column="28" selection-start-line="93" selection-start-column="28" selection-end-line="93" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/build.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-129">
-          <caret line="75" column="47" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="55" />
-          <folding>
-            <element signature="e#159#168#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/templates/submitted.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="52">
-          <caret line="180" selection-start-line="180" selection-end-line="180" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/google_earth_related.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="55" column="37" selection-start-line="55" selection-start-column="37" selection-end-line="55" selection-end-column="37" />
-          <folding>
-            <element signature="e#174#183#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="108" column="26" selection-start-line="108" selection-start-column="26" selection-end-line="108" selection-end-column="26" />
-          <folding>
-            <element signature="e#159#182#0" expanded="true" />
-            <marker date="1540362144112" expanded="true" signature="478:807" ph="..." />
-            <marker date="1540362144112" expanded="true" signature="3269:3274" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/task/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="471">
-          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
+        <state relative-caret-position="452">
+          <caret line="86" column="10" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-            <marker date="1540363608593" expanded="true" signature="8702:8703" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/task/compile_code.py">
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/analysisSensorDataV2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="132" selection-start-line="132" selection-end-line="132" />
+        <state relative-caret-position="-4237">
+          <folding>
+            <element signature="e#749#780#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Downloads/lab/models.py">
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/rtv_extractor_imu.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="50" column="42" selection-start-line="50" selection-start-column="42" selection-end-line="50" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_charts_new.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/compair_height.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/draw_echarts.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/run_offlineSLAM.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="107" column="111" selection-start-line="107" selection-start-column="111" selection-end-line="107" selection-end-column="111" />
+        <state relative-caret-position="8343">
+          <caret line="323" column="61" selection-start-line="323" selection-start-column="61" selection-end-line="323" selection-end-column="61" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/STP2/settings.py">
+    <entry file="file://$PROJECT_DIR$/results/performance.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="65" column="62" lean-forward="true" selection-start-line="65" selection-start-column="62" selection-end-line="65" selection-end-column="62" />
+        <state relative-caret-position="-1631" />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/rdb_test_integration_script/offlineSLAM/tools/readQuality2csv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="383">
+          <caret line="116" column="31" lean-forward="true" selection-start-line="116" selection-start-column="31" selection-end-line="116" selection-end-column="31" />
           <folding>
-            <element signature="e#378#387#0" expanded="true" />
+            <element signature="e#167#176#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/task/urls.py">
+    <entry file="file://$PROJECT_DIR$/results/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        <state relative-caret-position="658">
+          <caret line="34" column="38" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/results/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
           <folding>
             <element signature="e#157#198#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/urls.py">
+    <entry file="file://$PROJECT_DIR$/task/templates/step2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="12" column="36" lean-forward="true" selection-start-line="12" selection-start-column="36" selection-end-line="12" selection-end-column="36" />
-          <folding>
-            <element signature="e#159#200#0" expanded="true" />
-          </folding>
-        </state>
+        <state relative-caret-position="-5425" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/STP2/urls.py">
+    <entry file="file://$PROJECT_DIR$/task/tasks.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
+        <state relative-caret-position="2193">
+          <caret line="127" column="21" selection-start-line="127" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
           <folding>
-            <element signature="e#557#598#0" expanded="true" />
+            <element signature="e#159#182#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="15" column="1" lean-forward="true" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-          <folding>
-            <element signature="e#159#200#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1475">
-          <caret line="63" column="74" lean-forward="true" selection-start-line="63" selection-start-column="13" selection-end-line="63" selection-end-column="74" />
-          <folding>
-            <element signature="e#24#72#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lab/templates/lab.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9180">
-          <caret line="394" column="23" selection-start-line="394" selection-start-column="23" selection-end-line="394" selection-end-column="23" />
         </state>
       </provider>
     </entry>

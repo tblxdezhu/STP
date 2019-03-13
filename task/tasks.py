@@ -69,10 +69,8 @@ def work_flow(if_build, task_id):
         task.save()
         logging.info("status change to {}".format(status))
 
-    print(if_build, task.mode, task.area, task_id)
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
     build(eval(task.branch), task_id, if_build)
-
     for area in eval(task.area):
         vehicle = Vehicle(str(area), task.id)
         __change_status('SLAM')
@@ -128,45 +126,3 @@ def get_branch():
         print(repo)
         status, output = subprocess.getstatusoutput("git branch -a")
         print(output)
-
-# @task
-# def run_slam(build_status, area, tester, task_id, queue):
-#     if build_status == 0:
-#         print("build ok")
-#     task = Task.objects.get(id=task_id)
-#     task.status = "SLAM"
-#     date = datetime.datetime.now().strftime('%Y%m%d_%H%M%S')
-#     vehicle = Vehicle(area, tester)
-#     task.output_path = os.path.join(output_path, str(task_id), area, vehicle.mode)
-#     task.save()
-#
-#     subtask_id_list = []
-#     for rtv in vehicle.rtvs:
-#         imu = rtv.replace('.rtv', '.imu')
-#         case_output_path = os.path.join(task.output_path, os.path.basename(rtv).strip('.rtv'))
-#         if imu in vehicle.imus:
-#             single_task = single_run_slam.apply_async(args=[rtv, imu, slam_config, camera_config, case_output_path], queue=queue)
-#             print(single_task.task_id)
-#             subtask_id_list.append(single_task.task_id)
-#
-#     celery_task = Task.objects.get(id=task_id)
-#     celery_task.celery_id = subtask_id_list
-#     celery_task.save()
-#     return vehicle.output_path
-
-#
-# @task
-# def run(area, tester, mode="SLAM"):
-#     vehicle = Vehicle(area, mode, tester)
-#     vehicle.vehicle_slam()
-#     # with open("test.pkl", 'wb') as f:
-#     #     print("save pkl")
-#     #     pickle.dump(vehicle, f)
-#     return vehicle.output_path
-
-
-# @task
-# def test_ssa(output_path):
-#     print("running SSA : path:{}".format(output_path))
-#     subprocess.call(['/Users/test1/PycharmProjects/github/STP/ssa.sh'], shell=True)
-#     print("SSA run over")

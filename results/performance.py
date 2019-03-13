@@ -52,11 +52,12 @@ class Calculate(object):
             if not len(self.get_points(self.slam_kml)) == len(self.get_points(self.gps_kml)):
                 raise IndexError
             else:
-                return [self._cal_distance(self.get_points(self.slam_kml)[i], self.get_points(self.gps_kml)[i]) for i in range(len(self.get_points(self.gps_kml)))]
+                return [self._cal_distance(self.get_points(self.slam_kml)[i], self.get_points(self.gps_kml)[i]) for i in range(len(self.get_points(self.slam_kml)))]
         except IndexError:
             print("the points in slam and gps kml were not equal")
             print("slam.kml : {}".format(len(self.get_points(self.slam_kml))))
             print("gps.kml : {}".format(len(self.get_points(self.gps_kml))))
+            return [self._cal_distance(self.get_points(self.slam_kml)[i], self.get_points(self.gps_kml)[i+3]) for i in range(len(self.get_points(self.slam_kml)))]
 
     @staticmethod
     def _cal_distance(point_1, point_2):
@@ -84,5 +85,5 @@ class Calculate(object):
 
 
 if __name__ == '__main__':
-    cal = Calculate(slam_kml="slam.kml", gps_kml="gps.kml")
+    cal = Calculate(slam_kml="slam_final_pose.kml", gps_kml="slam_pre_process_gps.kml")
     print(cal.cal_rmse())

@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="16" />
+  <component name="PublishConfigData" serverName="16">
+    <serverData>
+      <paths name="10.69.143.17">
+        <serverdata>
+          <mappings>
+            <mapping local="$USER_HOME$/rdb_test_integration_script" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="16">
+        <serverdata>
+          <mappings>
+            <mapping local="$USER_HOME$/rdb_test_integration_script" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>

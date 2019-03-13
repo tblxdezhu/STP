@@ -10,5 +10,6 @@ from results import views
 
 urlpatterns = [
     url(r'^$', views.analyse_data),
+    url(r'^(?P<info>[\S]*)$', views.get_charts_from_db),
     url(r'^get_json_data/', views.get_json_data)
 ]
