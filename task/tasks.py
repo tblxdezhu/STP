@@ -50,6 +50,7 @@ def get_machine_id():
 
 @task
 def work_flow(if_build, task_id):
+    print("in work flow")
     task = Task.objects.get(id=task_id)
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
