@@ -88,7 +88,7 @@ def submitted(request):
         if_build = False
 
     print("if_build:", if_build)
-    work_flow.apply_async(args=[if_build, task.id])
+    # work_flow.apply_async(args=[if_build, task.id])
     # for area in task.area:
     #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
     # schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3),replace_existing=True)
