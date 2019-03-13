@@ -18,8 +18,8 @@ from kombu import Exchange, Queue
 djcelery.setup_loader()
 # BROKER_URL = 'amqp://guest:guest@myhost:5672//'
 BROKER_URL = 'amqp://guest@localhost//'
-# CELERY_RESULT_BACKEND = 'amqp://guest@localhost//'
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_RESULT_BACKEND = 'amqp://guest:guest@myhost:5672//'
+# CELERY_RESULT_BACKEND = 'django-db'
 CELERYD_PREFETCH_MULTIPLIER = 1
 CELERY_ACKS_LATE = True
 # CELERY_QUEUES = (

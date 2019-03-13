@@ -19,7 +19,6 @@ from results.models import Results, Overview
 from results.slam_quality import SlamQuality
 from webserver.models import Machine
 from STP2.settings import get_branchs_code_path
-import traceback
 
 
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
