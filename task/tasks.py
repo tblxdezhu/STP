@@ -79,8 +79,10 @@ def work_flow(if_build, task_id):
             __change_status('SLAMdone')
             try:
                 task_result = SlamQuality(task_id, area).quality_to_dict()
-                logging.info(task_result)
+                logging.info("task_result:",task_result)
+
                 for case_result in task_result[0][area]:
+                    print("case_result:",case_result)
                     result = Results.objects.create(
                         task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
                         kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
