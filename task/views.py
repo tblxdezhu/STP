@@ -84,6 +84,8 @@ def submitted(request):
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
         if_build = False
+
+    print("if_build:", if_build)
     work_flow.apply_async(args=[if_build, task.id])
     # for area in task.area:
     #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
