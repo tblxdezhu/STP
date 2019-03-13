@@ -91,7 +91,7 @@ class Vehicle(Run):
         super(Vehicle, self).__init__(area, task_id)
         super(Vehicle, self)._check_data()
 
-    def Zvehicle_slam(self, mode='slam'):
+    def vehicle_slam(self, mode='slam'):
         mp.current_process().daemon = False
         pool = mp.Pool(processes=Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id).process_num)
         mp.current_process().daemon = True
