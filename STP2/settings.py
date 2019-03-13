@@ -56,7 +56,6 @@ INSTALLED_APPS = (
     'webserver',
     'task',
     'djcelery',
-    'django_celery_results',
     'data',
     'lab',
     'results',
