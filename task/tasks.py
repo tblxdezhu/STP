@@ -83,12 +83,17 @@ def work_flow(if_build, task_id):
 
                 for case_result in task_result[0][area]:
                     print("case_result:",case_result)
-                    result = Results.objects.create(
-                        task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
-                        kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
-                        avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
-                        mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
-                    )
+                    if not case_result:
+                        result = Results.objects.create(
+                            task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
+                            kfs=case_result['Total_number_of_KFs'], rtv_frames=case_result['Total_frames'], mps=case_result['Total_number_of_MPs'],
+                            avg_track_len_mp=case_result['Average_track_length_of_MP'], weak_rate=case_result['Weak_convisibility_frame_rate'],
+                            mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
+                        )
+                    else:
+                        result = Results.objects.create(
+                            task_id=task.id, area=area, mode='slam', rtv_name='', slam_len=0, gps_len=0,kfs=0, rtv_frames=0, mps=0,avg_track_len_mp=0, weak_rate=0,mp_kf=0, time=0, efficiency=0
+                        )
             except Exception as e:
                 logging.info("Parsing quality error as following, please operate the database manually:{}".format(e))
         except Exception as e:
