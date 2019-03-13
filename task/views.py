@@ -93,7 +93,7 @@ def submitted(request):
     def get_machine_id():
         _, machine_id = subprocess.getstatusoutput("cat /var/lib/dbus/machine-id")
         return machine_id
-
+    print(get_machine_id())
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
     task.machine_id = machine.machine_id
