@@ -27,21 +27,21 @@
                                     });
                                 </script>
 {#                                <label class="control-label" for="testfile">上传文件</label>#}
-                                <input class="file" type="file" id="testfile" name="test" multiple>
-                                <script>
-                                    $('#testfile').fileinput({
-                                        language: 'zh',
-                                        uploadUrl: location.pathname + 'upload/',
-                                        showCaption: true,
-                                        showUpload: true,
-                                        showRemove: true,
-                                        showClose: true,
-                                        layoutTemplates: {
-                                            actionDelete: ''
-                                        },
-                                        browseClass: 'btn btn-primary'
-                                    });
-                                </script>
+{#                                <input class="file" type="file" id="testfile" name="test" multiple>#}
+{#                                <script>#}
+{#                                    $('#testfile').fileinput({#}
+{#                                        language: 'zh',#}
+{#                                        uploadUrl: location.pathname + 'upload/',#}
+{#                                        showCaption: true,#}
+{#                                        showUpload: true,#}
+{#                                        showRemove: true,#}
+{#                                        showClose: true,#}
+{#                                        layoutTemplates: {#}
+{#                                            actionDelete: ''#}
+{#                                        },#}
+{#                                        browseClass: 'btn btn-primary'#}
+{#                                    });#}
+{#                                </script>#}
                                 {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
                                 {#                                    <input type="file" name="fafafa">#}
                                 {#                                    <input type="submit">#}
@@ -69,7 +69,8 @@
                         <p class="panel-subtitle">Which data do you want to run?</p>
                     </div>
                     <div class="panel-body">
-                        <select id="select_area_id" multiple="multiple" name="select_list">
+{#                        <select id="select_area_id" multiple="multiple" name="select_list">#}
+                        <select class="selectpicker" multiple data-max-options="2" id="select_area_id">
                             <optgroup label="largescale">
                                 {% for area in areas %}
                                     {% ifequal area.tag 'largescale' %}
@@ -85,11 +86,11 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-                        <script type="text/javascript">
-                            $(document).ready(function () {
-                                $('#select_area_id').multiselect();
-                            });
-                        </script>
+{#                        <script type="text/javascript">#}
+{#                            $(document).ready(function () {#}
+{#                                $('#select_area_id').multiselect();#}
+{#                            });#}
+{#                        </script>#}
                         {#                        {% for area in areas %}#}
                         {#                            <input type="checkbox" value="{{ area }}" name="check_box_list"/>{{ area }}#}
                         {#                        {% endfor %}#}
