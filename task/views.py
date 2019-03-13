@@ -66,7 +66,6 @@ def test(request):
 @login_required
 def submitted(request):
     print(request.user)
-    print(type(request.user))
     if str(request.user) == 'guest':
         return render(request, "404.html")
     branchs = {
@@ -78,6 +77,7 @@ def submitted(request):
         'algorithm_sam': request.POST['algorithm_sam'],
         'vehicle': request.POST['vehicle']
     }
+    print(branchs)
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
     task.save()
 
