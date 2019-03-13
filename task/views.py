@@ -78,6 +78,8 @@ def submitted(request):
         'vehicle': request.POST['vehicle']
     }
     print(branchs)
+    print(request.POST.get('ifskipbuild'))
+
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
     task.save()
 
