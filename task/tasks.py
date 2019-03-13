@@ -47,6 +47,9 @@ def get_machine_id():
     _, machine_id = subprocess.getstatusoutput("cat /var/lib/dbus/machine-id")
     return machine_id
 
+@task
+def test_flow():
+    print("in work flow >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 @task
 def work_flow(if_build, task_id):

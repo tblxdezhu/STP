@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Stream
 from django.shortcuts import render, get_object_or_404
 from .models import Task
 from results.models import Results
-from task.tasks import get_branch, build, work_flow
+from task.tasks import get_branch, build, work_flow,test_flow
 from .run_offlineSLAM import Vehicle
 from django.core.urlresolvers import reverse
 from .SLAM_config import *
@@ -88,7 +88,8 @@ def submitted(request):
         if_build = False
 
     print("if_build:", if_build)
-    work_flow.apply_async(args=[if_build, task.id])
+    test_flow.apply_async()
+    # work_flow.apply_async(args=[if_build, task.id])
 
     # for area in task.area:
     #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
