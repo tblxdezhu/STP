@@ -88,8 +88,7 @@ def submitted(request):
         if_build = False
 
     print("if_build:", if_build)
-    test_flow.apply_async()
-    # work_flow.apply_async(args=[if_build, task.id])
+    work_flow.apply_async(args=[if_build, task.id])
 
     # for area in task.area:
     #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])

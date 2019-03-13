@@ -48,10 +48,6 @@ def get_machine_id():
     return machine_id
 
 @task
-def test_flow():
-    print("in work flow >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-@task
 def work_flow(if_build, task_id):
     print("in work flow >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
     task = Task.objects.get(id=task_id)
