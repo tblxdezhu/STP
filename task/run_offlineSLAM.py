@@ -15,6 +15,7 @@ from webserver.models import Data, Machine
 
 def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera_config):
     imu = rtv.replace('.rtv', '.imu')
+    gps = rtv.replace('.rtv', '.gps')
     case_output_path = os.path.join(output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
@@ -23,7 +24,7 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     # camera_config_path = os.path.join(code_path, 'vehicle/config', Data.objects.get(area=area).camera)
     # _data_path = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path
     # _camera_config = Data.objects.get(area=area).camera
-    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--ip', os.path.join(code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
+    run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--igps', gps, '--ip', os.path.join(code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
                     os.path.join(data_path, "camera_configs", camera_config), '--out', case_output_path,
                     '--oqlt',
                     quality_file]
@@ -90,7 +91,7 @@ class Vehicle(Run):
         super(Vehicle, self).__init__(area, task_id)
         super(Vehicle, self)._check_data()
 
-    def vehicle_slam(self, mode='slam'):
+    def Zvehicle_slam(self, mode='slam'):
         mp.current_process().daemon = False
         pool = mp.Pool(processes=Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id).process_num)
         mp.current_process().daemon = True
