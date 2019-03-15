@@ -338,65 +338,71 @@ def dashboard(request):
     d, h = divmod(h, 24)
     time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
 
-    attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    pie_1 = Pie("2012 年销量比例", "数据纯属虚构")
-    pie_1.add(
-        "秋季",
-        attr,
-        [randint(10, 100) for _ in range(6)],
-        is_label_show=True,
-        radius=[30, 55],
-        rosetype="radius",
-    )
+    bar = Bar("x 轴和 y 轴交换")
+    v1 = [5, 20, 36, 10, 75, 90]
+    v2 = [10, 25, 8, 60, 20, 80]
+    bar.add("", attr, v1)
+    bar.add("", attr, v2, is_convert=True)
 
-    pie_2 = Pie("2013 年销量比例", "数据纯属虚构")
-    pie_2.add(
-        "秋季",
-        attr,
-        [randint(10, 100) for _ in range(6)],
-        is_label_show=True,
-        radius=[30, 55],
-        rosetype="radius",
-    )
-
-    pie_3 = Pie("2014 年销量比例", "数据纯属虚构")
-    pie_3.add(
-        "秋季",
-        attr,
-        [randint(10, 100) for _ in range(6)],
-        is_label_show=True,
-        radius=[30, 55],
-        rosetype="radius",
-    )
-
-    pie_4 = Pie("2015 年销量比例", "数据纯属虚构")
-    pie_4.add(
-        "秋季",
-        attr,
-        [randint(10, 100) for _ in range(6)],
-        is_label_show=True,
-        radius=[30, 55],
-        rosetype="radius",
-    )
-
-    pie_5 = Pie("2016 年销量比例", "数据纯属虚构")
-    pie_5.add(
-        "秋季",
-        attr,
-        [randint(10, 100) for _ in range(6)],
-        is_label_show=True,
-        radius=[30, 55],
-        rosetype="radius",
-    )
-
-    timeline = Timeline(is_auto_play=True, timeline_bottom=0)
-    timeline.add(pie_1, '2012 年')
-    timeline.add(pie_2, '2013 年')
-    timeline.add(pie_3, '2014 年')
-    timeline.add(pie_4, '2015 年')
-    timeline.add(pie_5, '2016 年')
-    charts = timeline.render_embed()
-    script_list.append(timeline.get_js_dependencies())
+    # attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
+    # pie_1 = Pie("Testing frequency", "数据纯属虚构")
+    # pie_1.add(
+    #     "秋季",
+    #     attr,
+    #     [randint(10, 100) for _ in range(6)],
+    #     is_label_show=True,
+    #     radius=[30, 55],
+    #     rosetype="radius",
+    # )
+    #
+    # pie_2 = Pie("2013 年销量比例", "数据纯属虚构")
+    # pie_2.add(
+    #     "秋季",
+    #     attr,
+    #     [randint(10, 100) for _ in range(6)],
+    #     is_label_show=True,
+    #     radius=[30, 55],
+    #     rosetype="radius",
+    # )
+    #
+    # pie_3 = Pie("2014 年销量比例", "数据纯属虚构")
+    # pie_3.add(
+    #     "秋季",
+    #     attr,
+    #     [randint(10, 100) for _ in range(6)],
+    #     is_label_show=True,
+    #     radius=[30, 55],
+    #     rosetype="radius",
+    # )
+    #
+    # pie_4 = Pie("2015 年销量比例", "数据纯属虚构")
+    # pie_4.add(
+    #     "秋季",
+    #     attr,
+    #     [randint(10, 100) for _ in range(6)],
+    #     is_label_show=True,
+    #     radius=[30, 55],
+    #     rosetype="radius",
+    # )
+    #
+    # pie_5 = Pie("2016 年销量比例", "数据纯属虚构")
+    # pie_5.add(
+    #     "秋季",
+    #     attr,
+    #     [randint(10, 100) for _ in range(6)],
+    #     is_label_show=True,
+    #     radius=[30, 55],
+    #     rosetype="radius",
+    # )
+    #
+    # timeline = Timeline(is_auto_play=True, timeline_bottom=0)
+    # timeline.add(pie_1, '2012 年')
+    # timeline.add(pie_2, '2013 年')
+    # timeline.add(pie_3, '2014 年')
+    # timeline.add(pie_4, '2015 年')
+    # timeline.add(pie_5, '2016 年')
+    charts = bar.render_embed()
+    script_list.append(bar.get_js_dependencies())
 
     return render(request, 'dashboard.html', {
         'run_rtv_numbers': run_rtv_numbers,
