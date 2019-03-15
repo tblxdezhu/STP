@@ -342,8 +342,8 @@ def dashboard(request):
     bar_test = Bar("test")
     v1 = [5, 20, 36, 10, 75, 90]
     v2 = [10, 25, 8, 60, 20, 80]
-    bar_test.add("", attr, v1)
-    bar_test.add("", attr, v2, is_convert=True)
+    bar_test.add("", attr_test, v1)
+    bar_test.add("", attr_test, v2, is_convert=True)
 
     # attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
     # pie_1 = Pie("Testing frequency", "数据纯属虚构")
