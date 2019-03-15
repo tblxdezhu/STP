@@ -338,11 +338,12 @@ def dashboard(request):
     d, h = divmod(h, 24)
     time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
 
-    bar = Bar("x 轴和 y 轴交换")
+    attr_test = ["zhenxuan.xu", "hong.he", "haoxin.li", "lili.zheng", "ming.lei", "wu.chen"]
+    bar_test = Bar("test")
     v1 = [5, 20, 36, 10, 75, 90]
     v2 = [10, 25, 8, 60, 20, 80]
-    bar.add("", attr, v1)
-    bar.add("", attr, v2, is_convert=True)
+    bar_test.add("", attr, v1)
+    bar_test.add("", attr, v2, is_convert=True)
 
     # attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
     # pie_1 = Pie("Testing frequency", "数据纯属虚构")
@@ -401,8 +402,8 @@ def dashboard(request):
     # timeline.add(pie_3, '2014 年')
     # timeline.add(pie_4, '2015 年')
     # timeline.add(pie_5, '2016 年')
-    charts = bar.render_embed()
-    script_list.append(bar.get_js_dependencies())
+    charts = bar_test.render_embed()
+    script_list.append(bar_test.get_js_dependencies())
 
     return render(request, 'dashboard.html', {
         'run_rtv_numbers': run_rtv_numbers,
