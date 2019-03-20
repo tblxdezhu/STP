@@ -99,12 +99,12 @@
                             <button type="button" class="btn btn-primary" id="step2back">Back</button>
                             <button type="button" class="btn btn-primary" id="step2next">Next</button>
                         </div>
-{#                        <div class="row right">#}
-{#                            <div class="row">#}
-{#                                <i class="fas fa-plus-circle"></i>#}
-{#                            </div>#}
-{##}
-{#                        </div>#}
+                        {#                        <div class="row right">#}
+                        {#                            <div class="row">#}
+                        {#                                <i class="fas fa-plus-circle"></i>#}
+                        {#                            </div>#}
+                        {##}
+                        {#                        </div>#}
                         <script type="text/javascript">
                             $("#step2back").click(function () {
                                 $("#step2").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
@@ -141,7 +141,11 @@
                                 <th class="col-md-9">
                                     <select class="selectpicker " data-live-search="true" name="common" id="common" data-width="100%" data-size="10">
                                         {% for branch in branches.common %}
-                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% ifequal branch 'master' %}
+                                                <option data-tokens="{{ branch }}" selected>{{ branch }}</option>
+                                            {% else %}
+                                                <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% endifequal %}
                                         {% endfor %}
                                     </select>
                                     {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"#}
@@ -156,7 +160,11 @@
                                     {#                                    >#}
                                     <select class="selectpicker" data-live-search="true" name="algorithm_common" id="algorithm_common" data-width="100%" data-size="10">
                                         {% for branch in branches.algorithm_common %}
-                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% ifequal branch 'master' %}
+                                                <option data-tokens="{{ branch }}" selected>{{ branch }}</option>
+                                            {% else %}
+                                                <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% endifequal %}
                                         {% endfor %}
                                     </select>
                                 </th>
@@ -176,8 +184,8 @@
                             <tr>
                                 <th class="col-md-2">algorithm_vehicle_offlineslam</th>
                                 <th class="col-md-10">
-{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"#}
-{#                                           id="algorithm_vehicle_offlineslam">#}
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"#}
+                                    {#                                           id="algorithm_vehicle_offlineslam">#}
                                     <select class="selectpicker" data-live-search="true" name="algorithm_vehicle_offlineslam" id="algorithm_vehicle_offlineslam" data-width="100%" data-size="10">
                                         {% for branch in branches.algorithm_vehicle_offlineslam %}
                                             <option data-tokens="{{ branch }}">{{ branch }}</option>
@@ -188,11 +196,15 @@
                             <tr>
                                 <th class="col-md-2">vehicle</th>
                                 <th class="col-md-10">
-{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"#}
-{#                                           id="vehicle">#}
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"#}
+                                    {#                                           id="vehicle">#}
                                     <select class="selectpicker" data-live-search="true" name="vehicle" id="vehicle" data-width="100%" data-size="10">
                                         {% for branch in branches.vehicle %}
-                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% ifequal branch 'master' %}
+                                                <option data-tokens="{{ branch }}" selected>{{ branch }}</option>
+                                            {% else %}
+                                                <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                            {% endifequal %}
                                         {% endfor %}
                                     </select>
                                 </th>
@@ -211,8 +223,8 @@
                             <tr>
                                 <th class="col-md-3">core/common</th>
                                 <th class="col-md-9">
-{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"#}
-{#                                    >#}
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"#}
+                                    {#                                    >#}
                                     <select class="selectpicker" data-live-search="true" name="common_sam" id="common_sam" data-width="100%" data-size="10" disabled>
                                         {% for branch in branches.common %}
                                             <option data-tokens="{{ branch }}">{{ branch }}</option>
@@ -223,9 +235,9 @@
                             <tr>
                                 <th class="col-md-2">algorithm_common</th>
                                 <th class="col-md-10">
-{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam"#}
-{#                                           id="algorithm_common_sam"#}
-{#                                    >#}
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam"#}
+                                    {#                                           id="algorithm_common_sam"#}
+                                    {#                                    >#}
                                     <select class="selectpicker" data-live-search="true" name="algorithm_common_sam" id="algorithm_common_sam" data-width="100%" data-size="10" disabled>
                                         {% for branch in branches.algorithm_common %}
                                             <option data-tokens="{{ branch }}">{{ branch }}</option>
@@ -236,7 +248,7 @@
                             <tr>
                                 <th class="col-md-2">algorithm_sam</th>
                                 <th class="col-md-10">
-{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">#}
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">#}
                                     <select class="selectpicker" data-live-search="true" name="algorithm_sam" id="algorithm_sam" data-width="100%" data-size="10" disabled>
                                         {% for branch in branches.algorithm_sam %}
                                             <option data-tokens="{{ branch }}">{{ branch }}</option>
