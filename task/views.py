@@ -71,17 +71,24 @@ def submitted(request):
     print(request.user)
     if str(request.user) == 'guest':
         return render(request, "404.html")
+    # branchs = {
+    #     'common': request.POST['common'],
+    #     'algorithm_common': request.POST['algorithm_common'],
+    #     'algorithm_common_slam':request.POST['algorithm_common_slam'],
+    #     'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
+    #     'common_sam': request.POST['common_sam'],
+    #     'algorithm_common_sam': request.POST['algorithm_common_sam'],
+    #     'algorithm_sam': request.POST['algorithm_sam'],
+    #     'vehicle': request.POST['vehicle']
+    # }
     branchs = {
         'common': request.POST['common'],
         'algorithm_common': request.POST['algorithm_common'],
+        'algorithm_common_slam': request.POST['algorithm_common_slam'],
         'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
-        'common_sam': request.POST['common_sam'],
-        'algorithm_common_sam': request.POST['algorithm_common_sam'],
-        'algorithm_sam': request.POST['algorithm_sam'],
         'vehicle': request.POST['vehicle']
     }
     print(branchs)
-    print(request.POST.get('ifskipbuild'))
 
     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
     task.save()
