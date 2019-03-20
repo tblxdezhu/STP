@@ -29,6 +29,9 @@ import csv
 import time
 from webserver.models import Data, Machine
 from random import randint
+import requests
+from requests.auth import AuthBase
+from requests.auth import HTTPBasicAuth
 
 # from apscheduler.schedulers.background import BackgroundScheduler
 # from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
@@ -57,10 +60,10 @@ def page_not_found(request):
 
 @login_required
 def test(request):
-    get_branch()
+    # get_branch(request)
     # areas = Data.objects.all_areas()
     areas = Data.objects.all()
-    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas})
+    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas,'branches':get_branch()})
 
 
 @login_required
@@ -344,64 +347,6 @@ def dashboard(request):
     v2 = [10, 25, 8, 60, 20, 80]
     bar_test.add("", attr_test, v1)
     bar_test.add("", attr_test, v2, is_convert=True)
-
-    # attr = ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"]
-    # pie_1 = Pie("Testing frequency", "数据纯属虚构")
-    # pie_1.add(
-    #     "秋季",
-    #     attr,
-    #     [randint(10, 100) for _ in range(6)],
-    #     is_label_show=True,
-    #     radius=[30, 55],
-    #     rosetype="radius",
-    # )
-    #
-    # pie_2 = Pie("2013 年销量比例", "数据纯属虚构")
-    # pie_2.add(
-    #     "秋季",
-    #     attr,
-    #     [randint(10, 100) for _ in range(6)],
-    #     is_label_show=True,
-    #     radius=[30, 55],
-    #     rosetype="radius",
-    # )
-    #
-    # pie_3 = Pie("2014 年销量比例", "数据纯属虚构")
-    # pie_3.add(
-    #     "秋季",
-    #     attr,
-    #     [randint(10, 100) for _ in range(6)],
-    #     is_label_show=True,
-    #     radius=[30, 55],
-    #     rosetype="radius",
-    # )
-    #
-    # pie_4 = Pie("2015 年销量比例", "数据纯属虚构")
-    # pie_4.add(
-    #     "秋季",
-    #     attr,
-    #     [randint(10, 100) for _ in range(6)],
-    #     is_label_show=True,
-    #     radius=[30, 55],
-    #     rosetype="radius",
-    # )
-    #
-    # pie_5 = Pie("2016 年销量比例", "数据纯属虚构")
-    # pie_5.add(
-    #     "秋季",
-    #     attr,
-    #     [randint(10, 100) for _ in range(6)],
-    #     is_label_show=True,
-    #     radius=[30, 55],
-    #     rosetype="radius",
-    # )
-    #
-    # timeline = Timeline(is_auto_play=True, timeline_bottom=0)
-    # timeline.add(pie_1, '2012 年')
-    # timeline.add(pie_2, '2013 年')
-    # timeline.add(pie_3, '2014 年')
-    # timeline.add(pie_4, '2015 年')
-    # timeline.add(pie_5, '2016 年')
     charts = bar_test.render_embed()
     script_list.append(bar_test.get_js_dependencies())
 
@@ -450,28 +395,41 @@ def line_time_kf(attr):
 
 
 def get_branch():
-    repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
-    code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/stp_envs/core"
-    if not os.path.exists(code_path):
-        code_path = "/data1/stp_resources/source/core"
-    init_path = os.getcwd()
-    json_data = {}
+    repo_list = ['common', 'algorithm_common', 'algorithm_common_slam', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
+    a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
+    branches = {}
     for repo in repo_list:
-        os.chdir(os.path.join(code_path, repo))
-        status, output = subprocess.getstatusoutput("git branch -a")
-        json_data[repo] = []
-        for branch in output.split("\n"):
-            if "remotes/core" in branch:
-                json_data[repo].append(branch.split("remotes/core/")[1].strip())
-            elif "remotes/origin" in branch:
-                json_data[repo].append(branch.split("remotes/origin/")[1].strip())
-            elif "*" in branch:
-                json_data[repo].append(branch.split("*")[1].strip())
-            else:
-                json_data[repo].append(branch.strip())
-    with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
-        json.dump(json_data, f)
-    os.chdir(init_path)
+        branches[repo] = []
+        url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
+        req = requests.get(url=url, auth=a)
+        # print(req.json()['values'])
+        for branch in req.json()['values']:
+            branches[repo].append(branch['displayId'])
+    return branches
+    # return JsonResponse(branches)
+    # get branches info from local
+    # repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
+    # code_path = "/media/psf/Untitled/Auto_test_SLAM/envs/stp_envs/core"
+    # if not os.path.exists(code_path):
+    #     code_path = "/data1/stp_resources/source/core"
+    # init_path = os.getcwd()
+    # json_data = {}
+    # for repo in repo_list:
+    #     os.chdir(os.path.join(code_path, repo))
+    #     status, output = subprocess.getstatusoutput("git branch -a")
+    #     json_data[repo] = []
+    #     for branch in output.split("\n"):
+    #         if "remotes/core" in branch:
+    #             json_data[repo].append(branch.split("remotes/core/")[1].strip())
+    #         elif "remotes/origin" in branch:
+    #             json_data[repo].append(branch.split("remotes/origin/")[1].strip())
+    #         elif "*" in branch:
+    #             json_data[repo].append(branch.split("*")[1].strip())
+    #         else:
+    #             json_data[repo].append(branch.strip())
+    # with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
+    #     json.dump(json_data, f)
+    # os.chdir(init_path)
 
 
 @login_required

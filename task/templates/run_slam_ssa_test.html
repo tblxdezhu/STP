@@ -26,22 +26,22 @@
                                         $('#select_mode_id').multiselect();
                                     });
                                 </script>
-{#                                <label class="control-label" for="testfile">上传文件</label>#}
-{#                                <input class="file" type="file" id="testfile" name="test" multiple>#}
-{#                                <script>#}
-{#                                    $('#testfile').fileinput({#}
-{#                                        language: 'zh',#}
-{#                                        uploadUrl: location.pathname + 'upload/',#}
-{#                                        showCaption: true,#}
-{#                                        showUpload: true,#}
-{#                                        showRemove: true,#}
-{#                                        showClose: true,#}
-{#                                        layoutTemplates: {#}
-{#                                            actionDelete: ''#}
-{#                                        },#}
-{#                                        browseClass: 'btn btn-primary'#}
-{#                                    });#}
-{#                                </script>#}
+                                {#                                <label class="control-label" for="testfile">上传文件</label>#}
+                                {#                                <input class="file" type="file" id="testfile" name="test" multiple>#}
+                                {#                                <script>#}
+                                {#                                    $('#testfile').fileinput({#}
+                                {#                                        language: 'zh',#}
+                                {#                                        uploadUrl: location.pathname + 'upload/',#}
+                                {#                                        showCaption: true,#}
+                                {#                                        showUpload: true,#}
+                                {#                                        showRemove: true,#}
+                                {#                                        showClose: true,#}
+                                {#                                        layoutTemplates: {#}
+                                {#                                            actionDelete: ''#}
+                                {#                                        },#}
+                                {#                                        browseClass: 'btn btn-primary'#}
+                                {#                                    });#}
+                                {#                                </script>#}
                                 {#                                <form action="/upload/" method="post" enctype="multipart/form-data">#}
                                 {#                                    <input type="file" name="fafafa">#}
                                 {#                                    <input type="submit">#}
@@ -69,7 +69,7 @@
                         <p class="panel-subtitle">Which data do you want to run?</p>
                     </div>
                     <div class="panel-body">
-{#                        <select id="select_area_id" multiple="multiple" name="select_list">#}
+                        {#                        <select id="select_area_id" multiple="multiple" name="select_list">#}
                         <select class="selectpicker" multiple data-max-options="2" id="select_area_id" name="select_list">
                             <optgroup label="largescale">
                                 {% for area in areas %}
@@ -86,11 +86,11 @@
                                 {% endfor %}
                             </optgroup>
                         </select>
-{#                        <script type="text/javascript">#}
-{#                            $(document).ready(function () {#}
-{#                                $('#select_area_id').multiselect();#}
-{#                            });#}
-{#                        </script>#}
+                        {#                        <script type="text/javascript">#}
+                        {#                            $(document).ready(function () {#}
+                        {#                                $('#select_area_id').multiselect();#}
+                        {#                            });#}
+                        {#                        </script>#}
                         {#                        {% for area in areas %}#}
                         {#                            <input type="checkbox" value="{{ area }}" name="check_box_list"/>{{ area }}#}
                         {#                        {% endfor %}#}
@@ -99,12 +99,12 @@
                             <button type="button" class="btn btn-primary" id="step2back">Back</button>
                             <button type="button" class="btn btn-primary" id="step2next">Next</button>
                         </div>
-                        <div class="row right">
-                            <div class="row">
-                                <i class="fas fa-plus-circle"></i>
-                            </div>
-
-                        </div>
+{#                        <div class="row right">#}
+{#                            <div class="row">#}
+{#                                <i class="fas fa-plus-circle"></i>#}
+{#                            </div>#}
+{##}
+{#                        </div>#}
                         <script type="text/javascript">
                             $("#step2back").click(function () {
                                 $("#step2").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
@@ -139,29 +139,62 @@
                             <tr>
                                 <th class="col-md-3">core/common</th>
                                 <th class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"
-                                    >
+                                    <select class="selectpicker " data-live-search="true" name="common" id="common" data-width="100%" data-size="10">
+                                        {% for branch in branches.common %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="common" id="common"#}
+                                    {#                                    >#}
+
                                 </th>
                             </tr>
                             <tr>
                                 <th class="col-md-2">algorithm_common</th>
                                 <th class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"
-                                    >
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"#}
+                                    {#                                    >#}
+                                    <select class="selectpicker" data-live-search="true" name="algorithm_common" id="algorithm_common" data-width="100%" data-size="10">
+                                        {% for branch in branches.algorithm_common %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
                             <tr>
-                                <th class="col-md-2">algorithm_vehicle_offlineSLAM</th>
+                                <th class="col-md-2">algorithm_common_slam</th>
                                 <th class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"
-                                           id="algorithm_vehicle_offlineslam">
+                                    {#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common" id="algorithm_common"#}
+                                    {#                                    >#}
+                                    <select class="selectpicker" data-live-search="true" name="algorithm_common_slam" id="algorithm_common_slam" data-width="100%" data-size="10">
+                                        {% for branch in branches.algorithm_common_slam %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th class="col-md-2">algorithm_vehicle_offlineslam</th>
+                                <th class="col-md-10">
+{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_vehicle_offlineslam"#}
+{#                                           id="algorithm_vehicle_offlineslam">#}
+                                    <select class="selectpicker" data-live-search="true" name="algorithm_vehicle_offlineslam" id="algorithm_vehicle_offlineslam" data-width="100%" data-size="10">
+                                        {% for branch in branches.algorithm_vehicle_offlineslam %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
                             <tr>
                                 <th class="col-md-2">vehicle</th>
                                 <th class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"
-                                           id="vehicle">
+{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="vehicle"#}
+{#                                           id="vehicle">#}
+                                    <select class="selectpicker" data-live-search="true" name="vehicle" id="vehicle" data-width="100%" data-size="10">
+                                        {% for branch in branches.vehicle %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
 
@@ -178,22 +211,37 @@
                             <tr>
                                 <th class="col-md-3">core/common</th>
                                 <th class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"
-                                    >
+{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="on" data-provide="typeahead" name="common_sam" id="common_sam"#}
+{#                                    >#}
+                                    <select class="selectpicker" data-live-search="true" name="common_sam" id="common_sam" data-width="100%" data-size="10" disabled>
+                                        {% for branch in branches.common %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
                             <tr>
                                 <th class="col-md-2">algorithm_common</th>
                                 <th class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam"
-                                           id="algorithm_common_sam"
-                                    >
+{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_common_sam"#}
+{#                                           id="algorithm_common_sam"#}
+{#                                    >#}
+                                    <select class="selectpicker" data-live-search="true" name="algorithm_common_sam" id="algorithm_common_sam" data-width="100%" data-size="10" disabled>
+                                        {% for branch in branches.algorithm_common %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
                             <tr>
                                 <th class="col-md-2">algorithm_sam</th>
                                 <th class="col-md-10">
-                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">
+{#                                    <input type="text" class="form-control" placeholder="input the branch" autocomplete="off" data-provide="typeahead" name="algorithm_sam" id="algorithm_sam">#}
+                                    <select class="selectpicker" data-live-search="true" name="algorithm_sam" id="algorithm_sam" data-width="100%" data-size="10" disabled>
+                                        {% for branch in branches.algorithm_sam %}
+                                            <option data-tokens="{{ branch }}">{{ branch }}</option>
+                                        {% endfor %}
+                                    </select>
                                 </th>
                             </tr>
                             </tbody>
@@ -278,7 +326,7 @@
     </form>
     <script type="text/javascript">
         $(function () {
-            $.getJSON("{% static 'jsons/branchs.json'%}", function (json_data) {
+            $.getJSON("/test/branches", function (json_data) {
                 $("#algorithm_vehicle_offlineslam").typeahead({source: eval(json_data.algorithm_vehicle_offlineslam), minLength: 0});
                 $("#algorithm_common").typeahead({source: eval(json_data.algorithm_common), minLength: 0});
                 $("#algorithm_sam").typeahead({source: eval(json_data.algorithm_sam), minLength: 0});
