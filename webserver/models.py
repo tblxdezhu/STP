@@ -6,13 +6,12 @@ class DataManager(models.Manager):
     def all_areas(self):
         return [str(i[0]) for i in self.values_list('area')]
 
-
 class Machine(models.Model):
     ip = models.CharField(max_length=20, default="127.0.0.1")
-    username = models.CharField(max_length=50, default="roaddb",blank=True)
-    password = models.CharField(max_length=50, default="test1234",blank=True)
-    port = models.IntegerField(default=22,blank=True)
-    machine_id = models.CharField(max_length=50, blank=True)
+    username = models.CharField(max_length=50, default="roaddb")
+    password = models.CharField(max_length=50, default="test1234")
+    port = models.IntegerField(default=22)
+    machine_id = models.CharField(max_length=50)
     process_num = models.IntegerField()
     code_path = models.CharField(max_length=100)
     output_path = models.CharField(max_length=100)
@@ -20,6 +19,7 @@ class Machine(models.Model):
 
     def __str__(self):
         return self.ip
+
 
 
 class Data(models.Model):
