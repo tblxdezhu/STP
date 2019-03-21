@@ -63,7 +63,7 @@ def test(request):
     # get_branch(request)
     # areas = Data.objects.all_areas()
     areas = Data.objects.all()
-    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas,'branches':get_branch()})
+    return render(request, 'run_slam_ssa_test.html', {'if_test_active': 'active', 'areas': areas, 'branches': get_branch()})
 
 
 @login_required
@@ -206,9 +206,9 @@ def task_process(request, task_id):
         except TypeError:
             print("stop the task")
 
-    data, _ = data_process(task.output_path)
+    data, _ = data_process(task.output_path, task_id)
     kmls_data = []
-    for k in get_all_kmls(task.output_path):
+    for k in get_all_kmls(task.output_path, task_id):
         for key in sorted(data[k].keys()):
             kmls_data.append(data[k][key])
 
