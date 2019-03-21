@@ -9,6 +9,7 @@ import re
 import paramiko
 import stat
 
+
 class Trajectory:
     def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
         self.is_show = is_show
@@ -67,8 +68,6 @@ def data_process(folder_path):
 def get_all_kmls(path):
     data_set = {}
     tmp = ''
-    print("i am in func get_all_kmls,", path)
-
     scp = paramiko.Transport(('10.69.142.68', 22))
     scp.connect(username='roaddb', password='test1234')
     sftp = paramiko.SFTPClient.from_transport(scp)
@@ -85,10 +84,13 @@ def get_all_kmls(path):
                 all_files.append(filename)
         return all_files
 
-    # print(__get_all_files_in_remote_dir(sftp, path))
-    for file in __get_all_files_in_remote_dir(sftp,path):
+    for file in __get_all_files_in_remote_dir(sftp, path):
         if file.endswith("final_pose.kml"):
-            print(file)
+            case_name = os.path.dirname(file)
+            if not case_name == tmp:
+                data_set[case_name] = []
+            data_set[case_name].append(file)
+            tmp = case_name
     # try:
     #     for root, dirs, files in os.walk(path):
     #         print("files:",files)
