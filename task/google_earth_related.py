@@ -49,9 +49,13 @@ def data_process(folder_path):
     data = {}
     center = {}
     print("folder_path", folder_path)
+    scp = paramiko.Transport(('10.69.142.68', 22))
+    scp.connect(username='roaddb', password='test1234')
+    sftp = paramiko.SFTPClient.from_transport(scp)
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
+            print("kml",kml)
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
