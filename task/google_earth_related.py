@@ -76,7 +76,6 @@ def get_all_kmls(path):
     def __get_all_files_in_remote_dir(sftp, remote_dir):
         all_files = []
         remote_files = sftp.listdir_attr(remote_dir)
-        print(remote_files)
         for file in remote_files:
             print(os.path.join(remote_dir, file.filename))
             filename = os.path.join(remote_dir, file.filename)
@@ -86,7 +85,10 @@ def get_all_kmls(path):
                 all_files.append(filename)
         return all_files
 
-    print(__get_all_files_in_remote_dir(sftp, path))
+    # print(__get_all_files_in_remote_dir(sftp, path))
+    for file in __get_all_files_in_remote_dir(sftp,path):
+        if file.endswith("final_pose.kml"):
+            print(file)
     # try:
     #     for root, dirs, files in os.walk(path):
     #         print("files:",files)
