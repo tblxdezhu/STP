@@ -69,6 +69,7 @@ def get_all_kmls(path):
     print("i am in func get_all_kmls")
     try:
         for root, dirs, files in os.walk(path):
+            print("files:",files)
             for file in files:
                 print("file in folder:",file)
                 # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
