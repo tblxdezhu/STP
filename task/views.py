@@ -249,7 +249,7 @@ def get_area_kml(request, task_id, area):
 
 def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
-    data, center_data = data_process(os.path.join(task.output_path, area))
+    data, center_data = data_process(os.path.join(task.output_path, area),task_id)
     # for k in get_all_kmls(os.path.join(task.output_path, area)):
     #     for key in sorted(data[k].keys()):
     #         kmls_data.append(data[k][key])
