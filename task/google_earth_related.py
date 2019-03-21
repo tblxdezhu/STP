@@ -49,62 +49,9 @@ def data_process(folder_path):
     data = {}
     center = {}
     print("folder_path", folder_path)
-    scp = paramiko.Transport(('10.69.142.68', 22))
-    scp.connect(username='roaddb', password='test1234')
-    sftp = paramiko.SFTPClient.from_transport(scp)
-
-    def get_all_kmls(path):
-        data_set = {}
-        tmp = ''
-
-        def __get_all_files_in_remote_dir(sftp, remote_dir):
-            all_files = []
-            remote_files = sftp.listdir_attr(remote_dir)
-            for file in remote_files:
-                print(os.path.join(remote_dir, file.filename))
-                filename = os.path.join(remote_dir, file.filename)
-                if stat.S_ISDIR(file.st_mode):
-                    all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
-                else:
-                    all_files.append(filename)
-            return all_files
-
-        for file in __get_all_files_in_remote_dir(sftp, path):
-            if file.endswith("final_pose.kml"):
-                case_name = os.path.basename(os.path.dirname(file))
-                if not case_name == tmp:
-                    data_set[case_name] = []
-                data_set[case_name].append(file)
-                tmp = case_name
-        # try:
-        #     for root, dirs, files in os.walk(path):
-        #         print("files:",files)
-        #         for file in files:
-        #             print("file in folder:",file)
-        #             # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
-        #             if file.endswith("slam_final_pose.kml"):
-        #                 # if os.path.basename(root) == "segment":
-        #                 # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
-        #                 print("***")
-        #                 print("root", root)
-        #                 print("file", file)
-        #                 print("***")
-        #                 case_name = root.split('/')[-2] + "_" + os.path.basename(root)
-        #                 print("case_name", case_name)
-        #                 if not case_name == tmp:
-        #                     data_set[case_name] = []
-        #                 data_set[case_name].append(os.path.join(root, file))
-        #                 tmp = case_name
-        # except Exception as e:
-        #     print(e)
-
-        print("data_set", data_set)
-        return data_set
-
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
-            print("kml",kml)
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
@@ -116,6 +63,58 @@ def data_process(folder_path):
             data[k][trajectory.name] = trajectory.string_builder()
             center[k] = trajectory.data_processed[0]
     return data, center
+
+
+def get_all_kmls(path):
+    data_set = {}
+    tmp = ''
+    scp = paramiko.Transport(('10.69.142.68', 22))
+    scp.connect(username='roaddb', password='test1234')
+    sftp = paramiko.SFTPClient.from_transport(scp)
+
+    def __get_all_files_in_remote_dir(sftp, remote_dir):
+        all_files = []
+        remote_files = sftp.listdir_attr(remote_dir)
+        for file in remote_files:
+            print(os.path.join(remote_dir, file.filename))
+            filename = os.path.join(remote_dir, file.filename)
+            if stat.S_ISDIR(file.st_mode):
+                all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
+            else:
+                all_files.append(filename)
+        return all_files
+
+    for file in __get_all_files_in_remote_dir(sftp, path):
+        if file.endswith("final_pose.kml"):
+            case_name = os.path.basename(os.path.dirname(file))
+            if not case_name == tmp:
+                data_set[case_name] = []
+            data_set[case_name].append(file)
+            tmp = case_name
+    # try:
+    #     for root, dirs, files in os.walk(path):
+    #         print("files:",files)
+    #         for file in files:
+    #             print("file in folder:",file)
+    #             # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
+    #             if file.endswith("slam_final_pose.kml"):
+    #                 # if os.path.basename(root) == "segment":
+    #                 # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
+    #                 print("***")
+    #                 print("root", root)
+    #                 print("file", file)
+    #                 print("***")
+    #                 case_name = root.split('/')[-2] + "_" + os.path.basename(root)
+    #                 print("case_name", case_name)
+    #                 if not case_name == tmp:
+    #                     data_set[case_name] = []
+    #                 data_set[case_name].append(os.path.join(root, file))
+    #                 tmp = case_name
+    # except Exception as e:
+    #     print(e)
+
+    print("data_set", data_set)
+    return data_set
 
 
 def kml2coordinates(file_path):
