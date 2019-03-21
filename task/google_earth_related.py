@@ -73,6 +73,9 @@ def get_all_kmls(path):
     sftp = paramiko.SFTPClient.from_transport(scp)
     remote_files = sftp.listdir_attr(path)
     print(remote_files)
+    for file in remote_files:
+        print(os.path.join(path,file))
+        # if S_ISDIR(file.st_mode):
 
     # try:
     #     for root, dirs, files in os.walk(path):
