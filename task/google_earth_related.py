@@ -63,7 +63,6 @@ def data_process(folder_path, task_id):
     for k, v in get_all_kmls(folder_path,task_id).items():
         data[k] = {}
         for kml in v:
-            print("kml", kml)
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
@@ -89,7 +88,6 @@ def get_all_kmls(path, task_id):
         all_files = []
         remote_files = sftp.listdir_attr(remote_dir)
         for file in remote_files:
-            print(os.path.join(remote_dir, file.filename))
             filename = os.path.join(remote_dir, file.filename)
             if stat.S_ISDIR(file.st_mode):
                 all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
