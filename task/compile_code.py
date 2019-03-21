@@ -34,7 +34,6 @@ class Compile_code(object):
             self.compile_info["commit_point"] = ""
 
         self.compile_info["code_path"] = self.task.code_path
-        print("code path:",self.task.code_path)
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
         self.compile_info["algorithm_common_slam"] = branchs["algorithm_common_slam"]
@@ -115,7 +114,7 @@ class Compile_code(object):
                                      "algorithm_common",
                                      self.compile_info["stash_algo_common"],
                                      self.compile_info["algorithm_common"], "",
-                                     "-g")
+                                     "-s")
 
         compile_result = self.__ssh_run_cmd__(cmds)
 
@@ -139,7 +138,7 @@ class Compile_code(object):
                                      self.compile_info["stash_algo_vehicle_offlineslam"],
                                      self.compile_info["algorithm_vehicle_offlineslam"],
                                      self.compile_info["commit_point"],
-                                     "-aesd")
+                                     "-ed")
         # print(cmds)
         compile_result = self.__ssh_run_cmd__(cmds)
         return compile_result
