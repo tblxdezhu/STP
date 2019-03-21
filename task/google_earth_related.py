@@ -60,7 +60,7 @@ def data_process(folder_path, task_id):
     center = {}
     print("folder_path", folder_path)
 
-    for k, v in get_all_kmls(folder_path).items():
+    for k, v in get_all_kmls(folder_path,task_id).items():
         data[k] = {}
         for kml in v:
             print("kml", kml)
