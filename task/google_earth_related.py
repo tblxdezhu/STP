@@ -8,6 +8,8 @@ import os
 import re
 import paramiko
 import stat
+from .models import Task
+from webserver.models import Machine
 
 
 class Trajectory:
@@ -45,7 +47,15 @@ class Trajectory:
             return ""
 
 
-def data_process(folder_path):
+def get_scp(task_id):
+    machine = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id)
+    scp = paramiko.Transport((machine.ip, 22))
+    scp.connect(username='roaddb', password='test1234')
+    sftp = paramiko.SFTPClient.from_transport(scp)
+    return scp, sftp
+
+
+def data_process(folder_path, task_id):
     data = {}
     center = {}
     print("folder_path", folder_path)
@@ -53,11 +63,11 @@ def data_process(folder_path):
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
-            print("kml",kml)
+            print("kml", kml)
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
-            coordinate = kml2coordinates(kml)
+            coordinate = kml2coordinates(kml, task_id)
             if 'gps' in kml_name:
                 kml_type = 'gps'
                 is_show = False
@@ -67,12 +77,13 @@ def data_process(folder_path):
     return data, center
 
 
-def get_all_kmls(path):
+def get_all_kmls(path, task_id):
     data_set = {}
     tmp = ''
-    scp = paramiko.Transport(('10.69.142.68', 22))
-    scp.connect(username='roaddb', password='test1234')
-    sftp = paramiko.SFTPClient.from_transport(scp)
+    # scp = paramiko.Transport(('10.69.142.68', 22))
+    # scp.connect(username='roaddb', password='test1234')
+    # sftp = paramiko.SFTPClient.from_transport(scp)
+    scp, sftp = get_scp(task_id)
 
     def __get_all_files_in_remote_dir(sftp, remote_dir):
         all_files = []
@@ -119,11 +130,12 @@ def get_all_kmls(path):
     return data_set
 
 
-def kml2coordinates(file_path):
-    scp = paramiko.Transport(('10.69.142.68', 22))
-    scp.connect(username='roaddb', password='test1234')
-    sftp = paramiko.SFTPClient.from_transport(scp)
-    f = sftp.open(file_path,'r+')
+def kml2coordinates(file_path, task_id):
+    scp, sftp = get_scp(task_id)
+    # scp = paramiko.Transport(('10.69.142.68', 22))
+    # scp.connect(username='roaddb', password='test1234')
+    # sftp = paramiko.SFTPClient.from_transport(scp)
+    f = sftp.open(file_path, 'r+')
     lines = f.readlines()
     f.close()
     scp.close()
