@@ -112,7 +112,7 @@ def get_all_kmls(path):
     #                 tmp = case_name
     # except Exception as e:
     #     print(e)
-
+    scp.close()
     print("data_set", data_set)
     return data_set
 
