@@ -70,7 +70,7 @@ def get_all_kmls(path):
         for root, dirs, files in os.walk(path):
             for file in files:
                 # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
-                if file.endswith("final_pose.kml"):
+                if file.endswith("slam_final_pose.kml"):
                     # if os.path.basename(root) == "segment":
                     # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
                     print("***")

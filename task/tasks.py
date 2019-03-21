@@ -55,7 +55,6 @@ def work_flow(if_build, task_id):
     task.output_path = os.path.join(machine.output_path, str(task.id))
     task.save()
     print("machine_id:", get_machine_id())
-    print("type:", type(get_machine_id()))
     print("output path:", task.output_path)
 
     def __change_status(status):
