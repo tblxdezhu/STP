@@ -74,7 +74,7 @@ def get_all_kmls(path):
     remote_files = sftp.listdir_attr(path)
     print(remote_files)
     for file in remote_files:
-        print(os.path.join(path,file))
+        print(os.path.join(path,file.filename))
         # if S_ISDIR(file.st_mode):
 
     # try:
