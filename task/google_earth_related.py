@@ -7,7 +7,7 @@
 import os
 import re
 import paramiko
-
+import stat
 
 class Trajectory:
     def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
@@ -81,7 +81,7 @@ def get_all_kmls(path):
             print(os.path.join(path, file.filename))
             filename = os.path.join(path, file.filename)
             print(file.st_mode)
-            if file.st_mode == 16877:
+            if stat.S_ISDIR(file.st_mode):
                 all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
             else:
                 all_files.append(filename)
