@@ -86,7 +86,7 @@ def get_all_kmls(path):
 
     for file in __get_all_files_in_remote_dir(sftp, path):
         if file.endswith("final_pose.kml"):
-            case_name = os.path.dirname(file)
+            case_name = os.path.basename(os.path.dirname(file))
             if not case_name == tmp:
                 data_set[case_name] = []
             data_set[case_name].append(file)
