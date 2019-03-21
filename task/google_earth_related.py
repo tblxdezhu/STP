@@ -49,9 +49,7 @@ def data_process(folder_path):
     data = {}
     center = {}
     print("folder_path", folder_path)
-    scp = paramiko.Transport(('10.69.142.68', 22))
-    scp.connect(username='roaddb', password='test1234')
-    sftp = paramiko.SFTPClient.from_transport(scp)
+
     for k, v in get_all_kmls(folder_path).items():
         data[k] = {}
         for kml in v:
@@ -122,8 +120,13 @@ def get_all_kmls(path):
 
 
 def kml2coordinates(file_path):
-    with open(file_path) as f:
-        lines = f.readlines()
+    scp = paramiko.Transport(('10.69.142.68', 22))
+    scp.connect(username='roaddb', password='test1234')
+    sftp = paramiko.SFTPClient.from_transport(scp)
+    f = sftp.open(file_path,'r+')
+    lines = f.readlines()
+    # with open(file_path) as f:
+    #     lines = f.readlines()
     coordinates = []
     for line in lines:
         if line.strip().startswith('<'):
