@@ -8,6 +8,7 @@ import os
 import re
 import paramiko
 
+
 class Trajectory:
     def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
         self.is_show = is_show
@@ -66,17 +67,26 @@ def data_process(folder_path):
 def get_all_kmls(path):
     data_set = {}
     tmp = ''
-    print("i am in func get_all_kmls,",path)
+    print("i am in func get_all_kmls,", path)
 
-    scp = paramiko.Transport(('10.69.142.68',22))
-    scp.connect(username='roaddb',password='test1234')
+    scp = paramiko.Transport(('10.69.142.68', 22))
+    scp.connect(username='roaddb', password='test1234')
     sftp = paramiko.SFTPClient.from_transport(scp)
-    remote_files = sftp.listdir_attr(path)
-    print(remote_files)
-    for file in remote_files:
-        print(os.path.join(path,file.filename))
-        # if S_ISDIR(file.st_mode):
 
+    def __get_all_files_in_remote_dir(sftp, remote_dir):
+        all_files = []
+        remote_files = sftp.listdir_attr(path)
+        print(remote_files)
+        for file in remote_files:
+            print(os.path.join(path, file.filename))
+            filename = os.path.join(path, file.filename)
+            if S_ISDIR(file.st_mode):
+                all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
+            else:
+                all_files.append(filename)
+        return all_files
+
+    print(__get_all_files_in_remote_dir(sftp, path))
     # try:
     #     for root, dirs, files in os.walk(path):
     #         print("files:",files)
