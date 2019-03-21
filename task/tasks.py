@@ -30,7 +30,7 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
         task.status = 'build'
         task.save()
         branchs['is_sam'] = build_sam
-        compile_code = Compile_code(branchs)
+        compile_code = Compile_code(branchs,task_id)
         try:
             compile_code.run_compile()
             task.status = 'builddone'

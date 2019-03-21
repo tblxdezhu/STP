@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#!/usr/bin/env python
+# !/usr/bin/env python
 # encoding: utf-8
 # @Time    : 10/22/18 5:39 PM
 # @Author  : Hong He
@@ -12,14 +12,15 @@ define some common function
 import paramiko
 import os
 import subprocess
-from .build_config import code_path
+# from .build_config import code_path
+from .models import Task
 
 
 class Compile_code(object):
     compile_info = {}
 
-    def __init__(self, branchs):
-
+    def __init__(self, branchs, task_id):
+        self.task = Task.objects.get(id=task_id)
         if branchs["is_sam"]:
             self.compile_info["is_sam"] = True
             self.compile_info["algorithm_sam"] = branchs["algorithm_sam"]
@@ -32,18 +33,18 @@ class Compile_code(object):
         else:
             self.compile_info["commit_point"] = ""
 
-        self.compile_info["code_path"] = os.path.join(code_path, 'core')
+        self.compile_info["code_path"] = self.task.code_path
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
         self.compile_info["algorithm_common_slam"] = branchs["algorithm_common_slam"]
-        self.compile_info["vehicle"]=branchs["vehicle"]
+        self.compile_info["vehicle"] = branchs["vehicle"]
 
         self.compile_info["stash_common"] = "ssh://git@stash.ygomi.com:7999/rc/common.git"
         self.compile_info["stash_algo_common"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common.git"
         self.compile_info["stash_algo_common_slam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_common_slam.git"
         self.compile_info["stash_algo_vehicle_offlineslam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_vehicle_offlineslam.git"
         self.compile_info["stash_algo_sam"] = "ssh://git@stash.ygomi.com:7999/rc/algorithm_sam.git"
-        self.compile_info["stash_vehicle"]="ssh://git@stash.ygomi.com:7999/rc/vehicle.git"
+        self.compile_info["stash_vehicle"] = "ssh://git@stash.ygomi.com:7999/rc/vehicle.git"
 
     def __compile_cmds__(self, code_path, repo_name, stash_addr, branch_name, commit_point, parameters=""):
 
@@ -53,7 +54,7 @@ class Compile_code(object):
         cmds_dict["git_checkout_cmd"] = "cd {0} && git checkout {1} && git pull".format(os.path.join(code_path, repo_name), branch_name)
         cmds_dict["git_commit_point"] = " git reset --hard {0}".format(commit_point)
 
-        #if algo-common repo should close deep-learning.
+        # if algo-common repo should close deep-learning.
         if repo_name == "algorithm_common":
 
             cmds_dict["update_cmakelist"] = "sed -i 's/\"compile deeplearning interface\" ON/\"compile deeplearning interface\" OFF/g' {}".format(
@@ -61,11 +62,11 @@ class Compile_code(object):
         else:
             cmds_dict["update_cmakelist"] = ""
 
-        #Vehicle repo do not compile , delete files and clone code
-        if "vehicle"==repo_name:
-            cmds_dict["compile_cmd"]=""
-            cmds_dict["clear_repo_cmd"]=""
-            cmds_dict["git_clone"]=""
+        # Vehicle repo do not compile , delete files and clone code
+        if "vehicle" == repo_name:
+            cmds_dict["compile_cmd"] = ""
+            cmds_dict["clear_repo_cmd"] = ""
+            cmds_dict["git_clone"] = ""
         else:
             cmds_dict["compile_cmd"] = "./build.sh {0}".format(parameters)
         return cmds_dict
@@ -95,7 +96,6 @@ class Compile_code(object):
         except:
             print("Connect virtual machine failed!")
             raise
-
 
     def __compile_common(self):
 
@@ -170,7 +170,7 @@ class Compile_code(object):
             pass
 
         result_algo_common = self.__compile_algo_common()
-        result_algo_common_slam=self.__compile_algo_common_slam()
+        result_algo_common_slam = self.__compile_algo_common_slam()
 
         result_algo = ""
         # print(self.compile_info["is_sam"])
@@ -178,7 +178,7 @@ class Compile_code(object):
             result_algo = self.__compile_algo_offlineslam()
         else:
             result_algo = self.__compile_algo_sam()
-        result_vehicle=self.__compile_vehicle()
+        result_vehicle = self.__compile_vehicle()
 
 
 if __name__ == "__main__":
