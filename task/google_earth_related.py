@@ -125,6 +125,8 @@ def kml2coordinates(file_path):
     sftp = paramiko.SFTPClient.from_transport(scp)
     f = sftp.open(file_path,'r+')
     lines = f.readlines()
+    f.close()
+    scp.close()
     # with open(file_path) as f:
     #     lines = f.readlines()
     coordinates = []
