@@ -71,7 +71,7 @@ def get_all_kmls(path):
     scp = paramiko.Transport(('10.69.142.68',22))
     scp.connect(username='roaddb',password='test1234')
     sftp = paramiko.SFTPClient.from_transport(scp)
-    remote_files = sftp.listdir(path)
+    remote_files = sftp.listdir_attr(path)
     print(remote_files)
 
     # try:
