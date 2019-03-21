@@ -66,7 +66,7 @@ def data_process(folder_path):
 def get_all_kmls(path):
     data_set = {}
     tmp = ''
-    print("i am in func get_all_kmls")
+    print("i am in func get_all_kmls,",path)
     try:
         for root, dirs, files in os.walk(path):
             print("files:",files)
