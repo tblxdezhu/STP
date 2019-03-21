@@ -6,7 +6,7 @@ from .models import Machine, Data
 
 
 class MachineAdmin(admin.ModelAdmin):
-    list_display = ('ip', 'machine_id', 'process_num', 'output_path', 'data_path',)
+    list_display = ('ip', 'machine_id', 'process_num', 'code_path', 'output_path', 'data_path',)
     search_fields = ('ip',)
 
 

@@ -9,6 +9,9 @@ class DataManager(models.Manager):
 
 class Machine(models.Model):
     ip = models.CharField(max_length=20, default="127.0.0.1")
+    username = models.CharField(max_length=50, default="roaddb")
+    password = models.CharField(max_length=50, default="test1234")
+    port = models.IntegerField(default=22)
     machine_id = models.CharField(max_length=50, blank=True)
     process_num = models.IntegerField()
     code_path = models.CharField(max_length=100)
