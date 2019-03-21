@@ -80,7 +80,7 @@ def get_all_kmls(path):
         for file in remote_files:
             print(os.path.join(path, file.filename))
             filename = os.path.join(path, file.filename)
-            if S_ISDIR(file.st_mode):
+            if os.path.isdir(filename):
                 all_files.extend(__get_all_files_in_remote_dir(sftp, filename))
             else:
                 all_files.append(filename)
