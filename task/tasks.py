@@ -18,7 +18,7 @@ from .compile_code import Compile_code
 from results.models import Results, Overview
 from results.slam_quality import SlamQuality
 from webserver.models import Machine
-from STP2.settings import get_branchs_code_path
+# from STP2.settings import get_branchs_code_path
 
 
 def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
@@ -116,11 +116,11 @@ def work_flow(if_build, task_id):
         # __change_status('done')
 
 
-@task
-def get_branch():
-    repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
-    for repo in repo_list:
-        os.chdir(os.path.join(get_branchs_code_path, repo))
-        print(repo)
-        status, output = subprocess.getstatusoutput("git branch -a")
-        print(output)
+# @task
+# def get_branch():
+#     repo_list = ['common', 'algorithm_common', 'algorithm_vehicle_offlineslam', 'algorithm_sam']
+#     for repo in repo_list:
+#         os.chdir(os.path.join(get_branchs_code_path, repo))
+#         print(repo)
+#         status, output = subprocess.getstatusoutput("git branch -a")
+#         print(output)
