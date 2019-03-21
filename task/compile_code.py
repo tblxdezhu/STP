@@ -34,6 +34,7 @@ class Compile_code(object):
             self.compile_info["commit_point"] = ""
 
         self.compile_info["code_path"] = self.task.code_path
+        print("code path:",self.task.code_path)
         self.compile_info["common"] = branchs["common"]
         self.compile_info["algorithm_common"] = branchs["algorithm_common"]
         self.compile_info["algorithm_common_slam"] = branchs["algorithm_common_slam"]
