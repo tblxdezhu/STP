@@ -6,7 +6,7 @@
 # @Software: Pycharm professional
 import os
 import re
-
+import paramiko
 
 class Trajectory:
     def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
@@ -67,27 +67,34 @@ def get_all_kmls(path):
     data_set = {}
     tmp = ''
     print("i am in func get_all_kmls,",path)
-    try:
-        for root, dirs, files in os.walk(path):
-            print("files:",files)
-            for file in files:
-                print("file in folder:",file)
-                # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
-                if file.endswith("slam_final_pose.kml"):
-                    # if os.path.basename(root) == "segment":
-                    # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
-                    print("***")
-                    print("root", root)
-                    print("file", file)
-                    print("***")
-                    case_name = root.split('/')[-2] + "_" + os.path.basename(root)
-                    print("case_name", case_name)
-                    if not case_name == tmp:
-                        data_set[case_name] = []
-                    data_set[case_name].append(os.path.join(root, file))
-                    tmp = case_name
-    except Exception as e:
-        print(e)
+
+    scp = paramiko.Transport(('10.69.142.68',22))
+    scp.connect(username='roaddb',password='test1234')
+    sftp = paramiko.SFTPClient.from_transport(scp)
+    remote_files = sftp.listdir(path)
+    print(remote_files)
+
+    # try:
+    #     for root, dirs, files in os.walk(path):
+    #         print("files:",files)
+    #         for file in files:
+    #             print("file in folder:",file)
+    #             # if file.endswith("final_pose.kml") or file.endswith("pre_process_gps.kml"):
+    #             if file.endswith("slam_final_pose.kml"):
+    #                 # if os.path.basename(root) == "segment":
+    #                 # case_name = os.path.dirname(root).split('/')[-3] + "_" + os.path.basename(os.path.dirname(root))
+    #                 print("***")
+    #                 print("root", root)
+    #                 print("file", file)
+    #                 print("***")
+    #                 case_name = root.split('/')[-2] + "_" + os.path.basename(root)
+    #                 print("case_name", case_name)
+    #                 if not case_name == tmp:
+    #                     data_set[case_name] = []
+    #                 data_set[case_name].append(os.path.join(root, file))
+    #                 tmp = case_name
+    # except Exception as e:
+    #     print(e)
 
     print("data_set", data_set)
     return data_set
