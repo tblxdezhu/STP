@@ -1,4 +1,9 @@
 from __future__ import unicode_literals
+
+# from gevent import monkey;monkey.patch_socket()
+# import gevent
+# import socket
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.template import Template, Context
@@ -32,6 +37,8 @@ from random import randint
 import requests
 from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
+from multiprocessing import Pool
 
 # from apscheduler.schedulers.background import BackgroundScheduler
 # from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
@@ -99,99 +106,7 @@ def submitted(request):
 
     print("if_build:", if_build)
     work_flow.apply_async(args=[if_build, task.id])
-
-    # for area in task.area:
-    #     work_flow.apply_async(args=[if_build, str(task.mode), str(area), task.id, branchs])
-    # schduler.add_job(func=test_job, id=str(task.id), args=(task.id,), next_run_time=datetime.datetime.now() + datetime.timedelta(seconds=3),replace_existing=True)
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
-
-
-# @login_required
-# def submitted(request):
-#     branchs = {'common': request.POST['common'], 'algorithm_common': request.POST['algorithm_common'], 'algorithm_vehicle_offlineslam': request.POST['algorithm_vehicle_offlineslam'],
-#                'common_sam': request.POST['common_sam'], 'algorithm_common_sam': request.POST['algorithm_common_sam'], 'algorithm_sam': request.POST['algorithm_sam'],
-#                'vehicle': request.POST['vehicle']}
-#     print("branchs", branchs)
-#     print(request.POST.get('ifskipbuild'))
-#     task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('check_box_list'), status="Waiting")
-#     task.save()
-#     if task.id % 2 == 0:
-#         queue = "env1"
-#     else:
-#         queue = "env1"
-#     build_sam = False
-#     if_build = True
-#     # build.apply_async(args=[branchs, task.id, build_sam], queue=queue)
-#     # for area in task.area:
-#     #     print(area)
-#     #     run_slam.apply_async(args=[str(area), str(request.user), task.id, queue], queue=queue)
-#     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
-#     try:
-#         for area in task.area:
-#             if request.POST.get('ifskipbuild') == 'skipbuild':
-#                 if_build = False
-#             chain_result = chain(build.s(branchs, task.id, if_build, build_sam).set(queue=queue), run_slam.s(str(area), str(request.user), task.id, queue).set(queue=queue),
-#                                  backup.s(task.id).set(queue=queue))
-#             chain_result()
-#     except Exception as e:
-#         print(e)
-#     # backup.apply_async(args=[task.id], queue=queue)
-#     # result = print_task.delay("xu")
-#     # print(result.task_id)
-#     # vehicle = Vehicle("test", str(request.user))
-#     # celery_id_list = []
-#     # for rtv in vehicle.rtvs:
-#     #     imu = rtv.replace('.rtv', '.imu')
-#     #     case_output_path = os.path.join(vehicle.output_path, vehicle.mode, os.path.basename(rtv).strip('.rtv'))
-#     #     if imu in vehicle.imus:
-#     #         single_task = single_run_slam.delay(rtv, imu, slam_config, camera_config, case_output_path)
-#     #         print(single_task.task_id)
-#     #         celery_id_list.append(single_task.task_id)
-#     # celery_task = Task.objects.get(id=task.id)
-#     # celery_task.celery_id = celery_id_list
-#     # celery_task.save()
-#
-#     # *********************TEST SINGLE MODE OF SLAM*********************
-#     # test_vehicle_rtvs = ['1.rtv', '2.rtv', '3.rtv', '4.rtv', '5.rtv']
-#     # celery_id_list = []
-#     # for rtv in test_vehicle_rtvs:
-#     #     single_task = test_celery.delay(rtv)
-#     #     print(single_task.task_id)
-#     #     celery_id_list.append(single_task.task_id)
-#     #
-#     # ssa_task = test_ssa.delay()
-#     # celery_id_list.append(ssa_task.task_id)
-#     #
-#     # celery_task = Task.objects.get(id=task.id)
-#     # celery_task.celery_id = celery_id_list
-#     # celery_task.save()
-#     # ******************************OVER********************************
-#
-#     # celery_id_list = []
-#
-#     # chain_result = chain(run.s("test", str(request.user), "SLAM"), test_ssa.s())()
-#     # print_task.delay("this is test rabbitmq")
-#     # print_task.delay("this is test2 rabbitmq")
-#     # print("test", chain_result.parent.task_id)
-#     # print("test2", chain_result.task_id)
-#     # celery_id_list.append(chain_result.parent.task_id)
-#     # celery_id_list.append(chain_result.parent.parent.task_id)
-#     # celery_slam_task = run.apply_async(args=["test", str(request.user), "SLAM"])
-#     # celery_id_list.append(celery_slam_task.task_id)
-#     # celery_ssa_task = test_ssa.delay()
-#     # celery_id_list.append(celery_ssa_task.task_id)
-#     # celery_id_list.extend([chain_result.parent.task_id, chain_result.task_id])
-#     # celery_task = Task.objects.get(id=task.id)
-#     # celery_task.celery_id = celery_id_list
-#     # celery_task.save()
-#
-#     # while True:
-#     #     print(result.status)
-#     #     if result.ready():
-#     #         break
-#     # print(result.status)
-#     # return render(request, 'submitted.html', {'task': task})
-#     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
 @login_required
@@ -206,14 +121,24 @@ def task_process(request, task_id):
         except TypeError:
             print("stop the task")
 
-    data, _ = data_process(task.output_path, task_id)
+    def __str2dic(str_):
+        output_dic = {}
+        str_ = str_.split(",")
+        output_dic[str_[0].split(":")[0].lstrip("{")] = float(str_[0].split(":")[1])
+        output_dic[str_[1].split(":")[0].lstrip()] = float(str_[1].split(":")[1].rstrip("}"))
+        return output_dic
+
+    center_data = {}
     kmls_data = []
-    for k in get_all_kmls(task.output_path, task_id):
-        for key in sorted(data[k].keys()):
-            kmls_data.append(data[k][key])
-
+    for area in eval(task.area):
+        data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
+        for k in kmls:
+            for key in sorted(data[k].keys()):
+                kmls_data.append(data[k][key])
+        center_data[area] = __str2dic(center[list(center.keys())[0]])
+    task.center = center_data
+    task.save()
     page = draw_line(task_id)
-
     myechart = page.render_embed()
     script_list = page.get_js_dependencies()
     task_ip = Machine.objects.get(machine_id=task.machine_id).ip
@@ -244,50 +169,13 @@ def get_area_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
     data, center_data = data_process(task.output_path)
     return JsonResponse({'task_id': task_id, 'area': area})
-    # return HttpResponse("{} {}".format(task_id, area))
 
 
 def _get_task_kml(request, task_id, area):
     task = Task.objects.get(id=task_id)
-    data, center_data = data_process(os.path.join(task.output_path, area),task_id)
-    # for k in get_all_kmls(os.path.join(task.output_path, area)):
-    #     for key in sorted(data[k].keys()):
-    #         kmls_data.append(data[k][key])
-    # content = {
-    #     'area': area,
-    #     'task': task,
-    #     'branchs': eval(task.branch),
-    #     'center_data': center_data[list(center_data.keys())[0]],
-    #     'kmls_data': kmls_data
-    # }
-    # for kml_data in kmls_data:
-    #     print(kml_data)
-    # print(center_data[list(center_data.keys())[0]])
-    lat = ""
-    lng = ""
-    # eval(center_data[list(center_data.keys())[0]])
-    # attr = Results.objects.show_task_id()
-    #
-    # line = line_time_kf(attr)
-    # myechart1 = line.render_embed()
-    # script_list = line.get_js_dependencies()
-    # return render(request, 'submitted.html', {'task': task,
-    #                                           'branchs': eval(task.branch),
-    #                                           'center_data': "hahahahah",
-    #                                           'kmls_data': kmls_data, 'myechart2': myechart1, 'script_list': script_list})
-    # print("content", content)
-    print(center_data[list(center_data.keys())[0]])
-
-    def __str2dic(str_):
-        output_dic = {}
-        str_ = str_.split(",")
-        output_dic[str_[0].split(":")[0].lstrip("{")] = float(str_[0].split(":")[1])
-        output_dic[str_[1].split(":")[0].lstrip()] = float(str_[1].split(":")[1].rstrip("}"))
-        return output_dic
-
     return JsonResponse({
         'area': area,
-        'center_data': __str2dic(center_data[list(center_data.keys())[0]])
+        'center_data': eval(task.center)[area]
     })
 
 
@@ -401,17 +289,46 @@ def line_time_kf(attr):
     return line
 
 
+def get_repo_branch(repo):
+    start = time.time()
+    repo_branches = []
+    url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
+    a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
+    req = requests.get(url=url, auth=a)
+    for branch in req.json()['values']:
+        repo_branches.append(branch['displayId'])
+    end = time.time()
+    return repo + ",over"
+
+
 def get_branch():
+    start = time.time()
     repo_list = ['common', 'algorithm_common', 'algorithm_common_slam', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
     a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
     branches = {}
+    # pool = Pool(6)
+    # results = []
+    # for repo in repo_list:
+    #     results.append(pool.apply_async(get_repo_branch, (repo,)))
+    # pool.close()
+    # pool.join()
+    # for result in results:
+    #     print(result.ready())
+    # with ProcessPoolExecutor(max_workers=3) as pool:
+    #     for result in pool.map(get_repo_branch, repo_list):
+    #         print(result)
+    # g = [gevent.spawn(get_repo_branch, repo) for repo in repo_list]
+    # gevent.joinall(g)
+    # for repo in repo_list:
+    #     get_repo_branch(repo)
     for repo in repo_list:
         branches[repo] = []
         url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
         req = requests.get(url=url, auth=a)
-        # print(req.json()['values'])
         for branch in req.json()['values']:
             branches[repo].append(branch['displayId'])
+    end = time.time()
+    print("get branch cost time:", end - start)
     return branches
     # return JsonResponse(branches)
     # get branches info from local
