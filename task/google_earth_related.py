@@ -49,8 +49,8 @@ class Trajectory:
 
 def get_scp(task_id):
     machine = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id)
-    scp = paramiko.Transport((machine.ip, 22))
-    scp.connect(username='roaddb', password='test1234')
+    scp = paramiko.Transport((machine.ip, machine.port))
+    scp.connect(machine.username, machine.password)
     sftp = paramiko.SFTPClient.from_transport(scp)
     return scp, sftp
 
@@ -79,9 +79,6 @@ def data_process(folder_path, task_id):
 def get_all_kmls(path, task_id):
     data_set = {}
     tmp = ''
-    # scp = paramiko.Transport(('10.69.142.68', 22))
-    # scp.connect(username='roaddb', password='test1234')
-    # sftp = paramiko.SFTPClient.from_transport(scp)
     scp, sftp = get_scp(task_id)
 
     def __get_all_files_in_remote_dir(sftp, remote_dir):
@@ -130,9 +127,6 @@ def get_all_kmls(path, task_id):
 
 def kml2coordinates(file_path, task_id):
     scp, sftp = get_scp(task_id)
-    # scp = paramiko.Transport(('10.69.142.68', 22))
-    # scp.connect(username='roaddb', password='test1234')
-    # sftp = paramiko.SFTPClient.from_transport(scp)
     f = sftp.open(file_path, 'r+')
     lines = f.readlines()
     f.close()
