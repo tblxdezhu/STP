@@ -10,6 +10,7 @@ import paramiko
 import stat
 from .models import Task
 from webserver.models import Machine
+import time
 
 
 class Trajectory:
@@ -56,9 +57,12 @@ def get_scp(task_id):
 
 
 def data_process(folder_path, task_id):
+    start = time.time()
     data = {}
     center = {}
     print("folder_path", folder_path)
+    scp, sftp = get_scp(task_id)
+
     kmls = get_all_kmls(folder_path, task_id)
     for k, v in kmls.items():
         data[k] = {}
@@ -66,13 +70,16 @@ def data_process(folder_path, task_id):
             kml_type = 'slam'
             is_show = True
             kml_name = os.path.basename(kml)
-            coordinate = kml2coordinates(kml, task_id)
+            coordinate = kml2coordinates(kml, sftp)
             if 'gps' in kml_name:
                 kml_type = 'gps'
                 is_show = False
             trajectory = Trajectory(k, kml_name, coordinate, kml_type, is_show)
             data[k][trajectory.name] = trajectory.string_builder()
             center[k] = trajectory.data_processed[0]
+    scp.close()
+    end = time.time()
+    print("data process cost :", end - start)
     return data, center, kmls
 
 
@@ -125,15 +132,14 @@ def get_all_kmls(path, task_id):
     return data_set
 
 
-def kml2coordinates(file_path, task_id):
-    scp, sftp = get_scp(task_id)
+def kml2coordinates(file_path, sftp):
+    # scp, sftp = get_scp(task_id)
     # scp = paramiko.Transport(('10.69.142.68', 22))
     # scp.connect(username='roaddb', password='test1234')
     # sftp = paramiko.SFTPClient.from_transport(scp)
     f = sftp.open(file_path, 'r+')
     lines = f.readlines()
     f.close()
-    scp.close()
     # with open(file_path) as f:
     #     lines = f.readlines()
     coordinates = []
