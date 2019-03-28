@@ -85,6 +85,13 @@
                                     {% endifequal %}
                                 {% endfor %}
                             </optgroup>
+                            <optgroup label="vtd">
+                                {% for area in areas %}
+                                    {% ifequal area.tag 'vtd' %}
+                                        <option value="{{ area }}">{{ area }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </optgroup>
                         </select>
                         {#                        <script type="text/javascript">#}
                         {#                            $(document).ready(function () {#}
