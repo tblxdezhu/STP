@@ -130,15 +130,17 @@ def task_process(request, task_id):
 
     center_data = {}
     kmls_data = []
-    try:
-        for area in eval(task.area):
-            data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
-            for k in kmls:
-                for key in sorted(data[k].keys()):
-                    kmls_data.append(data[k][key])
-            center_data[area] = __str2dic(center[list(center.keys())[0]])
-    except Exception:
-        pass
+    if not task.status == 'build':
+        try:
+            for area in eval(task.area):
+                data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
+                for k in kmls:
+                    for key in sorted(data[k].keys()):
+                        kmls_data.append(data[k][key])
+                center_data[area] = __str2dic(center[list(center.keys())[0]])
+        except Exception as e:
+            print(e)
+            pass
 
     task.center = center_data
     task.save()
