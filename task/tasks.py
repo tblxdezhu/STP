@@ -18,6 +18,8 @@ from .compile_code import Compile_code
 from results.models import Results, Overview
 from results.slam_quality import SlamQuality
 from webserver.models import Machine
+
+
 # from STP2.settings import get_branchs_code_path
 
 
@@ -30,8 +32,8 @@ def build(branchs, task_id, if_build=True, mode='slam', build_sam=False):
         task.status = 'build'
         task.save()
         branchs['is_sam'] = build_sam
-        compile_code = Compile_code(branchs,task_id)
-        print("code path2:",compile_code.compile_info["code_path"])
+        compile_code = Compile_code(branchs, task_id)
+        print("code path2:", compile_code.compile_info["code_path"])
         try:
             compile_code.run_compile()
             task.status = 'builddone'
@@ -46,6 +48,7 @@ def get_machine_id():
     _, machine_id = subprocess.getstatusoutput("cat /var/lib/dbus/machine-id")
     return machine_id
 
+
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
@@ -56,15 +59,17 @@ def work_flow(if_build, task_id):
     task.save()
     print("machine_id:", get_machine_id())
     print("output path:", task.output_path)
+    print(id(task))
 
     def __change_status(status):
         task.status = status
+        print(id(task))
         # save() 方法会设定所有列的 值，而不是只设定 name 列的值。
         # 如果你所处的环境可能同时由其他操作修改其他列，最好只更新需要修改的值。
         # 为此，使用 QuerySet 对象的 update() 方法
         # TODO 需要将不必要的save替换为update
         task.save()
-        logging.info("status change to {}".format(status))
+        logging.info("status change to {} vehicleSLAM".format(status))
 
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
     build(eval(task.branch), task_id, if_build)
@@ -78,7 +83,7 @@ def work_flow(if_build, task_id):
             task_result = SlamQuality(task_id, area).quality_to_dict()
 
             for case_result in task_result[0][area]:
-                print("case_result:",case_result)
+                print("case_result:", case_result)
                 if case_result:
                     result = Results.objects.create(
                         task_id=task.id, area=area, mode='slam', rtv_name=case_result['RTV'], slam_len=case_result['SLAM_trajectory_length'], gps_len=case_result['GPS_trajectory_length'],
@@ -89,6 +94,7 @@ def work_flow(if_build, task_id):
 
 
         except Exception as e:
+            print(e)
             __change_status('SLAMfailed')
 
     if task.mode == 'SSA':
@@ -113,7 +119,6 @@ def work_flow(if_build, task_id):
                 print(e)
                 __change_status('SSAfailed')
         # __change_status('done')
-
 
 # @task
 # def get_branch():
