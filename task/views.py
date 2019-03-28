@@ -130,14 +130,19 @@ def task_process(request, task_id):
 
     center_data = {}
     kmls_data = []
-    for area in eval(task.area):
-        data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
-        for k in kmls:
-            for key in sorted(data[k].keys()):
-                kmls_data.append(data[k][key])
-        center_data[area] = __str2dic(center[list(center.keys())[0]])
+    try:
+        for area in eval(task.area):
+            data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
+            for k in kmls:
+                for key in sorted(data[k].keys()):
+                    kmls_data.append(data[k][key])
+            center_data[area] = __str2dic(center[list(center.keys())[0]])
+    except Exception:
+        pass
+
     task.center = center_data
     task.save()
+
     page = draw_line(task_id)
     myechart = page.render_embed()
     script_list = page.get_js_dependencies()
@@ -146,6 +151,55 @@ def task_process(request, task_id):
     return render(request, 'submitted.html',
                   {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart': myechart, 'script_list': script_list,
                    'kmls_data': kmls_data, 'task_ip': task_ip})
+
+
+def get_kmls_data(request, task_id):
+    task = Task.objects.get(id=task_id)
+    center_data = {}
+    kmls_data = []
+
+    def __str2dic(str_):
+        output_dic = {}
+        str_ = str_.split(",")
+        output_dic[str_[0].split(":")[0].lstrip("{")] = float(str_[0].split(":")[1])
+        output_dic[str_[1].split(":")[0].lstrip()] = float(str_[1].split(":")[1].rstrip("}"))
+        return output_dic
+
+    for area in eval(task.area):
+        data, center, kmls = data_process(os.path.join(task.output_path, area), task_id)
+        for k in kmls:
+            for key in sorted(data[k].keys()):
+                kmls_data.append(data[k][key])
+        center_data[area] = __str2dic(center[list(center.keys())[0]])
+    task.center = center_data
+    task.save()
+    # print(kmls_data)
+    map_jquery_txt = """
+    <script>
+                    function get_result(area) {
+                        $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
+                            center_data = {lat: parseFloat(ret.center_data['lat']), lng: parseFloat(ret.center_data['lng'])};
+                            map.setCenter(center_data);
+                        })
+                    }
+                    var map;
+
+                    function initMap() {
+                        map = new google.maps.Map(document.getElementById('map'), {
+                            center: {{ center_data|safe }},
+                            zoom: 13,
+                            mapTypeId: google.maps.MapTypeId.SATELLITE
+                        });
+                        
+                    
+    """
+    insert_txt = ''.join(kmls_data)
+    end_txt = """
+    }
+    </script>
+    """
+    print(map_jquery_txt + insert_txt + end_txt)
+    return HttpResponse(map_jquery_txt + insert_txt + end_txt)
 
 
 def draw_line(task_id):

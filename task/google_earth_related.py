@@ -62,8 +62,12 @@ def data_process(folder_path, task_id):
     center = {}
     print("folder_path", folder_path)
     scp, sftp = get_scp(task_id)
-
-    kmls = get_all_kmls(folder_path, task_id)
+    try:
+        kmls = get_all_kmls(folder_path, task_id)
+    except FileNotFoundError:
+        kmls = {}
+        scp.close()
+        return data, center, kmls
     for k, v in kmls.items():
         data[k] = {}
         for kml in v:
