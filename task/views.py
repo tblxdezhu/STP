@@ -177,7 +177,7 @@ def get_kmls_data(request, task_id):
     map_jquery_txt = """
     <script>
                     function get_result(area) {
-                        $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
+                        $.getJSON('/test/214/' + area, function (ret) {
                             center_data = {lat: parseFloat(ret.center_data['lat']), lng: parseFloat(ret.center_data['lng'])};
                             map.setCenter(center_data);
                         })
@@ -186,7 +186,7 @@ def get_kmls_data(request, task_id):
 
                     function initMap() {
                         map = new google.maps.Map(document.getElementById('map'), {
-                            center: {{ center_data|safe }},
+                            center: {lat: 41.876, lng: -87.624},
                             zoom: 13,
                             mapTypeId: google.maps.MapTypeId.SATELLITE
                         });

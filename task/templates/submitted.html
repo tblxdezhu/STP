@@ -190,12 +190,12 @@
                         padding: 0;
                     }
                 </style>
+
                 <script>
                     function get_result(area) {
                         $.getJSON('/test/{{ task.id }}/' + area, function (ret) {
                             center_data = {lat: parseFloat(ret.center_data['lat']), lng: parseFloat(ret.center_data['lng'])};
                             map.setCenter(center_data);
-                            {#$("#map").html(ret.kmls_data)#}
                         })
                     }
 
@@ -205,9 +205,8 @@
                         map = new google.maps.Map(document.getElementById('map'), {
                             center: {{ center_data|safe }},
                             zoom: 13,
-                            mapTypeId: 'terrain'
+                            mapTypeId: google.maps.MapTypeId.SATELLITE
                         });
-
                         {% for kml in kmls_data %}
                             {{ kml | safe}}
                         {% endfor %}
@@ -227,8 +226,6 @@
                 <div class="panel-body no-padding" id="test">
                     <div class="col-md-12">{{ myechart|safe }}</div>
                 </div>
-
-
             </div>
         </div>
     </div>
