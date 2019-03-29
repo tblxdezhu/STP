@@ -50,10 +50,9 @@ def get_machine_id():
 
 
 @task
-def work_flow(if_build, task):
-    # task = Task.objects.get(id=task_id)
+def work_flow(if_build, task_id):
+    task = Task.objects.get(id=task_id)
     print("work flow task id :",id(task))
-    task_id = task.id
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
     task.machine_id = get_machine_id()

@@ -108,7 +108,7 @@ def submitted(request):
 
     print("if_build:", if_build)
     print("task_id:", task.id)
-    work_flow.apply_async(args=[if_build, task])
+    work_flow.apply_async(args=[if_build, task.id])
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
 
