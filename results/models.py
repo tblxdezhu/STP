@@ -24,7 +24,7 @@ class Results(models.Model):
     task_id = models.IntegerField()
     area = models.CharField(max_length=30)
     mode = models.CharField(max_length=10)
-    rtv_name = models.CharField(max_length=50)
+    rtv_name = models.CharField(max_length=200)
     slam_len = models.CharField(max_length=20)
     gps_len = models.CharField(max_length=20)
     kfs = models.CharField(max_length=10)
