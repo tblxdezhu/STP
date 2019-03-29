@@ -100,7 +100,7 @@ def submitted(request):
     # task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
     # task.save()
     task = Task.objects.create(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting",
-                               description=request.POST['description'])
+                               description=request.POST['description'], machine_id='0000')
     print("new task id:", id(task))
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':

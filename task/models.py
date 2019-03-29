@@ -16,7 +16,7 @@ class Task(models.Model):
     code_path = models.CharField(max_length=100, null=True)
     output_path = models.CharField(max_length=100, null=True)
     description = models.CharField(max_length=100, null=True)
-    machine_id = models.CharField(max_length=50, default='127.0.0.1', null=True)
+    machine_id = models.CharField(max_length=50, default='0000', null=True)
     center = models.CharField(max_length=200, null=True)
 
     class Meta:
