@@ -52,7 +52,7 @@ def get_machine_id():
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
-    print("work flow task id :",id(task))
+    print("work flow task id :", id(task))
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
     task.machine_id = get_machine_id()
@@ -62,7 +62,8 @@ def work_flow(if_build, task_id):
     print("output path:", task.output_path)
     print(id(task))
 
-    def __change_status(status):
+    def __change_status(task_id, status):
+        task = Task.objects.get(id=task_id)
         task.status = status
         print(id(task))
         # save() 方法会设定所有列的 值，而不是只设定 name 列的值。
@@ -70,16 +71,16 @@ def work_flow(if_build, task_id):
         # 为此，使用 QuerySet 对象的 update() 方法
         # TODO 需要将不必要的save替换为update
         task.save(update_fields=['status'])
-        logging.info("status change to {} vehicleSLAM".format(status))
+        logging.info("status change to {}".format(status))
 
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
     build(eval(task.branch), task_id, if_build)
     for area in eval(task.area):
         vehicle = Vehicle(str(area), task.id)
-        __change_status('SLAM')
+        __change_status(task_id, 'SLAM')
         try:
             vehicle.vehicle_slam()
-            __change_status('SLAMdone')
+            __change_status(task_id, 'SLAMdone')
 
             task_result = SlamQuality(task_id, area).quality_to_dict()
 
@@ -93,32 +94,31 @@ def work_flow(if_build, task_id):
                         mp_kf=case_result['MP_per_KF'], time=case_result['Time'], efficiency=case_result['Efficiency']
                     )
 
-
         except Exception as e:
             print(e)
-            __change_status('SLAMfailed')
+            __change_status(task_id, 'SLAMfailed')
 
     if task.mode == 'SSA':
         build(eval(task.branch), task_id, if_build, task.mode)
 
         for area in eval(task.area):
             server = Server(str(area), task.id)
-            __change_status('SSA')
+            __change_status(task_id, 'SSA')
             try:
                 server.clean()
                 server.rtv2gps()
                 server.process()
-                __change_status('SSAdone')
-                __change_status('backup')
+                __change_status(task_id, 'SSAdone')
+                __change_status(task_id, 'backup')
                 try:
                     server.backup()
-                    __change_status('backupdone')
+                    __change_status(task_id, 'backupdone')
                 except Exception as e:
                     print(e)
-                    __change_status('backupfailed')
+                    __change_status(task_id, 'backupfailed')
             except Exception as e:
                 print(e)
-                __change_status('SSAfailed')
+                __change_status(task_id, 'SSAfailed')
         # __change_status('done')
 
 # @task
