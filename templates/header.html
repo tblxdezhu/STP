@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/vendor/font-awesome/css/font-awesome.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/vendor/linearicons/style.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/chartist/css/chartist-custom.css' %}">
-    <link rel="stylesheet" href="{% static 'resources/bootstrap-switch.css' %}">
-    <link rel="stylesheet" href="{% static 'resources/completer.css' %}">
+    {#    <link rel="stylesheet" href="{% static 'assets/vendor/chartist/css/chartist-custom.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'resources/bootstrap-switch.css' %}">#}
+    {#    <link rel="stylesheet" href="{% static 'resources/completer.css' %}">#}
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
     <!-- GOOGLE FONTS -->
@@ -25,8 +25,8 @@
 
     {#    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap-multiselect/css/bootstrap-multiselect.css' %}">#}
 
-    <link rel="stylesheet" href="{% static 'assets/vendor/fakeLoader/fakeLoader.css' %}">
-    <link href="{% static 'assets/vendor/bootstrap_fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>
+    {#    <link rel="stylesheet" href="{% static 'assets/vendor/fakeLoader/fakeLoader.css' %}">#}
+    {#    <link href="{% static 'assets/vendor/bootstrap_fileinput/css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css"/>#}
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     {#        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">#}
@@ -35,7 +35,9 @@
     <script>
         new WOW().init();
     </script>
-    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+
+{#    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>#}
     <!--script>
         $(document).ready(function () {
             $("#stoptask").click(function () {

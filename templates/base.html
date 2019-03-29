@@ -130,18 +130,6 @@
         <!-- MAIN CONTENT -->
         <div class="main-content">
             <div class="container-fluid">
-
-
-                {#                <div id="fakeloader"></div>#}
-                {#                <script>#}
-                {#                    $(document).ready(function () {#}
-                {#                        $("#fakeloader").fakeLoader({#}
-                {#                            timeToHide: 1200,#}
-                {#                            bgColor: "#34495e",#}
-                {#                            spinner: "spinner3"#}
-                {#                        });#}
-                {#                    });#}
-                {#                </script>#}
                 <style type="text/css">
                     /*
                  *  Usage:
@@ -186,18 +174,6 @@
                         }
                     }
                 </style>
-                {#                <script type="text/javascript">#}
-                {#                    var _LoadingHtml = '<div class="spinner" id="loader"></div>';#}
-                {#                    document.write(_LoadingHtml);#}
-                {#                    document.onreadystatechange = completeLoading;#}
-                {##}
-                {#                    function completeLoading() {#}
-                {#                        if (document.readyState == "complete") {#}
-                {#                            var loadingMask = document.getElementById('loader');#}
-                {#                            loadingMask.parentNode.removeChild(loadingMask);#}
-                {#                        }#}
-                {#                    }#}
-                {#                </script>#}
                 {% block content %}{% endblock %}
             </div>
         </div>
@@ -208,58 +184,24 @@
 </div>
 <!-- END WRAPPER -->
 <!-- Javascript -->
-<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
+{#<script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>#}
 <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
 <script src="{% static 'assets/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js' %}"></script>
 <script src="{% static 'assets/vendor/chartist/js/chartist.min.js' %}"></script>
 <script src="{% static 'assets/scripts/klorofil-common.js' %}"></script>
-<script src="{% static 'resources/bootstrap-switch.js' %}"></script>
-<script src="{% static 'resources/completer.js' %}"></script>
+{#<script src="{% static 'resources/bootstrap-switch.js' %}"></script>#}
+{#<script src="{% static 'resources/completer.js' %}"></script>#}
 <script src="{% static 'resources/bootstrap3-typeahead.js' %}"></script>
-<script src="{% static 'assets/vendor/bootstrap-select/js/bootstrap-select.js' %}"></script>
+<script src="{% static 'assets/vendor/bootstrap-select/js/bootstrap-select.min.js' %}"></script>
 <script src="{% static 'assets/vendor/bootstrap-select/js/i18n/defaults-en_US.js' %}"></script>
 {#<script src="{% static 'assets/vendor/bootstrap-multiselect/js/bootstrap-multiselect.js' %}"></script>#}
-<script src="{% static 'assets/scripts/cxSelect/jquery.cxselect.js' %}"></script>
-<script src="{% static 'assets/vendor/fakeLoader/fakeLoader.js' %}"></script>
+{#<script src="{% static 'assets/scripts/cxSelect/jquery.cxselect.js' %}"></script>#}
+{#<script src="{% static 'assets/vendor/fakeLoader/fakeLoader.js' %}"></script>#}
 
 
-<script src="{% static 'assets/vendor/bootstrap_fileinput/js/fileinput.js' %}"></script>
-<script src="{% static 'assets/vendor/bootstrap_fileinput/js/locales/zh.js' %}"></script>
-
-
-<script>
-    $(function () {
-        $.cxSelect.defaults.url = 'cityData.min.json';
-        $.cxSelect.defaults.emptyStyle = 'none';
-    })
-</script>
-{#<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>#}
-
-{#<script src="{% static 'assets/vendor/bootstrap-select/js/i18n/defaults-*.js' %}"></script>#}
-<script type="text/javascript">
-    $(function () {
-        $("[name='mySwitch']").bootstrapSwitch();
-    })
-</script>
-<!--script type="text/javascript">
-    $(function () {
-        var data_algo_vehicle = ['feature/RDB-31401-MPG', 'feature/RDB-30913-offline-slam-developing-branch', 'feature/RDB-28414-internal-implementation-of-slam-snippets-merging-in-server', 'feature/RDB-29547-ssa-algorithm-performance-improve'];
-        $("#algo_vehicle_offlineslam").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#algo_common").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#algo_sam").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#common").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#algo_vehicle-sam").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#algo_common-sam").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#algo_sam-sam").typeahead({source: data_algo_vehicle, minLength: 0});
-        $("#common-sam").typeahead({source: data_algo_vehicle, minLength: 0});
-    })
-</script-->
-<!--script>
-    setInterval(function () {
-        $("#status").load("http://127.0.0.1/test/251/status")
-    }, 1000);
-</script-->
+{#<script src="{% static 'assets/vendor/bootstrap_fileinput/js/fileinput.js' %}"></script>#}
+{#<script src="{% static 'assets/vendor/bootstrap_fileinput/js/locales/zh.js' %}"></script>#}
 
 </body>
 </html>
