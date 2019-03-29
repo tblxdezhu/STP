@@ -101,12 +101,13 @@ def submitted(request):
     # task.save()
     task = Task.objects.create(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting",
                                description=request.POST['description'])
-
+    print("new task id:", id(task))
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
         if_build = False
 
     print("if_build:", if_build)
+    print("task_id:", task.id)
     work_flow.apply_async(args=[if_build, task.id])
     return HttpResponseRedirect(reverse('test:task_id', kwargs={'task_id': task.id}))
 
