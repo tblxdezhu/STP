@@ -56,7 +56,7 @@ def work_flow(if_build, task_id):
     task.code_path = machine.code_path
     task.machine_id = machine.machine_id
     task.output_path = os.path.join(machine.output_path, str(task.id))
-    task.save()
+    task.save(update_fields=['code_path', 'machine_id', 'output_path'])
     print("machine_id:", get_machine_id())
     print("output path:", task.output_path)
     print(id(task))
@@ -68,7 +68,7 @@ def work_flow(if_build, task_id):
         # 如果你所处的环境可能同时由其他操作修改其他列，最好只更新需要修改的值。
         # 为此，使用 QuerySet 对象的 update() 方法
         # TODO 需要将不必要的save替换为update
-        task.save()
+        task.save(update_fields=['status'])
         logging.info("status change to {} vehicleSLAM".format(status))
 
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
