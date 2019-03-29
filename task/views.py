@@ -97,8 +97,10 @@ def submitted(request):
     }
     print(branchs)
 
-    task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
-    task.save()
+    # task = Task(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting", description=request.POST['description'])
+    # task.save()
+    task = Task.objects.create(tester=request.user, mode=request.POST['select_mode'], branch=branchs, area=request.POST.getlist('select_list'), status="Waiting",
+                               description=request.POST['description'])
 
     if_build = True
     if request.POST.get('ifskipbuild') == 'skipbuild':
@@ -150,8 +152,9 @@ def task_process(request, task_id):
     script_list = page.get_js_dependencies()
     try:
         task_ip = Machine.objects.get(machine_id=task.machine_id).ip
-    except Exception:
-        return render(request, '404.html', {'error_info': 'No machine online, your task has been added to the task list.'})
+    # 'No machine online, your task has been added to the task list.'
+    except Exception as e:
+        return render(request, '404.html', {'error_info': e})
     return render(request, 'submitted.html',
                   {'task': task, 'areas': eval(task.area), 'branchs': eval(task.branch), 'center_data': "{lat: 41.876, lng: -87.624}", 'myechart': myechart, 'script_list': script_list,
                    'kmls_data': kmls_data, 'task_ip': task_ip})
