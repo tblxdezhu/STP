@@ -142,11 +142,11 @@ def task_process(request, task_id):
                         kmls_data.append(data[k][key])
                 center_data[area] = __str2dic(center[list(center.keys())[0]])
         except Exception as e:
-            print(e)
+            print("data process",e)
             pass
 
     task.center = center_data
-    task.save()
+    task.save(update_fields=['center'])
 
     page = draw_line(task_id)
     myechart = page.render_embed()
