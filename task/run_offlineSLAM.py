@@ -39,9 +39,10 @@ class Run(object):
     def __init__(self, area, task_id):
         self.area = area
         self.task_id = task_id
-        self.output_path = Task.objects.get(id=task_id).output_path
-        self.code_path = Task.objects.get(id=task_id).code_path
-        self.machine_data_path = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path
+        task = Task.objects.get(id=task_id)
+        self.output_path = task.output_path
+        self.code_path = task.code_path
+        self.machine_data_path = Machine.objects.get(machine_id=task.machine_id).data_path
         self.data_path = Data.objects.get(area=area).data_path
         self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
