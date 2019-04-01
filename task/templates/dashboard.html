@@ -1,49 +1,327 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block title %}Test{% endblock %}
 {% block content %}
-
-    <div class="panel panel-headline">
-        <div class="panel-heading">
-            <h3 class="panel-title">Overview</h3>
-            <!--p class="panel-subtitle">Demo</p-->
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="metric">
-                        <span class="icon"><i class="fa fa-line-chart icon"></i></span>
-                        <p>
-                            <span class="number">{{ run_rtv_numbers }}</span>
-                            <span class="title">Rtv tested</span>
-                        </p>
-                    </div>
+    <div class="row">
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h3 class="panel-title">Data Overview</h3>
+                <!--p class="panel-subtitle">Demo</p-->
+            </div>
+            <div class="panel-body">
+                <div class="col-md-8">
+                    <div id="vmap" style="width: 600px; height: 400px;"></div>
                 </div>
                 <div class="col-md-4">
-                    <div class="metric">
-                        <span class="icon"><i class="fa fa-clock-o icon"></i></span>
-                        <p>
-                            <span class="number">{{ time_cost }}</span>
-                            <span class="title">Time cost</span>
-                        </p>
-                    </div>
+                    <ul class="list-unstyled task-list">
+                        <li>
+                            <p>US <span class="label-percent">133</span></p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="23" aria-valuemin="0" aria-valuemax="100" style="width:33%">
+                                    <span class="sr-only">33% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>GE<span class="label-percent">100</span></p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                                    <span class="sr-only">30% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>JP <span class="label-percent">135</span></p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
+                                    <span class="sr-only">Success</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <p>UK <span class="label-percent">122</span></p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 22%">
+                                    <span class="sr-only">45% Complete</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-                <div class="col-md-3">
-                    <div class="metric">
-                        <span class="icon"><i class="fa fa-database icon"></i></span>
-                        <p>
-                            <span class="number">602</span>
-                            <span class="title">Rtv we have</span>
-                        </p>
-                    </div>
-                </div>
-
             </div>
-            <div class="row">
-                <div class="col-md-9">{{ charts }}</div>
+
+            {#        <script src="{% static 'assets/vmap/' %}js/jquery.vmap.sampledata.js"></script>#}
+
+            <script type="text/javascript">
+                jQuery(document).ready(function () {
+                    jQuery('#vmap').vectorMap({
+                        map: 'world_en',
+                        backgroundColor: '#fff',
+                        color: '#ffffff',
+                        hoverOpacity: 0.7,
+                        selectedColor: '#666666',
+                        enableZoom: true,
+                        showTooltip: true,
+                        values: {
+                            "gb": "50.0",
+                            "de": "50",
+                            "jp": "50",
+                            "us": "50",
+                            "ye": 0,
+                            "dz": 0,
+                            "uy": 0,
+                            "vu": 0,
+                            "qa": 0,
+                            "zm": 0,
+                            "ee": 0,
+                            "eg": 0,
+                            "za": 0,
+                            "ec": 0,
+                            "et": 0,
+                            "zw": 0,
+                            "es": 0,
+                            "er": 0,
+                            "ru": 0,
+                            "rw": 0,
+                            "rs": 0,
+                            "ro": 0,
+                            "bd": 0,
+                            "be": 0,
+                            "bf": 0,
+                            "bg": 0,
+                            "ba": 0,
+                            "bb": 0,
+                            "bh": 0,
+                            "bn": 0,
+                            "bo": 0,
+                            "bi": 0,
+                            "bj": 0,
+                            "bt": 0,
+                            "jm": 0,
+                            "jo": 0,
+                            "ws": 0,
+                            "br": 0,
+                            "bs": 0,
+                            "lb": 0,
+                            "by": 0,
+                            "bz": 0,
+                            "om": 0,
+                            "ua": 0,
+                            "lr": 0,
+                            "bw": 0,
+                            "ci": 0,
+                            "ch": 0,
+                            "co": 0,
+                            "cn": 0,
+                            "cm": 0,
+                            "cl": 0,
+                            "al": 0,
+                            "ca": 0,
+                            "cg": 0,
+                            "cf": 0,
+                            "cd": 0,
+                            "cz": 0,
+                            "cy": 0,
+                            "cr": 0,
+                            "cv": 0,
+                            "lv": 0,
+                            "pt": 0,
+                            "py": 0,
+                            "lt": 0,
+                            "at": 0,
+                            "pa": 0,
+                            "pg": 0,
+                            "pe": 0,
+                            "pk": 0,
+                            "ph": 0,
+                            "pl": 0,
+                            "hr": 0,
+                            "ht": 0,
+                            "hu": 0,
+                            "hk": 0,
+                            "lu": 0,
+                            "hn": 0,
+                            "ao": 0,
+                            "me": 0,
+                            "md": 0,
+                            "mg": 0,
+                            "ma": 0,
+                            "uz": 0,
+                            "mm": 0,
+                            "ml": 0,
+                            "mn": 0,
+                            "mk": 0,
+                            "mu": 0,
+                            "mt": 0,
+                            "mw": 0,
+                            "mv": 0,
+                            "mr": 0,
+                            "ug": 0,
+                            "my": 0,
+                            "mx": 0,
+                            "mz": 0,
+                            "vc": 0,
+                            "ae": 0,
+                            "ve": 0,
+                            "ag": 0,
+                            "af": 0,
+                            "iq": 0,
+                            "is": 0,
+                            "ir": 0,
+                            "am": 0,
+                            "it": 0,
+                            "vn": 0,
+                            "kn": 0,
+                            "ar": 0,
+                            "au": 0,
+                            "il": 0,
+                            "in": 0,
+                            "az": 0,
+                            "ie": 0,
+                            "id": 0,
+                            "ni": 0,
+                            "nl": 0,
+                            "no": 0,
+                            "na": 0,
+                            "ne": 0,
+                            "ng": 0,
+                            "nz": 0,
+                            "np": 0,
+                            "fr": 0,
+                            "kz": 0,
+                            "fi": 0,
+                            "fj": 0,
+                            "sz": 0,
+                            "sy": 0,
+                            "kg": 0,
+                            "ke": 0,
+                            "sr": 0,
+                            "ki": 0,
+                            "kh": 0,
+                            "sv": 0,
+                            "km": 0,
+                            "st": 0,
+                            "sk": 0,
+                            "kr": 0,
+                            "si": 0,
+                            "kw": 0,
+                            "sn": 0,
+                            "sl": 0,
+                            "sc": 0,
+                            "sb": 0,
+                            "sa": 0,
+                            "sg": 0,
+                            "se": 0,
+                            "sd": 0,
+                            "undefined": "5.73",
+                        },
+                        scaleColors: ['#C8EEFF', '#006491'],
+                        normalizeFunction: 'polynomial'
+                    });
+                });
+            </script>
+
+        </div>
+    </div>
+    <div class="row">
+        {#        <div class="col-md-12">#}
+        <div class="col-md-8">
+            <div class="panel">
+                <div class=" panel-headline">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Performance overview</h3>
+                        <!--p class="panel-subtitle">Demo</p-->
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row center-block">
+                        <div>{{ myechart|safe }}</div>
+                    </div>
+                </div>
+            </div>
+            {#        </div>#}
+        </div>
+        <div class="col-md-4">
+            <div class="panel panel-headline">
+                <div class="panel-heading">
+                    {#                    <h3 class="panel-title">Overview</h3>#}
+                    <!--p class="panel-subtitle">Demo</p-->
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-line-chart icon"></i></span>
+                            <p>
+                                <span class="number">{{ run_rtv_numbers }}</span>
+                                <span class="title">Rtv tested</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-clock-o icon"></i></span>
+                            <p>
+                                <span class="number">{{ time_cost }}</span>
+                                <span class="title">Time cost</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-database icon"></i></span>
+                            <p>
+                                <span class="number">602</span>
+                                <span class="title">Rtv we have</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+        <div class="panel panel-headline">
+            <div class="panel-heading">
+                <h3 class="panel-title">Overview</h3>
+                <!--p class="panel-subtitle">Demo</p-->
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-line-chart icon"></i></span>
+                            <p>
+                                <span class="number">{{ run_rtv_numbers }}</span>
+                                <span class="title">Rtv tested</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-clock-o icon"></i></span>
+                            <p>
+                                <span class="number">{{ time_cost }}</span>
+                                <span class="title">Time cost</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="metric">
+                            <span class="icon"><i class="fa fa-database icon"></i></span>
+                            <p>
+                                <span class="number">602</span>
+                                <span class="title">Rtv we have</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-9">{{ charts }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-md-6">
@@ -123,10 +401,10 @@
                                     {#setInterval(get_status, 1000);#}
                                     var interval = setInterval(function () {
                                         $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                                            if (ret.status == 'SLAMdone' && ret.mode == 'SLAM' ) {
+                                            if (ret.status == 'SLAMdone' && ret.mode == 'SLAM') {
                                                 clearInterval(interval);
                                             }
-                                            if (ret.status == 'done' && ret.mode == 'SSA' ) {
+                                            if (ret.status == 'done' && ret.mode == 'SSA') {
                                                 clearInterval(interval);
                                             }
                                         });
@@ -217,16 +495,16 @@
 
                                         {#setInterval(get_status, 1000);#}
                                         var interval = setInterval(function () {
-                                        $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                                            if (ret.status == 'SLAMdone' && ret.mode == 'SLAM' ) {
-                                                clearInterval(interval);
-                                            }
-                                            if (ret.status == 'done' && ret.mode == 'SSA' ) {
-                                                clearInterval(interval);
-                                            }
-                                        });
-                                        get_status()
-                                    }, 1000)
+                                            $.getJSON('/test/{{ task.id }}/status', function (ret) {
+                                                if (ret.status == 'SLAMdone' && ret.mode == 'SLAM') {
+                                                    clearInterval(interval);
+                                                }
+                                                if (ret.status == 'done' && ret.mode == 'SSA') {
+                                                    clearInterval(interval);
+                                                }
+                                            });
+                                            get_status()
+                                        }, 1000)
                                     })
                                 </script>
                             </tr>
@@ -243,21 +521,5 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class=" panel-headline">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Performance</h3>
-                        <!--p class="panel-subtitle">Demo</p-->
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row center-block">
-                        <div>{{ myechart|safe }}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
 {% endblock %}

@@ -19,7 +19,7 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar, Line, Grid, configure, Page, Pie, Timeline
+from pyecharts import Bar, Line, Grid, configure, Page, Pie, Timeline, Geo,Map
 # configure(global_theme='walden')
 from django.shortcuts import render_to_response
 from celery.task.control import revoke
@@ -142,7 +142,7 @@ def task_process(request, task_id):
                         kmls_data.append(data[k][key])
                 center_data[area] = __str2dic(center[list(center.keys())[0]])
         except Exception as e:
-            print("data process",e)
+            print("data process", e)
             pass
 
     task.center = center_data
