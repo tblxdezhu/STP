@@ -19,7 +19,7 @@ import math
 import os
 from django.http import HttpResponse
 from django.template import loader
-from pyecharts import Bar, Line, Grid, configure, Page, Pie, Timeline, Geo,Map
+from pyecharts import Bar, Line, Grid, configure, Page, Pie, Timeline, Geo, Map
 # configure(global_theme='walden')
 from django.shortcuts import render_to_response
 from celery.task.control import revoke
@@ -291,30 +291,20 @@ def dashboard(request):
     myechart = grid.render_embed()
     script_list.extend(grid.get_js_dependencies())
 
-    run_rtv_numbers = Results.objects.order_by('-id').values_list('id').first()[0]
-    seconds = sum([int(i[0]) for i in Results.objects.values_list('time')])
-    m, s = divmod(seconds, 60)
-    h, m = divmod(m, 60)
-    d, h = divmod(h, 24)
-    time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
-
-    attr_test = ["zhenxuan.xu", "hong.he", "haoxin.li", "lili.zheng", "ming.lei", "wu.chen"]
-    bar_test = Bar("test")
-    v1 = [5, 20, 36, 10, 75, 90]
-    v2 = [10, 25, 8, 60, 20, 80]
-    bar_test.add("", attr_test, v1)
-    bar_test.add("", attr_test, v2, is_convert=True)
-    charts = bar_test.render_embed()
-    script_list.append(bar_test.get_js_dependencies())
+    # run_rtv_numbers = Results.objects.order_by('-id').values_list('id').first()[0]
+    # seconds = sum([int(i[0]) for i in Results.objects.values_list('time')])
+    # m, s = divmod(seconds, 60)
+    # h, m = divmod(m, 60)
+    # d, h = divmod(h, 24)
+    # time_cost = "%02dd:%02dh:%02dm:%02ds" % (d, h, m, s)
 
     return render(request, 'dashboard.html', {
-        'run_rtv_numbers': run_rtv_numbers,
-        'time_cost': time_cost,
+        # 'run_rtv_numbers': run_rtv_numbers,
+        # 'time_cost': time_cost,
         'tasks': tasks,
         'my_tasks': my_tasks,
         'if_dashboard_active': 'active',
         'myechart': myechart,
-        'charts': charts,
         'script_list': script_list
     })
 
@@ -341,13 +331,12 @@ def bar_mp_kf(attr):
 
 
 def line_time_kf(attr):
-    print(attr)
     total_time = [Results.objects.total(task_id=t, keyword='time') for t in attr]
     total_kf = [Results.objects.total(task_id=t, keyword='kfs') for t in attr]
     value = [round(t / total_kf[total_time.index(t)], 4) for t in total_time]
     line = Line("Time/KF")
     line.add("", attr, value, is_datazoom_show=True, datazoom_xaxis_index=[0, 1], is_smooth=True, is_toolbox_show=False, xaxis_name="task id", yaxis_name="seconds", yaxis_name_gap="40",
-             xaxis_name_pos="end")
+             xaxis_name_pos="end", datazoom_range=[80, 100])
     return line
 
 
