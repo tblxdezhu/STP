@@ -92,6 +92,13 @@
                                     {% endifequal %}
                                 {% endfor %}
                             </optgroup>
+                            <optgroup label="xie.wei">
+                                {% for area in areas %}
+                                    {% ifequal area.tag 'xie.wei' %}
+                                        <option value="{{ area }}">{{ area }}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </optgroup>
                         </select>
                         {#                        <script type="text/javascript">#}
                         {#                            $(document).ready(function () {#}
