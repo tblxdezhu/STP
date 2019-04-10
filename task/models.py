@@ -10,7 +10,7 @@ class Task(models.Model):
     slug = models.CharField(max_length=200, db_index=True)
     mode = models.CharField(max_length=100)
     branch = models.CharField(max_length=500)
-    area = models.CharField(max_length=100)
+    area = models.CharField(max_length=500)
     celery_id = models.CharField(max_length=1000, null=True)
     status = models.CharField(max_length=30, null=True)
     code_path = models.CharField(max_length=100, null=True)
