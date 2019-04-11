@@ -502,6 +502,9 @@
                                             if (ret.status == 'done' && ret.mode == 'SSA') {
                                                 clearInterval(interval);
                                             }
+                                            if (ret.status == 'SLAMfailed' && ret.mode == 'SLAM') {
+                                            clearInterval(interval);
+                                        }
                                         });
                                         get_status()
                                     }, 1000)
