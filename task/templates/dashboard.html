@@ -264,7 +264,7 @@
                         {% for task in tasks %}
                             <li>
                                 <img src="{% static 'assets/img/user/' %}{{ task.tester }}.png" alt="Avatar" class="img-circle pull-left avatar">
-                                <p><a href="#">{{ task.tester }}</a> added a task , {{ task.description }}<span class="timestamp">20 minutes ago</span></p>
+                                <p><a href="#">{{ task.tester }}</a> added a task , {{ task.description }}<span class="timestamp">{{ task.created }}</span></p>
                             </li>
                         {% endfor %}
                     </ul>
