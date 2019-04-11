@@ -125,6 +125,10 @@
                                 $("#step1").css('display', '').removeClass().addClass("panel panel-headline animated bounceInLeft");
                             });
                             $("#step2next").click(function () {
+                                if ($("#select_area_id").val() == null) {
+                                    alert("You should choose some data to test.");
+                                    return false
+                                }
                                 $("#step2").removeClass().addClass("panel panel-headline animated bounceOutLeft").css('display', 'none');
                                 $("#step3").css('display', '').removeClass().addClass("panel panel-headline animated bounceInRight");
                             })
@@ -300,16 +304,22 @@
                     <p class="panel-subtitle">Enter your task description</p>
                 </div>
                 <div class="panel-body">
-                    <textarea class="form-control" placeholder="" rows="4" name="description"></textarea>
+                    <textarea class="form-control" placeholder="" rows="4" name="description" id="task_description"></textarea>
                     <br>
                     <div class="row col-lg-offset-10">
                         <button type="button" class="btn btn-primary" id="step4back">Back</button>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep">Start test</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#nextstep" id="start_test">Start test</button>
                     </div>
                     <script type="text/javascript">
                         $("#step4back").click(function () {
                             $("#step4").removeClass().addClass("panel panel-headline animated bounceOutRight").css('display', 'none');
                             $("#step3").css('display', '').removeClass().addClass("panel panel-headline animated bounceInLeft");
+                        });
+                        $("#start_test").click(function () {
+                            if ($("#task_description").val().length == 0) {
+                                alert("You should fill in some descriptions of the task.");
+                                return false
+                            }
                         });
                     </script>
                 </div>
