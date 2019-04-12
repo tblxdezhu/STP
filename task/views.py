@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 
-import grequests
+# import grequests
 
 # from gevent import monkey;monkey.patch_socket()
 # import gevent
