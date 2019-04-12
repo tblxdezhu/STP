@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import grequests
+
 # from gevent import monkey;monkey.patch_socket()
 # import gevent
 # import socket
@@ -39,6 +41,7 @@ from requests.auth import AuthBase
 from requests.auth import HTTPBasicAuth
 from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor, Executor
 from multiprocessing import Pool
+from functools import wraps
 
 # from apscheduler.schedulers.background import BackgroundScheduler
 # from django_apscheduler.jobstores import DjangoJobStore, register_events, register_job
@@ -63,6 +66,18 @@ REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
 def page_not_found(request):
     return render(request, '404.html')
+
+
+def timefunc(func):
+    @wraps(func)
+    def measure_time(*args, **kwargs):
+        t1 = time.time()
+        result = func(*args, **kwargs)
+        t2 = time.time()
+        print("@timefunc:{} took {} seconds".format(func.__name__, str(t2 - t1)))
+        return result
+
+    return measure_time
 
 
 @login_required
@@ -340,46 +355,35 @@ def line_time_kf(attr):
     return line
 
 
-def get_repo_branch(repo):
-    start = time.time()
-    repo_branches = []
-    url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
-    a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
-    req = requests.get(url=url, auth=a)
-    for branch in req.json()['values']:
-        repo_branches.append(branch['displayId'])
-    end = time.time()
-    return repo + ",over"
+#
+# def get_repo_branch(repo):
+#     start = time.time()
+#     repo_branches = []
+#     url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
+#     a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
+#     req = requests.get(url=url, auth=a)
+#     for branch in req.json()['values']:
+#         repo_branches.append(branch['displayId'])
+#     end = time.time()
+#     return repo + ",over"
 
-
+@timefunc
 def get_branch():
-    start = time.time()
     repo_list = ['common', 'algorithm_common', 'algorithm_common_slam', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
     a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
     branches = {}
-    # pool = Pool(6)
-    # results = []
-    # for repo in repo_list:
-    #     results.append(pool.apply_async(get_repo_branch, (repo,)))
-    # pool.close()
-    # pool.join()
-    # for result in results:
-    #     print(result.ready())
-    # with ProcessPoolExecutor(max_workers=3) as pool:
-    #     for result in pool.map(get_repo_branch, repo_list):
-    #         print(result)
-    # g = [gevent.spawn(get_repo_branch, repo) for repo in repo_list]
-    # gevent.joinall(g)
-    # for repo in repo_list:
-    #     get_repo_branch(repo)
     for repo in repo_list:
         branches[repo] = []
         url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo)
         req = requests.get(url=url, auth=a)
         for branch in req.json()['values']:
             branches[repo].append(branch['displayId'])
-    end = time.time()
-    print("get branch cost time:", end - start)
+
+
+    # urls = ["https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo) for repo in repo_list]
+    # rs = (grequests.get(url=u, auth=a) for u in urls)
+    # responses = grequests.map(rs, size=3)
+    #
     return branches
     # return JsonResponse(branches)
     # get branches info from local
