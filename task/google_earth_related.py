@@ -16,7 +16,7 @@ import time
 class Trajectory:
     def __init__(self, case, kml_name, fill_data, data_type, is_show=True):
         self.is_show = is_show
-        self.name = ''.join(re.findall('[a-zA-Z0-9]+', kml_name + case))
+        self.name = 'a' + ''.join(re.findall('[a-zA-Z0-9]+', kml_name + case))
         self.var_name = "co_" + self.name
         self.prefix = "var coordinates = [".replace("coordinates", self.var_name)
         self.suffix = "];"
