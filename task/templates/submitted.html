@@ -292,7 +292,7 @@
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
                     {#$("#task_status_slam").tooltip({title: 'total:' + eval(ret.sum) + ' ' + 'processed:' + eval(ret.processed)});#}
                     {#alert(eval(ret.processed));#}
-                    $("#task_status_slam").tooltip({title: ret});
+                    $("#task_status_slam").tooltip({title: ret['processed']});
 
                     if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
