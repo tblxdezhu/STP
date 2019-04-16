@@ -18,6 +18,8 @@ class Task(models.Model):
     description = models.CharField(max_length=100, null=True)
     machine_id = models.CharField(max_length=50, default='0000', null=True)
     center = models.CharField(max_length=500, null=True)
+    total_rtv = models.IntegerField(default=0, null=True)
+    processed_rtv = models.IntegerField(default=0, null=True)
 
     class Meta:
         ordering = ('-created',)

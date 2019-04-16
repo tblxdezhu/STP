@@ -32,6 +32,11 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
     Run.execute_cmd(run_cmd)
+    task = Task.objects.get(id=task_id)
+    task.processed_rtv = task.processed_rtv + 1
+    task.save(update_fields=['processed_rtv'])
+
+
 
 
 class Run(object):

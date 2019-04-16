@@ -82,7 +82,7 @@
                             </div>
 
                             <div class="col-md-3">
-                                <p id="task_status_slam" class="btn btn-default  ">SLAM</p>
+                                <p id="task_status_slam" class="btn btn-default " title="">SLAM</p>
                             </div>
                             <div class="col-md-3">
                                 <p id="task_status_ssa" class="btn btn-default ">SSA </p>
@@ -91,6 +91,13 @@
                                 <p id="task_status_backup" class="btn btn-default ">Backup</p>
                             </div>
                         </div>
+{#                        <script>#}
+{#                            $(function () {#}
+{#                                $("[data-toggle='tooltip']").tooltip();#}
+{#                                $('#task_status_slam').tooltip({title: "Hooray"});#}
+{##}
+{#                            });#}
+{#                        </script>#}
                     </div>
                     <!--div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
@@ -239,10 +246,12 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="col-md-2">
-                                <button type="button" class="btn btn-primary disabled" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SLAM Kmls</button>
+                                <button type="button" class="btn btn-primary disabled" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SLAM Kmls
+                                </button>
                             </div>
                             <div>
-                                <button type="button" class="btn btn-primary disabled" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SSA Kmls</button>
+                                <button type="button" class="btn btn-primary disabled" onclick="window.location.href='{% url 'test:download' task.id %}'"><i class="fa fa-download"></i> SSA Kmls
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -332,6 +341,12 @@
                 })
             }
 
+            function get_processed_num() {
+                $.getJSON('/test/{{ task.id }}/processed_num', function (ret) {
+                    $("#task_status_slam").tooltip({title: 'total:'+ret.sum+' '+'processed:'+ret.processed});
+                })
+            }
+
             {#setInterval(get_status, 1000);#}
             var interval = setInterval(function () {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
@@ -342,7 +357,8 @@
                         clearInterval(interval);
                     }
                 });
-                get_status()
+                get_status();
+                get_processed_num()
             }, 1000)
         })
     </script>
