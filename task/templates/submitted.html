@@ -290,7 +290,9 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
+                    {#$("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});#}
+                    $("#task_status_slam").tooltip({title: ret.sum + '/' + ret.processed});
+
                     {#alert(eval(ret.processed));#}
                     {#$("#task_status_slam").tooltip({title: ret.processed});#}
 
