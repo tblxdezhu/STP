@@ -272,8 +272,8 @@ def _get_task_status(request, task_id):
     # status['SSA'] = run_slam.AsyncResult(eval(task.celery_id)[1]).state
     status['status'] = task.status
     status['mode'] = task.mode
-    status["sum"] = task.total_rtv
-    status["processed"] = task.processed_rtv
+    status["sum"] = str(task.total_rtv)
+    status["processed"] = str(task.processed_rtv)
     print(status)
     return JsonResponse(status)
 
