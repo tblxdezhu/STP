@@ -424,8 +424,9 @@ def get_branch_from_repo(request, repo):
 
 def get_processed_num(request, task_id):
     results = {}
-    results["sum"] = 10
-    results["processed"] = 6
+    task = Task.objects.get(id=task_id)
+    results["sum"] = task.total_rtv
+    results["processed"] = task.processed_rtv
     return JsonResponse(results)
 
 
