@@ -349,8 +349,6 @@
 
             {#setInterval(get_status, 1000);#}
             var interval = setInterval(function () {
-                get_status();
-                get_processed_num();
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
                     if (ret.status == 'SLAMdone' && ret.mode == 'SLAM') {
                         clearInterval(interval);
@@ -359,6 +357,8 @@
                         clearInterval(interval);
                     }
                 });
+                get_status();
+                get_processed_num()
             }, 1000)
         })
     </script>
