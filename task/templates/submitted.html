@@ -357,8 +357,11 @@
                         clearInterval(interval);
                     }
                 });
+                $.getJSON('/test/{{ task.id }}/processed_num', function (ret) {
+                    $("#task_status_slam").tooltip({title: 'total:'+ret.sum+' '+'processed:'+ret.processed});
+                });
                 get_status();
-                get_processed_num()
+                {#get_processed_num()#}
             }, 1000)
         })
     </script>
