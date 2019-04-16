@@ -379,7 +379,6 @@ def get_branch():
         for branch in req.json()['values']:
             branches[repo].append(branch['displayId'])
 
-
     # urls = ["https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo) for repo in repo_list]
     # rs = (grequests.get(url=u, auth=a) for u in urls)
     # responses = grequests.map(rs, size=3)
@@ -409,6 +408,25 @@ def get_branch():
     # with open("{}/static/jsons/branchs.json".format(init_path), "w") as f:
     #     json.dump(json_data, f)
     # os.chdir(init_path)
+
+
+def get_branch_from_repo(request, repo):
+    print("in func : {}".format(repo))
+    branches = []
+    a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
+    url = "https://stash.ygomi.com:7990/rest/api/1.0/projects/RC/repos/{}/branches?limit=100".format(repo.rstrip("/"))
+    req = requests.get(url=url, auth=a)
+    for branch in req.json()['values']:
+        branches.append(branch['displayId'])
+    print(branches)
+    return branches
+
+
+def get_processed_num(request, task_id):
+    results = {}
+    results["sum"] = 10
+    results["processed"] = 6
+    return JsonResponse(results)
 
 
 @login_required
