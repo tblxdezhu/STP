@@ -91,13 +91,13 @@
                                 <p id="task_status_backup" class="btn btn-default ">Backup</p>
                             </div>
                         </div>
-{#                        <script>#}
-{#                            $(function () {#}
-{#                                $("[data-toggle='tooltip']").tooltip();#}
-{#                                $('#task_status_slam').tooltip({title: "Hooray"});#}
-{##}
-{#                            });#}
-{#                        </script>#}
+                        {#                        <script>#}
+                        {#                            $(function () {#}
+                        {#                                $("[data-toggle='tooltip']").tooltip();#}
+                        {#                                $('#task_status_slam').tooltip({title: "Hooray"});#}
+                        {##}
+                        {#                            });#}
+                        {#                        </script>#}
                     </div>
                     <!--div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
@@ -290,6 +290,7 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
+                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
                     if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
                     } else if (ret.status == 'buildfailed') {
@@ -343,7 +344,7 @@
 
             function get_processed_num() {
                 $.getJSON('/test/{{ task.id }}/processed_num', function (ret) {
-                    $("#task_status_slam").tooltip({title: 'total:'+ret.sum+' '+'processed:'+ret.processed});
+                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
                 })
             }
 
@@ -357,11 +358,9 @@
                         clearInterval(interval);
                     }
                 });
-                $.getJSON('/test/{{ task.id }}/processed_num', function (ret) {
-                    $("#task_status_slam").tooltip({title: 'total:'+ret.sum+' '+'processed:'+ret.processed});
-                });
+                {#get_processed_num();#}
+
                 get_status();
-                {#get_processed_num()#}
             }, 1000)
         })
     </script>
