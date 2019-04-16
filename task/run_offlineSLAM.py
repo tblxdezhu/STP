@@ -34,6 +34,8 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     Run.execute_cmd(run_cmd)
     task = Task.objects.get(id=task_id)
     task.processed_rtv = task.processed_rtv + 1
+    print("*"*20)
+    print(task.processed_rtv)
     task.save(update_fields=['processed_rtv'])
 
 
