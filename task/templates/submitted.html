@@ -362,10 +362,64 @@
                     if (ret.status == 'done' && ret.mode == 'SSA') {
                         clearInterval(interval);
                     }
+                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
+                    {#$("#task_status_slam").tooltip({title: ret.sum + '/' + ret.processed});#}
+
+                    {#alert(eval(ret.processed));#}
+                    {#$("#task_status_slam").tooltip({title: ret.processed});#}
+
+                    if (ret.status == 'build') {
+                        $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
+                    } else if (ret.status == 'buildfailed') {
+                        $('#task_status_build').removeClass().addClass("btn btn-danger");
+                    } else if (ret.status == 'SLAM') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
+                        $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    } else if (ret.status == 'SLAMdone') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                    } else if (ret.status == 'SLAMfailed') {
+                        $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
+                        $('#task_status_build').removeClass().addClass("btn btn-success");
+                        $('#task_status_slam').removeClass().addClass("btn btn-danger")
+                    } else if (ret.status == 'SSA') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    } else if (ret.status == 'SSAdone') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-success")
+                    } else if (ret.status == 'SSAfailed') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-danger")
+                    } else if (ret.status == 'STOP') {
+                        $('#task_status_slam').removeClass().addClass("btn btn-danger");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-danger")
+                    } else if (ret.status == 'backup') {
+                        $('#task_status_backup').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                    } else if (ret.status == 'backupfailed') {
+                        $('#task_status_backup').removeClass().addClass("btn btn-danger")
+                    } else if (ret.status == 'backupdone') {
+                        $('#task_status_slam').html("<i class=\"fa fa-check-circle\"></i>SLAM");
+                        $('#task_status_ssa').html("<i class=\"fa fa-check-circle\"></i>SSA");
+                        $('#task_status_slam').removeClass().addClass("btn btn-success");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-success");
+                        $('#task_status_backup').html("<i class=\"fa fa-check-circle\"></i>Backup");
+                        $('#task_status_backup').removeClass().addClass("btn btn-success")
+                    } else {
+                        $('#task_status_build').removeClass().addClass("btn btn-warning");
+                        $('#task_status_slam').removeClass().addClass("btn btn-warning");
+                        $('#task_status_ssa').removeClass().addClass("btn btn-warning");
+                        $('#task_status_backup').removeClass().addClass("btn btn-warning");
+                    }
                 });
                 {#get_processed_num();#}
 
-                get_status();
+                {#get_statusatus();#}
             }, 1000);
 
         })
