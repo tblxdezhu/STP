@@ -78,11 +78,11 @@
                     <div class="row">
                         <div>
                             <div class="col-md-3">
-                                <p id="task_status_build" class="btn btn-default  ">Build</p>
+                                <p id="task_status_build" class="btn btn-default ">Build</p>
                             </div>
 
                             <div class="col-md-3">
-                                <p id="task_status_slam" class="btn btn-default tooltip " title="this is test">SLAM</p>
+                                <p id="task_status_slam" class="btn btn-default ">SLAM</p>
                             </div>
                             <div class="col-md-3">
                                 <p id="task_status_ssa" class="btn btn-default ">SSA </p>
@@ -95,6 +95,7 @@
                             $(function () {
                                 $('.tooltip').tooltipster({
                                     theme: 'tooltipster-borderless'
+                                    {#theme: 'tooltipster-shadow'#}
                                 });
 
                             });
@@ -291,7 +292,6 @@
         $(document).ready(function () {
             function get_status() {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
-                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
                     {#$("#task_status_slam").tooltip({title: ret.sum + '/' + ret.processed});#}
 
                     {#alert(eval(ret.processed));#}
@@ -304,7 +304,7 @@
                     } else if (ret.status == 'SLAM') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
-                        $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                        $('#task_status_slam').removeClass().addClass("btn btn-primary tooltip animated flash slower infinite")
                     } else if (ret.status == 'SLAMdone') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
@@ -345,12 +345,7 @@
                         $('#task_status_ssa').removeClass().addClass("btn btn-warning");
                         $('#task_status_backup').removeClass().addClass("btn btn-warning");
                     }
-                })
-            }
 
-            function get_processed_num() {
-                $.getJSON('/test/{{ task.id }}/processed_num', function (ret) {
-                    $("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});
                 })
             }
 
@@ -358,17 +353,12 @@
             var interval = setInterval(function () {
                 $.getJSON('/test/{{ task.id }}/status', function (ret) {
                     {#$("#task_status_slam").tooltip({title: 'total:' + ret.sum + ' ' + 'processed:' + ret.processed});#}
-                    $("#task_status_slam").tooltipster('content', 'total:' + ret.sum + ' ' + 'processed:' + ret.processed);
                     if (ret.status == 'SLAMdone' && ret.mode == 'SLAM') {
                         clearInterval(interval);
                     }
                     if (ret.status == 'done' && ret.mode == 'SSA') {
                         clearInterval(interval);
                     }
-                    {#$("#task_status_slam").tooltip({title: ret.sum + '/' + ret.processed});#}
-
-                    {#alert(eval(ret.processed));#}
-                    {#$("#task_status_slam").tooltip({title: ret.processed});#}
 
                     if (ret.status == 'build') {
                         $('#task_status_build').removeClass().addClass("btn btn-primary animated flash slower infinite");
@@ -377,7 +367,7 @@
                     } else if (ret.status == 'SLAM') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
-                        $('#task_status_slam').removeClass().addClass("btn btn-primary animated flash slower infinite")
+                        $('#task_status_slam').removeClass().addClass("btn btn-primary tooltip animated flash slower infinite")
                     } else if (ret.status == 'SLAMdone') {
                         $('#task_status_build').html("<i class=\"fa fa-check-circle\"></i>Build");
                         $('#task_status_build').removeClass().addClass("btn btn-success");
@@ -418,6 +408,12 @@
                         $('#task_status_ssa').removeClass().addClass("btn btn-warning");
                         $('#task_status_backup').removeClass().addClass("btn btn-warning");
                     }
+                    $('.tooltip').tooltipster({
+                        theme: 'tooltipster-borderless'
+                        {#theme: 'tooltipster-shadow'#}
+                    });
+                    $("#task_status_slam").tooltipster('content', 'total:' + ret.sum + ' ' + 'processed:' + ret.processed);
+
                 });
                 {#get_processed_num();#}
 

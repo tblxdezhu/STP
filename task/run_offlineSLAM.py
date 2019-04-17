@@ -34,11 +34,9 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     Run.execute_cmd(run_cmd)
     task = Task.objects.get(id=task_id)
     task.processed_rtv = task.processed_rtv + 1
-    print("*"*20)
+    print("*" * 20)
     print(task.processed_rtv)
     task.save(update_fields=['processed_rtv'])
-
-
 
 
 class Run(object):
@@ -46,10 +44,10 @@ class Run(object):
     def __init__(self, area, task_id):
         self.area = area
         self.task_id = task_id
-        task = Task.objects.get(id=task_id)
-        self.output_path = task.output_path
-        self.code_path = task.code_path
-        self.machine_data_path = Machine.objects.get(machine_id=task.machine_id).data_path
+        self.task = Task.objects.get(id=task_id)
+        self.output_path = self.task.output_path
+        self.code_path = self.task.code_path
+        self.machine_data_path = Machine.objects.get(machine_id=self.task.machine_id).data_path
         self.data_path = Data.objects.get(area=area).data_path
         self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
@@ -67,6 +65,8 @@ class Run(object):
 
     def __get_cases(self):
         self.rtvs, self.imus = self.__get_data(os.path.join(self.machine_data_path, self.data_path))
+        self.task.total_rtv = len(self.rtvs)
+        self.task.save(update_fields=['total_rtv', ])
 
     @staticmethod
     def __get_data(data_path):
