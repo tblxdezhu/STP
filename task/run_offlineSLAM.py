@@ -51,6 +51,7 @@ class Run(object):
         self.data_path = Data.objects.get(area=area).data_path
         self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
+        self.rtv_num = self.__get_cases()
 
     def _check_data(self):
         self.__get_cases()
@@ -65,8 +66,9 @@ class Run(object):
 
     def __get_cases(self):
         self.rtvs, self.imus = self.__get_data(os.path.join(self.machine_data_path, self.data_path))
-        self.task.total_rtv = len(self.rtvs)
-        self.task.save(update_fields=['total_rtv', ])
+        # self.task.total_rtv = len(self.rtvs)
+        # self.task.save(update_fields=['total_rtv', ])
+        return len(self.rtvs)
 
     @staticmethod
     def __get_data(data_path):

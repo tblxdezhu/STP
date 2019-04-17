@@ -52,20 +52,15 @@ def get_machine_id():
 @task
 def work_flow(if_build, task_id):
     task = Task.objects.get(id=task_id)
-    print("work flow task id :", id(task))
     machine = Machine.objects.get(machine_id=get_machine_id())
     task.code_path = machine.code_path
     task.machine_id = get_machine_id()
     task.output_path = os.path.join(machine.output_path, str(task.id))
     task.save(update_fields=['code_path', 'machine_id', 'output_path'])
-    print("machine_id:", get_machine_id())
-    print("output path:", task.output_path)
-    print(id(task))
 
     def __change_status(task_id, status):
         task = Task.objects.get(id=task_id)
         task.status = status
-        print(id(task))
         # save() 方法会设定所有列的 值，而不是只设定 name 列的值。
         # 如果你所处的环境可能同时由其他操作修改其他列，最好只更新需要修改的值。
         # 为此，使用 QuerySet 对象的 update() 方法
@@ -75,6 +70,13 @@ def work_flow(if_build, task_id):
 
     # COMPILE THE CODE , DEFAULT MODE IS NOT BUILD ALGO_SAM
     build(eval(task.branch), task_id, if_build)
+    rtv_num = 0
+    for area in eval(task.area):
+        run = Run(area, task_id)
+        rtv_num = rtv_num + run.rtv_num
+    task.total_rtv = rtv_num
+    task.save(update_fields=['total_rtv', ])
+
     for area in eval(task.area):
         vehicle = Vehicle(str(area), task.id)
         __change_status(task_id, 'SLAM')
