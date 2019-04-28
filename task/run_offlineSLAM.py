@@ -72,7 +72,7 @@ class Run(object):
 
     @staticmethod
     def __get_data(data_path):
-        rtvs_list = Run.find_file(data_path, "*.rtv")
+        rtvs_list = Run.find_file(data_path, "*.img")
         imus_list = Run.find_file(data_path, "*.imu")
         return rtvs_list[0], imus_list[0]
 
