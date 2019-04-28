@@ -55,7 +55,7 @@ class Run(object):
 
     def _check_data(self):
         self.__get_cases()
-        diff_list = list(set(self.rtvs) ^ set([imu.replace(".imu", ".rtv") for imu in self.imus]))
+        diff_list = list(set(self.rtvs) ^ set([imu.replace(".imu", ".img") for imu in self.imus]))
         try:
             if diff_list:
                 raise ValueError
@@ -106,7 +106,7 @@ class Vehicle(Run):
         pool = mp.Pool(processes=Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id).process_num)
         mp.current_process().daemon = True
         for rtv in self.rtvs:
-            imu = rtv.replace('.rtv', '.imu')
+            imu = rtv.replace('.img', '.imu')
             if imu in self.imus:
                 pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode, self.output_path, self.code_path, self.machine_data_path, self.camera_config))
 
