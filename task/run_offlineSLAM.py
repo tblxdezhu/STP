@@ -14,8 +14,8 @@ from webserver.models import Data, Machine
 
 
 def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera_config):
-    imu = rtv.replace('.rtv', '.imu')
-    gps = rtv.replace('.rtv', '.gps')
+    imu = rtv.replace('.img', '.imu')
+    gps = rtv.replace('.img', '.gps')
     case_output_path = os.path.join(output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
