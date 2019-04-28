@@ -363,7 +363,7 @@ def line_time_kf(attr):
 @timefunc
 def get_branch():
     repo_list = ['common', 'algorithm_common', 'algorithm_common_slam', 'algorithm_vehicle_offlineslam', 'algorithm_sam', 'vehicle']
-    a = HTTPBasicAuth('zhenxuan.xu', 'YGomi258')
+    a = HTTPBasicAuth('zhenxuan.xu', 'YGOmi258')
     branches = {}
     for repo in repo_list:
         branches[repo] = []
