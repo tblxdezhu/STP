@@ -77,7 +77,7 @@ class Run(object):
 
     @staticmethod
     def find_file(input_path, file_type):
-        find_cmd = "find " + input_path + " -name '" + file_type + "'"
+        find_cmd = "find " + input_path + " -name '" + "*" + file_type + "'"
         print(find_cmd)
         status, files = subprocess.getstatusoutput(find_cmd)
         files = files.split("\n")
