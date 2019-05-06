@@ -104,8 +104,8 @@ def get_all_kmls(path, task_id):
         return all_files
 
     for file in __get_all_files_in_remote_dir(sftp, path):
-        # if file.endswith("final_pose.kml"):
-        if file.endswith("slam_initial_pose.kml"):
+        if file.endswith("final_pose.kml"):
+        # if file.endswith("slam_initial_pose.kml"):
             case_name = os.path.basename(os.path.dirname(file))
             if not case_name == tmp:
                 data_set[case_name] = []
