@@ -29,6 +29,7 @@ class Data(models.Model):
     gps_skeleton_path = models.CharField(max_length=100, blank=True)
     road_skeleton_path = models.CharField(max_length=100, blank=True)
     tag = models.CharField(max_length=20, default="tmp")
+    data_type = models.CharField(max_length=20, default=".img")
     objects = DataManager()
 
     def __str__(self):

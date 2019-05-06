@@ -13,10 +13,10 @@ from task.models import Task
 from webserver.models import Data, Machine
 
 
-def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera_config):
-    imu = rtv.replace('.img', '.imu')
-    gps = rtv.replace('.img', '.gps')
-    case_output_path = os.path.join(output_path, area, mode, os.path.basename(rtv).strip('.rtv'))
+def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera_config, data_type):
+    imu = rtv.replace(data_type, '.imu')
+    gps = rtv.replace(data_type, '.gps')
+    case_output_path = os.path.join(output_path, area, mode, os.path.basename(rtv).strip(data_type))
     os.makedirs(case_output_path)
     logging.info("mkdir {}".format(case_output_path))
     vehicle_exec = os.path.join(code_path, "algorithm_vehicle_offlineslam/dist/x64/bin/ZSLAMExe")
@@ -26,7 +26,7 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     # _camera_config = Data.objects.get(area=area).camera
     run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--igps', gps, '--ip', os.path.join(code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
                     os.path.join(data_path, "camera_configs", camera_config), '--out', case_output_path, '--total -1 '
-                    '--oqlt',
+                                                                                                         '--oqlt',
                     quality_file]
     os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
@@ -52,10 +52,11 @@ class Run(object):
         self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
         self.rtv_num = self.__get_cases()
+        self.data_type = Data.objects.get(area=area).data_type
 
     def _check_data(self):
         self.__get_cases()
-        diff_list = list(set(self.rtvs) ^ set([imu.replace(".imu", ".img") for imu in self.imus]))
+        diff_list = list(set(self.rtvs) ^ set([imu.replace(".imu", self.data_type) for imu in self.imus]))
         try:
             if diff_list:
                 raise ValueError
@@ -65,14 +66,14 @@ class Run(object):
             logging.error("rtvs and imus are not match {}".format(diff_list))
 
     def __get_cases(self):
-        self.rtvs, self.imus = self.__get_data(os.path.join(self.machine_data_path, self.data_path))
+        self.rtvs, self.imus = self.__get_data(os.path.join(self.machine_data_path, self.data_path), self.data_type)
         # self.task.total_rtv = len(self.rtvs)
         # self.task.save(update_fields=['total_rtv', ])
         return len(self.rtvs)
 
     @staticmethod
-    def __get_data(data_path):
-        rtvs_list = Run.find_file(data_path, "*.img")
+    def __get_data(data_path, data_type):
+        rtvs_list = Run.find_file(data_path, data_type)
         imus_list = Run.find_file(data_path, "*.imu")
         return rtvs_list[0], imus_list[0]
 
@@ -106,9 +107,9 @@ class Vehicle(Run):
         pool = mp.Pool(processes=Machine.objects.get(machine_id=Task.objects.get(id=self.task_id).machine_id).process_num)
         mp.current_process().daemon = True
         for rtv in self.rtvs:
-            imu = rtv.replace('.img', '.imu')
+            imu = rtv.replace(self.data_type, '.imu')
             if imu in self.imus:
-                pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode, self.output_path, self.code_path, self.machine_data_path, self.camera_config))
+                pool.apply_async(run_slam, (rtv, self.task_id, self.area, mode, self.output_path, self.code_path, self.machine_data_path, self.camera_config, self.data_type))
 
         pool.close()
         pool.join()
