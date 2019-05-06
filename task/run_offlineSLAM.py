@@ -25,7 +25,8 @@ def run_slam(rtv, task_id, area, mode, output_path, code_path, data_path, camera
     # _data_path = Machine.objects.get(machine_id=Task.objects.get(id=task_id).machine_id).data_path
     # _camera_config = Data.objects.get(area=area).camera
     run_cmd_list = [vehicle_exec, '--rtv', rtv, '--iimu', imu, '--igps', gps, '--ip', os.path.join(code_path, "algorithm_vehicle_offlineslam/config/slamConfig.yaml"), '--ic',
-                    os.path.join(data_path, "camera_configs", camera_config), '--out', case_output_path, '--oqlt', quality_file]
+                    os.path.join(data_path, "camera_configs", camera_config), '--out', case_output_path, '--oqlt', quality_file, '--inet',
+                    os.path.join(code_path, "vehicle/config/dlNet/dl_driver_view.json")]
     os.chdir(case_output_path)
     run_cmd = ' '.join(run_cmd_list)
     logging.info(run_cmd)
