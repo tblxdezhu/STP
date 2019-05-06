@@ -49,8 +49,8 @@ class Run(object):
         self.data_path = Data.objects.get(area=area).data_path
         self.camera_config = Data.objects.get(area=area).camera
         # self.output_path = os.path.join(output_path, str(self.task_id))
-        self.rtv_num = self.__get_cases()
         self.data_type = Data.objects.get(area=area).data_type
+        self.rtv_num = self.__get_cases()
 
     def _check_data(self):
         self.__get_cases()
